@@ -1,0 +1,329 @@
+{
+  "repository": "ankertam-cyber/anker-portfolio",
+  "videos": [
+    {
+      "id": "6e422e_bc0f9e761db64687b3ee5dee0ca3b177",
+      "path": "assets/portfolio/1izI9spxl5fjwdvyw8g6iowBpPPAE5p0j/6e422e_bc0f9e761db64687b3ee5dee0ca3b177.mp4",
+      "poster": "assets/portfolio/1izI9spxl5fjwdvyw8g6iowBpPPAE5p0j/6e422e_bc0f9e761db64687b3ee5dee0ca3b177f000-1280.jpg",
+      "bytes": 48623580,
+      "sha256": "4777ec19fd3484a1bc8c6448eb66326f476d951c094130f20aefc7d346179759",
+      "sourceUrl": "https://video.wixstatic.com/video/6e422e_bc0f9e761db64687b3ee5dee0ca3b177/1080p/mp4/file.mp4",
+      "archiveName": "6e422e_bc0f9e761db64687b3ee5dee0ca3b177-4777ec19fd3484a1bc8c.mp4"
+    },
+    {
+      "id": "6e422e_673a66651a714533a59b6983c87a429b",
+      "path": "assets/portfolio/1izI9spxl5fjwdvyw8g6iowBpPPAE5p0j/6e422e_673a66651a714533a59b6983c87a429b.mp4",
+      "poster": "assets/portfolio/1izI9spxl5fjwdvyw8g6iowBpPPAE5p0j/6e422e_673a66651a714533a59b6983c87a429bf000-1280.jpg",
+      "bytes": 18188478,
+      "sha256": "07e341c7e1873d7b7a42593cafc291bd424e21f66cd0c27d3dff625ee66081a1",
+      "sourceUrl": "https://video.wixstatic.com/video/6e422e_673a66651a714533a59b6983c87a429b/1080p/mp4/file.mp4",
+      "archiveName": "6e422e_673a66651a714533a59b6983c87a429b-07e341c7e1873d7b7a42.mp4"
+    },
+    {
+      "id": "6e422e_06957967b886430b8eb45de85509d3fe",
+      "path": "assets/portfolio/1izI9spxl5fjwdvyw8g6iowBpPPAE5p0j/6e422e_06957967b886430b8eb45de85509d3fe.mp4",
+      "poster": "assets/portfolio/1izI9spxl5fjwdvyw8g6iowBpPPAE5p0j/6e422e_06957967b886430b8eb45de85509d3fef000-1280.jpg",
+      "bytes": 965972,
+      "sha256": "bfdde6488109cc7f00de5a1c48b3c966a295b3be78bb123b3a878d66378bf6d6",
+      "sourceUrl": "https://video.wixstatic.com/video/6e422e_06957967b886430b8eb45de85509d3fe/480p/mp4/file.mp4",
+      "archiveName": "6e422e_06957967b886430b8eb45de85509d3fe-bfdde6488109cc7f00de.mp4"
+    },
+    {
+      "id": "6e422e_0eadacdf9135482dac879bd4996c38ed",
+      "path": "assets/portfolio/1XVL41h99QcZDcYzZfl28SbsFy4QJNh4_/6e422e_0eadacdf9135482dac879bd4996c38ed.mp4",
+      "poster": "assets/portfolio/1XVL41h99QcZDcYzZfl28SbsFy4QJNh4_/6e422e_0eadacdf9135482dac879bd4996c38edf000-1280.jpg",
+      "bytes": 24554166,
+      "sha256": "81515356d82a6e2ab04517087ed0de238f21bf7a3468db1ca035c23d82f0b610",
+      "sourceUrl": "https://video.wixstatic.com/video/6e422e_0eadacdf9135482dac879bd4996c38ed/1080p/mp4/file.mp4",
+      "archiveName": "6e422e_0eadacdf9135482dac879bd4996c38ed-81515356d82a6e2ab045.mp4"
+    },
+    {
+      "id": "6e422e_b27e3649818043ff8d9cadf0e56b91e3",
+      "path": "assets/portfolio/1XVL41h99QcZDcYzZfl28SbsFy4QJNh4_/6e422e_b27e3649818043ff8d9cadf0e56b91e3.mp4",
+      "poster": "assets/portfolio/1XVL41h99QcZDcYzZfl28SbsFy4QJNh4_/6e422e_b27e3649818043ff8d9cadf0e56b91e3f000-1280.jpg",
+      "bytes": 39629912,
+      "sha256": "89492c54b8c967f5e55b7f9ca1d706706e77ece0abbe60a4fd3d764d396e8227",
+      "sourceUrl": "https://video.wixstatic.com/video/6e422e_b27e3649818043ff8d9cadf0e56b91e3/480p/mp4/file.mp4",
+      "archiveName": "6e422e_b27e3649818043ff8d9cadf0e56b91e3-89492c54b8c967f5e55b.mp4"
+    },
+    {
+      "id": "drive-1qaaOQD7_jcjnpuUnOB0-5tFLmhQlEiSg",
+      "path": "assets/portfolio/1suawVT8NiDvCSslbqgJEKl84YRrUIBXc/drive-1qaaOQD7_jcjnpuUnOB0-5tFLmhQlEiSg.mp4",
+      "poster": "assets/portfolio/1suawVT8NiDvCSslbqgJEKl84YRrUIBXc/drive-1qaaOQD7_jcjnpuUnOB0-5tFLmhQlEiSg-poster.jpg",
+      "bytes": 7265057,
+      "sha256": "b8eeef7754f53261dcfa2eafa0feab608ec5103e5d4fb3c5da62d3d721d0d7cf",
+      "sourceUrl": "https://drive.google.com/uc?export=download&id=1qaaOQD7_jcjnpuUnOB0-5tFLmhQlEiSg&confirm=t",
+      "archiveName": "drive-1qaaOQD7_jcjnpuUnOB0-5tFLmhQlEiSg-b8eeef7754f53261dcfa.mp4"
+    },
+    {
+      "id": "drive-1dexoK5s4AVr_QvvEnAGFLtEAhLD79Szq",
+      "path": "assets/portfolio/1suawVT8NiDvCSslbqgJEKl84YRrUIBXc/drive-1dexoK5s4AVr_QvvEnAGFLtEAhLD79Szq.mp4",
+      "poster": "assets/portfolio/1suawVT8NiDvCSslbqgJEKl84YRrUIBXc/drive-1dexoK5s4AVr_QvvEnAGFLtEAhLD79Szq-poster.jpg",
+      "bytes": 2250849,
+      "sha256": "17880a0e440eda7e581fac77ce054b9688acaa6f50f1e29e7b825d3b2d932b2e",
+      "sourceUrl": "https://drive.google.com/uc?export=download&id=1dexoK5s4AVr_QvvEnAGFLtEAhLD79Szq&confirm=t",
+      "archiveName": "drive-1dexoK5s4AVr_QvvEnAGFLtEAhLD79Szq-17880a0e440eda7e581f.mp4"
+    },
+    {
+      "id": "drive-1lI68opSN-xw0f6Z4Owy8YOXQMLLHglV5",
+      "path": "assets/portfolio/1n04gvbm6RQ8Jskp3ixGfLvlIgFslv8td/drive-1lI68opSN-xw0f6Z4Owy8YOXQMLLHglV5.mp4",
+      "poster": "assets/portfolio/1n04gvbm6RQ8Jskp3ixGfLvlIgFslv8td/drive-1lI68opSN-xw0f6Z4Owy8YOXQMLLHglV5-poster.jpg",
+      "bytes": 2590973,
+      "sha256": "39f9930cc1536bbabc4c08bc42ced7b1c0679735a781e37c3fffff06e1954015",
+      "sourceUrl": "https://drive.google.com/uc?export=download&id=1lI68opSN-xw0f6Z4Owy8YOXQMLLHglV5&confirm=t",
+      "archiveName": "drive-1lI68opSN-xw0f6Z4Owy8YOXQMLLHglV5-39f9930cc1536bbabc4c.mp4"
+    },
+    {
+      "id": "drive-1pIJDIr_7nX4lJpzkMa9MYq4N7l1DFUUu",
+      "path": "assets/portfolio/1n04gvbm6RQ8Jskp3ixGfLvlIgFslv8td/drive-1pIJDIr_7nX4lJpzkMa9MYq4N7l1DFUUu.mp4",
+      "poster": "assets/portfolio/1n04gvbm6RQ8Jskp3ixGfLvlIgFslv8td/drive-1pIJDIr_7nX4lJpzkMa9MYq4N7l1DFUUu-poster.jpg",
+      "bytes": 1474869,
+      "sha256": "0a4517850c8eb326931b07748bee2e501c9de08d883f80ba678ad362855bf3bc",
+      "sourceUrl": "https://drive.google.com/uc?export=download&id=1pIJDIr_7nX4lJpzkMa9MYq4N7l1DFUUu&confirm=t",
+      "archiveName": "drive-1pIJDIr_7nX4lJpzkMa9MYq4N7l1DFUUu-0a4517850c8eb326931b.mp4"
+    },
+    {
+      "id": "drive-1g4If05ArqFtuwvje6Ww2wJX1Kkmkh9VQ",
+      "path": "assets/portfolio/1398tRFR0WK9i5B-qcr0vi3I8D7wcsSzg/drive-1g4If05ArqFtuwvje6Ww2wJX1Kkmkh9VQ.mp4",
+      "poster": "assets/portfolio/1398tRFR0WK9i5B-qcr0vi3I8D7wcsSzg/drive-1g4If05ArqFtuwvje6Ww2wJX1Kkmkh9VQ-poster.jpg",
+      "bytes": 10158885,
+      "sha256": "cf5aa1fcaa005b68e4125a0ae106a17e09361bb4ec1791aaa1c231a09f11779e",
+      "sourceUrl": "https://drive.google.com/uc?export=download&id=1g4If05ArqFtuwvje6Ww2wJX1Kkmkh9VQ&confirm=t",
+      "archiveName": "drive-1g4If05ArqFtuwvje6Ww2wJX1Kkmkh9VQ-cf5aa1fcaa005b68e412.mp4"
+    },
+    {
+      "id": "drive-1BZwd0SQdjhqDOZ8k1377MCWOJl_tOc_G",
+      "path": "assets/portfolio/1VvuqxdUW2jjzA5e_ndIebagvWs795-I2/drive-1BZwd0SQdjhqDOZ8k1377MCWOJl_tOc_G.mp4",
+      "poster": "assets/portfolio/1VvuqxdUW2jjzA5e_ndIebagvWs795-I2/drive-1BZwd0SQdjhqDOZ8k1377MCWOJl_tOc_G-poster.jpg",
+      "bytes": 4035528,
+      "sha256": "b52ced2f9d6dc8a4d5b8ca58e55d1f70a41ff9561971102e1f6741ee0d81932b",
+      "sourceUrl": "https://drive.google.com/uc?export=download&id=1BZwd0SQdjhqDOZ8k1377MCWOJl_tOc_G&confirm=t",
+      "archiveName": "drive-1BZwd0SQdjhqDOZ8k1377MCWOJl_tOc_G-b52ced2f9d6dc8a4d5b8.mp4"
+    },
+    {
+      "id": "drive-1pKBatAbOT22bQuZJL6TZZjUIjcZhmhES",
+      "path": "assets/portfolio/1VvuqxdUW2jjzA5e_ndIebagvWs795-I2/drive-1pKBatAbOT22bQuZJL6TZZjUIjcZhmhES.mp4",
+      "poster": "assets/portfolio/1VvuqxdUW2jjzA5e_ndIebagvWs795-I2/drive-1pKBatAbOT22bQuZJL6TZZjUIjcZhmhES-poster.jpg",
+      "bytes": 6220212,
+      "sha256": "cb0c4217df45e0f3cb889fb9dc90b3ed651d42cd8a8df27a9ef8fc59ba102187",
+      "sourceUrl": "https://drive.google.com/uc?export=download&id=1pKBatAbOT22bQuZJL6TZZjUIjcZhmhES&confirm=t",
+      "archiveName": "drive-1pKBatAbOT22bQuZJL6TZZjUIjcZhmhES-cb0c4217df45e0f3cb88.mp4"
+    },
+    {
+      "id": "6e422e_0cfd4661b67846cfad7a95358a630d41",
+      "path": "assets/portfolio/1GfyV3sNkUN5jf38IkIePWYTmgj-64lX0/6e422e_0cfd4661b67846cfad7a95358a630d41.mp4",
+      "poster": "assets/portfolio/1GfyV3sNkUN5jf38IkIePWYTmgj-64lX0/6e422e_0cfd4661b67846cfad7a95358a630d41f000-1280.jpg",
+      "bytes": 66941137,
+      "sha256": "0dbda26b73945589b8ea6e9f43231de991ff2032aa44045afff2f6f133f6a7d7",
+      "sourceUrl": "https://video.wixstatic.com/video/6e422e_0cfd4661b67846cfad7a95358a630d41/1080p/mp4/file.mp4",
+      "archiveName": "6e422e_0cfd4661b67846cfad7a95358a630d41-0dbda26b73945589b8ea.mp4"
+    },
+    {
+      "id": "drive-1N6mk7ZPKUPSExWWtWThIfafS-naMGU_r",
+      "path": "assets/portfolio/19-zmxbbZVE7ZO58kosQEh4CN3TPvrkHi/drive-1N6mk7ZPKUPSExWWtWThIfafS-naMGU_r.mp4",
+      "poster": "assets/portfolio/19-zmxbbZVE7ZO58kosQEh4CN3TPvrkHi/drive-1N6mk7ZPKUPSExWWtWThIfafS-naMGU_r-poster.jpg",
+      "bytes": 11350769,
+      "sha256": "00e7e2478fe2c8cedcdffb6e66c0d8939baaf0645db59391ebb50de21e4f3c70",
+      "sourceUrl": "https://drive.google.com/uc?export=download&id=1N6mk7ZPKUPSExWWtWThIfafS-naMGU_r&confirm=t",
+      "archiveName": "drive-1N6mk7ZPKUPSExWWtWThIfafS-naMGU_r-00e7e2478fe2c8cedcdf.mp4"
+    },
+    {
+      "id": "6e422e_4a6904ffaff74db68a93fb3c9fe92812",
+      "path": "assets/portfolio/wix-35f86cde-dd04-4071-9dea-a3d755da871e/6e422e_4a6904ffaff74db68a93fb3c9fe92812.mp4",
+      "poster": "assets/portfolio/wix-35f86cde-dd04-4071-9dea-a3d755da871e/6e422e_4a6904ffaff74db68a93fb3c9fe92812f000-1280.jpg",
+      "bytes": 18085076,
+      "sha256": "1e976a3a8e17d394aa7af2db2b2c362445fd6a2bb6a7b5f176eeeb9e22369267",
+      "sourceUrl": "https://video.wixstatic.com/video/6e422e_4a6904ffaff74db68a93fb3c9fe92812/1080p/mp4/file.mp4",
+      "archiveName": "6e422e_4a6904ffaff74db68a93fb3c9fe92812-1e976a3a8e17d394aa7a.mp4"
+    },
+    {
+      "id": "drive-11eN1AtKrdHSA4GqsHm52vOqa2f5iwhgP",
+      "path": "assets/portfolio/1T4RH5NKJQZvMlijuo7m2z1S9Xb39HIop/drive-11eN1AtKrdHSA4GqsHm52vOqa2f5iwhgP.mp4",
+      "poster": "assets/portfolio/1T4RH5NKJQZvMlijuo7m2z1S9Xb39HIop/drive-11eN1AtKrdHSA4GqsHm52vOqa2f5iwhgP-poster.jpg",
+      "bytes": 3619565,
+      "sha256": "b64c37dfa794886835321f610a54adf70cef114c8d7a295d2571e135d4644e86",
+      "sourceUrl": "https://drive.google.com/uc?export=download&id=11eN1AtKrdHSA4GqsHm52vOqa2f5iwhgP&confirm=t",
+      "archiveName": "drive-11eN1AtKrdHSA4GqsHm52vOqa2f5iwhgP-b64c37dfa79488683532.mp4"
+    },
+    {
+      "id": "6e422e_410ee44c52fc47b28a84c43c57e79073",
+      "path": "assets/portfolio/1TbCipQqe25zIREgvrAMoD9TyQuNkDiUp/6e422e_410ee44c52fc47b28a84c43c57e79073.mp4",
+      "poster": "assets/portfolio/1TbCipQqe25zIREgvrAMoD9TyQuNkDiUp/6e422e_410ee44c52fc47b28a84c43c57e79073f000-1280.jpg",
+      "bytes": 68632812,
+      "sha256": "94a7e896199f162d7953aa171edd417405841bd0ef9d8c79b5bcd58a72f5bde8",
+      "sourceUrl": "https://video.wixstatic.com/video/6e422e_410ee44c52fc47b28a84c43c57e79073/1080p/mp4/file.mp4",
+      "archiveName": "6e422e_410ee44c52fc47b28a84c43c57e79073-94a7e896199f162d7953.mp4"
+    },
+    {
+      "id": "6e422e_e3ba729a7fac4cfabc4078394329e790",
+      "path": "assets/portfolio/1TbCipQqe25zIREgvrAMoD9TyQuNkDiUp/6e422e_e3ba729a7fac4cfabc4078394329e790.mp4",
+      "poster": "assets/portfolio/1TbCipQqe25zIREgvrAMoD9TyQuNkDiUp/6e422e_e3ba729a7fac4cfabc4078394329e790f000-1280.jpg",
+      "bytes": 19723277,
+      "sha256": "3f7364b7ae451dc7ed51b46f8e8c18b28410f29065dba42efbe3a9b869ab43e6",
+      "sourceUrl": "https://video.wixstatic.com/video/6e422e_e3ba729a7fac4cfabc4078394329e790/1080p/mp4/file.mp4",
+      "archiveName": "6e422e_e3ba729a7fac4cfabc4078394329e790-3f7364b7ae451dc7ed51.mp4"
+    },
+    {
+      "id": "6e422e_5447b89768a74c59a991d6f073c3ab9c",
+      "path": "assets/portfolio/1TbCipQqe25zIREgvrAMoD9TyQuNkDiUp/6e422e_5447b89768a74c59a991d6f073c3ab9c.mp4",
+      "poster": "assets/portfolio/1TbCipQqe25zIREgvrAMoD9TyQuNkDiUp/6e422e_5447b89768a74c59a991d6f073c3ab9cf000-1280.jpg",
+      "bytes": 4740175,
+      "sha256": "c1e275586f029ed68c8197eaaaf01a6f50e8577baf8e0840d53dec6fcdc3a6ec",
+      "sourceUrl": "https://video.wixstatic.com/video/6e422e_5447b89768a74c59a991d6f073c3ab9c/360p/mp4/file.mp4",
+      "archiveName": "6e422e_5447b89768a74c59a991d6f073c3ab9c-c1e275586f029ed68c81.mp4"
+    },
+    {
+      "id": "6e422e_ef03512e972b477fa09420b7e56395fb",
+      "path": "assets/portfolio/1TbCipQqe25zIREgvrAMoD9TyQuNkDiUp/6e422e_ef03512e972b477fa09420b7e56395fb.mp4",
+      "poster": "assets/portfolio/1TbCipQqe25zIREgvrAMoD9TyQuNkDiUp/6e422e_ef03512e972b477fa09420b7e56395fbf000-1280.jpg",
+      "bytes": 12906530,
+      "sha256": "77f3791fd736867c223fe514ce620e88a1b8e07e65de2ad66a244135a8667409",
+      "sourceUrl": "https://video.wixstatic.com/video/6e422e_ef03512e972b477fa09420b7e56395fb/1080p/mp4/file.mp4",
+      "archiveName": "6e422e_ef03512e972b477fa09420b7e56395fb-77f3791fd736867c223f.mp4"
+    },
+    {
+      "id": "6e422e_18e1195c6d5a42028e30e11c3dbcb2a2",
+      "path": "assets/portfolio/1TbCipQqe25zIREgvrAMoD9TyQuNkDiUp/6e422e_18e1195c6d5a42028e30e11c3dbcb2a2.mp4",
+      "poster": "assets/portfolio/1TbCipQqe25zIREgvrAMoD9TyQuNkDiUp/6e422e_18e1195c6d5a42028e30e11c3dbcb2a2f000-1280.jpg",
+      "bytes": 15539736,
+      "sha256": "a9d134290f2340cfddc5170947563c7d60b93b7ce92db7255af0a0dab7012a1f",
+      "sourceUrl": "https://video.wixstatic.com/video/6e422e_18e1195c6d5a42028e30e11c3dbcb2a2/1080p/mp4/file.mp4",
+      "archiveName": "6e422e_18e1195c6d5a42028e30e11c3dbcb2a2-a9d134290f2340cfddc5.mp4"
+    },
+    {
+      "id": "6e422e_9eeaf24864d24bcebbd995e052e62b13",
+      "path": "assets/portfolio/1wko49Yx2Tdk96dN_Tfj0HwOk9g5tKikO/6e422e_9eeaf24864d24bcebbd995e052e62b13.mp4",
+      "poster": "assets/portfolio/1wko49Yx2Tdk96dN_Tfj0HwOk9g5tKikO/6e422e_9eeaf24864d24bcebbd995e052e62b13f000-1280.jpg",
+      "bytes": 1480524,
+      "sha256": "54898057360dd96321bf4e721fe86ea20c484958501c93cb05513efeef891b7a",
+      "sourceUrl": "https://video.wixstatic.com/video/6e422e_9eeaf24864d24bcebbd995e052e62b13/720p/mp4/file.mp4",
+      "archiveName": "6e422e_9eeaf24864d24bcebbd995e052e62b13-54898057360dd96321bf.mp4"
+    },
+    {
+      "id": "drive-1sO43Abu60GbefFhgQxKnKC6ucjYzebQH",
+      "path": "assets/portfolio/1-Vx_mcZ1c_Y30Z28EWpi7lRqFVIEEwCx/drive-1sO43Abu60GbefFhgQxKnKC6ucjYzebQH.mp4",
+      "poster": "assets/portfolio/1-Vx_mcZ1c_Y30Z28EWpi7lRqFVIEEwCx/drive-1sO43Abu60GbefFhgQxKnKC6ucjYzebQH-poster.jpg",
+      "bytes": 58025460,
+      "sha256": "03a6d9db449bf7b2e7c1c9b56c6b6b1d268aef1e2e8162b2debc1f4ba57c83b9",
+      "sourceUrl": "https://drive.google.com/uc?export=download&id=1sO43Abu60GbefFhgQxKnKC6ucjYzebQH&confirm=t",
+      "archiveName": "drive-1sO43Abu60GbefFhgQxKnKC6ucjYzebQH-03a6d9db449bf7b2e7c1.mp4"
+    },
+    {
+      "id": "drive-1UT2ocyI_R89L55vxR3kNHB-fQXdcNgjn",
+      "path": "assets/portfolio/1SiSlf2IXvBazwkCHEaWh4eS0d3nY0GW4/drive-1UT2ocyI_R89L55vxR3kNHB-fQXdcNgjn.mp4",
+      "poster": "assets/portfolio/1SiSlf2IXvBazwkCHEaWh4eS0d3nY0GW4/drive-1UT2ocyI_R89L55vxR3kNHB-fQXdcNgjn-poster.jpg",
+      "bytes": 7095015,
+      "sha256": "a8adf8104ea47da8185a7376e91f747e77ddefa8b0d54d303a8f6b7054e003c5",
+      "localSource": "media-sources/drive-1UT2ocyI_R89L55vxR3kNHB-fQXdcNgjn.mp4",
+      "archiveName": "drive-1UT2ocyI_R89L55vxR3kNHB-fQXdcNgjn-a8adf8104ea47da8185a.mp4"
+    },
+    {
+      "id": "drive-13gc0fN1Zsl_pnxjEFTcSXpLmR34lVrKB",
+      "path": "assets/portfolio/1SiSlf2IXvBazwkCHEaWh4eS0d3nY0GW4/drive-13gc0fN1Zsl_pnxjEFTcSXpLmR34lVrKB.mp4",
+      "poster": "assets/portfolio/1SiSlf2IXvBazwkCHEaWh4eS0d3nY0GW4/drive-13gc0fN1Zsl_pnxjEFTcSXpLmR34lVrKB-poster.jpg",
+      "bytes": 2720847,
+      "sha256": "f41296f999c6eb5f5b63e699df121748ab8233878ea4b8f9b455d109b65716bd",
+      "localSource": "media-sources/drive-13gc0fN1Zsl_pnxjEFTcSXpLmR34lVrKB.mp4",
+      "archiveName": "drive-13gc0fN1Zsl_pnxjEFTcSXpLmR34lVrKB-f41296f999c6eb5f5b63.mp4"
+    },
+    {
+      "id": "drive-1wYrj81TuFMGJl2PHa1WI4R6tq1I0fjT-",
+      "path": "assets/portfolio/1SiSlf2IXvBazwkCHEaWh4eS0d3nY0GW4/drive-1wYrj81TuFMGJl2PHa1WI4R6tq1I0fjT-.mp4",
+      "poster": "assets/portfolio/1SiSlf2IXvBazwkCHEaWh4eS0d3nY0GW4/drive-1wYrj81TuFMGJl2PHa1WI4R6tq1I0fjT--poster.jpg",
+      "bytes": 2053736,
+      "sha256": "9504641d2b5b09b26dd0a374adf5d9d7968f6c6bfc7eb80367041288f905c15c",
+      "localSource": "media-sources/drive-1wYrj81TuFMGJl2PHa1WI4R6tq1I0fjT-.mp4",
+      "archiveName": "drive-1wYrj81TuFMGJl2PHa1WI4R6tq1I0fjT--9504641d2b5b09b26dd0.mp4"
+    },
+    {
+      "id": "6e422e_cd3b146174524099b6de7937bf7ee62d",
+      "path": "assets/portfolio/15PAo02r-yt3T4yBWmMfjtvOQAB4Xi-hq/6e422e_cd3b146174524099b6de7937bf7ee62d.mp4",
+      "poster": "assets/portfolio/15PAo02r-yt3T4yBWmMfjtvOQAB4Xi-hq/6e422e_cd3b146174524099b6de7937bf7ee62df000-1280.jpg",
+      "bytes": 5746247,
+      "sha256": "21e818a4bb60ef016b2df0487a6afa8099ca4b18cd9d672ba689fa9d2a69f602",
+      "sourceUrl": "https://video.wixstatic.com/video/6e422e_cd3b146174524099b6de7937bf7ee62d/720p/mp4/file.mp4",
+      "archiveName": "6e422e_cd3b146174524099b6de7937bf7ee62d-21e818a4bb60ef016b2d.mp4"
+    },
+    {
+      "id": "6e422e_d2f739179d7c49f6b8add9e5292dfb79",
+      "path": "assets/portfolio/15PAo02r-yt3T4yBWmMfjtvOQAB4Xi-hq/6e422e_d2f739179d7c49f6b8add9e5292dfb79.mp4",
+      "poster": "assets/portfolio/15PAo02r-yt3T4yBWmMfjtvOQAB4Xi-hq/6e422e_d2f739179d7c49f6b8add9e5292dfb79f000-1280.jpg",
+      "bytes": 6924433,
+      "sha256": "eaefa67739428bb757a573451249dc0f0559910c307ed8a263137e0ea92ad605",
+      "sourceUrl": "https://video.wixstatic.com/video/6e422e_d2f739179d7c49f6b8add9e5292dfb79/720p/mp4/file.mp4",
+      "archiveName": "6e422e_d2f739179d7c49f6b8add9e5292dfb79-eaefa67739428bb757a5.mp4"
+    },
+    {
+      "id": "drive-1kaEmINALsbk1-tXoQY0zjtF7BkBnKhe0",
+      "path": "assets/portfolio/1QdTb7ehS2_qHHy2mV5aVoLTsHdG9zE1I/drive-1kaEmINALsbk1-tXoQY0zjtF7BkBnKhe0.mp4",
+      "poster": "assets/portfolio/1QdTb7ehS2_qHHy2mV5aVoLTsHdG9zE1I/drive-1kaEmINALsbk1-tXoQY0zjtF7BkBnKhe0-poster.jpg",
+      "bytes": 1988467,
+      "sha256": "9c9edb34f509462e98277b8bc8ec3b699e14961dca25be6688c2a03072a88103",
+      "sourceUrl": "https://drive.google.com/uc?export=download&id=1kaEmINALsbk1-tXoQY0zjtF7BkBnKhe0&confirm=t",
+      "archiveName": "drive-1kaEmINALsbk1-tXoQY0zjtF7BkBnKhe0-9c9edb34f509462e9827.mp4"
+    },
+    {
+      "id": "drive-1XiTOhxZm0jd90awRWdDlx92OIyQXywCg",
+      "path": "assets/portfolio/1QdTb7ehS2_qHHy2mV5aVoLTsHdG9zE1I/drive-1XiTOhxZm0jd90awRWdDlx92OIyQXywCg.mp4",
+      "poster": "assets/portfolio/1QdTb7ehS2_qHHy2mV5aVoLTsHdG9zE1I/drive-1XiTOhxZm0jd90awRWdDlx92OIyQXywCg-poster.jpg",
+      "bytes": 10274456,
+      "sha256": "8b071bedcb4c7d3af4fd084615b0e7e362dd3dbb0840d36972da17a5f285a669",
+      "localSource": "media-sources/drive-1XiTOhxZm0jd90awRWdDlx92OIyQXywCg.mp4",
+      "archiveName": "drive-1XiTOhxZm0jd90awRWdDlx92OIyQXywCg-8b071bedcb4c7d3af4fd.mp4"
+    },
+    {
+      "id": "6e422e_6066de373be2408ea3cab64744d8d5df",
+      "path": "assets/portfolio/13U1vCVeJMizkXMamFXhcSUfER4dMg8RI/6e422e_6066de373be2408ea3cab64744d8d5df.mp4",
+      "poster": "assets/portfolio/13U1vCVeJMizkXMamFXhcSUfER4dMg8RI/6e422e_6066de373be2408ea3cab64744d8d5dff000-1280.jpg",
+      "bytes": 11637006,
+      "sha256": "a974e90a5ad9f17feb9080081f423a1ca9bcba1a85be92823a9512f58552b901",
+      "sourceUrl": "https://video.wixstatic.com/video/6e422e_6066de373be2408ea3cab64744d8d5df/480p/mp4/file.mp4",
+      "archiveName": "6e422e_6066de373be2408ea3cab64744d8d5df-a974e90a5ad9f17feb90.mp4"
+    },
+    {
+      "id": "drive-108IxcJePyZR4BF5QpjzX9ONRd2A0HLSX",
+      "path": "assets/portfolio/1MKyea3H-xjJghrxSm9HO-Zz9n3l4heaH/drive-108IxcJePyZR4BF5QpjzX9ONRd2A0HLSX.mp4",
+      "poster": "assets/portfolio/1MKyea3H-xjJghrxSm9HO-Zz9n3l4heaH/drive-108IxcJePyZR4BF5QpjzX9ONRd2A0HLSX-poster.jpg",
+      "bytes": 28693479,
+      "sha256": "d4ae2683ddc35c6218002e1d7d3cdddb0e385d3413b4860581a1eb2c118ec011",
+      "sourceUrl": "https://drive.google.com/uc?export=download&id=108IxcJePyZR4BF5QpjzX9ONRd2A0HLSX&confirm=t",
+      "archiveName": "drive-108IxcJePyZR4BF5QpjzX9ONRd2A0HLSX-d4ae2683ddc35c621800.mp4"
+    },
+    {
+      "id": "drive-1Xc8Sw7Q-4oXyWeTVBuke0WIq6f3CzBLl",
+      "path": "assets/portfolio/1zgvgf7nFR3YSS9hyUBtbHW1ov6sM6w0k/drive-1Xc8Sw7Q-4oXyWeTVBuke0WIq6f3CzBLl.mp4",
+      "poster": "assets/portfolio/1zgvgf7nFR3YSS9hyUBtbHW1ov6sM6w0k/drive-1Xc8Sw7Q-4oXyWeTVBuke0WIq6f3CzBLl-poster.jpg",
+      "bytes": 16222712,
+      "sha256": "8444fbd0140100041e2abbcc46ba36fc322ec708376823c3d39075c736aabc37",
+      "sourceUrl": "https://drive.google.com/uc?export=download&id=1Xc8Sw7Q-4oXyWeTVBuke0WIq6f3CzBLl&confirm=t",
+      "archiveName": "drive-1Xc8Sw7Q-4oXyWeTVBuke0WIq6f3CzBLl-8444fbd0140100041e2a.mp4"
+    },
+    {
+      "id": "6e422e_06bfad2d450b453cb4939545f931d9f2",
+      "path": "assets/portfolio/1_Kw87ovGpiZaIlxf7IErssUdoZ3X14oE/6e422e_06bfad2d450b453cb4939545f931d9f2.mp4",
+      "poster": "assets/portfolio/1_Kw87ovGpiZaIlxf7IErssUdoZ3X14oE/6e422e_06bfad2d450b453cb4939545f931d9f2f000-1280.jpg",
+      "bytes": 25259928,
+      "sha256": "4825ab65b700acb6cb69cee4a4d041d070e82a6b8bbf02f36b3c02342197a4ef",
+      "sourceUrl": "https://video.wixstatic.com/video/6e422e_06bfad2d450b453cb4939545f931d9f2/720p/mp4/file.mp4",
+      "archiveName": "6e422e_06bfad2d450b453cb4939545f931d9f2-4825ab65b700acb6cb69.mp4"
+    },
+    {
+      "id": "6e422e_176a3b5a717f4f0481f3ce37cb074470",
+      "path": "assets/portfolio/1R3_LaXZYXtwEW6W7xxrHkB7byCUN6Tjl/6e422e_176a3b5a717f4f0481f3ce37cb074470.mp4",
+      "poster": "assets/portfolio/1R3_LaXZYXtwEW6W7xxrHkB7byCUN6Tjl/6e422e_176a3b5a717f4f0481f3ce37cb074470f000-1280.jpg",
+      "bytes": 11048787,
+      "sha256": "bb296270096f39debb954017ae459d03f769a5f54d1ff5521d283768d895a454",
+      "sourceUrl": "https://video.wixstatic.com/video/6e422e_176a3b5a717f4f0481f3ce37cb074470/720p/mp4/file.mp4",
+      "archiveName": "6e422e_176a3b5a717f4f0481f3ce37cb074470-bb296270096f39debb95.mp4"
+    },
+    {
+      "id": "6e422e_c5708023668443d19b192b7db9d3c7eb",
+      "path": "assets/portfolio/19XhwSYzZ8gheZZVxhBB17S0_IruFdHeW/6e422e_c5708023668443d19b192b7db9d3c7eb.mp4",
+      "poster": "assets/portfolio/19XhwSYzZ8gheZZVxhBB17S0_IruFdHeW/6e422e_c5708023668443d19b192b7db9d3c7ebf000-1280.jpg",
+      "bytes": 8528130,
+      "sha256": "21a1bdafcf94494b31649b9cc179999bb489751d7cb2da5f9c15b56e923db546",
+      "sourceUrl": "https://video.wixstatic.com/video/6e422e_c5708023668443d19b192b7db9d3c7eb/480p/mp4/file.mp4",
+      "archiveName": "6e422e_c5708023668443d19b192b7db9d3c7eb-21a1bdafcf94494b3164.mp4"
+    }
+  ]
+}

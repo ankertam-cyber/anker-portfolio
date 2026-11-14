@@ -1,0 +1,29 @@
+@font-face{font-family:BodoniModa;src:url('assets/fonts/bodoni-moda.ttf') format('truetype');font-weight:400 900;font-style:normal;font-display:swap}
+@font-face{font-family:InstrumentSerif;src:url('assets/fonts/instrument-serif.ttf') format('truetype');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:BodoniModa;src:url('assets/fonts/bodoni-moda-italic.ttf') format('truetype');font-weight:400 900;font-style:italic;font-display:swap}
+@font-face{font-family:InstrumentSerif;src:url('assets/fonts/instrument-serif-italic.ttf') format('truetype');font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:Manrope;src:url('assets/fonts/manrope.ttf') format('truetype');font-weight:200 800;font-style:normal;font-display:swap}
+@font-face{font-family:DMSans;src:url('assets/fonts/dm-sans.ttf') format('truetype');font-weight:100 1000;font-style:normal;font-display:swap}
+html[data-typography=a]{--serif:BodoniModa,'PingFang TC','Microsoft JhengHei',Georgia,serif;--sans:Manrope,'PingFang TC','Microsoft JhengHei',sans-serif;--title-tracking:.025em}
+html[data-typography=b]{--serif:InstrumentSerif,'PingFang TC','Microsoft JhengHei',Georgia,serif;--sans:DMSans,'PingFang TC','Microsoft JhengHei',sans-serif;--title-tracking:.01em}
+html[data-typography] body{font-family:var(--sans);font-size:16px;font-synthesis:none}
+html[data-typography] .wordmark{font-family:var(--serif);font-weight:400;font-size:24px;font-optical-sizing:auto;letter-spacing:.035em}
+html[data-typography] .brand-caption{font:400 10px/1.5 var(--sans);letter-spacing:.04em}
+html[data-typography] .cinema-title{font-family:var(--serif);font-size:clamp(42px,4.4vw,60px);font-weight:400;letter-spacing:var(--title-tracking);line-height:1.02;font-optical-sizing:auto;margin:30px 0 24px}
+html[data-typography] .site-menu>a:not(.menu-email),html[data-typography] .about-grid h2,html[data-typography] #project-dialog-title,html[data-typography] .contact-content h2{font-family:var(--serif);font-weight:400;letter-spacing:-.015em}
+html[data-typography] .about-copy p,html[data-typography] .dialog-description{font:400 18px/1.65 var(--sans);letter-spacing:-.012em}
+html[data-typography] .menu-toggle,html[data-typography] .eyebrow,html[data-typography] .begin-show,html[data-typography] .opening-motion-enable,html[data-typography] .section-kicker,html[data-typography] .screen-caption,html[data-typography] .cinema-label p,html[data-typography] .cinema-page,html[data-typography] .outline-button,html[data-typography] .text-button,html[data-typography] .ticket-details p,html[data-typography] .ticket-details button,html[data-typography] .ticket-stub,html[data-typography] .contact-links,html[data-typography] .inline-link{font-family:var(--sans);font-weight:400}
+html[data-typography] .contact-email{font-family:var(--sans);font-style:normal;font-weight:400;letter-spacing:-.035em}
+html[data-typography] .cinema-number{font-family:var(--sans);font-size:12px;letter-spacing:.13em;font-weight:500}
+html[data-typography] .box-office-sign{font-family:var(--serif);font-weight:400;letter-spacing:.15em}
+html[data-typography] .seat-number{font:500 10px/1 var(--sans)}
+html[data-typography] .ticket-details h3,html[data-typography] .archive-entry,html[data-typography] #selected-title{font-family:var(--serif);font-weight:400}
+html[data-typography] .cinema-help,html[data-typography] .bell-message,html[data-typography] .ticket-invitation{font:400 13px/1.5 var(--sans);font-style:normal;letter-spacing:.015em}
+html[data-typography] .opening-footnote{font:400 11px/1.5 var(--sans);letter-spacing:.03em}
+@media(max-width:760px){
+  html[data-typography] .wordmark{font-size:20px}
+  html[data-typography] .cinema-title{font-size:clamp(32px,9.6vw,40px);margin:28px 0 22px}
+  html[data-typography] .brand-caption{font-size:8px;line-height:1.45;padding-left:12px;margin-left:12px}
+  html[data-typography] .about-copy p,html[data-typography] .dialog-description{font-size:16px;line-height:1.7}
+  html[data-typography] .cinema-number{font-size:11px}
+}

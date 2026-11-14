@@ -1,0 +1,19 @@
+{
+  "entry": "browser-app.ee24dab1acac.js",
+  "sha256": "ee24dab1acac48ed674b3d9ad0f2fe23919b2f36e21d5db0ebcd626251db0bb5",
+  "modules": [
+    "app.mjs",
+    "catalogue.mjs",
+    "scene.mjs",
+    "scene-motion.mjs",
+    "motion-values.mjs",
+    "scene-canvas.mjs",
+    "tagline-motion.mjs",
+    "fairy-points.mjs",
+    "opening-motion.mjs",
+    "media-viewer.mjs",
+    "seat-journey.mjs",
+    "seat-prompt.mjs",
+    "project-media.mjs"
+  ]
+}
