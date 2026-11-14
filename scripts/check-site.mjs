@@ -1,17 +1,23 @@
 import fs from 'node:fs/promises';
-import {createReadStream} from 'node:fs';
-import {createHash} from 'node:crypto';
 import path from 'node:path';
-const root=path.resolve('_site'),data=JSON.parse(await fs.readFile(path.join(root,'projects.json'),'utf8'));
-if(data.previewOnly||!data.entries.length||data.entries.some(p=>p.publicationStatus!=='published'))throw Error('Invalid public catalogue');
-const files=new Set();
-for(const project of data.entries){for(const file of project.images)files.add(file);for(const info of Object.values(project.imageInfo||{}))if(info.thumbnail)files.add(info.thumbnail);for(const movie of project.videos){files.add(movie.src);if(movie.poster)files.add(movie.poster);}}
-for(const file of files){if(!file.startsWith('assets/')||file.includes('..'))throw Error('Non-local portfolio media');if(!(await fs.stat(path.join(root,file))).size)throw Error('Empty media file');}
+import {assertPortfolioImage} from './image-dimensions.mjs';
+const root=path.resolve('_site'),data=JSON.parse(await fs.readFile(path.join(root,'projects.v27.json'),'utf8'));
 const manifest=JSON.parse(await fs.readFile('media-sources.json','utf8'));
-for(const movie of manifest.videos){const h=createHash('sha256');for await(const chunk of createReadStream(path.join(root,movie.path)))h.update(chunk);if(h.digest('hex')!==movie.sha256)throw Error('Published film does not match its verified source');}
-let bytes=0;async function count(folder){for(const item of await fs.readdir(folder,{withFileTypes:true})){const p=path.join(folder,item.name);if(item.isDirectory())await count(p);else bytes+=(await fs.stat(p)).size;}}await count(root);
-if(bytes>990000000)throw Error('The published site exceeds the GitHub Pages size budget');
+if(data.previewOnly||!data.entries.length||data.entries.some(p=>p.publicationStatus!=='published'))throw Error('Invalid public catalogue');
+if(data.entries[0].id!=='1izI9spxl5fjwdvyw8g6iowBpPPAE5p0j'||data.entries[1].id!=='1XVL41h99QcZDcYzZfl28SbsFy4QJNh4_')throw Error('The two confirmed featured projects moved');
+const names=new Set(manifest.videos.map(v=>v.archiveName)),files=new Set();let movies=0,vimeo=0;
+for(const project of data.entries){
+ for(const file of project.images){files.add(file);assertPortfolioImage(await fs.readFile(path.join(root,file)),file,project.imageInfo[file]);}
+ for(const info of Object.values(project.imageInfo||{}))if(info.thumbnail)files.add(info.thumbnail);
+ for(const movie of project.videos){const url=new URL(movie.src);if(movie.type==='vimeo'){vimeo++;if(url.origin!=='https://player.vimeo.com'||!/^\/video\/\d+$/.test(url.pathname))throw Error('Invalid remote Vimeo player');}else{movies++;if(url.origin!=='https://github.com'||!url.pathname.startsWith('/ankertam-cyber/anker-portfolio/releases/download/portfolio-media-v1/')||!names.has(url.pathname.split('/').at(-1)))throw Error('Unexpected public film destination');}if(movie.poster)files.add(movie.poster);}
+}
+for(const file of files){if(!file.startsWith('assets/')||file.includes('..'))throw Error('Non-local project image');assertPortfolioImage(await fs.readFile(path.join(root,file)),file);}
+if(movies!==manifest.videos.length)throw Error('Film manifest count differs from the published programme');
+const archive=JSON.parse(await fs.readFile('media-archive-checks.json','utf8'));if(archive.verified!==movies)throw Error('Film archive has not been verified');
+let bytes=0;async function count(folder){for(const entry of await fs.readdir(folder,{withFileTypes:true})){const file=path.join(folder,entry.name);if(entry.isDirectory())await count(file);else bytes+=(await fs.stat(file)).size;}}await count(root);
+if(bytes>990000000)throw Error('The published site exceeds its GitHub Pages image budget');
 const html=await fs.readFile(path.join(root,'index.html'),'utf8');if(html.includes('PRIVATE DESIGN PREVIEW')||html.includes('noindex,nofollow'))throw Error('Preview-only metadata remains');
 const entry=html.match(/id="portfolio-entry"[^>]*src="([^"]+)"/)?.[1];if(!entry)throw Error('Missing browser entry');await fs.access(path.join(root,entry));
-const report={projects:data.entries.length,images:data.entries.reduce((n,p)=>n+p.images.length,0),videos:manifest.videos.length,bytes,verifiedAt:new Date().toISOString()};
+if(/[\p{Extended_Pictographic}]/u.test(html.replaceAll('©','')))throw Error('Emoji-capable glyph in the website UI');
+const report={projects:data.entries.length,images:data.entries.reduce((n,p)=>n+p.images.length,0),videos:movies+vimeo,githubFilms:movies,vimeoEmbeds:vimeo,checkedImageFiles:files.size,bytes,verifiedAt:new Date().toISOString()};
 await fs.writeFile('deployment-checks.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report));

@@ -68,3 +68,13 @@ test('a mixed film and photo gallery releases video playback when changing items
   const prior=nodes.video.pauses;nodes.next.click();assert.ok(nodes.video.pauses>prior);assert.equal(nodes.video.src,undefined);assert.equal(nodes.image.src,images[0]);assert.equal(nodes.video.hidden,true);
   nodes.previous.click();assert.equal(nodes.video.src,media[0].src);await viewer.close();assert.equal(nodes.video.src,undefined);assert.equal(nodes.video.hidden,true);assert.equal(doc.activeElement,trigger);
 });
+
+test('a remote film never falls through to the image or native MP4 loader when its player slot is unavailable',async t=>{
+  const {nodes,viewer}=fixture(t);
+  const remote={type:'vimeo',src:'https://player.vimeo.com/video/886728187',providerId:'886728187'};
+  assert.equal(viewer.open({media:[remote,{type:'image',src:images[0]}],title:'BAM Festival'}),true);
+  assert.equal(nodes.image.hidden,true);assert.equal(nodes.image.src,undefined);
+  assert.equal(nodes.video.hidden,true);assert.equal(nodes.video.src,undefined);
+  nodes.next.click();assert.equal(nodes.image.src,images[0]);
+  await viewer.close();assert.equal(nodes.image.src,undefined);
+});

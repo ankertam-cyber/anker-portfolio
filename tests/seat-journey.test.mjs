@@ -51,6 +51,9 @@ function fixture(t){
   globalThis.Image=class{constructor(){loads.push(this);}complete=false;naturalWidth=0;};
   const ids=['viewport','world','screen','image','placeholder','title','seat','status','counter','close','previous','next','gallery','project','previous-show','next-show','programme','turn-controls','info'];
   const nodes=Object.fromEntries(ids.map(id=>[id,new Element()]));
+  let imageSource;nodes.image.naturalWidth=2048;nodes.image.naturalHeight=1365;
+  Object.defineProperty(nodes.image,'src',{get:()=>imageSource,set:value=>{imageSource=value;loads.push({onload:nodes.image.onload||(()=>{}),onerror:nodes.image.onerror||(()=>{})});},configurable:true});
+  const removeImageAttribute=nodes.image.removeAttribute.bind(nodes.image);nodes.image.removeAttribute=name=>{if(name==='src')imageSource=undefined;else removeImageAttribute(name);};
   nodes.screen.append(nodes.image);nodes.world.append(nodes.screen);nodes.viewport.append(nodes.world);
   const dialog=new Element();dialog.open=false;dialog.querySelector=s=>nodes[s.slice(14,-1)];
   dialog.showModal=()=>{dialog.open=true;};dialog.close=()=>{dialog.open=false;dialog.dispatchEvent(new Event('close'));};
@@ -78,7 +81,7 @@ test('seat activation completes one camera move, changes gallery images, and res
 test('reopening with another seat ignores stale images, stops motion immediately on request, and opens the correct project',t=>{
   const f=fixture(t);f.controller.open(bam,{trigger:f.trigger});
   f.controller.open({id:'eqs',title:'Maybach — EQS SUV',images:['eqs.avif']},{seat:'A02'});
-  f.loads[0].onload();assert.equal(f.nodes.image.src,undefined);
+  f.loads[0].onload();assert.equal(f.nodes.image['data-loading'],'true');
   f.loads[1].onload();assert.equal(f.nodes.image.src,'eqs.avif');assert.equal(f.nodes.title.textContent,'Maybach — EQS SUV');
   f.setMotion(false);assert.equal(f.dialog.dataset.phase,'seated');assert.equal(f.frames.size,0);
   f.nodes.project.click();assert.deepEqual(f.projects,['eqs']);assert.equal(f.dialog.open,false);
@@ -90,7 +93,7 @@ test('empty and unavailable projects remain navigable; Escape cancels the transi
   assert.equal(f.dialog.dataset.phase,'seated');assert.equal(f.nodes.screen.disabled,true);assert.equal(f.nodes.gallery.hidden,true);
   assert.equal(f.nodes.previous.hidden,true);assert.equal(f.nodes.next.hidden,true);
   f.controller.close();f.setMotion(true);f.controller.open(bam);
-  f.loads[0].onerror();assert.equal(f.nodes.screen.disabled,true);assert.match(f.nodes.placeholder.textContent,/unavailable/);
+  f.loads[0].onerror();assert.equal(f.nodes.screen.disabled,true);assert.match(f.nodes.placeholder.textContent,/could not load/);
   const event=new Event('cancel',{cancelable:true});f.dialog.dispatchEvent(event);
   assert.equal(event.defaultPrevented,true);assert.equal(f.frames.size,0);assert.equal(f.dialog.open,false);
   f.loads[0].onload();assert.equal(f.nodes.image.src,undefined);

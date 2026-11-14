@@ -6,30 +6,62 @@ import {createHash} from 'node:crypto';
 import path from 'node:path';
 const root=process.cwd(),output=path.join(root,'_site'),cache=path.join(root,'.media-cache');
 const manifest=JSON.parse(await fs.readFile('media-sources.json','utf8')),repository=process.env.GITHUB_REPOSITORY||manifest.repository;
-if(repository!==manifest.repository||repository!=='ankertam-cyber/anker-portfolio')throw Error('Unexpected publishing repository');
+if(repository!=='ankertam-cyber/anker-portfolio'||repository!==manifest.repository)throw Error('Unexpected publishing repository');
 const token=process.env.GH_TOKEN,tag='portfolio-media-v1';
 async function hash(file){const h=createHash('sha256');for await(const c of createReadStream(file))h.update(c);return h.digest('hex');}
-async function api(route,options={}){const response=await fetch('https://api.github.com/repos/'+repository+route,{...options,headers:{Accept:'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28',...(token?{Authorization:'Bearer '+token}:{}),...(options.headers||{})},redirect:'error'});if(response.status===404)return null;if(!response.ok)throw Error('GitHub media archive request failed: '+response.status);return response.json();}
+async function api(route,options={}){
+ const r=await fetch('https://api.github.com/repos/'+repository+route,{...options,headers:{Accept:'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28',...(token?{Authorization:'Bearer '+token}:{}),...(options.headers||{})},redirect:'error'});
+ if(r.status===404)return null;if(!r.ok)throw Error('GitHub film archive request failed: '+r.status);return r.json();
+}
 let release=await api('/releases/tags/'+tag);
 if(token&&!release)release=await api('/releases',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({tag_name:tag,name:'Portfolio media',body:'',draft:false,prerelease:false})});
 const archived=new Map((release?.assets||[]).map(a=>[a.name,a]));
 await fs.mkdir(cache,{recursive:true});await fs.cp('site',output,{recursive:true});
+function decode(s){return s.replaceAll('&amp;','&').replaceAll('&#39;',"'").replaceAll('&quot;','"');}
+async function publicFilm(url){
+ const source=new URL(url);if(source.protocol!=='https:'||!['drive.google.com','drive.usercontent.google.com','video.wixstatic.com','github.com'].includes(source.hostname))throw Error('Unexpected film source');
+ let response=await fetch(source,{signal:AbortSignal.timeout(300000)});
+ if(source.hostname==='drive.google.com'&&response.headers.get('content-type')?.includes('text/html')){
+  // Follow Google's normal public-file download-confirmation form. No login,
+  // quota restrictions or inaccessible files are bypassed; no form tokens persist.
+  const text=await response.text(),form=text.match(/<form\b[^>]*id="download-form"[^>]*>[\s\S]*?<\/form>/i)?.[0];
+  if(!form)throw Error('Drive did not offer a public download form');
+  const action=new URL(decode(form.match(/action="([^"]+)"/)?.[1]||''));
+  if(action.origin!=='https://drive.usercontent.google.com'||action.pathname!=='/download')throw Error('Unexpected Drive download form');
+  for(const input of form.matchAll(/<input\b[^>]*>/g)){const attrs=Object.fromEntries([...input[0].matchAll(/([\w-]+)="([^"]*)"/g)].map(m=>[m[1],decode(m[2])]));if(['id','export','confirm','uuid'].includes(attrs.name))action.searchParams.set(attrs.name,attrs.value||'');}
+  if(action.searchParams.get('id')!==source.searchParams.get('id'))throw Error('Drive confirmation changed the requested file');
+  response=await fetch(action,{signal:AbortSignal.timeout(300000)});
+ }
+ if(!response.ok||!response.headers.get('content-type')?.includes('video/mp4')){await response.body?.cancel();throw Error('Public film download is unavailable or is not MP4: '+response.status);}
+ return response;
+}
 let cursor=0,completed=0;
 async function worker(){while(cursor<manifest.videos.length){const item=manifest.videos[cursor++];
- if(!/^assets\/portfolio\/[\w-]+\/[\w-]+\.mp4$/.test(item.path))throw Error('Unsafe film destination');
- const cached=path.join(cache,item.archiveName);let valid=false;try{valid=await hash(cached)===item.sha256;}catch{}
- if(!valid){
-  if(item.localSource){if(!/^media-sources\/[\w-]+\.mp4$/.test(item.localSource))throw Error('Unsafe film source');await fs.copyFile(item.localSource,cached);}
-  else{const url=archived.get(item.archiveName)?.browser_download_url||item.sourceUrl;const origin=new URL(url);if(origin.protocol!=='https:'||!['drive.google.com','drive.usercontent.google.com','video.wixstatic.com','github.com'].includes(origin.hostname))throw Error('Unexpected film source');const response=await fetch(url,{signal:AbortSignal.timeout(240000)});if(!response.ok)throw Error('Film download failed: '+response.status);await pipeline(Readable.fromWeb(response.body),createWriteStream(cached));}
-  if(await hash(cached)!==item.sha256)throw Error('Film checksum mismatch: '+item.id);
+ if(!/^assets\/portfolio\/[\w-]+\/[\w-]+\.mp4$/.test(item.path)||!/^[\w-]+\.mp4$/.test(item.archiveName))throw Error('Unsafe film destination');
+ const existing=archived.get(item.archiveName);
+ if(existing&&(existing.size!==item.bytes||existing.digest&&existing.digest!=='sha256:'+item.sha256))throw Error('Existing film archive does not match the catalogue');
+ if(!existing){
+  const cached=path.join(cache,item.archiveName);let valid=false;try{valid=(await fs.stat(cached)).size===item.bytes&&await hash(cached)===item.sha256;}catch{}
+  if(!valid){const partial=cached+'.partial';
+   if(item.localSource){if(!/^media-sources\/[\w-]+\.mp4$/.test(item.localSource))throw Error('Unsafe prepared film source');await fs.copyFile(item.localSource,partial);}
+   else await pipeline(Readable.fromWeb((await publicFilm(item.sourceUrl)).body),createWriteStream(partial));
+   if((await fs.stat(partial)).size!==item.bytes||await hash(partial)!==item.sha256)throw Error('Film integrity check failed: '+item.id);
+   await fs.rename(partial,cached);
+  }
+  if(token){const upload=new URL(release.upload_url.replace(/\{.*$/,''));if(upload.origin!=='https://uploads.github.com')throw Error('Unexpected archive host');upload.searchParams.set('name',item.archiveName);
+   const r=await fetch(upload,{method:'POST',headers:{Authorization:'Bearer '+token,'Content-Type':'video/mp4','Content-Length':String(item.bytes)},body:createReadStream(cached),duplex:'half',redirect:'error',signal:AbortSignal.timeout(300000)});
+   if(!r.ok)throw Error('Film archive upload failed: '+r.status);const asset=await r.json();if(asset.size!==item.bytes||asset.digest&&asset.digest!=='sha256:'+item.sha256)throw Error('Uploaded film digest does not match');archived.set(item.archiveName,asset);
+  }
  }
- if(token&&!archived.has(item.archiveName)){
-  const upload=new URL(release.upload_url.replace(/\{.*$/,''));if(upload.hostname!=='uploads.github.com')throw Error('Unexpected archive host');upload.searchParams.set('name',item.archiveName);
-  const stat=await fs.stat(cached);const response=await fetch(upload,{method:'POST',headers:{Authorization:'Bearer '+token,'Content-Type':'video/mp4','Content-Length':String(stat.size)},body:createReadStream(cached),duplex:'half',redirect:'error',signal:AbortSignal.timeout(240000)});
-  if(!response.ok)throw Error('Film archive upload failed: '+response.status);const asset=await response.json();archived.set(item.archiveName,asset);
- }
- const destination=path.resolve(output,item.path);if(!destination.startsWith(output+path.sep))throw Error('Unsafe film destination');await fs.mkdir(path.dirname(destination),{recursive:true});await fs.copyFile(cached,destination);
- console.log(`Prepared film ${++completed}/${manifest.videos.length}`);
+ console.log(`Verified film ${++completed}/${manifest.videos.length}`);
 }}
 await Promise.all([worker(),worker(),worker()]);
-console.log('Portfolio films are delivered from this website, with independent GitHub media backups.');
+const published=JSON.parse(await fs.readFile(path.join(output,'projects.json'),'utf8')),byPath=new Map(manifest.videos.map(v=>[v.path,v]));
+for(const p of published.entries)for(const film of p.videos){if(film.type==='vimeo')continue;const source=byPath.get(film.src);if(!source)throw Error('Film is missing from the archive manifest');film.src='https://github.com/'+repository+'/releases/download/'+tag+'/'+source.archiveName;}
+await fs.writeFile(path.join(output,'projects.v27.json'),JSON.stringify(published,null,2));
+// Old cached browser entries understand native MP4 only; keep their catalogue
+// usable while the new versioned entry exposes the complete Vimeo programme.
+const compatible={...published,entries:published.entries.map(p=>({...p,videos:p.videos.filter(v=>v.type!=='vimeo')}))};
+await fs.writeFile(path.join(output,'projects.json'),JSON.stringify(compatible,null,2));
+await fs.writeFile('media-archive-checks.json',JSON.stringify({films:manifest.videos.length,verified:completed,delivery:'GitHub release media inside native website players'},null,2));
+console.log('Project films use independent GitHub media storage and play inside the portfolio.');

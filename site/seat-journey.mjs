@@ -1,4 +1,5 @@
 import {ROW_SIZES} from './catalogue.mjs';
+import {loadPortfolioImage} from './image-loader.mjs';
 
 export const SEAT_JOURNEY_MS=2100;
 export const SEAT_TURN_MS=980;
@@ -46,6 +47,7 @@ export function mountSeatJourney(dialog,getMotion,{onGallery,onProject,onSelect,
   const seats=[];
   let frameId=0,elapsed=0,lastTime=0,returnFocus=null,scrollY=0,openProject=null,images=[],imageIndex=0,loadToken=0;
   let savedBody=null;
+  let imageInfo={},cancelImage=null;
   let programme=[],programmeIndex=0,seatLabelFor=null,turn=null,swipe=null,suppressClickUntil=0;
 
   ROW_SIZES.forEach((count,row)=>{
@@ -98,7 +100,7 @@ export function mountSeatJourney(dialog,getMotion,{onGallery,onProject,onSelect,
   }
   function changeScreening(index){
     const project=programme[index];if(!project)return;
-    programmeIndex=index;images=project.images?.length?project.images:project.videos?.[0]?.poster?[project.videos[0].poster]:[];openProject=project.id;title.textContent=project.title;if(films)films.hidden=!project.videos?.length;
+    programmeIndex=index;imageInfo=project.imageInfo||{};images=project.images?.length?project.images:project.videos?.[0]?.poster?[project.videos[0].poster]:[];openProject=project.id;title.textContent=project.title;if(films){films.hidden=!project.videos?.length;films.textContent=project.videos?.length>1?`WATCH ${project.videos.length} FILMS`:'WATCH FILM';}
     if(seatLabelFor)seatLabel.textContent=seatLabelFor(project);
     describeProgramme();showImage(0);onSelect?.(project.id);
   }
@@ -111,15 +113,16 @@ export function mountSeatJourney(dialog,getMotion,{onGallery,onProject,onSelect,
   }
   function showImage(index){
     imageIndex=(index+images.length)%images.length||0;
-    const token=++loadToken;image.hidden=true;placeholder.hidden=false;
+    const token=++loadToken;cancelImage?.();placeholder.hidden=false;
     const src=images[imageIndex];screen.disabled=!src;gallery.hidden=!src;
     previous.hidden=next.hidden=images.length<2;counter.textContent=images.length?`${String(imageIndex+1).padStart(2,'0')} / ${String(images.length).padStart(2,'0')}`:'From the archive';
     if(!src){placeholder.textContent='Project material is being curated.';return;}
     placeholder.textContent='Loading screening…';
-    const preload=new Image();
-    const ready=()=>{if(token!==loadToken||!dialog.open)return;image.src=src;image.alt=title.textContent;image.hidden=false;placeholder.hidden=true;};
-    preload.onload=ready;preload.onerror=()=>{if(token===loadToken){placeholder.textContent='Image unavailable. View the project details below.';screen.disabled=true;}};
-    preload.src=src;if(preload.complete&&preload.naturalWidth)ready();
+    cancelImage=loadPortfolioImage(image,{src,fallback:imageInfo[src]?.thumbnail,alt:title.textContent},state=>{
+      if(token!==loadToken||!dialog.open)return;
+      placeholder.hidden=state==='ready';
+      if(state==='error'){placeholder.textContent='This image could not load. Choose another image or open the project.';screen.disabled=true;}
+    });
   }
   function lockPage(){
     scrollY=window.scrollY;
@@ -139,7 +142,7 @@ export function mountSeatJourney(dialog,getMotion,{onGallery,onProject,onSelect,
     cancelAnimationFrame(frameId);loadToken++;elapsed=getMotion()?0:SEAT_JOURNEY_MS;lastTime=0;
     turn=null;swipe=null;programme=entries.length?entries:[project];programmeIndex=Math.max(0,programme.findIndex(p=>p.id===project.id));seatLabelFor=labelFor;
     previousShow.disabled=nextShow.disabled=previous.disabled=next.disabled=gallery.disabled=projectButton.disabled=false;describeProgramme();
-    images=project.images?.length?project.images:project.videos?.[0]?.poster?[project.videos[0].poster]:[];openProject=project.id;title.textContent=project.title;seatLabel.textContent=seat;status.textContent='Take your seat';if(films)films.hidden=!project.videos?.length;
+    imageInfo=project.imageInfo||{};images=project.images?.length?project.images:project.videos?.[0]?.poster?[project.videos[0].poster]:[];openProject=project.id;title.textContent=project.title;seatLabel.textContent=seat;status.textContent='Take your seat';if(films){films.hidden=!project.videos?.length;films.textContent=project.videos?.length>1?`WATCH ${project.videos.length} FILMS`:'WATCH FILM';}
     dialog.dataset.phase='entering';
     if(!dialog.open){returnFocus=trigger||document.activeElement;lockPage();dialog.showModal();}
     closeButton.focus({preventScroll:true});showImage(0);resume();return true;
@@ -147,11 +150,11 @@ export function mountSeatJourney(dialog,getMotion,{onGallery,onProject,onSelect,
   closeButton.addEventListener('click',close);
   dialog.addEventListener('cancel',event=>{event.preventDefault();close();});
   dialog.addEventListener('close',()=>{
-    cancelAnimationFrame(frameId);frameId=0;loadToken++;releasePage();
+    cancelAnimationFrame(frameId);frameId=0;loadToken++;cancelImage?.();cancelImage=null;releasePage();
     const focus=getReturnSeat?.(openProject)||returnFocus;if(focus?.isConnected)focus.focus({preventScroll:true});returnFocus=null;
     image.removeAttribute('src');images=[];openProject=null;turn=null;swipe=null;dialog.dataset.phase='closed';
   });
-  function showGallery(){if(performance.now()<suppressClickUntil||turn)return;if(images.length)onGallery?.({images,index:imageIndex,title:title.textContent,id:openProject});}
+  function showGallery(){if(performance.now()<suppressClickUntil||turn)return;if(images.length)onGallery?.({images,imageInfo,index:imageIndex,title:title.textContent,id:openProject});}
   screen.addEventListener('click',showGallery);gallery.addEventListener('click',showGallery);
   films?.addEventListener('click',()=>{if(!turn)onFilm?.(openProject);});
   previous.addEventListener('click',()=>showImage(imageIndex-1));next.addEventListener('click',()=>showImage(imageIndex+1));

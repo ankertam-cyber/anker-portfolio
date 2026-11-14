@@ -3,8 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, viewport-fit=cover">
-  <script src="entry-scroll.js?v=stage-12"></script>
+  <script src="entry-scroll.js?v=v27"></script>
   <meta name="robots" content="index,follow">
+  <meta name="portfolio-build" content="media-repair-27">
   <meta name="theme-color" content="#090e15">
   <title>Anker Tam — Ideas take the stage.</title>
   <meta name="description" content="Anker Tam, a Hong Kong-based Creative Director. A portfolio of brand experiences, events and spatial design.">
@@ -13,11 +14,12 @@
   <link rel="preload" href="assets/fonts/manrope.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="preload" href="assets/media/curtain-photographic-v2.jpg" as="image" fetchpriority="high">
   <link rel="preload" href="assets/media/tagline-blue-glitter-v5.png" as="image" fetchpriority="high">
-  <link rel="stylesheet" href="styles.css?v=glitter-5">
-  <link rel="stylesheet" href="materials.css?v=glow-18">
-  <link rel="stylesheet" href="type-candidates.css?v=refine-14">
-  <link rel="stylesheet" href="seat-journey.css?v=seat-25">
-  <script id="portfolio-entry" defer src="browser-app.ee24dab1acac.js"></script>
+  <link rel="stylesheet" href="styles.css?v=v27">
+  <link rel="stylesheet" href="materials.css?v=v27">
+  <link rel="stylesheet" href="type-candidates.css?v=v27">
+  <link rel="stylesheet" href="seat-journey.css?v=v27">
+  <script defer src="assets/vendor/vimeo-player-v27.js"></script>
+  <script id="portfolio-entry" defer src="browser-app.fab14ce4a6f5.js"></script>
   <link rel="canonical" href="https://ankertam-cyber.github.io/anker-portfolio/">
 </head>
 <body>
@@ -35,7 +37,7 @@
   <nav id="site-menu" class="site-menu" aria-label="Main navigation" hidden>
     <p class="eyebrow">A portfolio by Anker Tam</p>
     <a href="#work"><span>01</span> The work</a><a href="#about"><span>02</span> About Anker</a><a href="#contact"><span>03</span> Box office</a>
-    <a class="menu-email" href="mailto:anker.tam@gmail.com">anker.tam@gmail.com ↗</a>
+    <a class="menu-email" href="mailto:ankertam@gmail.com">ankertam@gmail.com <svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 19 19 5M5 5h14v14" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
   </nav>
 
   <main>
@@ -54,8 +56,8 @@
             <canvas id="scene-canvas" aria-hidden="true"></canvas>
           </div>
           <div class="opening-controls">
-            <button id="begin-show" class="begin-show"><span>SCROLL TO BEGIN</span><span class="begin-arrow" aria-hidden="true">↓</span></button>
-            <div class="opening-playback" role="group" aria-label="Opening animation controls"><button id="opening-motion-enable" class="opening-motion-enable" aria-pressed="false">▷ PLAY OPENING</button><span id="opening-playback-state" class="opening-playback-state" role="status">READY</span></div>
+            <button id="begin-show" class="begin-show"><span>SCROLL TO BEGIN</span><span class="begin-arrow" aria-hidden="true"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 4v16m-6-6 6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
+            <div class="opening-playback" role="group" aria-label="Opening animation controls"><button id="opening-motion-enable" class="opening-motion-enable" aria-pressed="false">PLAY OPENING</button><span id="opening-playback-state" class="opening-playback-state" role="status">READY</span></div>
           </div>
         </div>
         <span class="opening-footnote">From a first thought to a shared experience.</span>
@@ -68,7 +70,7 @@
       <div class="screen-shell">
         <div class="screen-glow" aria-hidden="true"></div>
         <button class="cinema-screen" id="screen-open" aria-label="View BAM Festival full screen">
-          <img id="screen-image" src="assets/media/bam-festival-hero.avif" alt="BAM Festival" width="1920" height="1280" loading="lazy">
+          <img id="screen-image" src="assets/at-events/4db186_19919883b8c440aab4b104068825d427~mv2-2048.jpg" alt="BAM Festival" width="1920" height="1280" loading="lazy">
           <span class="screen-arrival-light" aria-hidden="true"></span>
           <div id="screen-placeholder" class="screen-placeholder" hidden><span class="eyebrow">From the archive</span><span id="screen-placeholder-title"></span></div>
           <span class="screen-caption"><span id="screen-project-title">BAM Festival</span><span id="screen-project-year">2023</span></span>
@@ -83,9 +85,9 @@
         <button class="icon-button" id="cinema-next" aria-label="Next cinema"><svg><use href="#arrow-art"/></svg></button>
       </div>
       <div id="cinema-map" class="cinema-map" role="group" aria-label="Cinema 01 project seats"></div>
-      <p class="cinema-help">Swipe to change cinema <span aria-hidden="true">↔</span></p>
+      <p class="cinema-help">Swipe to change cinema <span aria-hidden="true"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 12h16M8 8l-4 4 4 4m8-8 4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></p>
       <div class="selection-bar" aria-live="polite"><span class="eyebrow" id="selected-seat">SEAT A01</span><span id="selected-title">BAM Festival</span></div>
-      <button id="issue-ticket" class="outline-button">AN INVITATION TO WHAT’S NEXT <span aria-hidden="true">↗</span></button>
+      <button id="issue-ticket" class="outline-button">AN INVITATION TO WHAT’S NEXT <span aria-hidden="true"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 19 19 5M5 5h14v14" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
       <button id="archive-toggle" class="text-button" aria-expanded="false" aria-controls="archive-panel">Browse the project index <span aria-hidden="true">+</span></button>
       <div id="archive-panel" class="archive-panel" hidden>
         <label for="project-search" class="eyebrow">Find a project</label><input id="project-search" type="search" placeholder="Search by project, brand or year…" autocomplete="off">
@@ -98,7 +100,7 @@
 
     <section class="about-section section-wrap" id="about" aria-labelledby="about-title">
       <div class="section-kicker"><span>02 / Behind the ideas</span><span>Hong Kong</span></div>
-      <div class="about-grid"><div><p class="eyebrow">Meet the mind behind the curtain.</p><h2 id="about-title">Hello,<br>I’m Anker.</h2></div><div class="about-copy"><p>I’m a Creative Director based in Hong Kong, working across events, exhibitions, spatial design and brand experiences.</p><p>I care about the journey from an idea to the moment it reaches an audience — the thinking, the making, and the experience we share.</p><a class="inline-link" href="https://www.linkedin.com/in/anker-tam-a733a4266/" target="_blank" rel="noopener noreferrer">Meet me on LinkedIn <span aria-hidden="true">↗</span></a></div></div>
+      <div class="about-grid"><div><p class="eyebrow">Meet the mind behind the curtain.</p><h2 id="about-title">Hello,<br>I’m Anker.</h2></div><div class="about-copy"><p>I’m Anker Tam, a Hong Kong-based Creative Director and Head of Design with 15 years of experience in visual communication, brand storytelling and experiential design.</p><p>My work brings together concept development, spatial design, graphics and motion. I lead creative teams from the first pitch through design development and execution — shaping how an idea becomes an experience people can step into.</p><a class="inline-link" href="https://www.linkedin.com/in/anker-tam-a733a4266/" target="_blank" rel="noopener noreferrer">Meet me on LinkedIn <span aria-hidden="true"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 19 19 5M5 5h14v14" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></div></div>
     </section>
 
     <section class="contact-section section-wrap" id="contact" aria-labelledby="contact-title">
@@ -106,16 +108,16 @@
       <div class="box-office">
         <img class="box-office-art" src="assets/media/box-office-photographic-1280-v2.png" alt="" width="1672" height="944" loading="lazy" decoding="async" aria-hidden="true">
         <div class="box-office-sign" id="contact-title">BOX OFFICE</div>
-        <div class="box-office-window"><div class="office-panel office-panel-left" aria-hidden="true"></div><div class="office-panel office-panel-right" aria-hidden="true"></div><div class="contact-content"><p class="eyebrow">An invitation to collaborate</p><h2>Let’s make<br>the next show.</h2><a class="contact-email" href="mailto:anker.tam@gmail.com">anker.tam@gmail.com <span aria-hidden="true">↗</span></a><div class="contact-links"><a href="https://www.linkedin.com/in/anker-tam-a733a4266/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a href="#about">About Anker</a></div></div><button class="desk-bell" id="desk-bell" aria-label="Ring the box office bell"><img class="bell-art" src="assets/media/box-office-bell-256-v3.png" alt="" width="256" height="192" loading="lazy" decoding="async" aria-hidden="true"></button></div>
+        <div class="box-office-window"><div class="office-panel office-panel-left" aria-hidden="true"></div><div class="office-panel office-panel-right" aria-hidden="true"></div><div class="contact-content"><p class="eyebrow">An invitation to collaborate</p><h2>Let’s make<br>the next show.</h2><a class="contact-email" href="mailto:ankertam@gmail.com">ankertam@gmail.com <span aria-hidden="true"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 19 19 5M5 5h14v14" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a><div class="contact-links"><a href="https://www.linkedin.com/in/anker-tam-a733a4266/" target="_blank" rel="noopener noreferrer">LinkedIn <svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 19 19 5M5 5h14v14" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></a><a href="#about">About Anker</a></div></div><button class="desk-bell" id="desk-bell" aria-label="Ring the box office bell"><img class="bell-art" src="assets/media/box-office-bell-256-v3.png" alt="" width="256" height="192" loading="lazy" decoding="async" aria-hidden="true"></button></div>
         <div class="box-office-counter" aria-hidden="true"></div>
       </div>
       <p id="bell-message" class="bell-message" role="status">Your next idea is welcome here.</p>
     </section>
   </main>
-  <footer class="site-footer"><span>© <span id="copyright-year">2026</span> ANKER TAM</span><span class="preview-label">HONG KONG</span><button id="replay-opening">Replay the opening ↑</button><button id="motion-toggle" aria-pressed="false">Pause motion <span aria-hidden="true">Ⅱ</span></button></footer>
+  <footer class="site-footer"><span>© <span id="copyright-year">2026</span> ANKER TAM</span><span class="preview-label">HONG KONG</span><button id="replay-opening">Replay the opening ↑</button><button id="motion-toggle" aria-pressed="false">Pause motion</button></footer>
 
-  <dialog id="project-dialog" class="project-dialog" aria-labelledby="project-dialog-title"><div class="project-dialog-top"><span class="eyebrow" id="dialog-screening">A SCREENING BY ANKER TAM</span><button id="project-close" class="dialog-close" aria-label="Close project">CLOSE <span aria-hidden="true">×</span></button></div><div class="project-dialog-body"><p class="eyebrow" id="dialog-meta"></p><h2 id="project-dialog-title"></h2><div id="dialog-media" class="dialog-media"></div><div id="dialog-description" class="dialog-description"></div><div class="dialog-bottom"><button id="project-previous" class="text-button">← Previous project</button><button id="project-next" class="text-button">Next project →</button></div></div></dialog>
-  <div id="seat-prompt" class="seat-prompt" role="dialog" aria-label="Confirm seat" hidden><button class="seat-confirm" data-seat-confirm><span data-seat-label></span><span class="seat-confirm-copy">Take this seat?<svg class="seat-confirm-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 19 19 5M5 5h14v14" fill="none" stroke="currentColor" stroke-width="1.3"/></svg></span></button><button class="seat-cancel" data-seat-cancel aria-label="Cancel seat selection"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 6 12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="1.3"/></svg></button></div>
+  <dialog id="project-dialog" class="project-dialog" aria-labelledby="project-dialog-title"><div class="project-dialog-top"><span class="eyebrow" id="dialog-screening">A SCREENING BY ANKER TAM</span><button id="project-close" class="dialog-close" aria-label="Close project">CLOSE <span aria-hidden="true"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 6 12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button></div><div class="project-dialog-body"><p class="eyebrow" id="dialog-meta"></p><h2 id="project-dialog-title"></h2><div id="dialog-media" class="dialog-media"></div><div id="dialog-description" class="dialog-description"></div><div class="dialog-bottom"><button id="project-previous" class="text-button"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 12H4m6-6-6 6 6 6" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg> Previous project</button><button id="project-next" class="text-button">Next project <svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 12h16m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div></dialog>
+  <div id="seat-prompt" class="seat-prompt" role="dialog" aria-label="Confirm seat" hidden><button class="seat-confirm" data-seat-confirm><span data-seat-label></span><span class="seat-confirm-copy">Take this seat?<svg class="seat-confirm-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.3"/></svg></span></button><button class="seat-cancel" data-seat-cancel aria-label="Cancel seat selection"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 6 12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="1.3"/></svg></button></div>
   <dialog id="seat-journey" class="seat-journey" aria-labelledby="journey-title" data-phase="closed">
     <div class="pov-viewport" data-journey-viewport>
       <div class="pov-world" data-journey-world>
@@ -127,21 +129,21 @@
       </div>
     </div>
     <div class="pov-vignette" aria-hidden="true"></div>
-    <div class="pov-top"><span class="pov-seat-label" data-journey-seat></span><span class="pov-programme-count" data-journey-programme aria-live="polite"></span><button class="pov-close" data-journey-close>← BACK TO SEATS</button></div>
-    <div class="pov-show-nav" data-journey-turn-controls hidden><button data-journey-previous-show aria-label="Turn left to the previous project"><span aria-hidden="true">←</span><span>PREV SHOW</span></button><button data-journey-next-show aria-label="Turn right to the next project"><span>NEXT SHOW</span><span aria-hidden="true">→</span></button></div>
+    <div class="pov-top"><span class="pov-seat-label" data-journey-seat></span><span class="pov-programme-count" data-journey-programme aria-live="polite"></span><button class="pov-close" data-journey-close><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 12H4m6-6-6 6 6 6" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg> BACK TO SEATS</button></div>
+    <div class="pov-show-nav" data-journey-turn-controls hidden><button data-journey-previous-show aria-label="Turn left to the previous project"><span aria-hidden="true"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 12H4m6-6-6 6 6 6" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>PREV SHOW</span></button><button data-journey-next-show aria-label="Turn right to the next project"><span>NEXT SHOW</span><span aria-hidden="true"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 12h16m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button></div>
     <span class="pov-sitting-label" aria-hidden="true">Take your seat.</span>
     <div class="pov-info" data-journey-info>
       <div><p class="eyebrow" data-journey-status>Your screening</p><h2 class="pov-title" id="journey-title" data-journey-title></h2></div>
-      <div class="pov-image-nav"><span class="pov-image-label">IMAGES</span><button data-journey-previous aria-label="Previous project image">‹</button><span data-journey-counter aria-live="polite"></span><button data-journey-next aria-label="Next project image">›</button></div>
+      <div class="pov-image-nav"><span class="pov-image-label">IMAGES</span><button data-journey-previous aria-label="Previous project image"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m15 5-7 7 7 7" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button><span data-journey-counter aria-live="polite"></span><button data-journey-next aria-label="Next project image"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m9 5 7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
       <p class="pov-gesture-hint">Swipe the screen for more images. Turn to another show.</p>
-      <div class="pov-actions"><button data-journey-films hidden>WATCH FILM</button><button data-journey-gallery>FULL SCREEN ⤢</button><button data-journey-project>VIEW PROJECT ↗</button></div>
+      <div class="pov-actions"><button data-journey-films hidden>WATCH FILM</button><button data-journey-gallery>FULL SCREEN <svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 4H4v5m11-5h5v5M4 15v5h5m11-5v5h-5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button data-journey-project>VIEW PROJECT <svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 19 19 5M5 5h14v14" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
     </div>
   </dialog>
   <dialog id="lightbox" class="lightbox" aria-labelledby="lightbox-title">
     <div class="lightbox-surface">
-      <div class="lightbox-toolbar"><p id="lightbox-title"></p><div class="lightbox-tools"><button id="lightbox-fullscreen" aria-pressed="false">FULL SCREEN ⤢</button><button id="lightbox-close" class="dialog-close">CLOSE ×</button></div></div>
-      <div class="lightbox-stage"><img id="lightbox-image" alt="" draggable="false"><video id="lightbox-video" controls playsinline preload="metadata" hidden></video><button id="lightbox-previous" class="lightbox-arrow lightbox-previous" aria-label="Previous media item">‹</button><button id="lightbox-next" class="lightbox-arrow lightbox-next" aria-label="Next media item">›</button></div>
-      <div class="lightbox-bottom"><span id="lightbox-counter" aria-live="polite"></span><button id="lightbox-project" hidden>VIEW PROJECT ↗</button></div>
+      <div class="lightbox-toolbar"><p id="lightbox-title"></p><div class="lightbox-tools"><button id="lightbox-fullscreen" aria-pressed="false">FULL SCREEN <svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 4H4v5m11-5h5v5M4 15v5h5m11-5v5h-5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button id="lightbox-close" class="dialog-close">CLOSE <svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 6 12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div>
+      <div class="lightbox-stage"><span id="lightbox-status" class="media-load-status" role="status" hidden></span><button id="lightbox-retry" class="media-retry" hidden>RETRY</button><img id="lightbox-image" alt="" draggable="false"><div id="lightbox-vimeo" class="vimeo-slot" hidden></div><video id="lightbox-video" controls playsinline preload="metadata" hidden></video><button id="lightbox-previous" class="lightbox-arrow lightbox-previous" aria-label="Previous media item"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m15 5-7 7 7 7" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button id="lightbox-next" class="lightbox-arrow lightbox-next" aria-label="Next media item"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m9 5 7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
+      <div class="lightbox-bottom"><span id="lightbox-counter" aria-live="polite"></span><a id="lightbox-vimeo-link" class="vimeo-fallback" target="_blank" rel="noopener noreferrer" hidden>OPEN ON VIMEO</a><button id="lightbox-project" hidden>VIEW PROJECT <svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 19 19 5M5 5h14v14" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
     </div>
   </dialog>
 </body>

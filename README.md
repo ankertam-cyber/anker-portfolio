@@ -2,12 +2,12 @@
 
 Ideas take the stage.
 
-A personal Creative Director portfolio built around a cinema, with a shared seat-to-screen camera, project galleries, films, and a box office contact section.
+A personal Creative Director portfolio with a shared cinema camera, curated project galleries, native and embedded video players and a box office contact section.
 
-GitHub Actions checks the site and publishes it to GitHub Pages. In Settings → Pages, select **GitHub Actions** as the source.
+GitHub Actions validates the website and publishes it to GitHub Pages. Source: GitHub Actions in Settings > Pages.
 
-Project content and display order live in `site/projects.json`. Entries marked `draft` stay unpublished. The first two selected projects are BAM Festival and the 2024 Maybach EQS SUV.
+Project content and display order live in site/projects.json. BAM Festival and the 2024 Maybach EQS SUV are featured first; other projects follow recorded event dates. Unknown dates are never invented.
 
-Website-ready images and approved artwork are stored in checksummed `media-seeds` packages. Actions extracts them and verifies their contents before publication. Film sources are verified against `media-sources.json` and backed up to the repository's versioned media release. Visitors play the films directly on the portfolio website.
+Responsive photos, approved artwork and font licences are stored in checksummed media-seeds packages. The build validates actual image dimensions before publication. Native MP4 movies are backed up to this repository’s portfolio-media-v1 release. Vimeo films load through the official player only when opened; closing or changing the item tears down the iframe and stops its audio. Playback remains subject to the source owner’s Vimeo availability and embed settings. Visitors stay inside the portfolio.
 
-Full-resolution original media is archived separately. Font licences are included with the website assets.
+Original masters and the private asset audit remain separate from the public website.

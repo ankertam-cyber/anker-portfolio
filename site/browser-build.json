@@ -1,6 +1,6 @@
 {
-  "entry": "browser-app.ee24dab1acac.js",
-  "sha256": "ee24dab1acac48ed674b3d9ad0f2fe23919b2f36e21d5db0ebcd626251db0bb5",
+  "entry": "browser-app.fab14ce4a6f5.js",
+  "sha256": "fab14ce4a6f5736207f82ae324746457f18082d784149af1f6302cc8a8eff4df",
   "modules": [
     "app.mjs",
     "catalogue.mjs",
@@ -12,6 +12,8 @@
     "fairy-points.mjs",
     "opening-motion.mjs",
     "media-viewer.mjs",
+    "image-loader.mjs",
+    "vimeo-player.mjs",
     "seat-journey.mjs",
     "seat-prompt.mjs",
     "project-media.mjs"

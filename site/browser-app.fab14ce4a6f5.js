@@ -474,8 +474,253 @@ function mountOpeningTransition(opening,work,getMotion){
 
 return {openingFrame,seatRevealProgress,mountOpeningTransition};
 })();
+const m10=(()=>{
+// Keep loading, invalid images and network failures visible without an empty frame.
+function loadPortfolioImage(image,{src,fallback='',alt=''}={},onStatus=()=>{}){
+  const sources=[...new Set([src,fallback].filter(Boolean))];
+  let cancelled=false,index=0,settled=false;
+  const clear=()=>{image.onload=null;image.onerror=null;};
+  function fail(){
+    if(cancelled||settled)return;
+    if(++index<sources.length){image.removeAttribute('srcset');image.src=sources[index];return;}
+    settled=true;clear();image.removeAttribute('data-loading');image.hidden=true;onStatus('error');
+  }
+  function ready(){
+    if(cancelled||settled)return;
+    // A decoded tracking pixel or invalid derivative is not a usable project photo.
+    if(image.naturalWidth<2||image.naturalHeight<2){fail();return;}
+    settled=true;clear();image.removeAttribute('data-loading');image.hidden=false;onStatus('ready');
+  }
+  // Keep lazy images in layout; display:none prevents native lazy loading.
+  image.hidden=false;image.setAttribute('data-loading','true');image.alt=alt;image.decoding='async';
+  image.onload=ready;image.onerror=fail;onStatus('loading');
+  if(sources.length){image.src=sources[0];if(image.complete&&image.naturalWidth)queueMicrotask(ready);}
+  else fail();
+  return ()=>{cancelled=true;clear();};
+}
+
+return {loadPortfolioImage};
+})();
+const m11=(()=>{
+// The official SDK is loaded separately; this controller creates players on demand.
+// Official APIs: https://github.com/vimeo/player.js#readme
+// Parameters: https://help.vimeo.com/hc/en-us/articles/12426260232977-About-Player-Parameters
+
+function normalizeVimeoEmbedUrl(src) {
+  let url;
+  try {
+    if (typeof src !== 'string') throw new TypeError();
+    url = new URL(src);
+  } catch {
+    throw new TypeError('Expected an absolute Vimeo player URL.');
+  }
+  if (url.origin !== 'https://player.vimeo.com' || url.username || url.password ||
+      !/^\/video\/[1-9][0-9]*\/?$/.test(url.pathname)) {
+    throw new TypeError('Only https://player.vimeo.com/video/<numeric ID> is supported.');
+  }
+  // Preserve observed hashes, privacy h tokens and other query parameters.
+  // These explicit overrides enforce manual playback and retain native controls.
+  const policy = {
+    dnt: '1', title: '0', byline: '0', portrait: '0',
+    autoplay: '0', playsinline: '1', controls: '1', background: '0'
+  };
+  for (const [name, value] of Object.entries(policy)) url.searchParams.set(name, value);
+  return url.href;
+}
+
+function createVimeoPlayer(iframe) {
+  const Player = globalThis.Vimeo?.Player;
+  if (typeof Player !== 'function') {
+    const error = new Error('The Vimeo player library is unavailable. Please try again.');
+    error.name = 'VimeoUnavailableError';
+    throw error;
+  }
+  return new Player(iframe);
+}
+
+function ignoreFailure(call) {
+  try { return Promise.resolve(call()).catch(() => {}); }
+  catch { return Promise.resolve(); }
+}
+
+function observe(callback, detail) {
+  // Host callbacks must not interrupt player teardown or create unhandled rejections.
+  ignoreFailure(() => callback(detail));
+}
+
+function errorMessage(error, reason) {
+  if (reason === 'timeout') return 'Vimeo took too long to load. Check your connection and try again.';
+  if (error?.name === 'PrivacyError') return 'Vimeo restricts access to this film. Please choose another film or try again.';
+  if (error?.name === 'PasswordError') return 'This Vimeo film is password protected. Please choose another film or try again.';
+  const detail = typeof error?.message === 'string' ? error.message.slice(0, 240) : '';
+  return detail ? `This Vimeo film could not load: ${detail}` : 'This Vimeo film could not load. Please try again.';
+}
+
+/**
+ * open(media) -> Promise<{status: 'ready'|'error'|'closed', ...media}>.
+ * Invalid URLs reject before touching an active film. A later SDK error is
+ * reported through onStatus even after open() has resolved ready.
+ * onStatus receives {status, message, reason?, src, sourcePage, title}.
+ * onPlay receives media; the host should pause its native videos there.
+ * Call pause() before opening other media, and close() when leaving the viewer.
+ * close() detaches synchronously; its Promise only awaits best-effort SDK cleanup.
+ */
+function mountVimeoPlayer(slot, {
+  document: doc = slot?.ownerDocument ?? globalThis.document,
+  createPlayer = createVimeoPlayer,
+  onStatus = () => {},
+  onPlay = () => {},
+  timeoutMs = 15000,
+  setTimeout: schedule = globalThis.setTimeout,
+  clearTimeout: cancel = globalThis.clearTimeout
+} = {}) {
+  if (!slot?.appendChild || !doc?.createElement) throw new TypeError('A DOM slot and document are required.');
+  if (!Number.isFinite(timeoutMs) || timeoutMs <= 0) throw new TypeError('timeoutMs must be positive.');
+  let current = null;
+
+  const live = session => current === session && !session.disposed;
+  const notify = (session, status, message, reason) => observe(onStatus, {
+    ...session.media, status, message, ...(reason ? {reason} : {})
+  });
+  function settle(session, status, message = '') {
+    if (session.settled) return;
+    session.settled = true;
+    session.resolve({...session.media, status, message});
+  }
+  function stop(session, keepRoot = false) {
+    if (session.timer !== null) { cancel(session.timer); session.timer = null; }
+    if (!session.disposed) {
+      session.disposed = true;
+      const player = session.player;
+      if (player) {
+        ignoreFailure(() => player.off('play', session.handlePlay));
+        ignoreFailure(() => player.off('error', session.handleError));
+        ignoreFailure(() => player.pause());
+        session.cleanup = ignoreFailure(() => player.destroy());
+      }
+      // Do not wait for a blocked provider, a rejected pause, or destroy Promise.
+      // Detaching and navigating this particular frame releases its browsing context.
+      session.iframe.remove();
+      session.iframe.src = 'about:blank';
+      session.player = null;
+    }
+    if (!keepRoot) {
+      if (session.retry) session.retry.removeEventListener('click', session.handleRetry);
+      session.root.remove();
+    }
+    return session.cleanup;
+  }
+  function fail(session, error, reason = 'sdk-error') {
+    if (!live(session)) return;
+    session.phase = 'error';
+    const message = errorMessage(error, reason);
+    stop(session, true);
+    session.root.setAttribute('aria-busy', 'false');
+    session.message.hidden = false;
+    session.message.setAttribute('role', 'alert');
+    session.message.textContent = message;
+    session.retry = doc.createElement('button');
+    session.retry.type = 'button';
+    session.retry.textContent = 'Retry film';
+    session.handleRetry = () => {
+      if (current === session && session.phase === 'error') void open(session.media);
+    };
+    session.retry.addEventListener('click', session.handleRetry);
+    session.root.appendChild(session.retry);
+    settle(session, 'error', message);
+    notify(session, 'error', message, reason);
+  }
+  function close() {
+    const session = current;
+    if (!session) return Promise.resolve();
+    current = null; // Invalidate callbacks before any SDK cleanup can run.
+    session.phase = 'closed';
+    const cleanup = stop(session);
+    settle(session, 'closed');
+    notify(session, 'closed', 'Film closed.');
+    return cleanup;
+  }
+  function open(media = {}) {
+    let normalized;
+    try { normalized = normalizeVimeoEmbedUrl(media.src); }
+    catch (error) { return Promise.reject(error); }
+    if (current) {
+      const previous = current;
+      current = null;
+      previous.phase = 'closed';
+      stop(previous);
+      settle(previous, 'closed');
+    }
+    const root = doc.createElement('div');
+    root.className = 'vimeo-player';
+    root.style.width = '100%';
+    root.style.height = '100%';
+    root.setAttribute('aria-busy', 'true');
+    const message = doc.createElement('p');
+    message.setAttribute('role', 'status');
+    message.textContent = 'Loading Vimeo film…';
+    const iframe = doc.createElement('iframe');
+    iframe.src = normalized;
+    iframe.title = typeof media.title === 'string' && media.title.trim() ? media.title : 'Vimeo film';
+    iframe.hidden = true;
+    iframe.setAttribute('allowfullscreen', '');
+    iframe.setAttribute('allow', 'autoplay; fullscreen; picture-in-picture; encrypted-media');
+    iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+    iframe.setAttribute('frameborder', '0');
+    iframe.style.width = '100%';
+    iframe.style.height = '100%';
+    iframe.style.border = '0';
+    root.appendChild(message);
+    root.appendChild(iframe);
+    slot.appendChild(root);
+    const session = {
+      media: {src: normalized, sourcePage: typeof media.sourcePage === 'string' ? media.sourcePage : '', title: iframe.title},
+      root, message, iframe, phase: 'loading', disposed: false, settled: false,
+      timer: null, player: null, cleanup: Promise.resolve(), resolve: null, retry: null
+    };
+    const result = new Promise(resolve => { session.resolve = resolve; });
+    current = session;
+    session.handlePlay = () => { if (live(session)) observe(onPlay, session.media); };
+    session.handleError = error => fail(session, error);
+    try {
+      session.player = createPlayer(iframe);
+      session.player.on('play', session.handlePlay);
+      session.player.on('error', session.handleError);
+      if (live(session)) {
+        session.timer = schedule(() => fail(session, null, 'timeout'), timeoutMs);
+        Promise.resolve(session.player.ready()).then(() => {
+          if (!live(session) || session.phase !== 'loading') return;
+          session.phase = 'ready';
+          cancel(session.timer);
+          session.timer = null;
+          iframe.hidden = false;
+          message.hidden = true;
+          root.setAttribute('aria-busy', 'false');
+          settle(session, 'ready');
+          notify(session, 'ready', 'Ready. Press play to start the film.');
+        }, error => fail(session, error));
+      }
+    } catch (error) { fail(session, error); }
+    if (live(session)) notify(session, 'loading', message.textContent);
+    return result;
+  }
+  async function pause() {
+    const session = current;
+    if (!session || !live(session) || !session.player) return false;
+    try { await session.player.pause(); return live(session); }
+    catch (error) { if (live(session)) fail(session, error, 'pause-error'); return false; }
+  }
+  return {open, pause, close};
+}
+
+return {normalizeVimeoEmbedUrl,createVimeoPlayer,mountVimeoPlayer};
+})();
 const m9=(()=>{
-function mountMediaViewer(dialog){
+const {loadPortfolioImage}=m10;
+
+const {mountVimeoPlayer}=m11;
+
+function mountMediaViewer(dialog,{createVimeoPlayer}={}){
   const surface=dialog.querySelector('.lightbox-surface');
   const image=dialog.querySelector('#lightbox-image');
   const video=dialog.querySelector('#lightbox-video');
@@ -486,21 +731,28 @@ function mountMediaViewer(dialog){
   const closeButton=dialog.querySelector('#lightbox-close');
   const fullscreenButton=dialog.querySelector('#lightbox-fullscreen');
   const projectButton=dialog.querySelector('#lightbox-project');
+  const status=dialog.querySelector('#lightbox-status'),retry=dialog.querySelector('#lightbox-retry');
+  const vimeoSlot=dialog.querySelector('#lightbox-vimeo'),vimeoLink=dialog.querySelector('#lightbox-vimeo-link');
   const request=surface.requestFullscreen||surface.webkitRequestFullscreen;
   const nativeElement=()=>document.fullscreenElement||document.webkitFullscreenElement;
-  let items=[],index=0,returnFocus=null,openProject=null,closing=false;
+  let items=[],index=0,returnFocus=null,openProject=null,closing=false,cancelImage=null;
+  const vimeo=vimeoSlot?mountVimeoPlayer(vimeoSlot,{...(createVimeoPlayer?{createPlayer:createVimeoPlayer}:{}),onStatus:state=>{if(vimeoLink)vimeoLink.hidden=state.status!=='error';},onPlay:()=>document.querySelectorAll('video').forEach(v=>v.pause())}):null;
+  function showStatus(state){if(status){status.hidden=state==='ready';status.textContent=state==='error'?'This item could not load. Please retry or choose another.':'Loading image…';}if(retry)retry.hidden=state!=='error';}
 
   function paint(){
     const item=items[index];if(!item)return;
+    cancelImage?.();cancelImage=null;showStatus('ready');
+    void vimeo?.close();if(vimeoSlot)vimeoSlot.hidden=true;if(vimeoLink)vimeoLink.hidden=true;
     if(video){video.pause();video.removeAttribute('src');video.load();video.hidden=true;}
-    image.hidden=item.type==='video';
-    if(item.type==='video'&&video){image.removeAttribute('src');video.poster=item.poster||'';video.src=item.src;video.hidden=false;video.setAttribute('aria-label',item.alt);}
-    else{image.hidden=false;image.src=item.src;image.alt=item.alt;}
+    image.hidden=item.type!=='image';
+    if(item.type==='vimeo'){image.removeAttribute('src');if(!vimeo){showStatus('error');}else{vimeoSlot.hidden=false;if(vimeoLink){const page=new URL(item.sourcePage||'https://vimeo.com/'+item.providerId);vimeoLink.href=page.origin==='https://vimeo.com'?page.href:'https://vimeo.com/'+item.providerId;}void vimeo.open({src:item.src,title:item.alt,sourcePage:item.sourcePage}).catch(()=>showStatus('error'));}}
+    else if(item.type==='video'&&video){image.removeAttribute('src');video.poster=item.poster||'';video.src=item.src;video.hidden=false;video.setAttribute('aria-label',item.alt);}
+    else{cancelImage=loadPortfolioImage(image,{src:item.src,fallback:item.thumbnail||item.fallback,alt:item.alt},showStatus);}
     counter.textContent=`${String(index+1).padStart(2,'0')} / ${String(items.length).padStart(2,'0')}`;
     previous.hidden=next.hidden=items.length<2;
   }
   function step(delta){if(!dialog.open||items.length<2)return;index=(index+delta+items.length)%items.length;paint();}
-  function syncFullscreen(){const on=nativeElement()===surface;fullscreenButton.setAttribute('aria-pressed',String(on));fullscreenButton.textContent=on?'EXIT FULL SCREEN ⤡':'FULL SCREEN ⤢';}
+  function syncFullscreen(){const on=nativeElement()===surface;fullscreenButton.setAttribute('aria-pressed',String(on));fullscreenButton.textContent=on?'EXIT FULL SCREEN':'FULL SCREEN';}
   async function exitNative(){
     if(nativeElement()!==surface)return;
     try{const exit=document.exitFullscreen||document.webkitExitFullscreen;if(exit)await exit.call(document);}catch{}
@@ -514,9 +766,9 @@ function mountMediaViewer(dialog){
     video?.pause();
     closing=true;await exitNative();dialog.close();closing=false;
   }
-  function open({images,media,index:initial=0,title:label='',onProject=null},{fullscreen=false}={}){
-    const sources=media||images?.map(src=>({src,type:'image'}));if(!sources?.length)return false;
-    items=sources.filter(item=>item.src&&['image','video'].includes(item.type)).map((item,i)=>({...item,alt:item.alt||`${label} — ${item.type==='video'?'film':'image'} ${i+1}`}));
+  function open({images,media,imageInfo={},index:initial=0,title:label='',onProject=null},{fullscreen=false}={}){
+    const sources=media||images?.map(src=>({src,type:'image',thumbnail:imageInfo[src]?.thumbnail}));if(!sources?.length)return false;
+    items=sources.filter(item=>item.src&&['image','video','vimeo'].includes(item.type)).map((item,i)=>({...item,alt:item.alt||item.label||`${label} — ${item.type==='image'?'image':'film'} ${i+1}`}));
     if(!items.length)return false;
     index=Math.max(0,Math.min(items.length-1,initial));
     title.textContent=label;openProject=onProject;projectButton.hidden=typeof onProject!=='function';
@@ -530,10 +782,12 @@ function mountMediaViewer(dialog){
   previous.addEventListener('click',()=>step(-1));next.addEventListener('click',()=>step(1));
   fullscreenButton.hidden=!request;
   fullscreenButton.addEventListener('click',toggleFullscreen);
+  retry?.addEventListener('click',paint);
+  video?.addEventListener('error',()=>{if(dialog.open&&items[index]?.type==='video')showStatus('error');});
   projectButton.addEventListener('click',async()=>{const action=openProject;await close();action?.();});
   dialog.addEventListener('cancel',event=>{event.preventDefault();void close();});
   dialog.addEventListener('close',()=>{
-    document.body.classList.remove('viewer-is-open');void exitNative();image.removeAttribute('src');if(video){video.pause();video.removeAttribute('src');video.load();video.hidden=true;}items=[];openProject=null;
+    cancelImage?.();cancelImage=null;void vimeo?.close();if(vimeoSlot)vimeoSlot.hidden=true;if(vimeoLink)vimeoLink.hidden=true;showStatus('ready');document.body.classList.remove('viewer-is-open');void exitNative();image.removeAttribute('src');if(video){video.pause();video.removeAttribute('src');video.load();video.hidden=true;}items=[];openProject=null;
     if(returnFocus?.isConnected)returnFocus.focus({preventScroll:true});returnFocus=null;
   });
   dialog.addEventListener('keydown',event=>{
@@ -552,13 +806,17 @@ function mountMediaViewer(dialog){
   image.addEventListener('pointercancel',()=>{swipeStart=null;});
   document.addEventListener('fullscreenchange',syncFullscreen);
   document.addEventListener('webkitfullscreenchange',syncFullscreen);
+  document.addEventListener('play',event=>{if(event.target.tagName==='VIDEO')void vimeo?.pause();},true);
+  document.addEventListener('visibilitychange',()=>{if(document.hidden)void vimeo?.pause();});
   return {open,close,isOpen:()=>dialog.open};
 }
 
 return {mountMediaViewer};
 })();
-const m10=(()=>{
+const m12=(()=>{
 const {ROW_SIZES}=m1;
+
+const {loadPortfolioImage}=m10;
 
 const SEAT_JOURNEY_MS=2100;
 const SEAT_TURN_MS=980;
@@ -606,6 +864,7 @@ function mountSeatJourney(dialog,getMotion,{onGallery,onProject,onSelect,getRetu
   const seats=[];
   let frameId=0,elapsed=0,lastTime=0,returnFocus=null,scrollY=0,openProject=null,images=[],imageIndex=0,loadToken=0;
   let savedBody=null;
+  let imageInfo={},cancelImage=null;
   let programme=[],programmeIndex=0,seatLabelFor=null,turn=null,swipe=null,suppressClickUntil=0;
 
   ROW_SIZES.forEach((count,row)=>{
@@ -658,7 +917,7 @@ function mountSeatJourney(dialog,getMotion,{onGallery,onProject,onSelect,getRetu
   }
   function changeScreening(index){
     const project=programme[index];if(!project)return;
-    programmeIndex=index;images=project.images?.length?project.images:project.videos?.[0]?.poster?[project.videos[0].poster]:[];openProject=project.id;title.textContent=project.title;if(films)films.hidden=!project.videos?.length;
+    programmeIndex=index;imageInfo=project.imageInfo||{};images=project.images?.length?project.images:project.videos?.[0]?.poster?[project.videos[0].poster]:[];openProject=project.id;title.textContent=project.title;if(films){films.hidden=!project.videos?.length;films.textContent=project.videos?.length>1?`WATCH ${project.videos.length} FILMS`:'WATCH FILM';}
     if(seatLabelFor)seatLabel.textContent=seatLabelFor(project);
     describeProgramme();showImage(0);onSelect?.(project.id);
   }
@@ -671,15 +930,16 @@ function mountSeatJourney(dialog,getMotion,{onGallery,onProject,onSelect,getRetu
   }
   function showImage(index){
     imageIndex=(index+images.length)%images.length||0;
-    const token=++loadToken;image.hidden=true;placeholder.hidden=false;
+    const token=++loadToken;cancelImage?.();placeholder.hidden=false;
     const src=images[imageIndex];screen.disabled=!src;gallery.hidden=!src;
     previous.hidden=next.hidden=images.length<2;counter.textContent=images.length?`${String(imageIndex+1).padStart(2,'0')} / ${String(images.length).padStart(2,'0')}`:'From the archive';
     if(!src){placeholder.textContent='Project material is being curated.';return;}
     placeholder.textContent='Loading screening…';
-    const preload=new Image();
-    const ready=()=>{if(token!==loadToken||!dialog.open)return;image.src=src;image.alt=title.textContent;image.hidden=false;placeholder.hidden=true;};
-    preload.onload=ready;preload.onerror=()=>{if(token===loadToken){placeholder.textContent='Image unavailable. View the project details below.';screen.disabled=true;}};
-    preload.src=src;if(preload.complete&&preload.naturalWidth)ready();
+    cancelImage=loadPortfolioImage(image,{src,fallback:imageInfo[src]?.thumbnail,alt:title.textContent},state=>{
+      if(token!==loadToken||!dialog.open)return;
+      placeholder.hidden=state==='ready';
+      if(state==='error'){placeholder.textContent='This image could not load. Choose another image or open the project.';screen.disabled=true;}
+    });
   }
   function lockPage(){
     scrollY=window.scrollY;
@@ -699,7 +959,7 @@ function mountSeatJourney(dialog,getMotion,{onGallery,onProject,onSelect,getRetu
     cancelAnimationFrame(frameId);loadToken++;elapsed=getMotion()?0:SEAT_JOURNEY_MS;lastTime=0;
     turn=null;swipe=null;programme=entries.length?entries:[project];programmeIndex=Math.max(0,programme.findIndex(p=>p.id===project.id));seatLabelFor=labelFor;
     previousShow.disabled=nextShow.disabled=previous.disabled=next.disabled=gallery.disabled=projectButton.disabled=false;describeProgramme();
-    images=project.images?.length?project.images:project.videos?.[0]?.poster?[project.videos[0].poster]:[];openProject=project.id;title.textContent=project.title;seatLabel.textContent=seat;status.textContent='Take your seat';if(films)films.hidden=!project.videos?.length;
+    imageInfo=project.imageInfo||{};images=project.images?.length?project.images:project.videos?.[0]?.poster?[project.videos[0].poster]:[];openProject=project.id;title.textContent=project.title;seatLabel.textContent=seat;status.textContent='Take your seat';if(films){films.hidden=!project.videos?.length;films.textContent=project.videos?.length>1?`WATCH ${project.videos.length} FILMS`:'WATCH FILM';}
     dialog.dataset.phase='entering';
     if(!dialog.open){returnFocus=trigger||document.activeElement;lockPage();dialog.showModal();}
     closeButton.focus({preventScroll:true});showImage(0);resume();return true;
@@ -707,11 +967,11 @@ function mountSeatJourney(dialog,getMotion,{onGallery,onProject,onSelect,getRetu
   closeButton.addEventListener('click',close);
   dialog.addEventListener('cancel',event=>{event.preventDefault();close();});
   dialog.addEventListener('close',()=>{
-    cancelAnimationFrame(frameId);frameId=0;loadToken++;releasePage();
+    cancelAnimationFrame(frameId);frameId=0;loadToken++;cancelImage?.();cancelImage=null;releasePage();
     const focus=getReturnSeat?.(openProject)||returnFocus;if(focus?.isConnected)focus.focus({preventScroll:true});returnFocus=null;
     image.removeAttribute('src');images=[];openProject=null;turn=null;swipe=null;dialog.dataset.phase='closed';
   });
-  function showGallery(){if(performance.now()<suppressClickUntil||turn)return;if(images.length)onGallery?.({images,index:imageIndex,title:title.textContent,id:openProject});}
+  function showGallery(){if(performance.now()<suppressClickUntil||turn)return;if(images.length)onGallery?.({images,imageInfo,index:imageIndex,title:title.textContent,id:openProject});}
   screen.addEventListener('click',showGallery);gallery.addEventListener('click',showGallery);
   films?.addEventListener('click',()=>{if(!turn)onFilm?.(openProject);});
   previous.addEventListener('click',()=>showImage(imageIndex-1));next.addEventListener('click',()=>showImage(imageIndex+1));
@@ -737,7 +997,7 @@ function mountSeatJourney(dialog,getMotion,{onGallery,onProject,onSelect,getRetu
 
 return {SEAT_JOURNEY_MS,SEAT_TURN_MS,headTurnFrame,adjacentScreening,seatCameraFrame,projectCinemaPoint,mountSeatJourney};
 })();
-const m11=(()=>{
+const m13=(()=>{
 function seatPromptPosition(rect,width,height,bubbleWidth=208,bubbleHeight=76){
   const x=Math.max(12,Math.min(width-bubbleWidth-12,rect.left+rect.width/2-bubbleWidth/2));
   const below=rect.top<bubbleHeight+20;
@@ -774,10 +1034,10 @@ function mountSeatPrompt(bubble,{onConfirm}={}){
 
 return {seatPromptPosition,mountSeatPrompt};
 })();
-const m12=(()=>{
+const m14=(()=>{
 function projectMedia(project){
-  const films=(project?.videos||[]).filter(v=>v.src).map(v=>({...v,type:'video'}));
-  const images=(project?.images||[]).map(src=>({type:'image',src}));
+  const films=(project?.videos||[]).filter(v=>v.src).map(v=>({...v,type:v.type==='vimeo'?'vimeo':'video'}));
+  const images=(project?.images||[]).map(src=>({type:'image',src,thumbnail:project.imageInfo?.[src]?.thumbnail}));
   return [...films,...images];
 }
 
@@ -794,11 +1054,13 @@ const {mountOpeningTransition}=m8;
 
 const {mountMediaViewer}=m9;
 
-const {mountSeatJourney}=m10;
+const {mountSeatJourney}=m12;
 
-const {mountSeatPrompt}=m11;
+const {mountSeatPrompt}=m13;
 
-const {projectMedia}=m12;
+const {projectMedia}=m14;
+
+const {loadPortfolioImage}=m10;
 
 const $=id=>document.getElementById(id);
 const viewer=mountMediaViewer($('lightbox'));
@@ -812,9 +1074,9 @@ let seatJourney=null;
 let seatPrompt=null;
 const getMotion=()=>motion;
 const scene=mountScene($('scene-canvas'),'assets/media/character-master.png',getMotion,{still:true});
-function renderOpeningPlayback(state){const button=$('opening-motion-enable'),status=$('opening-playback-state');button.textContent=motion?'Ⅱ PAUSE OPENING':'▷ PLAY OPENING';button.setAttribute('aria-pressed',String(motion));status.dataset.state=state;status.textContent=state==='playing'?'PLAYING':state==='loading'?'LOADING':state==='starting'?'STARTING':'PAUSED';}
+function renderOpeningPlayback(state){const button=$('opening-motion-enable'),status=$('opening-playback-state');button.textContent=motion?'PAUSE OPENING':'PLAY OPENING';button.setAttribute('aria-pressed',String(motion));status.dataset.state=state;status.textContent=state==='playing'?'PLAYING':state==='loading'?'LOADING':state==='starting'?'STARTING':'PAUSED';}
 const headline=mountTagline($('tagline-lights'),taglineArtwork,getMotion,renderOpeningPlayback);
-function setMotion(value){motion=value;document.documentElement.dataset.motion=motion?'on':'off';$('motion-toggle').setAttribute('aria-pressed',String(!motion));$('motion-toggle').innerHTML=motion?'Pause motion <span aria-hidden="true">Ⅱ</span>':'Enable motion <span aria-hidden="true">▷</span>';renderOpeningPlayback(motion?'starting':'off');scene.setMotion();headline.setMotion();openingTransition?.refresh();seatJourney?.setMotion();document.querySelectorAll('img[data-animation-source]').forEach(img=>{img.src=motion?img.dataset.animationSource:img.dataset.animationPoster;});}
+function setMotion(value){motion=value;document.documentElement.dataset.motion=motion?'on':'off';$('motion-toggle').setAttribute('aria-pressed',String(!motion));$('motion-toggle').textContent=motion?'Pause motion':'Enable motion';renderOpeningPlayback(motion?'starting':'off');scene.setMotion();headline.setMotion();openingTransition?.refresh();seatJourney?.setMotion();document.querySelectorAll('img[data-animation-source]').forEach(img=>{img.src=motion?img.dataset.animationSource:img.dataset.animationPoster;});}
 setMotion(motion);
 function rememberMotion(){savedMotion=motion?'on':'off';try{localStorage.setItem('anker-motion',savedMotion);}catch{}}
 $('motion-toggle').addEventListener('click',()=>{setMotion(!motion);rememberMotion();});
@@ -893,7 +1155,7 @@ async function changeCinema(delta){
 }
 $('cinema-prev').addEventListener('click',()=>changeCinema(-1));$('cinema-next').addEventListener('click',()=>changeCinema(1));
 seatJourney=mountSeatJourney($('seat-journey'),getMotion,{
-  onGallery:({images,index,title,id})=>viewer.open({images,index,title,onProject:()=>{seatJourney.close();openProject(id);}},{fullscreen:true}),
+  onGallery:({images,imageInfo,index,title,id})=>viewer.open({images,imageInfo,index,title,onProject:()=>{seatJourney.close();openProject(id);}},{fullscreen:true}),
   onProject:id=>openProject(id),
   onFilm:id=>{const p=state.entries.find(p=>p.id===id);if(p?.videos?.length)viewer.open({media:projectMedia(p),title:p.title,onProject:()=>{seatJourney.close();openProject(id);}},{fullscreen:true});},
   onSelect:id=>{const page=Math.floor(seatIndexFor(id)/CAPACITY);if(page!==state.page){state.page=page;state.selected=id;buildSeats();}selectProject(id);},
@@ -921,7 +1183,7 @@ function issueTicket(scroll,animate=true){
   const p=selected();if(!p)return;state.ticketNumber++;
   const card=make('article','admission-ticket invitation-ticket');if(motion&&animate)card.classList.add('issuing');const settle=event=>{if(event.type==='animationcancel'||event.animationName==='ticket-stub-nod'){card.classList.remove('issuing');card.removeEventListener('animationend',settle);card.removeEventListener('animationcancel',settle);}};card.addEventListener('animationend',settle);card.addEventListener('animationcancel',settle);card.style.setProperty('--ticket-color','#e4e9ec');
   const details=make('div','invitation-details');details.append(make('span','invitation-kicker','AN OPEN INVITATION'),make('h3','','Your next idea.'),make('p','','Let’s give it a stage.'));
-  const link=make('a','invitation-link','MEET AT THE BOX OFFICE ↗');link.href='#contact';details.append(link);
+  const link=make('a','invitation-link','MEET AT THE BOX OFFICE');link.href='#contact';details.append(link);
   const stub=make('div','invitation-stub');stub.append(make('span','','ADMIT ONE'),make('span','invitation-barcode'),make('span','','LET’S TALK'));stub.children[1].setAttribute('aria-hidden','true');
   card.append(details,stub);
   $('ticket-output').replaceChildren(card);if(scroll)$('ticket-machine').scrollIntoView({behavior:motion?'smooth':'instant',block:'center'});
@@ -938,14 +1200,33 @@ function renderIndex(query=''){
 $('archive-toggle').addEventListener('click',()=>{const open=$('archive-panel').hidden;$('archive-panel').hidden=!open;$('archive-toggle').setAttribute('aria-expanded',String(open));if(open){renderIndex($('project-search').value);$('project-search').focus();}});
 $('project-search').addEventListener('input',event=>renderIndex(event.target.value));
 
-const dialog=$('project-dialog');let focusReturn=null;
+const dialog=$('project-dialog');let focusReturn=null;let projectImageRequests=[];
 function fillProject(id){
+  projectImageRequests.forEach(cancel=>cancel());projectImageRequests=[];
   dialog.querySelectorAll('video').forEach(video=>video.pause());
   const p=state.entries.find(entry=>entry.id===id);if(!p)return;
   state.dialogId=id;$('project-dialog-title').textContent=p.title;$('dialog-meta').textContent=[p.category,p.year,p.location].filter(Boolean).join(' / ');
   const frag=document.createDocumentFragment();
-  (p.videos||[]).forEach((film,index)=>{const video=make('video','project-film');video.src=film.src;video.controls=true;video.playsInline=true;video.preload='none';video.poster=film.poster||p.images[0]||'';video.setAttribute('aria-label',`${p.title} — film ${index+1}`);frag.append(video);});
-  p.images.forEach((src,index)=>{const button=make('button','portfolio-image-button');button.setAttribute('aria-label',`View ${p.title}, image ${index+1} fullscreen`);const img=make('img'),info=p.imageInfo?.[src];img.src=info?.animated&&!motion?info.thumbnail:src;img.alt=`${p.title} — image ${index+1}`;img.width=info?.width||1920;img.height=info?.height||1281;img.loading=index?'lazy':'eager';if(info?.animated){img.dataset.animationSource=src;img.dataset.animationPoster=info.thumbnail;button.setAttribute('aria-label',`Play ${p.title} animated visual ${index+1} fullscreen`);button.append(make('span','media-motion-label','MOTION'));}else if(info?.thumbnail&&info.width){const thumbnailWidth=Math.round(info.width*Math.min(1,480/Math.max(info.width,info.height)));if(thumbnailWidth<info.width){img.srcset=`${info.thumbnail} ${thumbnailWidth}w, ${src} ${info.width}w`;img.sizes='(max-width:760px) 100vw, 1100px';}}button.append(img);button.addEventListener('click',()=>viewer.open({images:p.images,index,title:p.title},{fullscreen:true}));frag.append(button);});
+  (p.videos||[]).forEach((film,index)=>{
+    const figure=make('figure','project-film-card');
+    if(film.type==='vimeo'){
+      const button=make('button','project-film-poster'),poster=make('img');button.setAttribute('aria-label',`Watch ${film.label||p.title}`);poster.src=film.poster||p.images[0]||'';poster.alt='';poster.width=film.width||1280;poster.height=film.height||720;poster.loading='lazy';
+      const play=make('span','film-play-badge');play.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 10 7-10 7Z" fill="currentColor"/></svg>';button.append(poster,play,make('span','film-play-label','PLAY FILM'));
+      button.addEventListener('click',()=>viewer.open({media:projectMedia(p),index,title:p.title},{fullscreen:true}));figure.append(button);
+    }else{const video=make('video','project-film');video.src=film.src;video.controls=true;video.playsInline=true;video.preload='none';video.poster=film.poster||p.images[0]||'';video.setAttribute('aria-label',`${p.title} — film ${index+1}`);figure.append(video);}
+    figure.append(make('figcaption','project-film-caption',[film.label||`Film ${String(index+1).padStart(2,'0')}`,film.contribution].filter(Boolean).join(' · ')));frag.append(figure);
+  });
+  p.images.forEach((src,index)=>{
+    const button=make('button','portfolio-image-button'),img=make('img'),info=p.imageInfo?.[src]||{};
+    button.setAttribute('aria-label',`View ${p.title}, image ${index+1} fullscreen`);button.setAttribute('aria-busy','true');
+    img.width=info.width||1920;img.height=info.height||1280;img.loading=index?'lazy':'eager';button.style.aspectRatio=`${img.width} / ${img.height}`;
+    const source=info.animated&&!motion?info.thumbnail:src;
+    if(info.animated){img.dataset.animationSource=src;img.dataset.animationPoster=info.thumbnail;button.append(make('span','media-motion-label','MOTION'));}
+    else if(info.thumbnail&&info.width){const thumbnailWidth=Math.round(info.width*Math.min(1,480/Math.max(info.width,info.height)));if(thumbnailWidth<info.width){img.srcset=`${info.thumbnail} ${thumbnailWidth}w, ${src} ${info.width}w`;img.sizes='(max-width:760px) 100vw, 1100px';}}
+    const status=make('span','media-load-status','Loading image…');status.setAttribute('role','status');button.append(img,status);
+    projectImageRequests.push(loadPortfolioImage(img,{src:source,fallback:info.thumbnail,alt:`${p.title} — image ${index+1}`},state=>{status.hidden=state==='ready';status.textContent=state==='error'?'Photo unavailable. Open to retry.':'Loading image…';button.setAttribute('aria-busy',String(state==='loading'));}));
+    button.addEventListener('click',()=>viewer.open({images:p.images,imageInfo:p.imageInfo,index,title:p.title},{fullscreen:true}));frag.append(button);
+  });
   if(!p.images.length&&!p.videos?.length)frag.append(make('div','dialog-placeholder','A story waiting to be told.'));
   $('dialog-media').replaceChildren(frag);$('dialog-description').replaceChildren();
   if(p.images.length||p.videos?.length){$('dialog-description').append(make('p','','Selected project visuals.'));}
@@ -959,6 +1240,7 @@ function openProject(id,{push=true}={}){
   $('project-close').focus();
 }
 function closeProject({route=true}={}){
+  projectImageRequests.forEach(cancel=>cancel());projectImageRequests=[];
   dialog.querySelectorAll('video').forEach(video=>video.pause());
   if(viewer.isOpen())void viewer.close();
   if(dialog.open)dialog.close();document.body.classList.remove('dialog-is-open');state.dialogId=null;
