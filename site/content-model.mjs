@@ -59,7 +59,7 @@ function validatePatch(patch){
 }
 export function validateContent(doc,entries=[]){
  record(doc,'網站內容');if(doc.version!==1)throw Error('唔支援呢個草稿版本');
- for(const k of Object.keys(doc))if(!['version','revision','updatedAt','profile','order','overrides','additions'].includes(k))throw Error('不支援嘅網站內容欄位');
+ for(const k of Object.keys(doc))if(!['version','revision','updatedAt','profile','order','overrides','additions','library'].includes(k))throw Error('不支援嘅網站內容欄位');
  record(doc.profile,'個人簡介');record(doc.overrides,'作品修改');
  for(const [k,v]of Object.entries(doc.profile)){if(!own(PROFILE_DEFAULTS,k))throw Error('不支援嘅個人簡介欄位');text(v,'個人簡介 '+k);if(['name','aboutTitle','contactTitle'].includes(k)&&!v.trim())throw Error('名稱或標題唔可以留空');}
  if(doc.profile.email&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(doc.profile.email))throw Error('電郵地址格式不正確');
@@ -70,18 +70,31 @@ export function validateContent(doc,entries=[]){
  for(const p of doc.additions){record(p,'新增作品');if(typeof p.id!=='string'||!/^owner-[a-zA-Z0-9-]{5,80}$/.test(p.id)||ids.has(p.id))throw Error('新增作品編號重複或不正確');ids.add(p.id);const {id,...patch}=p;validatePatch(patch);if(!p.title?.trim())throw Error('新增作品需要名稱');}
  const orderIds=new Set();for(const id of doc.order){if(!ids.has(id)||orderIds.has(id))throw Error('作品排序包含重複或未知作品');orderIds.add(id);}
  for(const [id,patch]of Object.entries(doc.overrides)){if(!ids.has(id))throw Error('草稿包含已不存在嘅作品，請重新載入正式內容');validatePatch(patch);}
+ if(doc.library!==undefined){record(doc.library,'素材庫');if(Object.keys(doc.library).some(k=>!['items','removed'].includes(k)))throw Error('不支援嘅素材庫欄位');validateMedia(doc.library.items);if(!Array.isArray(doc.library.removed)||doc.library.removed.length>6000||new Set(doc.library.removed).size!==doc.library.removed.length||doc.library.removed.some(src=>!safeMediaUrl(src)))throw Error('素材庫移除清單不正確');}
  if(new TextEncoder().encode(JSON.stringify(doc)).length>900000)throw Error('草稿超過 900 KB，請減少重複素材資料');
  return true;
 }
 export function editableEntries(entries,doc){
  const all=[...entries,...doc.additions.map(p=>({images:[],videos:[],graphics:[],imageInfo:{},publicationStatus:'published',...p}))];
  const positions=new Map(doc.order.map((id,i)=>[id,i]));
- return all.map(p=>{const result={...p,...doc.overrides[p.id]};if(result.media){const media=orderedMedia(result.media);result.videos=media.filter(m=>m.type!=='image');result.images=media.filter(m=>m.type==='image'&&m.mediaKind!=='graphic').map(m=>m.src);result.graphics=media.filter(m=>m.type==='image'&&m.mediaKind==='graphic');result.imageInfo=Object.fromEntries(media.filter(m=>m.type==='image').map(m=>[m.src,m]));}return result;}).sort((a,b)=>(positions.get(a.id)??1e6)-(positions.get(b.id)??1e6));
+ const removed=new Set(doc.library?.removed||[]);
+ return all.map(p=>{const result={...p,...doc.overrides[p.id]};if(result.media||removed.size){const media=orderedMedia(result.media||projectMedia(result)).filter(m=>!removed.has(m.src)).map(m=>{for(const key of ['poster','thumbnail'])if(removed.has(m[key]))delete m[key];return m;});result.videos=media.filter(m=>m.type!=='image');result.images=media.filter(m=>m.type==='image'&&m.mediaKind!=='graphic').map(m=>m.src);result.graphics=media.filter(m=>m.type==='image'&&m.mediaKind==='graphic');result.imageInfo=Object.fromEntries(media.filter(m=>m.type==='image').map(m=>[m.src,m]));}return result;}).sort((a,b)=>(positions.get(a.id)??1e6)-(positions.get(b.id)??1e6));
+}
+export function libraryInventory(entries,doc){
+ const records=new Map(),remember=item=>{if(item?.src&&!records.has(item.src))records.set(item.src,{...normalizeMedia(item),projectIds:[],removed:false});};
+ for(const p of entries)projectMedia(p).forEach(remember);
+ for(const p of doc.additions)if(p.media)p.media.forEach(remember);
+ for(const patch of Object.values(doc.overrides))if(patch.media)patch.media.forEach(remember);
+ for(const item of doc.library?.items||[])remember(item);
+ const unfiltered={...doc,library:{items:doc.library?.items||[],removed:[]}};
+ for(const p of editableEntries(entries,unfiltered))for(const item of projectMedia(p))for(const src of [item.src,item.poster,item.thumbnail]){const record=records.get(src);if(record&&!record.projectIds.includes(p.id))record.projectIds.push(p.id);}
+ const removed=new Set(doc.library?.removed||[]);return [...records.values()].map(item=>({...item,removed:removed.has(item.src)}));
 }
 export function applyContent(entries,doc){validateContent(doc,entries);const visible=editableEntries(entries,doc).filter(p=>!p.hidden);if(!visible.length)throw Error('至少需要保留一個顯示中嘅作品');return visible;}
 export function mediaForEditor(project){return orderedMedia(projectMedia(project));}
 export function changeSummary(before,after,entries){
  const changes=[];if(canonical(before.profile)!==canonical(after.profile))changes.push('更新個人簡介／聯絡資料');
+ if(canonical(before.library||{})!==canonical(after.library||{})){const old=new Set(before.library?.removed||[]),next=new Set(after.library?.removed||[]),deleted=[...next].filter(src=>!old.has(src)).length,restored=[...old].filter(src=>!next.has(src)).length;changes.push('更新素材庫'+(deleted?'：移除 '+deleted+' 個素材':'')+(restored?'：還原 '+restored+' 個素材':'')+'（原檔保留）');}
  if(canonical(before.order)!==canonical(after.order))changes.push('調整作品排序');
  const old=new Map(editableEntries(entries,before).map(p=>[p.id,p]));
  for(const p of editableEntries(entries,after)){const prev=old.get(p.id);if(!prev){changes.push('新增作品：'+p.title+(p.hidden?'（隱藏）':''));continue;}if(canonical(p)===canonical(prev))continue;const labels=[];if(p.title!==prev.title)labels.push('改名');if(Boolean(p.hidden)!==Boolean(prev.hidden))labels.push(p.hidden?'隱藏':'重新顯示');if(canonical(mediaForEditor(p))!==canonical(mediaForEditor(prev)))labels.push('素材／排序');if(!labels.length)labels.push('文字／設定');changes.push(p.title+'：'+labels.join('、'));}

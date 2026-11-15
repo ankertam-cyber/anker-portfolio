@@ -22,4 +22,12 @@ For publishing, create a fine-grained GitHub token restricted to `ankertam-cyber
 
 The editor is a static client; viewing its public URL grants no publication rights. Publishing checks the content SHA and refuses to overwrite a newer GitHub update. Imported content is validated by the editor, public runtime and CI. Keep the approved V29.1 visual layout and automatic tagline sparkle when extending the editor.
 
+### Batch media and library
+
+Long-press a thumbnail or use its checkbox to select media. Shift-click selects a range. The media toolbar supports selecting all photos, selecting an entire project, moving a selection up/down, moving to the start/end of its category, or inserting the group at a numbered position. Selection order and the video/photo/design categories are preserved. Thumbnail and detail views share the same edits; each batch edit is one undo step.
+
+Every removal asks for confirmation, shows the selected count and thumbnails, and offers project-only removal or removal to the shared library recycle area. Project-only removal retains reusable library records and affects only that project's references. Library removal hides every project use and poster/thumbnail reference, reports affected projects and can be restored from the library tab. It does not delete GitHub media packs, release videos or Drive originals; Git history and source archives remain intact. Publication review explicitly identifies library changes as retaining originals.
+
+`content.library` is optional in the existing version-1 schema, so saved pre-library drafts remain supported. It stores reusable media records and the removed-source list; original catalogue records are preserved. The public runtime and CI apply the same library rules. Tests cover mixed-category batches, retained source order, shared cover references, restoration, import validation and long-press cancellation during scrolling.
+
 Owner-approved exclusions, merged project identities, confirmed years and photo priorities are enforced by site/portfolio-curation.json and the publication checks. Existing IWC and charging-station links resolve to their merged posts. Instagram films are archived as native MP4s; no Instagram runtime player is required.
