@@ -1,0 +1,167 @@
+{
+  "version": 1,
+  "status": "source-discovery-only",
+  "websiteMainUnchanged": true,
+  "assetDeletionAllowed": false,
+  "sourcePages": [
+    "https://www.atevents.com.hk/",
+    "https://www.i-dna.com.hk/"
+  ],
+  "platformsRequested": [
+    "AT Events Website",
+    "AT Events Instagram",
+    "i-DNAsia Instagram"
+  ],
+  "instagram": {
+    "atEvents": {
+      "verifiedHandle": null,
+      "access": "not verified in this session",
+      "notes": "Public search did not reliably surface profile/reel URLs; browser login or exact profile URL needed to discover all posts."
+    },
+    "idnaAsia": {
+      "verifiedHandle": null,
+      "access": "not verified in this session",
+      "notes": "No verified company IG post/reel URL obtained."
+    }
+  },
+  "candidateSources": [
+    {
+      "source": "AT Events website",
+      "page": "https://www.atevents.com.hk/",
+      "sourceTitle": "Mercedes-Benz The new G-Class Range Launch",
+      "portfolioProject": "Mercedes-Benz The new G-Class Range Launch",
+      "match": "project page confirmed",
+      "video": "not exposed in page text",
+      "status": "look for exact video inside Wix showcase; no MP4 obtained"
+    },
+    {
+      "source": "AT Events website",
+      "page": "https://www.atevents.com.hk/",
+      "sourceTitle": "Mercedes-Benz BAM Festival 2023",
+      "portfolioProject": "Mercedes-Benz - BAM Festival",
+      "match": "project page confirmed",
+      "video": "not exposed in page text",
+      "status": "inspect existing videos before adding duplicates"
+    },
+    {
+      "source": "AT Events website",
+      "page": "https://www.atevents.com.hk/",
+      "sourceTitle": "Mercedes-Maybach EQS SUV Launch",
+      "portfolioProject": "Mercedes-Benz - Maybach — EQS SUV",
+      "match": "project page confirmed",
+      "video": "not exposed in page text",
+      "status": "look for event highlight; preserve existing media"
+    },
+    {
+      "source": "AT Events website",
+      "page": "https://www.atevents.com.hk/",
+      "sourceTitle": "Mercedes-Benz C-class Launch",
+      "portfolioProject": "Mercedes-Benz — C-Class Launch",
+      "match": "project page confirmed",
+      "video": "not exposed in page text",
+      "status": "look for recorded Keith Lam reveal"
+    },
+    {
+      "source": "AT Events website",
+      "page": "https://www.atevents.com.hk/",
+      "sourceTitle": "Mercedes-Benz EQS SUV Launch",
+      "portfolioProject": "Mercedes-Benz EQS SUV Launch",
+      "match": "project page confirmed",
+      "video": "not exposed in page text",
+      "status": "look for event highlight"
+    },
+    {
+      "source": "AT Events website",
+      "page": "https://www.atevents.com.hk/",
+      "sourceTitle": "Mercedes-Benz EQXX Launch Exhibition",
+      "portfolioProject": "Mercedes-Benz EQXX Launch Exhibition",
+      "match": "project page confirmed",
+      "video": "not exposed in page text",
+      "status": "look for corresponding installation footage"
+    },
+    {
+      "source": "AT Events website",
+      "page": "https://www.atevents.com.hk/",
+      "sourceTitle": "Mercedes-Benz Experience Day 2021–2023",
+      "portfolioProject": "Mercedes-Benz Experience Day 2021, 2022 and 2023",
+      "match": "project pages confirmed",
+      "video": "not exposed in page text",
+      "status": "search by event name and year; do not mix years"
+    },
+    {
+      "source": "AT Events website",
+      "page": "https://www.atevents.com.hk/",
+      "sourceTitle": "IWC schaffhausen Christmas Party / HK Football Club Quiz Night",
+      "portfolioProject": "IWC Festive Event",
+      "match": "brand and group possible; separate events",
+      "video": "not exposed in page text",
+      "status": "do not mix without event-level review"
+    },
+    {
+      "source": "AT Events Vimeo",
+      "page": "https://vimeo.com/729077383",
+      "sourceTitle": "Mercedes-Benz S-Class Launch",
+      "portfolioProject": "Mercedes-Maybach S-class Launch",
+      "match": "possible brand/project but not proven (S-Class vs Maybach S-class)",
+      "video": "Vimeo page",
+      "status": "review actual video and event year before matching"
+    },
+    {
+      "source": "i-DNAsia website",
+      "page": "https://www.i-dna.com.hk/",
+      "sourceTitle": "FWD Champions Day",
+      "portfolioProject": "FWD Race Day",
+      "match": "ambiguous; event names differ",
+      "video": "homepage highlight video",
+      "status": "confirm same event before embedding"
+    },
+    {
+      "source": "i-DNAsia website",
+      "page": "https://www.i-dna.com.hk/",
+      "sourceTitle": "Kiehl's CalenduLAND",
+      "portfolioProject": "Kiehl's - Healing Note 治癒花語",
+      "match": "different campaigns; NOT a direct match",
+      "video": "homepage highlight video",
+      "status": "do not add to Healing Note"
+    },
+    {
+      "source": "i-DNAsia website",
+      "page": "https://www.i-dna.com.hk/",
+      "sourceTitle": "The Karl Lagerfeld Macau Grand Celebration",
+      "portfolioProject": null,
+      "match": "no project in approved 84-item list",
+      "video": "homepage highlight video",
+      "status": "not in current portfolio; do not add"
+    },
+    {
+      "source": "AT Events website video production",
+      "page": "https://www.atevents.com.hk/",
+      "sourceTitle": "Mercedes-Benz Mobile Service Video Production; Mercedes me connect; Mercedes E-Class Digital Launch; Hoya MiYOSMART; TDC; Biosensors; BondConnect",
+      "portfolioProject": null,
+      "match": "these are distinct productions from named portfolio events",
+      "video": "8 homepage video production entries",
+      "status": "separate portfolio review; do not insert into unrelated events"
+    }
+  ],
+  "existingSpecificVimeoLinks": {
+    "bam": [
+      "https://vimeo.com/1089511226",
+      "https://vimeo.com/1089511251"
+    ],
+    "loreal": [
+      "https://vimeo.com/1246944281"
+    ],
+    "merryPearlPitching": [
+      "https://vimeo.com/1092679092"
+    ]
+  },
+  "nextActions": [
+    "Verify the Instagram handles and browse reels through an authenticated browser when necessary",
+    "For each candidate, match project name, event year, venue and visual content against approved curation v4",
+    "Check footage usage permission and Vimeo/Instagram embed/download settings; prefer embed when authorized",
+    "Save verified source URLs, poster URLs and video IDs without duplicating existing video assets",
+    "Only after verification, add assets in the proper cinema/project, and test video playback on iPhone and desktop",
+    "Never silently add videos from agency showcases to projects the owner did not work on"
+  ],
+  "lastChecked": "2026-11-15"
+}
