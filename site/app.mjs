@@ -139,7 +139,7 @@ $('screen-open').addEventListener('click',()=>{const p=selected();if(!p)return;s
 
 function renderIndex(query=''){
   const entries=filterEntries(state.entries,query);$('search-count').textContent=`${entries.length} archive ${entries.length===1?'entry':'entries'}`;
-  const frag=document.createDocumentFragment();entries.forEach(project=>{const button=make('button','archive-entry');button.append(make('span','',project.title),make('span','',project.year||project.projectDate?.year||project.sourceYear||'—'));button.addEventListener('click',async()=>{const index=seatIndexFor(project.id);state.page=Math.floor(index/CAPACITY);state.selected=project.id;buildSeats();selectProject(project.id,{issue:true});openProject(project.id);});frag.append(button);});
+  const frag=document.createDocumentFragment();entries.forEach(project=>{const button=make('button','archive-entry');const story=projectStoryFor(project.id);if(story?.spotlight){button.classList.add('has-case-study');button.setAttribute('aria-label',`${project.title} — featured case study`);}const name=make('span','',project.title);if(story?.spotlight)name.append(make('em','archive-case-study-mark','CASE STUDY'));button.append(name,make('span','',project.year||project.projectDate?.year||project.sourceYear||'—'));button.addEventListener('click',async()=>{const index=seatIndexFor(project.id);state.page=Math.floor(index/CAPACITY);state.selected=project.id;buildSeats();selectProject(project.id,{issue:true});openProject(project.id);});frag.append(button);});
   if(!entries.length)frag.append(make('p','','No matching projects. Try another name or year.'));
   $('archive-list').replaceChildren(frag);
 }
@@ -152,6 +152,28 @@ function fillProject(id){
   dialog.querySelectorAll('video').forEach(video=>video.pause());
   const p=state.entries.find(entry=>entry.id===id);if(!p)return;
   state.dialogId=id;$('project-dialog-title').textContent=p.title;$('dialog-meta').textContent=[p.category,p.year,p.location].filter(Boolean).join(' / ');
+  const story=projectStoryFor(id),storyContainer=$('dialog-story');
+  storyContainer.replaceChildren();
+  storyContainer.hidden=!story;
+  if(story){
+    const label=make('p','case-study-eyebrow',story.eyebrow||'CREATIVE CASE STUDY');
+    const lead=make('p','case-study-lead',story.intro);
+    const tag=make('span','case-study-stage',story.stage==='pitch-concept-only'?'PITCH CONCEPT':story.stage?.startsWith('executed')?'PROJECT STORY':'CREATIVE STORY');
+    const header=make('div','case-study-header');header.append(label,tag,lead);
+    storyContainer.append(header);
+    const sections=make('div','case-study-sections');
+    for(const [heading,copy] of [['THE CHALLENGE',story.challenge],['THE IDEA',story.approach],['MY ROLE',story.role],['THE RESULT',story.outcome]]){
+      if(!copy)continue;
+      const section=make('section','case-study-section');
+      section.append(make('h3','',heading),make('p','',copy));sections.append(section);
+    }
+    storyContainer.append(sections);
+    if(story.highlights?.length){
+      const ribbon=make('ul','case-study-highlights');
+      story.highlights.forEach(item=>ribbon.append(make('li','',item)));
+      storyContainer.append(ribbon);
+    }
+  }
   const frag=document.createDocumentFragment();
   (p.videos||[]).forEach((film,index)=>{
     const figure=make('figure','project-film-card');
