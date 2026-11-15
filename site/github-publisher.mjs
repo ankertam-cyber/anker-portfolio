@@ -15,6 +15,6 @@ export function createGitHubPublisher({request=globalThis.fetch}={}){
   disconnect(){credential='';sha=null;baseline='';},
   connected(){return Boolean(credential&&sha);},
   async publish(doc,published){if(!credential||!sha)throw Error('請先連接 GitHub');if(canonical(published)!==baseline)throw Error('正式內容版本已改變，請重新連接 GitHub');const current=await remoteContent();if(current.sha!==sha)throw Error('GitHub 已有其他更新，請下載草稿備份後重新載入正式內容');const result=await api('/contents/site/content.json',{method:'PUT',body:JSON.stringify({message:'Update portfolio content from owner back office',branch:'main',sha,content:encodeContent(JSON.stringify(doc,null,2)+'\n')})});sha=result.content.sha;baseline=canonical(doc);return {sha:result.commit.sha,url:'https://github.com/'+REPOSITORY+'/commit/'+result.commit.sha,revision:doc.revision};},
-  async deployment(commit){const data=await api('/actions/workflows/pages.yml/runs?head_sha='+encodeURIComponent(commit)+'&per_page=5');const run=data.workflow_runs?.find(r=>r.head_sha===commit);return run?{status:run.status,conclusion:run.conclusion,url:run.html_url}:null;}
+  async deployment(commit){const data=await api('/actions/workflows/pages.yml/runs?head_sha='+encodeURIComponent(commit)+'&per_page=5');let run=data.workflow_runs?.find(r=>r.head_sha===commit);if(!run){const recent=await api('/actions/workflows/pages.yml/runs?per_page=20');run=recent.workflow_runs?.find(r=>r.head_sha===commit);}return run?{status:run.status,conclusion:run.conclusion,url:run.html_url}:null;}
  };
 }

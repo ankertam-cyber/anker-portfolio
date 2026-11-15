@@ -35,6 +35,9 @@ let bytes=0;async function count(folder){for(const entry of await fs.readdir(fol
 if(bytes>990000000)throw Error('The published site exceeds its GitHub Pages image budget');
 const html=await fs.readFile(path.join(root,'index.html'),'utf8');if(html.includes('PRIVATE DESIGN PREVIEW')||html.includes('noindex,nofollow'))throw Error('Preview-only metadata remains');
 const entry=html.match(/id="portfolio-entry"[^>]*src="([^"]+)"/)?.[1];if(!entry)throw Error('Missing browser entry');await fs.access(path.join(root,entry));
+const admin=await fs.readFile(path.join(root,'admin/index.html'),'utf8'),adminEntry=admin.match(/id="admin-entry"[^>]*src="\.\.\/([^"]+)"/)?.[1];
+if(!adminEntry||!/^browser-admin\.[a-f0-9]{12}\.js$/.test(adminEntry))throw Error('Missing bundled owner editor');
+await fs.access(path.join(root,adminEntry));await fs.access(path.join(root,'admin-startup.js'));
 if(/[\p{Extended_Pictographic}]/u.test(html.replaceAll('©','')))throw Error('Emoji-capable glyph in the website UI');
 const report={projects:data.entries.length,images:data.entries.reduce((n,p)=>n+p.images.length,0),graphics:data.entries.reduce((n,p)=>n+p.graphics.length,0),videos:movies+vimeo,githubFilms:movies,vimeoEmbeds:vimeo,checkedImageFiles:files.size,bytes,verifiedAt:new Date().toISOString()};
 await fs.writeFile('deployment-checks.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report));

@@ -1,4 +1,5 @@
-import {rebaseLibraryCleanup} from './draft-rebase.mjs';
+import {restoreOwnerDraft,ownerDraftStatus} from './admin-draft-state.mjs';
+import {readPublishedContent,readSiteJson} from './admin-data.mjs';
 import {mountPhotoDuplicateManager} from './photo-duplicate-manager.mjs?v=duplicates2';
 import {mountAdminVideoPreview} from './admin-video-preview.mjs?v=video2';
 import {mountMediaManager} from './media-manager.mjs?v=video1';
@@ -39,7 +40,7 @@ function updateToolbar(){
  if(stale)for(const id of ['preview','add-project','import-draft'])$(id).disabled=true;
  $('office').setAttribute('aria-busy',String(!ready||busy));
  $('connection-status').textContent=publisher.connected()?'GitHub 已連接':'GitHub 未連接';$('connection-status').classList.toggle('connected',publisher.connected());
- if(!changed&&ready&&!busy&&storageOK)$('draft-status').textContent='內容與已提交版本一致';
+ $('draft-status').textContent=ownerDraftStatus({ready,busy,stale,changed,storageOK});
 }
 function mutate(action,{render=true,list=true}={}){
  if(busy||stale)return;const before=clone(draft);action();if(canonical(before)===canonical(draft))return;
@@ -156,26 +157,26 @@ function openMedia(){for(const id of ['media-url','media-label','media-poster'])
 $('media-submit').addEventListener('click',()=>{try{const kind=$('media-type').value,src=kind==='vimeo'?normalizeVimeoInput($('media-url').value):$('media-url').value.trim();const item={type:kind==='photo'||kind==='graphic'?'image':kind,mediaKind:kind==='graphic'?'graphic':kind==='photo'?'photo':'video',src,label:$('media-label').value.trim()};if($('media-poster').value.trim())item.poster=$('media-poster').value.trim();const media=orderedMedia([...mediaForEditor(projectById(selected)),item]);const candidate=clone(draft);candidate.overrides[selected]??={};candidate.overrides[selected].media=media;validateContent(candidate,entries);mutate(()=>{rememberLibrary(draft,[item]);restoreLibraryMedia(draft,[item.src]);patchProject(selected,'media',media);});$('media-dialog').close();}catch(error){$('media-error').textContent=error.message;$('media-error').hidden=false;}});
 function preview(){try{assertDraft();save();const url=new URL(SITE);url.searchParams.set('owner-preview','1');url.searchParams.set('draft',crypto.randomUUID());if(view==='profile')url.hash='about';else if(selected&&!projectById(selected)?.hidden)url.hash='project='+encodeURIComponent(selected);else url.hash='work';const opened=window.open(url.href,'anker-owner-preview');if(!opened)notice('瀏覽器阻止咗預覽視窗，請允許呢個網站開新視窗。',true);}catch(error){notice(error.message,true);}}
 function download(){const payload={format:'anker-portfolio-draft-v1',baseline:canonical(published),draft,savedAt:new Date().toISOString()},url=URL.createObjectURL(new Blob([JSON.stringify(payload,null,2)],{type:'application/json'})),link=node('a');link.href=url;link.download='anker-portfolio-draft-'+new Date().toISOString().slice(0,10)+'.json';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
-async function readPublished(){const responses=await Promise.all(['projects.v28.json','content.json'].map(name=>fetch(new URL(name,SITE),{cache:'no-store'})));if(responses.some(r=>!r.ok))throw Error('無法讀取網站內容，請稍後重新載入');const [catalogue,content]=await Promise.all(responses.map(r=>r.json()));const source=catalogue.entries.filter(p=>p.publicationStatus==='published');validateContent(content,source);return {entries:source,content};}
+async function readPublished(){return readPublishedContent(SITE,{onStatus:copy=>{if(!ready)$('draft-status').textContent=copy;}});}
 async function initialize(){
  try{const data=await readPublished();entries=data.entries;published=data.content;draft=clone(published);let saved=null;try{saved=JSON.parse(localStorage.getItem(DRAFT_KEY)||'null');}catch{notice('未能讀取舊草稿。舊資料未被覆寫；你可以先下載現有內容備份。',true);stale=true;}
-  if(saved?.draft){validateContent(saved.draft,entries);draft=saved.draft;if(saved.baseline!==canonical(published)){const merged=rebaseLibraryCleanup(saved.baseline,published,draft,entries);if(merged){draft=merged;save();notice('已合併正式網站確認嘅重複相片清理；你未發佈嘅文字、排序同其他草稿修改保留。');}else{stale=true;notice('呢份本機草稿係按較舊正式版本編輯。請先下載草稿備份，再撳「重新載入正式內容」，避免覆蓋較新更新。',true);}}else if(canonical(draft)!==canonical(published))notice('已還原你上次喺呢個瀏覽器未發佈嘅草稿。');}
-  ready=true;selected=currentEntries()[0]?.id||'';renderView();if(!stale&&canonical(draft)!==canonical(published))$('draft-status').textContent='已還原草稿 · 尚未發佈';let pending=null;try{pending=JSON.parse(localStorage.getItem(PENDING_KEY)||'null');}catch{}if(pending?.sha)void monitorDeployment(pending);
- }catch(error){notice(error.message,true);$('draft-status').textContent='網站內容未能載入';$('editor').replaceChildren(node('p','error',error.message),button('重新載入',()=>location.reload()));}
+  if(saved?.draft){const restored=restoreOwnerDraft(saved,published,entries);draft=restored.draft;if(restored.state==='merged'){save();notice('已合併正式網站確認嘅重複相片清理；你未發佈嘅文字、排序同其他草稿修改保留。');}else if(restored.state==='refreshed'){save();notice('已讀取最新正式內容；原有草稿冇未發佈改動。');}else if(restored.state==='conflict'){stale=true;notice('內容已讀取，但呢份本機草稿係按較舊版本編輯。請先下載草稿備份，再撳「重新載入正式內容」，避免覆蓋較新更新。',true);}else if(restored.state==='restored')notice('已還原你上次喺呢個瀏覽器未發佈嘅草稿。');}
+  ready=true;selected=currentEntries()[0]?.id||'';renderView();$('office').dataset.loadState='ready';dispatchEvent(new Event('anker-admin-ready'));let pending=null;try{pending=JSON.parse(localStorage.getItem(PENDING_KEY)||'null');}catch{}if(pending?.sha)void monitorDeployment(pending);
+ }catch(error){notice(error.message,true);$('draft-status').textContent='網站內容未能載入';$('office').dataset.loadState='error';$('office').setAttribute('aria-busy','false');dispatchEvent(new CustomEvent('anker-admin-error',{detail:error.message+'。原有草稿仍保留。'}));}
 }
 function review(){try{assertDraft();if(!publisher.connected()){notice('首次發佈需要先連接 GitHub。你嘅草稿已保留。');$('connect-dialog').showModal();return;}const changes=changeSummary(published,draft,entries);if(!changes.length)throw Error('未有需要發佈嘅內容改動');$('review-list').replaceChildren(...changes.map(copy=>node('li','',copy)));$('publish-error').hidden=true;$('review-dialog').showModal();}catch(error){notice(error.message,true);}}
 async function publish(){
  if(busy)return;try{assertDraft();const snapshot=clone(draft);snapshot.revision=crypto.randomUUID();snapshot.updatedAt=new Date().toISOString();busy=true;updateToolbar();$('publish-confirm').disabled=true;$('publish-error').hidden=true;
-  const pending=await publisher.publish(snapshot,published);published=clone(snapshot);draft=clone(snapshot);undo=[];redo=[];save();try{localStorage.setItem(PENDING_KEY,JSON.stringify(pending));}catch{}$('review-dialog').close();notice('已提交 GitHub，正式網站正等待部署。呢段時間請保留分頁。');await monitorDeployment(pending);
+  const pending=await publisher.publish(snapshot,published);published=clone(snapshot);draft=clone(snapshot);undo=[];redo=[];save();try{localStorage.setItem(PENDING_KEY,JSON.stringify(pending));}catch{}$('review-dialog').close();notice('已提交 GitHub，正式網站正等待部署。你可以繼續編輯下一份草稿。');void monitorDeployment(pending);
  }catch(error){$('publish-error').textContent=error.message;$('publish-error').hidden=false;notice(error.message,true);}finally{busy=false;$('publish-confirm').disabled=false;updateToolbar();}
 }
 async function monitorDeployment(pending){
  const run=++monitorId,start=Date.now(),status=$('deployment');status.hidden=false;let lastUrl=pending.url;
  const show=(copy,url)=>{status.replaceChildren(document.createTextNode(copy+' '));if(url){const link=node('a','','查看 GitHub 發佈記錄');link.href=url;link.target='_blank';link.rel='noopener noreferrer';status.append(link);}};
  while(run===monitorId&&Date.now()-start<15*60*1000){
-  try{const state=await publisher.deployment(pending.sha);if(state?.url)lastUrl=state.url;
+  try{const state=await publisher.deployment(pending.sha);if(run!==monitorId)return;if(state?.url)lastUrl=state.url;
    if(state?.status==='completed'&&state.conclusion!=='success'){show('部署未完成（'+state.conclusion+'）。GitHub 已保留提交，請查看記錄。',lastUrl);return;}
-   if(state?.conclusion==='success'){const response=await fetch(new URL('content.json?revision='+encodeURIComponent(pending.revision),SITE),{cache:'no-store'});if(response.ok&&(await response.json()).revision===pending.revision){show('正式網站已更新。',lastUrl);const link=node('a','','開啟正式網站');link.href=new URL('?v='+encodeURIComponent(pending.revision),SITE).href;link.target='_blank';link.rel='noopener';status.append(document.createTextNode(' · '),link);try{localStorage.removeItem(PENDING_KEY);}catch{}notice('發佈完成，正式網站已更新。');return;}}
+   if(state?.conclusion==='success'){const live=await readSiteJson(new URL('content.json?revision='+encodeURIComponent(pending.revision),SITE),{attempts:1});if(run!==monitorId)return;if(live.revision===pending.revision){show('正式網站已更新。',lastUrl);const link=node('a','','開啟正式網站');link.href=new URL('?v='+encodeURIComponent(pending.revision),SITE).href;link.target='_blank';link.rel='noopener';status.append(document.createTextNode(' · '),link);try{localStorage.removeItem(PENDING_KEY);}catch{}if(!stale)notice('發佈完成，正式網站已更新。'+(canonical(draft)!==canonical(published)?' 你之後新增嘅草稿修改尚未發佈。':''));return;}}
    show(state?.conclusion==='success'?'部署完成，正在等候網站快取更新…':state?'GitHub 正在建置及部署網站…':'已提交 GitHub，正在等候部署開始…',lastUrl);
   }catch(error){show(error.message+' 可直接查看發佈記錄；唔需要重複提交。',lastUrl);return;}
   await new Promise(resolve=>setTimeout(resolve,12000));
