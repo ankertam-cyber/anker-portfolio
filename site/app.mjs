@@ -1,4 +1,5 @@
 import {ROW_SIZES,CAPACITY,pageCount,pageEntries,seatCoordinates,filterEntries} from './catalogue.mjs';
+import {projectStoryFor} from './project-stories.mjs';
 import {mountScene} from './scene.mjs?v=stage-12';
 import {mountTagline} from './tagline-motion.mjs?v=live-16';
 import {mountOpeningTransition} from './opening-motion.mjs?v=stage-12';
@@ -139,7 +140,7 @@ $('screen-open').addEventListener('click',()=>{const p=selected();if(!p)return;s
 
 function renderIndex(query=''){
   const entries=filterEntries(state.entries,query);$('search-count').textContent=`${entries.length} archive ${entries.length===1?'entry':'entries'}`;
-  const frag=document.createDocumentFragment();entries.forEach(project=>{const button=make('button','archive-entry');button.append(make('span','',project.title),make('span','',project.year||project.projectDate?.year||project.sourceYear||'—'));button.addEventListener('click',async()=>{const index=seatIndexFor(project.id);state.page=Math.floor(index/CAPACITY);state.selected=project.id;buildSeats();selectProject(project.id,{issue:true});openProject(project.id);});frag.append(button);});
+  const frag=document.createDocumentFragment();entries.forEach(project=>{const button=make('button','archive-entry');const story=projectStoryFor(project.id);if(story?.spotlight){button.classList.add('has-case-study');button.setAttribute('aria-label',`${project.title} — featured case study`);}const name=make('span','',project.title);if(story?.spotlight)name.append(make('em','archive-case-study-mark','CASE STUDY'));button.append(name,make('span','',project.year||project.projectDate?.year||project.sourceYear||'—'));button.addEventListener('click',async()=>{const index=seatIndexFor(project.id);state.page=Math.floor(index/CAPACITY);state.selected=project.id;buildSeats();selectProject(project.id,{issue:true});openProject(project.id);});frag.append(button);});
   if(!entries.length)frag.append(make('p','','No matching projects. Try another name or year.'));
   $('archive-list').replaceChildren(frag);
 }
@@ -152,6 +153,28 @@ function fillProject(id){
   dialog.querySelectorAll('video').forEach(video=>video.pause());
   const p=state.entries.find(entry=>entry.id===id);if(!p)return;
   state.dialogId=id;$('project-dialog-title').textContent=p.title;$('dialog-meta').textContent=[p.category,p.year,p.location].filter(Boolean).join(' / ');
+  const story=projectStoryFor(id),storyContainer=$('dialog-story');
+  storyContainer.replaceChildren();
+  storyContainer.hidden=!story;
+  if(story){
+    const label=make('p','case-study-eyebrow',story.eyebrow||'CREATIVE CASE STUDY');
+    const lead=make('p','case-study-lead',story.intro);
+    const tag=make('span','case-study-stage',story.stage==='pitch-concept-only'?'PITCH CONCEPT':story.stage?.startsWith('executed')?'PROJECT STORY':'CREATIVE STORY');
+    const header=make('div','case-study-header');header.append(label,tag,lead);
+    storyContainer.append(header);
+    const sections=make('div','case-study-sections');
+    for(const [heading,copy] of [['THE CHALLENGE',story.challenge],['THE IDEA',story.approach],['MY ROLE',story.role],['THE RESULT',story.outcome]]){
+      if(!copy)continue;
+      const section=make('section','case-study-section');
+      section.append(make('h3','',heading),make('p','',copy));sections.append(section);
+    }
+    storyContainer.append(sections);
+    if(story.highlights?.length){
+      const ribbon=make('ul','case-study-highlights');
+      story.highlights.forEach(item=>ribbon.append(make('li','',item)));
+      storyContainer.append(ribbon);
+    }
+  }
   const frag=document.createDocumentFragment();
   (p.videos||[]).forEach((film,index)=>{
     const figure=make('figure','project-film-card');
@@ -176,8 +199,8 @@ function fillProject(id){
   if(!p.images.length&&!p.videos?.length)frag.append(make('div','dialog-placeholder','A story waiting to be told.'));
   if(p.mediaOrder==='images-first')frag.prepend(...frag.querySelectorAll('.portfolio-image-button'));
   $('dialog-media').replaceChildren(frag);$('dialog-description').replaceChildren();
-  if(p.images.length||p.videos?.length){$('dialog-description').append(make('p','','Selected project visuals.'));}
-  else{$('dialog-description').append(make('p','','This entry is part of the project archive. Images, project details and credits are awaiting curation.'));}
+  if(!story&&(p.images.length||p.videos?.length)){$('dialog-description').append(make('p','','Selected project visuals.'));}
+  else if(!story){$('dialog-description').append(make('p','','This entry is part of the project archive. Images, project details and credits are awaiting curation.'));}
   $('project-previous').disabled=seatIndexFor(id)===0;$('project-next').disabled=seatIndexFor(id)===state.entries.length-1;dialog.scrollTop=0;
 }
 function openProject(id,{push=true}={}){
@@ -201,7 +224,36 @@ $('project-previous').addEventListener('click',()=>adjacentProject(-1));$('proje
 function syncRoute(){const match=location.hash.match(/^#project=(.+)$/);if(match){const requested=decodeURIComponent(match[1]),id=state.redirects[requested]||requested;if(state.entries.some(p=>p.id===id)){if(id!==requested)history.replaceState({project:id},'',`#project=${encodeURIComponent(id)}`);openProject(id,{push:false});}else history.replaceState(null,'','#work');}else if(dialog.open)closeProject({route:false});}
 addEventListener('popstate',syncRoute);
 
-$('desk-bell').addEventListener('click',()=>{playMicroAnimation($('desk-bell'),'ringing');$('bell-message').textContent='Hello! Drop me a line — let’s talk ideas.';});
+// Sound is generated only after a direct user tap/click, for mobile autoplay compatibility.
+// No downloaded audio file or extra network request is necessary.
+let bellAudioContext=null;
+function playDeskBellSound(){
+  const AudioContextClass=window.AudioContext||window.webkitAudioContext;
+  if(!AudioContextClass)return;
+  try{
+    const audio=bellAudioContext||(bellAudioContext=new AudioContextClass());
+    if(audio.state==='suspended')void audio.resume();
+    const start=audio.currentTime+0.025;
+    const partials=[[1046.5,0.64,1.5],[1318.5,0.25,1.25],[1864.7,0.16,1.02],[2637,0.09,0.8]];
+    const master=audio.createGain();
+    master.gain.setValueAtTime(0.0001,start);
+    master.gain.exponentialRampToValueAtTime(0.16,start+0.015);
+    master.gain.exponentialRampToValueAtTime(0.0001,start+1.6);
+    master.connect(audio.destination);
+    partials.forEach(([pitch,volume,seconds])=>{
+      const osc=audio.createOscillator(),gain=audio.createGain();
+      osc.type='sine';
+      osc.frequency.setValueAtTime(pitch,start);
+      osc.frequency.exponentialRampToValueAtTime(pitch*0.998,start+seconds);
+      gain.gain.setValueAtTime(Math.max(volume,0.0001),start);
+      gain.gain.exponentialRampToValueAtTime(0.0001,start+seconds);
+      osc.connect(gain);gain.connect(master);
+      osc.start(start);osc.stop(start+seconds+0.02);
+    });
+    window.setTimeout(()=>master.disconnect(),1900);
+  }catch(error){console.warn('Desk bell audio unavailable',error);}
+}
+$('desk-bell').addEventListener('click',()=>{playDeskBellSound();playMicroAnimation($('desk-bell'),'ringing');$('bell-message').textContent='Hello! Drop me a line — let’s talk ideas.';});
 $('copyright-year').textContent=String(new Date().getFullYear());
 document.addEventListener('play',event=>{if(event.target.tagName==='VIDEO')document.querySelectorAll('video').forEach(video=>{if(video!==event.target)video.pause();});},true);
 document.addEventListener('visibilitychange',()=>{if(document.hidden)document.querySelectorAll('video').forEach(video=>video.pause());});
