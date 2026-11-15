@@ -73,3 +73,7 @@ test('previous/next use the current preview playlist without mutating supplied m
  const h=harness(t),before=JSON.stringify(films);h.preview.open(films,{src:films[3].src});h.click('video-preview-previous');h.click('video-preview-previous');assert.equal(h.el('video-preview-title').textContent,'First film');assert.equal(h.el('video-preview-previous').disabled,true);assert.equal(JSON.stringify(films),before);
  h.doc.defaultView.dispatchEvent(new Event('pagehide'));assert.equal(h.video.getAttribute('src'),null);assert.equal(h.dialog.open,false);
 });
+test('the reported BAM clip uses the same-origin playback file while its draft URL remains intact',t=>{
+ const h=harness(t),name='6e422e_673a66651a714533a59b6983c87a429b-07e341c7e1873d7b7a42.mp4',film={type:'video',src:'https://github.com/ankertam-cyber/anker-portfolio/releases/download/portfolio-media-v1/'+name};
+ h.preview.open([film],{src:film.src});assert.equal(h.video.src,'https://example.com/portfolio/assets/web-video-v1/'+name);assert.match(film.src,/github\.com/);
+});

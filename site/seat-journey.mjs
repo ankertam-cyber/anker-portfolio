@@ -1,3 +1,4 @@
+import {videoPlaybackSource} from './video-delivery.mjs';
 import {ROW_SIZES} from './catalogue.mjs';
 import {projectMedia} from './project-media.mjs';
 import {loadPortfolioImage} from './image-loader.mjs';
@@ -125,7 +126,7 @@ export function mountSeatJourney(dialog,getMotion,{onGallery,onProject,onSelect,
     if(mediaKind)mediaKind.textContent=isFilm?'FILM':['graphic','graphics','rendering','render','design'].includes(item?.mediaKind)?'DESIGN':'PHOTO';
     if(!item){placeholder.textContent='Project material is being prepared.';return;}
     if(item.type==='video'){
-      previewVideo.hidden=false;previewVideo.src=item.src;previewVideo.poster=item.poster||'';previewVideo.onloadeddata=()=>{if(token!==loadToken||!dialog.open)return;placeholder.hidden=true;previewVideo.play().catch(()=>{});};previewVideo.onerror=()=>{if(token===loadToken){placeholder.textContent='Open film in full screen';placeholder.hidden=false;}};placeholder.textContent='Loading film…';return;
+      previewVideo.hidden=false;previewVideo.src=videoPlaybackSource(item.src);previewVideo.poster=item.poster||'';previewVideo.onloadeddata=()=>{if(token!==loadToken||!dialog.open)return;placeholder.hidden=true;previewVideo.play().catch(()=>{});};previewVideo.onerror=()=>{if(token===loadToken){placeholder.textContent='Open film in full screen';placeholder.hidden=false;}};placeholder.textContent='Loading film…';return;
     }
     const src=isFilm?item.poster:item.src;
     if(!src){placeholder.textContent=isFilm?'WATCH FILM':'Image unavailable';return;}

@@ -1,3 +1,4 @@
+import {videoPlaybackSource} from './video-delivery.mjs';
 import {safeMediaUrl} from './content-model.mjs?v=bulk1';
 import {mountVimeoPlayer,createVimeoPlayer,normalizeVimeoEmbedUrl} from './vimeo-player.mjs';
 
@@ -41,7 +42,7 @@ export function mountAdminVideoPreview(dialog,{site,document:doc=dialog.ownerDoc
     return Promise.resolve(player.play()).catch(()=>offerPlay(session));
    }).catch(()=>message(session,'影片未能載入，請稍後重試。','error'));
   }else{
-   video.hidden=false;video.controls=true;video.playsInline=true;video.preload='metadata';video.src=new URL(film.src,site).href;
+   video.hidden=false;video.controls=true;video.playsInline=true;video.preload='metadata';video.src=new URL(videoPlaybackSource(film.src,site),site).href;
    if(film.poster&&safeMediaUrl(film.poster))video.poster=new URL(film.poster,site).href;
    const events={loadedmetadata:()=>{if(!video.paused)return;const seconds=Number.isFinite(video.duration)?Math.floor(video.duration):0;message(session,'影片已就緒'+(seconds?' · '+Math.floor(seconds/60)+':'+String(seconds%60).padStart(2,'0'):'')+'，可以播放或拖時間軸。','ready');},play:()=>message(session,'播放中','playing'),pause:()=>message(session,'已暫停，可以拖時間軸辨認影片。','paused'),ended:()=>message(session,'影片已播完，可切換下一條。','ended'),error:()=>message(session,'影片未能載入。請檢查來源網址，或稍後重試。','error')};
    for(const [name,handler]of Object.entries(events))video.addEventListener(name,handler);

@@ -1,8 +1,10 @@
 {
-  "entry": "browser-app.c7d456be8508.js",
-  "sha256": "c7d456be85087dbda6798761fd823a1456c991a4c3c8f8db3878cbab934a223f",
+  "entry": "browser-app.2f6887ab4195.js",
+  "sha256": "2f6887ab4195a319388570760c022fe828f3dfef093abf526f55b954cfef7c44",
   "modules": [
     "app.mjs",
+    "video-delivery.mjs",
+    "native-video-files.mjs",
     "owner-content.mjs",
     "content-model.mjs",
     "project-media.mjs",

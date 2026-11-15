@@ -1,3 +1,4 @@
+import {videoPlaybackSource} from './video-delivery.mjs';
 import {loadOwnerContent} from './owner-content.mjs';
 import {ROW_SIZES,CAPACITY,pageCount,pageEntries,seatCoordinates,filterEntries,CINEMAS,cinemaEntries,cinemaPageCount,cinemaPageEntries,projectLocation} from './catalogue.mjs';
 import {projectStoryFor} from './project-stories.mjs';
@@ -188,7 +189,7 @@ function fillProject(id){
       if(item.type==='vimeo'){
         const button=make('button','project-film-poster'),poster=make('img');button.setAttribute('aria-label',`Watch ${item.label||p.title}`);poster.src=item.poster||p.images[0]||'';poster.alt='';poster.width=item.width||1280;poster.height=item.height||720;poster.loading='lazy';button.append(poster,make('span','film-play-label','PLAY FILM'));
         button.addEventListener('click',()=>viewer.open({media,index,title:p.title},{fullscreen:true}));figure.append(button);
-      }else{const video=make('video','project-film');video.src=item.src;video.controls=true;video.playsInline=true;video.preload='none';video.poster=item.poster||p.images[0]||'';video.setAttribute('aria-label',item.label||`${p.title} — film ${index+1}`);figure.append(video);}
+      }else{const video=make('video','project-film');video.src=videoPlaybackSource(item.src);video.controls=true;video.playsInline=true;video.preload='none';video.poster=item.poster||p.images[0]||'';video.setAttribute('aria-label',item.label||`${p.title} — film ${index+1}`);figure.append(video);}
       figure.append(make('figcaption','project-film-caption',[item.label||`Film ${index+1}`,item.contribution].filter(Boolean).join(' · ')));frag.append(figure);return;
     }
     const src=item.src,info={...p.imageInfo?.[src],...item},button=make('button','portfolio-image-button'),img=make('img');

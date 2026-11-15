@@ -1,4 +1,4 @@
-import {mountAdminVideoPreview} from './admin-video-preview.mjs';
+import {mountAdminVideoPreview} from './admin-video-preview.mjs?v=video2';
 import {mountMediaManager} from './media-manager.mjs?v=video1';
 import {rememberLibrary,removeProjectMedia,removeLibraryMedia,restoreLibraryMedia,selectionDescription,createLongPress} from './media-actions.mjs';
 import {DRAFT_KEY,PROFILE_DEFAULTS,emptyContent,clone,canonical,validateContent,applyContent,editableEntries,mediaForEditor,orderedMedia,mediaRank,normalizeVimeoInput,normalizeStory,safeMediaUrl,changeSummary,libraryInventory,normalizeMedia} from './content-model.mjs?v=bulk1';

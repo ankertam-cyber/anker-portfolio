@@ -3,9 +3,13 @@ import path from 'node:path';
 import {assertPortfolioImage} from './image-dimensions.mjs';
 import {projectMedia} from '../site/project-media.mjs';
 import {applyContent} from '../site/content-model.mjs';
+import {inspectWebVideo} from './web-video.mjs';
+import {NATIVE_VIDEO_FILES} from '../site/native-video-files.mjs';
 const root=path.resolve('_site'),data=JSON.parse(await fs.readFile(path.join(root,'projects.v28.json'),'utf8'));
 const rules=JSON.parse(await fs.readFile(path.join(root,'portfolio-curation.json'),'utf8'));
 const manifest=JSON.parse(await fs.readFile('media-sources.json','utf8'));
+if(JSON.stringify(NATIVE_VIDEO_FILES)!==JSON.stringify(manifest.videos.map(v=>[v.path,v.archiveName])))throw Error('Playback source index differs from original archive');
+for(const film of manifest.videos)inspectWebVideo(await fs.readFile(path.join(root,'assets/web-video-v1',film.archiveName)));
 const ownerContent=JSON.parse(await fs.readFile(path.join(root,'content.json'),'utf8'));
 applyContent(data.entries,ownerContent);
 if(data.previewOnly||!data.entries.length||data.entries.some(p=>p.publicationStatus!=='published'))throw Error('Invalid public catalogue');
@@ -24,6 +28,7 @@ for(const project of data.entries){
 for(const file of files){if(!file.startsWith('assets/')||file.includes('..'))throw Error('Non-local project image');assertPortfolioImage(await fs.readFile(path.join(root,file)),file);}
 if(movies!==manifest.videos.length)throw Error('Film manifest count differs from the published programme');
 const archive=JSON.parse(await fs.readFile('media-archive-checks.json','utf8'));if(archive.verified!==movies)throw Error('Film archive has not been verified');
+if(archive.playback?.films!==movies)throw Error('Browser playback files are missing');
 let bytes=0;async function count(folder){for(const entry of await fs.readdir(folder,{withFileTypes:true})){const file=path.join(folder,entry.name);if(entry.isDirectory())await count(file);else bytes+=(await fs.stat(file)).size;}}await count(root);
 if(bytes>990000000)throw Error('The published site exceeds its GitHub Pages image budget');
 const html=await fs.readFile(path.join(root,'index.html'),'utf8');if(html.includes('PRIVATE DESIGN PREVIEW')||html.includes('noindex,nofollow'))throw Error('Preview-only metadata remains');

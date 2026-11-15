@@ -4,6 +4,7 @@ import {pipeline} from 'node:stream/promises';
 import {Readable} from 'node:stream';
 import {createHash} from 'node:crypto';
 import path from 'node:path';
+import {prepareWebVideos} from './web-video.mjs';
 const root=process.cwd(),output=path.join(root,'_site'),cache=path.join(root,'.media-cache');
 const manifest=JSON.parse(await fs.readFile('media-sources.json','utf8')),repository=process.env.GITHUB_REPOSITORY||manifest.repository;
 if(repository!=='ankertam-cyber/anker-portfolio'||repository!==manifest.repository)throw Error('Unexpected publishing repository');
@@ -64,6 +65,7 @@ async function worker(){while(cursor<manifest.videos.length){const item=manifest
  console.log(`Verified film ${++completed}/${manifest.videos.length}`);
 }}
 await Promise.all([worker(),worker(),worker()]);
+const playback=await prepareWebVideos(manifest,{output,cache,repository});
 const published=JSON.parse(await fs.readFile(path.join(output,'projects.json'),'utf8')),byPath=new Map(manifest.videos.map(v=>[v.path,v]));
 // Keep original archive filenames in the source audit, without emoji in public metadata.
 for(const project of published.entries)for(const film of project.videos||[]){
@@ -75,5 +77,5 @@ for(const name of ['projects.v27.json','projects.v28.json'])await fs.writeFile(p
 // usable while the new versioned entry exposes the complete Vimeo programme.
 const compatible={...published,entries:published.entries.map(p=>({...p,videos:p.videos.filter(v=>v.type!=='vimeo')}))};
 await fs.writeFile(path.join(output,'projects.json'),JSON.stringify(compatible,null,2));
-await fs.writeFile('media-archive-checks.json',JSON.stringify({films:manifest.videos.length,verified:completed,delivery:'GitHub release media inside native website players'},null,2));
-console.log('Project films use independent GitHub media storage and play inside the portfolio.');
+await fs.writeFile('media-archive-checks.json',JSON.stringify({films:manifest.videos.length,verified:completed,playback,delivery:'Same-origin H.264/AAC playback; originals retained in GitHub release archive'},null,2));
+console.log('Project films play from same-origin browser files; source archives remain intact.');

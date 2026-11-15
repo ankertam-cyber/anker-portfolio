@@ -1,3 +1,4 @@
+import {videoPlaybackSource} from './video-delivery.mjs';
 import {loadPortfolioImage} from './image-loader.mjs';
 import {mountVimeoPlayer} from './vimeo-player.mjs';
 export function mountMediaViewer(dialog,{createVimeoPlayer}={}){
@@ -26,7 +27,7 @@ export function mountMediaViewer(dialog,{createVimeoPlayer}={}){
     if(video){video.pause();video.removeAttribute('src');video.load();video.hidden=true;}
     image.hidden=item.type!=='image';
     if(item.type==='vimeo'){image.removeAttribute('src');if(!vimeo){showStatus('error');}else{vimeoSlot.hidden=false;if(vimeoLink){const page=new URL(item.sourcePage||'https://vimeo.com/'+item.providerId);vimeoLink.href=page.origin==='https://vimeo.com'?page.href:'https://vimeo.com/'+item.providerId;}void vimeo.open({src:item.src,title:item.alt,sourcePage:item.sourcePage}).catch(()=>showStatus('error'));}}
-    else if(item.type==='video'&&video){image.removeAttribute('src');video.poster=item.poster||'';video.src=item.src;video.hidden=false;video.setAttribute('aria-label',item.alt);}
+    else if(item.type==='video'&&video){image.removeAttribute('src');video.poster=item.poster||'';video.src=videoPlaybackSource(item.src);video.hidden=false;video.setAttribute('aria-label',item.alt);}
     else{cancelImage=loadPortfolioImage(image,{src:item.src,fallback:item.thumbnail||item.fallback,alt:item.alt},showStatus);}
     counter.textContent=`${String(index+1).padStart(2,'0')} / ${String(items.length).padStart(2,'0')}`;
     previous.hidden=next.hidden=items.length<2;

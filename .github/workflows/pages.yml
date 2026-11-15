@@ -13,6 +13,16 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v7.0.1
+      - uses: actions/cache@v6
+        with:
+          path: .media-cache/web-v1
+          key: ${{ runner.os }}-portfolio-web-v1-${{ hashFiles('media-sources.json', 'scripts/web-video.mjs') }}
+      - name: Ensure the video encoder is available
+        run: |
+          if ! command -v ffmpeg >/dev/null; then
+            sudo apt-get update -qq
+            sudo apt-get install -y ffmpeg
+          fi
       - name: Build and verify the portfolio
         run: node scripts/build-public.mjs
         env:

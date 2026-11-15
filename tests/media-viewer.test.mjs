@@ -78,3 +78,7 @@ test('a remote film never falls through to the image or native MP4 loader when i
   nodes.next.click();assert.equal(nodes.image.src,images[0]);
   await viewer.close();assert.equal(nodes.image.src,undefined);
 });
+test('the public viewer uses browser playback copies for archived films without changing media IDs',async t=>{
+ const {nodes,viewer}=fixture(t),name='6e422e_673a66651a714533a59b6983c87a429b-07e341c7e1873d7b7a42.mp4',media=[{type:'video',src:'https://github.com/ankertam-cyber/anker-portfolio/releases/download/portfolio-media-v1/'+name}];
+ viewer.open({media,title:'BAM'});assert.equal(nodes.video.src,'assets/web-video-v1/'+name);assert.match(media[0].src,/github\.com/);await viewer.close();
+});
