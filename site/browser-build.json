@@ -1,6 +1,6 @@
 {
-  "entry": "browser-app.f77ec459d3ea.js",
-  "sha256": "f77ec459d3ea82cb5b3f5cff616fd8231939c083214609d847a39ae404903cea",
+  "entry": "browser-app.2773ebde212b.js",
+  "sha256": "2773ebde212b071a93a3bb4edb4c417e493a23f8c631ad023ec23ff869d080a3",
   "modules": [
     "app.mjs",
     "owner-content.mjs",

@@ -65,6 +65,9 @@ function buildSeats(){
   $('cinema-number').textContent='CINEMA '+cinema.number;$('cinema-heading').textContent=cinema.title;document.querySelectorAll('[data-cinema-category]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.cinemaCategory===state.cinema)));
   $('cinema-page').textContent=String(state.page+1).padStart(2,'0')+' / '+String(cinemaPageCount(state.entries,state.cinema)).padStart(2,'0');
   $('cinema-prev').disabled=state.page===0;$('cinema-next').disabled=state.page>=cinemaPageCount(state.entries,state.cinema)-1;
+  const empty=cinemaEntries(state.entries,state.cinema).length===0;
+  $('screen-open').disabled=$('issue-ticket').disabled=empty;
+  if(empty){state.screenVersion++;$('screen-image').hidden=true;$('screen-placeholder').hidden=false;$('screen-placeholder-title').textContent='Programme coming soon.';$('screen-project-title').textContent='No projects in this cinema yet.';$('screen-project-year').textContent='';$('screen-open').setAttribute('aria-label','No projects in this cinema yet');$('selected-title').textContent='Programme coming soon.';$('selected-seat').textContent='CINEMA '+cinema.number;}
   openingTransition.refresh();
 }
 async function paintScreen(project){
