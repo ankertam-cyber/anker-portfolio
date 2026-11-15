@@ -218,4 +218,4 @@ export const PROJECT_STORIES = {
     "spotlight": true
   }
 };
-export const projectStoryFor=id=>PROJECT_STORIES[id]||null;
+export const projectStoryFor=(id,project)=>Object.prototype.hasOwnProperty.call(project||{},'story')?project.story:PROJECT_STORIES[id]||null;

@@ -1,8 +1,11 @@
 {
-  "entry": "browser-app.99b79667c772.js",
-  "sha256": "99b79667c77232bd06fcf27c789baa1278b30b179581bf2667ba343b85e8a98b",
+  "entry": "browser-app.f77ec459d3ea.js",
+  "sha256": "f77ec459d3ea82cb5b3f5cff616fd8231939c083214609d847a39ae404903cea",
   "modules": [
     "app.mjs",
+    "owner-content.mjs",
+    "content-model.mjs",
+    "project-media.mjs",
     "catalogue.mjs",
     "project-stories.mjs",
     "scene.mjs",
@@ -16,7 +19,6 @@
     "image-loader.mjs",
     "vimeo-player.mjs",
     "seat-journey.mjs",
-    "project-media.mjs",
     "seat-prompt.mjs"
   ]
 }

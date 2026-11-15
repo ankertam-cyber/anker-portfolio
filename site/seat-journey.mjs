@@ -106,7 +106,7 @@ export function mountSeatJourney(dialog,getMotion,{onGallery,onProject,onSelect,
   }
   function changeScreening(index){
     const project=programme[index];if(!project)return;
-    programmeIndex=index;imageInfo=project.imageInfo||{};images=projectMedia(project);openProject=project.id;title.textContent=project.title;const story=projectStoryFor(project.id);if(synopsis){synopsis.hidden=!story;synopsis.textContent=story?`FEATURED STORY — ${story.intro}`:'';}if(films){films.hidden=!project.videos?.length;films.textContent=project.videos?.length>1?`WATCH ${project.videos.length} FILMS`:'WATCH FILM';}
+    programmeIndex=index;imageInfo=project.imageInfo||{};images=projectMedia(project);openProject=project.id;title.textContent=project.title;const story=projectStoryFor(project.id,project);if(synopsis){synopsis.hidden=!story;synopsis.textContent=story?`FEATURED STORY — ${story.intro}`:'';}if(films){films.hidden=!project.videos?.length;films.textContent=project.videos?.length>1?`WATCH ${project.videos.length} FILMS`:'WATCH FILM';}
     if(seatLabelFor)seatLabel.textContent=seatLabelFor(project);
     describeProgramme();showImage(0);onSelect?.(project.id);
   }

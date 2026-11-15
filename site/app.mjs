@@ -1,3 +1,4 @@
+import {loadOwnerContent} from './owner-content.mjs';
 import {ROW_SIZES,CAPACITY,pageCount,pageEntries,seatCoordinates,filterEntries,CINEMAS,cinemaEntries,cinemaPageCount,cinemaPageEntries,projectLocation} from './catalogue.mjs';
 import {projectStoryFor} from './project-stories.mjs';
 import {mountScene} from './scene.mjs?v=stage-12';
@@ -141,7 +142,7 @@ $('screen-open').addEventListener('click',()=>{const p=selected();if(!p)return;s
 
 function renderIndex(query=''){
   const entries=filterEntries(state.entries,query);$('search-count').textContent=`${entries.length} archive ${entries.length===1?'entry':'entries'}`;
-  const frag=document.createDocumentFragment();entries.forEach(project=>{const button=make('button','archive-entry');const story=projectStoryFor(project.id);if(story?.spotlight){button.classList.add('has-case-study');button.setAttribute('aria-label',`${project.title} — featured case study`);}const name=make('span','',project.title);if(story?.spotlight)name.append(make('em','archive-case-study-mark','CASE STUDY'));button.append(name,make('span','',project.year||project.projectDate?.year||project.sourceYear||'—'));button.addEventListener('click',async()=>{selectProject(project.id,{issue:true});openProject(project.id);});frag.append(button);});
+  const frag=document.createDocumentFragment();entries.forEach(project=>{const button=make('button','archive-entry');const story=projectStoryFor(project.id,project);if(story?.spotlight){button.classList.add('has-case-study');button.setAttribute('aria-label',`${project.title} — featured case study`);}const name=make('span','',project.title);if(story?.spotlight)name.append(make('em','archive-case-study-mark','CASE STUDY'));button.append(name,make('span','',project.year||project.projectDate?.year||project.sourceYear||'—'));button.addEventListener('click',async()=>{selectProject(project.id,{issue:true});openProject(project.id);});frag.append(button);});
   if(!entries.length)frag.append(make('p','','No matching projects. Try another name or year.'));
   $('archive-list').replaceChildren(frag);
 }
@@ -154,7 +155,7 @@ function fillProject(id){
   dialog.querySelectorAll('video').forEach(video=>video.pause());
   const p=state.entries.find(entry=>entry.id===id);if(!p)return;
   state.dialogId=id;$('project-dialog-title').textContent=p.title;$('dialog-meta').textContent=[p.category,p.year,p.location].filter(Boolean).join(' / ');
-  const story=projectStoryFor(id),storyContainer=$('dialog-story');
+  const story=projectStoryFor(id,p),storyContainer=$('dialog-story');
   storyContainer.replaceChildren();
   storyContainer.hidden=!story;
   if(story){
@@ -197,7 +198,8 @@ function fillProject(id){
   });
   if(!media.length)frag.append(make('div','dialog-placeholder','Project material is being prepared.'));
   $('dialog-media').replaceChildren(frag);$('dialog-description').replaceChildren();
-  if(!story&&(p.images.length||p.videos?.length)){$('dialog-description').append(make('p','','Selected project visuals.'));}
+  if(p.description!==undefined){if(p.description)$('dialog-description').append(make('p','',p.description));}
+  else if(!story&&(p.images.length||p.videos?.length)){$('dialog-description').append(make('p','','Selected project visuals.'));}
   else if(!story){$('dialog-description').append(make('p','','This entry is part of the project archive. Images, project details and credits are awaiting curation.'));}
   $('project-previous').disabled=seatIndexFor(id)===0;$('project-next').disabled=seatIndexFor(id)===state.entries.length-1;dialog.scrollTop=0;
 }
@@ -260,5 +262,5 @@ setInterval(()=>{if(!motion||document.hidden||!screenVisible||state.manual||dial
 
 try{
   const response=await fetch('projects.v28.json',{cache:'no-store'});if(!response.ok)throw new Error('Catalogue unavailable');const data=await response.json();
-  state.redirects=data.projectRedirects||{};state.entries=data.previewOnly?data.entries:data.entries.filter(project=>project.publicationStatus==='published');if(!state.entries.length)throw new Error('No entries');state.selected=state.entries[0].id;buildSeats();selectProject(state.selected,{manual:false});issueTicket(false,false);renderIndex();syncRoute();
+  state.redirects=data.projectRedirects||{};state.entries=await loadOwnerContent(data.previewOnly?data.entries:data.entries.filter(project=>project.publicationStatus==='published')); if(!state.entries.length)throw new Error('No entries');state.selected=state.entries[0].id;buildSeats();selectProject(state.selected,{manual:false});issueTicket(false,false);renderIndex();syncRoute();
 }catch(error){$('catalogue-error').hidden=false;$('issue-ticket').disabled=true;$('cinema-next').disabled=true;$('cinema-prev').disabled=true;}
