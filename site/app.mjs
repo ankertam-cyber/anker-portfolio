@@ -199,8 +199,8 @@ function fillProject(id){
   if(!p.images.length&&!p.videos?.length)frag.append(make('div','dialog-placeholder','A story waiting to be told.'));
   if(p.mediaOrder==='images-first')frag.prepend(...frag.querySelectorAll('.portfolio-image-button'));
   $('dialog-media').replaceChildren(frag);$('dialog-description').replaceChildren();
-  if(p.images.length||p.videos?.length){$('dialog-description').append(make('p','','Selected project visuals.'));}
-  else{$('dialog-description').append(make('p','','This entry is part of the project archive. Images, project details and credits are awaiting curation.'));}
+  if(!story&&(p.images.length||p.videos?.length)){$('dialog-description').append(make('p','','Selected project visuals.'));}
+  else if(!story){$('dialog-description').append(make('p','','This entry is part of the project archive. Images, project details and credits are awaiting curation.'));}
   $('project-previous').disabled=seatIndexFor(id)===0;$('project-next').disabled=seatIndexFor(id)===state.entries.length-1;dialog.scrollTop=0;
 }
 function openProject(id,{push=true}={}){
