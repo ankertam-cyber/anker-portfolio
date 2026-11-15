@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, viewport-fit=cover">
-  <script src="entry-scroll.js?v=v29"></script>
+  <script src="entry-scroll.js?v=v30"></script>
   <meta name="robots" content="index,follow">
-  <meta name="portfolio-build" content="curated-portfolio-29">
+  <meta name="portfolio-build" content="curated-portfolio-30">
   <meta name="theme-color" content="#090e15">
   <title>Anker Tam — Ideas take the stage.</title>
   <meta name="description" content="Anker Tam, a Hong Kong-based Creative Director. A portfolio of brand experiences, events and spatial design.">
@@ -14,13 +14,14 @@
   <link rel="preload" href="assets/fonts/manrope.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="preload" href="assets/media/curtain-photographic-v2.jpg" as="image" fetchpriority="high">
   <link rel="preload" href="assets/media/tagline-blue-glitter-v5.png" as="image" fetchpriority="high">
-  <link rel="stylesheet" href="styles.css?v=v29">
-  <link rel="stylesheet" href="materials.css?v=v29">
-  <link rel="stylesheet" href="type-candidates.css?v=v29">
-  <link rel="stylesheet" href="seat-journey.css?v=v29">
+  <link rel="stylesheet" href="styles.css?v=v30">
+  <link rel="stylesheet" href="materials.css?v=v30">
+  <link rel="stylesheet" href="type-candidates.css?v=v30">
+  <link rel="stylesheet" href="seat-journey.css?v=v30">
   <script defer src="assets/vendor/vimeo-player-v27.js"></script>
-  <script id="portfolio-entry" defer src="browser-app.5d5c0b468219.js"></script>
+  <script id="portfolio-entry" defer src="browser-app.a227d2ec29e0.js"></script>
   <link rel="canonical" href="https://ankertam-cyber.github.io/anker-portfolio/">
+  <link rel="stylesheet" href="cinema-programme.css?v=30">
 </head>
 <body>
   <a class="skip-link" href="#work">Skip to selected work</a>
@@ -67,6 +68,13 @@
     <section class="cinema-section section-wrap" id="work" aria-labelledby="work-title">
       <div class="section-kicker"><span>01 / The work</span><span>Choose a seat. Discover a project.</span></div>
       <h2 class="cinema-title" id="work-title">NOW<br><span>SHOWING</span><svg aria-hidden="true"><use href="#star-art"/></svg></h2>
+      <div class="cinema-programme">
+        <div class="cinema-programme-heading"><span>THE PROGRAMME</span><span>SELECT A CINEMA</span></div>
+        <div class="cinema-category-switch" role="group" aria-label="Choose a portfolio cinema">
+          <button type="button" data-cinema-category="c1" aria-pressed="true"><span class="cinema-tab-number" aria-hidden="true">01</span><span class="cinema-tab-copy"><span class="cinema-tab-kicker">CINEMA 01</span><span class="cinema-tab-title">Executed<br>Projects</span><span class="cinema-tab-detail">Events &amp; brand experiences</span><span class="cinema-tab-status" data-cinema-count="c1">60 PROJECTS</span></span></button>
+          <button type="button" data-cinema-category="c2" aria-pressed="false"><span class="cinema-tab-number" aria-hidden="true">02</span><span class="cinema-tab-copy"><span class="cinema-tab-kicker">CINEMA 02</span><span class="cinema-tab-title">Concepts<br>&amp; Design</span><span class="cinema-tab-detail">Pitching · Graphics · Websites</span><span class="cinema-tab-status" data-cinema-count="c2">7 PROJECTS</span></span></button>
+        </div>
+      </div>
       <div class="screen-shell">
         <div class="screen-glow" aria-hidden="true"></div>
         <button class="cinema-screen" id="screen-open" aria-label="View BAM Festival full screen">
@@ -79,7 +87,6 @@
         <div class="screen-floor" aria-hidden="true"></div>
       </div>
       <div class="cinema-label"><span></span><p id="cinema-heading">SELECTED EXPERIENCES</p><span></span></div>
-      <div class="cinema-category-switch" role="group" aria-label="Portfolio cinema"><button type="button" data-cinema-category="c1" aria-pressed="true">CINEMA 01 <span>Executed projects</span></button><button type="button" data-cinema-category="c2" aria-pressed="false">CINEMA 02 <span>Concepts, graphics &amp; website design</span></button></div>
       <div class="cinema-controls">
         <button class="icon-button" id="cinema-prev" aria-label="Previous page in this cinema"><svg class="arrow-left"><use href="#arrow-art"/></svg></button>
         <div><span class="cinema-number" id="cinema-number">CINEMA 01</span><span id="cinema-page" class="cinema-page" aria-live="polite">01 / 02</span></div>
@@ -112,6 +119,7 @@
         <div class="box-office-window"><div class="office-panel office-panel-left" aria-hidden="true"></div><div class="office-panel office-panel-right" aria-hidden="true"></div><div class="contact-content"><p class="eyebrow">An invitation to collaborate</p><h2>Let’s make<br>the next show.</h2><a class="contact-email" href="mailto:ankertam@gmail.com">ankertam@gmail.com <span aria-hidden="true"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 19 19 5M5 5h14v14" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a><div class="contact-links"><a href="https://www.linkedin.com/in/anker-tam-a733a4266/" target="_blank" rel="noopener noreferrer">LinkedIn <svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 19 19 5M5 5h14v14" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></a><a href="#about">About Anker</a></div></div><button class="desk-bell" id="desk-bell" aria-label="Ring the box office bell"><img class="bell-art" src="assets/media/box-office-bell-256-v3.png" alt="" width="256" height="192" loading="lazy" decoding="async" aria-hidden="true"></button></div>
         <div class="box-office-counter" aria-hidden="true"></div>
       </div>
+      <audio id="desk-bell-audio" src="assets/media/desk-bell-v30.wav" preload="auto"></audio>
       <p id="bell-message" class="bell-message" role="status">Your next idea is welcome here.</p>
     </section>
   </main>
@@ -119,7 +127,7 @@
 
   <dialog id="project-dialog" class="project-dialog" aria-labelledby="project-dialog-title"><div class="project-dialog-top"><span class="eyebrow" id="dialog-screening">A SCREENING BY ANKER TAM</span><button id="project-close" class="dialog-close" aria-label="Close project">CLOSE <span aria-hidden="true"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 6 12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button></div><div class="project-dialog-body"><p class="eyebrow" id="dialog-meta"></p><h2 id="project-dialog-title"></h2><div id="dialog-story" class="case-study" hidden></div><div id="dialog-media" class="dialog-media"></div><div id="dialog-description" class="dialog-description"></div><div class="dialog-bottom"><button id="project-previous" class="text-button"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 12H4m6-6-6 6 6 6" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg> Previous project</button><button id="project-next" class="text-button">Next project <svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 12h16m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div></dialog>
   <div id="seat-prompt" class="seat-prompt" role="dialog" aria-label="Confirm seat" hidden><button class="seat-confirm" data-seat-confirm><span data-seat-label></span><span class="seat-confirm-copy">Take this seat?<svg class="seat-confirm-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.3"/></svg></span></button><button class="seat-cancel" data-seat-cancel aria-label="Cancel seat selection"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 6 12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="1.3"/></svg></button></div>
-  <dialog id="seat-journey" class="seat-journey" aria-labelledby="journey-title" data-phase="closed">
+  <dialog id="seat-journey" class="seat-journey" aria-labelledby="journey-title" tabindex="-1" data-phase="closed">
     <div class="pov-viewport" data-journey-viewport>
       <div class="pov-world" data-journey-world>
         <div class="pov-floor" aria-hidden="true"></div>

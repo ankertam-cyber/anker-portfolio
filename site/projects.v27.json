@@ -15875,12 +15875,134 @@
       "id": "website",
       "images": [],
       "videos": [],
-      "graphics": [],
-      "imageInfo": {},
+      "graphics": [
+        {
+          "src": "assets/imported/website/1oYPrx88ym-DUDvsY3GTKvpBLJfeWKvsu.jpg",
+          "width": 818,
+          "height": 484,
+          "thumbnail": "assets/imported/website/1oYPrx88ym-DUDvsY3GTKvpBLJfeWKvsu-640.jpg",
+          "mediaKind": "graphic",
+          "sourcePage": "https://drive.google.com/file/d/1oYPrx88ym-DUDvsY3GTKvpBLJfeWKvsu/view",
+          "sourceDriveId": "1oYPrx88ym-DUDvsY3GTKvpBLJfeWKvsu",
+          "title": "Sport B. Website_01"
+        },
+        {
+          "src": "assets/imported/website/1fMFVO6zWOaFa_2uHe-b7S6ovnDs6J533.jpg",
+          "width": 818,
+          "height": 484,
+          "thumbnail": "assets/imported/website/1fMFVO6zWOaFa_2uHe-b7S6ovnDs6J533-640.jpg",
+          "mediaKind": "graphic",
+          "sourcePage": "https://drive.google.com/file/d/1fMFVO6zWOaFa_2uHe-b7S6ovnDs6J533/view",
+          "sourceDriveId": "1fMFVO6zWOaFa_2uHe-b7S6ovnDs6J533",
+          "title": "Sport B. Website_02"
+        },
+        {
+          "src": "assets/imported/website/1_XopIDVoq-D425iSYUSWtCHxhbq94vlw.jpg",
+          "width": 818,
+          "height": 484,
+          "thumbnail": "assets/imported/website/1_XopIDVoq-D425iSYUSWtCHxhbq94vlw-640.jpg",
+          "mediaKind": "graphic",
+          "sourcePage": "https://drive.google.com/file/d/1_XopIDVoq-D425iSYUSWtCHxhbq94vlw/view",
+          "sourceDriveId": "1_XopIDVoq-D425iSYUSWtCHxhbq94vlw",
+          "title": "Sport B. Website_03"
+        },
+        {
+          "src": "assets/imported/website/10jfm7wtL3NwDtHan-AdqNwi9rdkSHJnw.jpg",
+          "width": 841,
+          "height": 622,
+          "thumbnail": "assets/imported/website/10jfm7wtL3NwDtHan-AdqNwi9rdkSHJnw-640.jpg",
+          "mediaKind": "graphic",
+          "sourcePage": "https://drive.google.com/file/d/10jfm7wtL3NwDtHan-AdqNwi9rdkSHJnw/view",
+          "sourceDriveId": "10jfm7wtL3NwDtHan-AdqNwi9rdkSHJnw",
+          "title": "agnes b. Fleuriste website_01"
+        },
+        {
+          "src": "assets/imported/website/1n9SzeiwLpzCr52swgMX0s51z25yIpGX9.jpg",
+          "width": 828,
+          "height": 627,
+          "thumbnail": "assets/imported/website/1n9SzeiwLpzCr52swgMX0s51z25yIpGX9-640.jpg",
+          "mediaKind": "graphic",
+          "sourcePage": "https://drive.google.com/file/d/1n9SzeiwLpzCr52swgMX0s51z25yIpGX9/view",
+          "sourceDriveId": "1n9SzeiwLpzCr52swgMX0s51z25yIpGX9",
+          "title": "agnes b. Fleuriste website_02"
+        },
+        {
+          "src": "assets/imported/website/1f_NAjiQH4X1m-uPGyuICZ389s_VNXLst.jpg",
+          "width": 662,
+          "height": 716,
+          "thumbnail": "assets/imported/website/1f_NAjiQH4X1m-uPGyuICZ389s_VNXLst-640.jpg",
+          "mediaKind": "graphic",
+          "sourcePage": "https://drive.google.com/file/d/1f_NAjiQH4X1m-uPGyuICZ389s_VNXLst/view",
+          "sourceDriveId": "1f_NAjiQH4X1m-uPGyuICZ389s_VNXLst",
+          "title": "Sport B. EDM"
+        }
+      ],
+      "imageInfo": {
+        "assets/imported/website/1oYPrx88ym-DUDvsY3GTKvpBLJfeWKvsu.jpg": {
+          "src": "assets/imported/website/1oYPrx88ym-DUDvsY3GTKvpBLJfeWKvsu.jpg",
+          "width": 818,
+          "height": 484,
+          "thumbnail": "assets/imported/website/1oYPrx88ym-DUDvsY3GTKvpBLJfeWKvsu-640.jpg",
+          "mediaKind": "graphic",
+          "sourcePage": "https://drive.google.com/file/d/1oYPrx88ym-DUDvsY3GTKvpBLJfeWKvsu/view",
+          "sourceDriveId": "1oYPrx88ym-DUDvsY3GTKvpBLJfeWKvsu",
+          "title": "Sport B. Website_01"
+        },
+        "assets/imported/website/1fMFVO6zWOaFa_2uHe-b7S6ovnDs6J533.jpg": {
+          "src": "assets/imported/website/1fMFVO6zWOaFa_2uHe-b7S6ovnDs6J533.jpg",
+          "width": 818,
+          "height": 484,
+          "thumbnail": "assets/imported/website/1fMFVO6zWOaFa_2uHe-b7S6ovnDs6J533-640.jpg",
+          "mediaKind": "graphic",
+          "sourcePage": "https://drive.google.com/file/d/1fMFVO6zWOaFa_2uHe-b7S6ovnDs6J533/view",
+          "sourceDriveId": "1fMFVO6zWOaFa_2uHe-b7S6ovnDs6J533",
+          "title": "Sport B. Website_02"
+        },
+        "assets/imported/website/1_XopIDVoq-D425iSYUSWtCHxhbq94vlw.jpg": {
+          "src": "assets/imported/website/1_XopIDVoq-D425iSYUSWtCHxhbq94vlw.jpg",
+          "width": 818,
+          "height": 484,
+          "thumbnail": "assets/imported/website/1_XopIDVoq-D425iSYUSWtCHxhbq94vlw-640.jpg",
+          "mediaKind": "graphic",
+          "sourcePage": "https://drive.google.com/file/d/1_XopIDVoq-D425iSYUSWtCHxhbq94vlw/view",
+          "sourceDriveId": "1_XopIDVoq-D425iSYUSWtCHxhbq94vlw",
+          "title": "Sport B. Website_03"
+        },
+        "assets/imported/website/10jfm7wtL3NwDtHan-AdqNwi9rdkSHJnw.jpg": {
+          "src": "assets/imported/website/10jfm7wtL3NwDtHan-AdqNwi9rdkSHJnw.jpg",
+          "width": 841,
+          "height": 622,
+          "thumbnail": "assets/imported/website/10jfm7wtL3NwDtHan-AdqNwi9rdkSHJnw-640.jpg",
+          "mediaKind": "graphic",
+          "sourcePage": "https://drive.google.com/file/d/10jfm7wtL3NwDtHan-AdqNwi9rdkSHJnw/view",
+          "sourceDriveId": "10jfm7wtL3NwDtHan-AdqNwi9rdkSHJnw",
+          "title": "agnes b. Fleuriste website_01"
+        },
+        "assets/imported/website/1n9SzeiwLpzCr52swgMX0s51z25yIpGX9.jpg": {
+          "src": "assets/imported/website/1n9SzeiwLpzCr52swgMX0s51z25yIpGX9.jpg",
+          "width": 828,
+          "height": 627,
+          "thumbnail": "assets/imported/website/1n9SzeiwLpzCr52swgMX0s51z25yIpGX9-640.jpg",
+          "mediaKind": "graphic",
+          "sourcePage": "https://drive.google.com/file/d/1n9SzeiwLpzCr52swgMX0s51z25yIpGX9/view",
+          "sourceDriveId": "1n9SzeiwLpzCr52swgMX0s51z25yIpGX9",
+          "title": "agnes b. Fleuriste website_02"
+        },
+        "assets/imported/website/1f_NAjiQH4X1m-uPGyuICZ389s_VNXLst.jpg": {
+          "src": "assets/imported/website/1f_NAjiQH4X1m-uPGyuICZ389s_VNXLst.jpg",
+          "width": 662,
+          "height": 716,
+          "thumbnail": "assets/imported/website/1f_NAjiQH4X1m-uPGyuICZ389s_VNXLst-640.jpg",
+          "mediaKind": "graphic",
+          "sourcePage": "https://drive.google.com/file/d/1f_NAjiQH4X1m-uPGyuICZ389s_VNXLst/view",
+          "sourceDriveId": "1f_NAjiQH4X1m-uPGyuICZ389s_VNXLst",
+          "title": "Sport B. EDM"
+        }
+      },
       "year": "",
       "category": "Concept / Design",
       "description": "",
-      "mediaStatus": "awaiting-material",
+      "mediaStatus": "ready",
       "mediaOrder": "films-photos-graphics",
       "title": "agnès b. – In-house Website Design",
       "editorId": "website",

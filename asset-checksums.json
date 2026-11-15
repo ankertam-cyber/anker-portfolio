@@ -10979,6 +10979,71 @@
       "path": "site/assets/imported/o8/repair/1HH7bBpJUV0CsvTWb6HrF4GPM_Jun4AB_.jpg",
       "size": 754164,
       "sha256": "2ba7add5e256f1b9db605d73c98f7b8413144a9e0b82adb163ac8cea1c38182c"
+    },
+    {
+      "path": "site/assets/media/desk-bell-v30.wav",
+      "size": 167624,
+      "sha256": "921fe469cfd2e5b3c23aaeca7bf64eafdbeb023d5af72ed79170440b2a23ca88"
+    },
+    {
+      "path": "site/assets/imported/website/10jfm7wtL3NwDtHan-AdqNwi9rdkSHJnw-640.jpg",
+      "size": 70620,
+      "sha256": "630a97f7e5329f6a44918d0bef1d0bc71f86a024dd45e9e45705bd6f8a37b851"
+    },
+    {
+      "path": "site/assets/imported/website/10jfm7wtL3NwDtHan-AdqNwi9rdkSHJnw.jpg",
+      "size": 136232,
+      "sha256": "3e332d6a00b5f7b6f4dfa73b06c906d854f8f8aaf5b29a21820bad90cc0e21fd"
+    },
+    {
+      "path": "site/assets/imported/website/1_XopIDVoq-D425iSYUSWtCHxhbq94vlw-640.jpg",
+      "size": 44479,
+      "sha256": "70969a682705fef97c1b73fac050699497a586842a93632683d1204139d6297f"
+    },
+    {
+      "path": "site/assets/imported/website/1_XopIDVoq-D425iSYUSWtCHxhbq94vlw.jpg",
+      "size": 93783,
+      "sha256": "6927432acf3e3a794832eb8b9dd715b61a3322213407e72ed0b8ac9e2ce54d1c"
+    },
+    {
+      "path": "site/assets/imported/website/1fMFVO6zWOaFa_2uHe-b7S6ovnDs6J533-640.jpg",
+      "size": 48139,
+      "sha256": "00d6faca40decb4e523f560ce712ba2decb4a0b9560abfb011cea06cd278daf1"
+    },
+    {
+      "path": "site/assets/imported/website/1fMFVO6zWOaFa_2uHe-b7S6ovnDs6J533.jpg",
+      "size": 98161,
+      "sha256": "94bd889ee431c53ccfb4878f2662a11882888383b992cefe8cd455a04b3fc5d5"
+    },
+    {
+      "path": "site/assets/imported/website/1f_NAjiQH4X1m-uPGyuICZ389s_VNXLst-640.jpg",
+      "size": 89897,
+      "sha256": "01ea694c315daa43478d533d5072919ec3cd9488279442141c6560464e4ff335"
+    },
+    {
+      "path": "site/assets/imported/website/1f_NAjiQH4X1m-uPGyuICZ389s_VNXLst.jpg",
+      "size": 136334,
+      "sha256": "4118e99aacce0855a0b74d487736d88efdf2d9d08c020796e35fea51e4a0590e"
+    },
+    {
+      "path": "site/assets/imported/website/1n9SzeiwLpzCr52swgMX0s51z25yIpGX9-640.jpg",
+      "size": 70273,
+      "sha256": "3593f533bc1e4ec827c937c6ab5450a8afdc880b07dcca176db200cad28a93d8"
+    },
+    {
+      "path": "site/assets/imported/website/1n9SzeiwLpzCr52swgMX0s51z25yIpGX9.jpg",
+      "size": 134687,
+      "sha256": "101a8438a140351f642486fc8c0f207451bed6fc7631233c7561b7bee2af8004"
+    },
+    {
+      "path": "site/assets/imported/website/1oYPrx88ym-DUDvsY3GTKvpBLJfeWKvsu-640.jpg",
+      "size": 60727,
+      "sha256": "ab517b39324bd71f69f5593c9408f1709871a85d5a849cb8e2d2682f55695d97"
+    },
+    {
+      "path": "site/assets/imported/website/1oYPrx88ym-DUDvsY3GTKvpBLJfeWKvsu.jpg",
+      "size": 129051,
+      "sha256": "b68c807e23ca66387e3eb1454bf710dfc84cc6482c70e8f766ae78caf81ea29f"
     }
   ]
 }

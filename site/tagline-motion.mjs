@@ -11,9 +11,12 @@ export function mountTagline(layer,image,getMotion,onPlayback=()=>{}){
   const bulbs=FAIRY_POINTS.map(point=>{
     const bulb=document.createElement('span');bulb.className='fairy-light';
     bulb.style.left=(point.x*100)+'%';bulb.style.top=(point.y*100)+'%';bulb.style.opacity='0';
+    bulb.style.setProperty('--fairy-period',(point.period*.62)+'s');
+    bulb.style.setProperty('--fairy-delay',(point.delay*.62)+'s');
     return bulb;
   });
   layer.replaceChildren(...bulbs);
+  layer.addEventListener('animationstart',()=>{if(getMotion()&&active&&!document.hidden)report('playing');});
   function report(state){layer.dataset.playback=state;if(reported!==state){reported=state;onPlayback(state);}}
   function ready(){return image.complete&&image.naturalWidth>0;}
   function draw(now){
@@ -31,6 +34,7 @@ export function mountTagline(layer,image,getMotion,onPlayback=()=>{}){
   function sync(){
     cancelAnimationFrame(frame);frame=0;last=null;painted=-1;
     layer.hidden=!getMotion()||!ready();
+    layer.style.setProperty('--fairy-state',getMotion()&&active&&!document.hidden?'running':'paused');
     if(!ready()){report('loading');return;}
     if(!getMotion()){report('off');return;}
     if(!active||document.hidden){report('paused');return;}

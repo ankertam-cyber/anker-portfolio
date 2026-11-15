@@ -1,8 +1,9 @@
 {
-  "entry": "browser-app.5d5c0b468219.js",
-  "sha256": "5d5c0b468219b264ab4506fce733d794ceb2362923074c01ee98ad9141ee7a8d",
+  "entry": "browser-app.a227d2ec29e0.js",
+  "sha256": "a227d2ec29e0b01a2042fc2035d5c8dad026ab3d875b29883bd999cd336101a1",
   "modules": [
     "app.mjs",
+    "bell-audio.mjs",
     "catalogue.mjs",
     "project-stories.mjs",
     "scene.mjs",
