@@ -41,7 +41,7 @@ export function mountPhotoDuplicateManager(dialog,{site,getProject,getItems,onRe
    async function worker(){while(cursor<items.length&&session===current&&!current.controller.signal.aborted){const item=items[cursor++];try{const fingerprint=await read(item,{signal:current.controller.signal});compared.push({...item,fingerprint});}catch(error){if(error.name==='AbortError')return;skipped++;}done++;if(done%32===0||done===items.length){if(session!==current)return;status.textContent='已比對 '+done+' / '+items.length+' 張相片…';await new Promise(resolve=>setTimeout(resolve,0));}}}
    await Promise.all([worker(),worker(),worker()]);if(session!==current||current.controller.signal.aborted)return;
    data=findPhotoDuplicates(compared);mode='exact';for(const group of [...data.exact,...data.similar])keepers.set(group.id,group.keep);
-   status.textContent='已比對 '+data.compared+' 張相片；'+data.exact.length+' 組完全相同，'+data.similar.length+' 組疑似重複。'+(skipped?'另有 '+skipped+' 張未能比對（可能係來源限制或網絡問題）。':'')+' 尚未移除或發佈任何相片。';
+   status.textContent='已比對 '+data.compared+' 張相片；'+data.exact.length+' 組完全相同，'+data.similar.length+' 組疑似重複。'+(skipped?'另有 '+skipped+' 張未能比對（可能係來源限制或網絡問題）。':'')+' 今次比對只顯示結果，未有更改草稿。';
    current.loading=false;render();recommend();
   }catch(error){if(session===current&&error.name!=='AbortError'){status.textContent='未能完成比對：'+error.message;current.loading=false;refresh();}}
   finally{if(session===current){scan.disabled=false;scope.disabled=false;exactTab.disabled=similarTab.disabled=false;}}

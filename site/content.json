@@ -1,1 +1,52 @@
-{"version":1,"profile":{},"order":[],"overrides":{},"additions":[]}
+{
+  "version": 1,
+  "profile": {},
+  "order": [],
+  "overrides": {},
+  "additions": [],
+  "library": {
+    "items": [
+      {
+        "type": "image",
+        "src": "assets/at-events/4db186_f753beba61a4485990967c3f8c87688f~mv2-2048.jpg",
+        "mediaKind": "photo",
+        "thumbnail": "assets/at-events/4db186_f753beba61a4485990967c3f8c87688f~mv2-480.jpg",
+        "width": 2048,
+        "height": 1365
+      },
+      {
+        "type": "image",
+        "src": "assets/portfolio/1wko49Yx2Tdk96dN_Tfj0HwOk9g5tKikO/6e422e_900b19cdab814aa9a0bf7116a14c187b~mv2-wix-2048-v27.jpg",
+        "mediaKind": "photo",
+        "thumbnail": "assets/portfolio/1wko49Yx2Tdk96dN_Tfj0HwOk9g5tKikO/6e422e_900b19cdab814aa9a0bf7116a14c187b~mv2-wix-480-v27.jpg",
+        "width": 2048,
+        "height": 1536
+      },
+      {
+        "type": "image",
+        "src": "assets/portfolio/1HzrCC4WXfdJPcGMIH98CTaufv4oauGLG/1mQcsjMnNcdOQcDLHM6xgKfwZ3FQ73fdZ-e73b755a34-srgb.jpg",
+        "mediaKind": "photo",
+        "thumbnail": "assets/portfolio/1HzrCC4WXfdJPcGMIH98CTaufv4oauGLG/1mQcsjMnNcdOQcDLHM6xgKfwZ3FQ73fdZ-e73b755a34-srgb-480.jpg",
+        "width": 750,
+        "height": 500,
+        "animated": false
+      },
+      {
+        "type": "image",
+        "src": "assets/at-events/52e2da_cc3428dc35aa43d5985356f15b418ec8~mv2-2048.jpg",
+        "mediaKind": "photo",
+        "thumbnail": "assets/at-events/52e2da_cc3428dc35aa43d5985356f15b418ec8~mv2-480.jpg",
+        "width": 2048,
+        "height": 1365
+      }
+    ],
+    "removed": [
+      "assets/at-events/4db186_f753beba61a4485990967c3f8c87688f~mv2-2048.jpg",
+      "assets/portfolio/1wko49Yx2Tdk96dN_Tfj0HwOk9g5tKikO/6e422e_900b19cdab814aa9a0bf7116a14c187b~mv2-wix-2048-v27.jpg",
+      "assets/portfolio/1HzrCC4WXfdJPcGMIH98CTaufv4oauGLG/1mQcsjMnNcdOQcDLHM6xgKfwZ3FQ73fdZ-e73b755a34-srgb.jpg",
+      "assets/at-events/52e2da_cc3428dc35aa43d5985356f15b418ec8~mv2-2048.jpg"
+    ]
+  },
+  "revision": "8357d394-1374-416c-8e7c-1916b905a6ef",
+  "updatedAt": "2026-11-15T13:39:53.354Z"
+}

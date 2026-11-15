@@ -1,4 +1,5 @@
-import {mountPhotoDuplicateManager} from './photo-duplicate-manager.mjs';
+import {rebaseLibraryCleanup} from './draft-rebase.mjs';
+import {mountPhotoDuplicateManager} from './photo-duplicate-manager.mjs?v=duplicates2';
 import {mountAdminVideoPreview} from './admin-video-preview.mjs?v=video2';
 import {mountMediaManager} from './media-manager.mjs?v=video1';
 import {rememberLibrary,removeProjectMedia,removeLibraryMedia,restoreLibraryMedia,selectionDescription,createLongPress} from './media-actions.mjs';
@@ -158,7 +159,7 @@ function download(){const payload={format:'anker-portfolio-draft-v1',baseline:ca
 async function readPublished(){const responses=await Promise.all(['projects.v28.json','content.json'].map(name=>fetch(new URL(name,SITE),{cache:'no-store'})));if(responses.some(r=>!r.ok))throw Error('無法讀取網站內容，請稍後重新載入');const [catalogue,content]=await Promise.all(responses.map(r=>r.json()));const source=catalogue.entries.filter(p=>p.publicationStatus==='published');validateContent(content,source);return {entries:source,content};}
 async function initialize(){
  try{const data=await readPublished();entries=data.entries;published=data.content;draft=clone(published);let saved=null;try{saved=JSON.parse(localStorage.getItem(DRAFT_KEY)||'null');}catch{notice('未能讀取舊草稿。舊資料未被覆寫；你可以先下載現有內容備份。',true);stale=true;}
-  if(saved?.draft){validateContent(saved.draft,entries);draft=saved.draft;if(saved.baseline!==canonical(published)){stale=true;notice('呢份本機草稿係按較舊正式版本編輯。請先下載草稿備份，再撳「重新載入正式內容」，避免覆蓋較新更新。',true);}else if(canonical(draft)!==canonical(published))notice('已還原你上次喺呢個瀏覽器未發佈嘅草稿。');}
+  if(saved?.draft){validateContent(saved.draft,entries);draft=saved.draft;if(saved.baseline!==canonical(published)){const merged=rebaseLibraryCleanup(saved.baseline,published,draft,entries);if(merged){draft=merged;save();notice('已合併正式網站確認嘅重複相片清理；你未發佈嘅文字、排序同其他草稿修改保留。');}else{stale=true;notice('呢份本機草稿係按較舊正式版本編輯。請先下載草稿備份，再撳「重新載入正式內容」，避免覆蓋較新更新。',true);}}else if(canonical(draft)!==canonical(published))notice('已還原你上次喺呢個瀏覽器未發佈嘅草稿。');}
   ready=true;selected=currentEntries()[0]?.id||'';renderView();if(!stale&&canonical(draft)!==canonical(published))$('draft-status').textContent='已還原草稿 · 尚未發佈';let pending=null;try{pending=JSON.parse(localStorage.getItem(PENDING_KEY)||'null');}catch{}if(pending?.sha)void monitorDeployment(pending);
  }catch(error){notice(error.message,true);$('draft-status').textContent='網站內容未能載入';$('editor').replaceChildren(node('p','error',error.message),button('重新載入',()=>location.reload()));}
 }
