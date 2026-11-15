@@ -111,9 +111,10 @@
       "page": "https://www.i-dna.com.hk/",
       "sourceTitle": "FWD Champions Day",
       "portfolioProject": "FWD Race Day",
-      "match": "ambiguous; event names differ",
+      "match": "owner-confirmed same project",
       "video": "homepage highlight video",
-      "status": "confirm same event before embedding"
+      "status": "Confirmed correspondence: i-DNAsia FWD Champions Day = Portfolio FWD Race Day. Select and embed the exact corresponding i-DNAsia highlight video only after retrieving its playback URL and checking permissions; no video file downloaded yet.",
+      "verifiedBy": "portfolio owner, current conversation"
     },
     {
       "source": "i-DNAsia website",
@@ -163,5 +164,16 @@
     "Only after verification, add assets in the proper cinema/project, and test video playback on iPhone and desktop",
     "Never silently add videos from agency showcases to projects the owner did not work on"
   ],
-  "lastChecked": "2026-11-15"
+  "lastChecked": "2026-11-15",
+  "ownerConfirmedMappings": [
+    {
+      "sourceTitle": "FWD Champions Day",
+      "portfolioProject": "FWD Race Day",
+      "projectEditorId": "p25",
+      "targetCinema": "c1",
+      "ownerConfirmed": true,
+      "sourcePage": "https://www.i-dna.com.hk/",
+      "videoAssetStatus": "highlight exists on website; direct playable/downloadable file URL not yet identified"
+    }
+  ]
 }
