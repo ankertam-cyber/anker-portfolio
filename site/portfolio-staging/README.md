@@ -24,3 +24,6 @@ The current website treats every 48-seat block as a new cinema. That cannot repr
 Never delete original files or video binaries, move items in Google Drive, force-push, publish, or deploy without the user's specific approval. Do not accidentally place unapproved private Google Drive URLs in this public repository. Vimeo URLs need embed verification. Data is staged, not live.
 
 See `curation-v3.json` for the authoritative user-selected ordering and statuses.
+
+## Desk bell audio request
+The staging branch source `site/app.mjs` now synthesizes a short bell chime using the Web Audio API on a direct button click, while preserving the existing ringing animation. This is a source-only change until the browser bundle is rebuilt and tested. Test on iPhone Safari / Chrome, desktop browsers, reduced-motion setting, and after repeated taps; do not claim the live website has sound before deployment approval.
