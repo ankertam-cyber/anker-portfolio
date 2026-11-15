@@ -43,7 +43,15 @@ async function worker(){while(cursor<manifest.videos.length){const item=manifest
  if(!existing){
   const cached=path.join(cache,item.archiveName);let valid=false;try{valid=(await fs.stat(cached)).size===item.bytes&&await hash(cached)===item.sha256;}catch{}
   if(!valid){const partial=cached+'.partial';
-   if(item.localSource){if(!/^media-sources\/[\w-]+\.mp4$/.test(item.localSource))throw Error('Unsafe prepared film source');await fs.copyFile(item.localSource,partial);}
+   if(item.localParts?.length){
+    await fs.writeFile(partial,Buffer.alloc(0));
+    for(const part of item.localParts){
+     if(!/^media-sources\/[\w-]+\.part-\d{2}$/.test(part.path))throw Error('Unsafe film segment');
+     const bytes=await fs.readFile(part.path);if(bytes.length!==part.bytes||createHash('sha256').update(bytes).digest('hex')!==part.sha256)throw Error('Film segment integrity check failed');
+     await fs.appendFile(partial,bytes);
+    }
+   }
+   else if(item.localSource){if(!/^media-sources\/[\w-]+\.mp4$/.test(item.localSource))throw Error('Unsafe prepared film source');await fs.copyFile(item.localSource,partial);}
    else await pipeline(Readable.fromWeb((await publicFilm(item.sourceUrl)).body),createWriteStream(partial));
    if((await fs.stat(partial)).size!==item.bytes||await hash(partial)!==item.sha256)throw Error('Film integrity check failed: '+item.id);
    await fs.rename(partial,cached);
@@ -58,7 +66,7 @@ async function worker(){while(cursor<manifest.videos.length){const item=manifest
 await Promise.all([worker(),worker(),worker()]);
 const published=JSON.parse(await fs.readFile(path.join(output,'projects.json'),'utf8')),byPath=new Map(manifest.videos.map(v=>[v.path,v]));
 for(const p of published.entries)for(const film of p.videos){if(film.type==='vimeo')continue;const source=byPath.get(film.src);if(!source)throw Error('Film is missing from the archive manifest');film.src='https://github.com/'+repository+'/releases/download/'+tag+'/'+source.archiveName;}
-await fs.writeFile(path.join(output,'projects.v27.json'),JSON.stringify(published,null,2));
+for(const name of ['projects.v27.json','projects.v28.json'])await fs.writeFile(path.join(output,name),JSON.stringify(published,null,2));
 // Old cached browser entries understand native MP4 only; keep their catalogue
 // usable while the new versioned entry exposes the complete Vimeo programme.
 const compatible={...published,entries:published.entries.map(p=>({...p,videos:p.videos.filter(v=>v.type!=='vimeo')}))};

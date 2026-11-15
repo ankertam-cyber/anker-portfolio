@@ -1,10 +1,13 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import {assertPortfolioImage} from './image-dimensions.mjs';
-const root=path.resolve('_site'),data=JSON.parse(await fs.readFile(path.join(root,'projects.v27.json'),'utf8'));
+const root=path.resolve('_site'),data=JSON.parse(await fs.readFile(path.join(root,'projects.v28.json'),'utf8'));
+const rules=JSON.parse(await fs.readFile(path.join(root,'portfolio-curation.json'),'utf8'));
 const manifest=JSON.parse(await fs.readFile('media-sources.json','utf8'));
 if(data.previewOnly||!data.entries.length||data.entries.some(p=>p.publicationStatus!=='published'))throw Error('Invalid public catalogue');
-if(data.entries[0].id!=='1izI9spxl5fjwdvyw8g6iowBpPPAE5p0j'||data.entries[1].id!=='1XVL41h99QcZDcYzZfl28SbsFy4QJNh4_')throw Error('The two confirmed featured projects moved');
+if(data.entries.length!==rules.expectedPublishedProjects)throw Error('The owner-selected programme changed');
+if(JSON.stringify(data.entries.slice(0,3).map(p=>p.id))!==JSON.stringify(rules.pinnedProjectIds))throw Error('The three confirmed featured projects moved');
+if(data.entries.some(p=>rules.excludedProjectIds.includes(p.id)))throw Error('An excluded project was reintroduced');
 const names=new Set(manifest.videos.map(v=>v.archiveName)),files=new Set();let movies=0,vimeo=0;
 for(const project of data.entries){
  for(const file of project.images){files.add(file);assertPortfolioImage(await fs.readFile(path.join(root,file)),file,project.imageInfo[file]);}

@@ -1,0 +1,86 @@
+{
+  "revision": 28,
+  "excludedProjectIds": [
+    "at-cqrcu",
+    "at-idf2m",
+    "at-r0175",
+    "at-r59si",
+    "at-qujf3",
+    "at-o1vdl",
+    "at-na8lg",
+    "at-hpiw3",
+    "at-eyfp5",
+    "at-cul3w",
+    "1-tI-1HB53Z7zKe9fO8zCtX1wscrLtGmE",
+    "1JnvXVkNAKRvoi9nrXXq2G8_BHcqtgNwL",
+    "at-ma5up",
+    "at-lmwsm",
+    "1K5vRh_YoJcI1-SV0Jwho1SkZk_5mkl0t",
+    "at-wrv77",
+    "at-riqnt",
+    "at-cqe53",
+    "at-ro7oc",
+    "at-dh4cq",
+    "1398tRFR0WK9i5B-qcr0vi3I8D7wcsSzg",
+    "at-unu9u",
+    "at-x6s0w",
+    "at-osa38",
+    "at-eopfe"
+  ],
+  "pinnedProjectIds": [
+    "1izI9spxl5fjwdvyw8g6iowBpPPAE5p0j",
+    "1XVL41h99QcZDcYzZfl28SbsFy4QJNh4_",
+    "19XhwSYzZ8gheZZVxhBB17S0_IruFdHeW"
+  ],
+  "confirmedYears": {
+    "1G95A_GW19nnaetyvU3rOlU8DJwTtr58D": 2026,
+    "1TbCipQqe25zIREgvrAMoD9TyQuNkDiUp": 2025,
+    "1QdTb7ehS2_qHHy2mV5aVoLTsHdG9zE1I": 2024,
+    "1z8XMURUgG1cxku1PTLGmKlnaxkWjYvAr": 2022
+  },
+  "groups": [
+    {
+      "id": "1lTs0s9NQbTXlvhZY0nT5P0lwZ6wSRKg7",
+      "members": [
+        "1lTs0s9NQbTXlvhZY0nT5P0lwZ6wSRKg7",
+        "1KDSLqpzDdPHJQiwccJcExhl3N0qGeI7P",
+        "1SiSlf2IXvBazwkCHEaWh4eS0d3nY0GW4",
+        "1M2FFuydKjzdw2NLXp5CrM7gHQrLiTc_w",
+        "at-xai42"
+      ],
+      "mediaOrder": "images-first"
+    },
+    {
+      "id": "1UZuJY4WeCJAFJBMasuGlvDFKDh_s5v-C",
+      "members": [
+        "1UZuJY4WeCJAFJBMasuGlvDFKDh_s5v-C",
+        "1ScNuMpbV2_KIa5Qsa29v3H5Rp31XOwO5",
+        "at-awx11"
+      ],
+      "mediaOrder": "images-first"
+    }
+  ],
+  "leadImages": {
+    "1lTs0s9NQbTXlvhZY0nT5P0lwZ6wSRKg7": [
+      "assets/iwc-v28/6e422e_e0e37a5603944cbdb76132ba6df7d523~mv2-2048-v28.jpg",
+      "assets/iwc-v28/6e422e_b893554f57fd44cda9e713338dca6cbd~mv2-2048-v28.jpg"
+    ],
+    "1AFiS56tpQYV45aNLxA2MNqM7ojQqaROV": [
+      "assets/instagram-v28/instagram-DOIukoOEghE-03-2048-v28.jpg"
+    ],
+    "1UZuJY4WeCJAFJBMasuGlvDFKDh_s5v-C": [
+      "assets/instagram-v28/instagram-DK2GMvnyr6F-03-2048-v28.jpg"
+    ]
+  },
+  "experienceDayProjectIds": [
+    "13U1vCVeJMizkXMamFXhcSUfER4dMg8RI",
+    "1_Kw87ovGpiZaIlxf7IErssUdoZ3X14oE",
+    "1Y5JQ1Kzp1r2kRrw62sgNI6l7o8Hj0HKD"
+  ],
+  "expectedPublishedProjects": 50,
+  "newFilmFirstIds": [
+    "DVyFqafCIy3",
+    "DP6CAPHCQmq",
+    "DEO5f_jvDOm"
+  ]
+}

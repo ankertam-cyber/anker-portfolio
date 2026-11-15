@@ -10,7 +10,7 @@ import {loadPortfolioImage} from './image-loader.mjs';
 const $=id=>document.getElementById(id);
 const viewer=mountMediaViewer($('lightbox'));
 const taglineArtwork=$('tagline-artwork');
-const state={entries:[],page:0,selected:null,dialogId:null,manual:false,screenVersion:0,ticketNumber:0};
+const state={entries:[],redirects:{},page:0,selected:null,dialogId:null,manual:false,screenVersion:0,ticketNumber:0};
 const reduced=matchMedia('(prefers-reduced-motion: reduce)');
 let savedMotion;try{savedMotion=localStorage.getItem('anker-motion');}catch{}
 let motion=savedMotion? savedMotion==='on':!reduced.matches;
@@ -75,8 +75,9 @@ async function paintScreen(project){
   img.classList.add('is-changing');
   await later(160);if(token!==state.screenVersion)return;
   $('screen-project-title').textContent=project.title;$('screen-project-year').textContent=project.year||'';
-  $('screen-open').setAttribute('aria-label',project.videos?.length?`Watch ${project.title}`:project.images.length?`View ${project.title} full screen`:`Open ${project.title}`);
-  $('screen-open-label').textContent=project.videos?.length?'WATCH FILM':project.images.length?'FULL SCREEN':'VIEW PROJECT';
+  const filmFirst=project.videos?.length&&project.mediaOrder!=='images-first';
+  $('screen-open').setAttribute('aria-label',filmFirst?`Watch ${project.title}`:project.images.length?`View ${project.title} full screen`:`Open ${project.title}`);
+  $('screen-open-label').textContent=filmFirst?'WATCH FILM':project.images.length?'FULL SCREEN':'VIEW PROJECT';
   if(readyImage){
     img.src=readyImage.src;img.alt=project.title;img.hidden=false;$('screen-placeholder').hidden=true;
   }else{img.hidden=true;$('screen-placeholder').hidden=false;$('screen-placeholder-title').textContent=project.title;}
@@ -102,7 +103,7 @@ $('cinema-prev').addEventListener('click',()=>changeCinema(-1));$('cinema-next')
 seatJourney=mountSeatJourney($('seat-journey'),getMotion,{
   onGallery:({images,imageInfo,index,title,id})=>viewer.open({images,imageInfo,index,title,onProject:()=>{seatJourney.close();openProject(id);}},{fullscreen:true}),
   onProject:id=>openProject(id),
-  onFilm:id=>{const p=state.entries.find(p=>p.id===id);if(p?.videos?.length)viewer.open({media:projectMedia(p),title:p.title,onProject:()=>{seatJourney.close();openProject(id);}},{fullscreen:true});},
+  onFilm:id=>{const p=state.entries.find(p=>p.id===id);if(p?.videos?.length){const media=projectMedia(p);viewer.open({media,index:media.findIndex(item=>item.type!=='image'),title:p.title,onProject:()=>{seatJourney.close();openProject(id);}},{fullscreen:true});}},
   onSelect:id=>{const page=Math.floor(seatIndexFor(id)/CAPACITY);if(page!==state.page){state.page=page;state.selected=id;buildSeats();}selectProject(id);},
   getReturnSeat:id=>[...document.querySelectorAll('.seat[data-project]')].find(button=>button.dataset.project===id)
 });
@@ -157,7 +158,7 @@ function fillProject(id){
     if(film.type==='vimeo'){
       const button=make('button','project-film-poster'),poster=make('img');button.setAttribute('aria-label',`Watch ${film.label||p.title}`);poster.src=film.poster||p.images[0]||'';poster.alt='';poster.width=film.width||1280;poster.height=film.height||720;poster.loading='lazy';
       const play=make('span','film-play-badge');play.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 10 7-10 7Z" fill="currentColor"/></svg>';button.append(poster,play,make('span','film-play-label','PLAY FILM'));
-      button.addEventListener('click',()=>viewer.open({media:projectMedia(p),index,title:p.title},{fullscreen:true}));figure.append(button);
+      button.addEventListener('click',()=>{const media=projectMedia(p);viewer.open({media,index:media.findIndex(item=>item.src===film.src),title:p.title},{fullscreen:true});});figure.append(button);
     }else{const video=make('video','project-film');video.src=film.src;video.controls=true;video.playsInline=true;video.preload='none';video.poster=film.poster||p.images[0]||'';video.setAttribute('aria-label',`${p.title} — film ${index+1}`);figure.append(video);}
     figure.append(make('figcaption','project-film-caption',[film.label||`Film ${String(index+1).padStart(2,'0')}`,film.contribution].filter(Boolean).join(' · ')));frag.append(figure);
   });
@@ -173,6 +174,7 @@ function fillProject(id){
     button.addEventListener('click',()=>viewer.open({images:p.images,imageInfo:p.imageInfo,index,title:p.title},{fullscreen:true}));frag.append(button);
   });
   if(!p.images.length&&!p.videos?.length)frag.append(make('div','dialog-placeholder','A story waiting to be told.'));
+  if(p.mediaOrder==='images-first')frag.prepend(...frag.querySelectorAll('.portfolio-image-button'));
   $('dialog-media').replaceChildren(frag);$('dialog-description').replaceChildren();
   if(p.images.length||p.videos?.length){$('dialog-description').append(make('p','','Selected project visuals.'));}
   else{$('dialog-description').append(make('p','','This entry is part of the project archive. Images, project details and credits are awaiting curation.'));}
@@ -196,7 +198,7 @@ $('project-close').addEventListener('click',()=>closeProject());dialog.addEventL
 dialog.addEventListener('click',event=>{if(event.target===dialog){const r=dialog.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)closeProject();}});
 function adjacentProject(delta){const p=state.entries[seatIndexFor(state.dialogId)+delta];if(!p)return;fillProject(p.id);history.replaceState({project:p.id},'',`#project=${encodeURIComponent(p.id)}`);}
 $('project-previous').addEventListener('click',()=>adjacentProject(-1));$('project-next').addEventListener('click',()=>adjacentProject(1));
-function syncRoute(){const match=location.hash.match(/^#project=(.+)$/);if(match){const id=decodeURIComponent(match[1]);if(state.entries.some(p=>p.id===id))openProject(id,{push:false});}else if(dialog.open)closeProject({route:false});}
+function syncRoute(){const match=location.hash.match(/^#project=(.+)$/);if(match){const requested=decodeURIComponent(match[1]),id=state.redirects[requested]||requested;if(state.entries.some(p=>p.id===id)){if(id!==requested)history.replaceState({project:id},'',`#project=${encodeURIComponent(id)}`);openProject(id,{push:false});}else history.replaceState(null,'','#work');}else if(dialog.open)closeProject({route:false});}
 addEventListener('popstate',syncRoute);
 
 $('desk-bell').addEventListener('click',()=>{playMicroAnimation($('desk-bell'),'ringing');$('bell-message').textContent='Hello! Drop me a line — let’s talk ideas.';});
@@ -207,6 +209,6 @@ let screenVisible=false;new IntersectionObserver(entries=>{screenVisible=entries
 setInterval(()=>{if(!motion||document.hidden||!screenVisible||state.manual||dialog.open||viewer.isOpen()||!state.entries.length)return;const featured=state.entries.filter(p=>p.images.length);if(featured.length<2)return;const next=featured[(featured.findIndex(p=>p.id===state.selected)+1)%featured.length];selectProject(next.id,{manual:false});},8500);
 
 try{
-  const response=await fetch('projects.json?v=media-10');if(!response.ok)throw new Error('Catalogue unavailable');const data=await response.json();
-  state.entries=data.previewOnly?data.entries:data.entries.filter(project=>project.publicationStatus==='published');if(!state.entries.length)throw new Error('No entries');state.selected=state.entries[0].id;buildSeats();selectProject(state.selected,{manual:false});issueTicket(false,false);renderIndex();syncRoute();
+  const response=await fetch('projects.v28.json',{cache:'no-store'});if(!response.ok)throw new Error('Catalogue unavailable');const data=await response.json();
+  state.redirects=data.projectRedirects||{};state.entries=data.previewOnly?data.entries:data.entries.filter(project=>project.publicationStatus==='published');if(!state.entries.length)throw new Error('No entries');state.selected=state.entries[0].id;buildSeats();selectProject(state.selected,{manual:false});issueTicket(false,false);renderIndex();syncRoute();
 }catch(error){$('catalogue-error').hidden=false;$('issue-ticket').disabled=true;$('cinema-next').disabled=true;$('cinema-prev').disabled=true;}
