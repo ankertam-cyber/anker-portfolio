@@ -3,7 +3,11 @@ import {createReadStream} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {inflateRawSync} from 'node:zlib';
 import path from 'node:path';
+import {loadMediaPurge,removeContainedFile} from './load-media-purge.mjs';
 const root=process.cwd(),manifest=JSON.parse(await fs.readFile('asset-checksums.json','utf8'));
+const purge=await loadMediaPurge(),excluded=new Set(purge.seeds);
+for(const file of purge.seeds)await removeContainedFile(root,file);
+for(const file of purge.cacheFiles)await removeContainedFile(path.join(root,'.media-cache'),file);
 const expected=new Map(manifest.files.map(f=>[f.path,f])),seen=new Set();
 export async function hash(file){const h=createHash('sha256');for await(const c of createReadStream(file))h.update(c);return h.digest('hex');}
 const packs=JSON.parse(await fs.readFile('media-seeds.json','utf8'));
@@ -18,6 +22,7 @@ for(const pack of packs.packs){
   const flags=zip.readUInt16LE(position+8),method=zip.readUInt16LE(position+10),compressed=zip.readUInt32LE(position+20),length=zip.readUInt32LE(position+24),nameLength=zip.readUInt16LE(position+28),extraLength=zip.readUInt16LE(position+30),commentLength=zip.readUInt16LE(position+32),offset=zip.readUInt32LE(position+42);
   const name=zip.toString('utf8',position+46,position+46+nameLength),record=expected.get(name);
   if(!record||seen.has(name)||name.includes('..')||name.includes('\\')||!(name.startsWith('site/assets/')||name.startsWith('media-sources/'))||(flags&1))throw Error('Unexpected media archive member');
+  if(excluded.has(name)){seen.add(name);position+=46+nameLength+extraLength+commentLength;continue;}
   if(zip.readUInt32LE(offset)!==0x04034b50)throw Error('Invalid ZIP member');
   const start=offset+30+zip.readUInt16LE(offset+26)+zip.readUInt16LE(offset+28),payload=zip.subarray(start,start+compressed);
   const bytes=method===0?payload:method===8?inflateRawSync(payload):null;

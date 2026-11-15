@@ -1,5 +1,6 @@
 import {clone,canonical,validateContent} from './content-model.mjs';
 import {rebaseLibraryCleanup} from './draft-rebase.mjs';
+import {rebasePermanentDeletion} from './media-purge.mjs';
 
 export function restoreOwnerDraft(saved,published,entries){
  if(!saved?.draft)return {draft:clone(published),state:'current'};
@@ -9,6 +10,7 @@ export function restoreOwnerDraft(saved,published,entries){
  // There is nothing unpublished to lose when the old draft was unmodified,
  // or when it is the exact content that has just reached the public site.
  if(local===saved.baseline||local===live)return {draft:clone(published),state:'refreshed'};
+ const deletion=rebasePermanentDeletion(saved.baseline,published,saved.draft);if(deletion)return {draft:deletion,state:'purged'};
  const merged=rebaseLibraryCleanup(saved.baseline,published,saved.draft,entries);
  if(merged)return {draft:merged,state:'merged'};
  return {draft:clone(saved.draft),state:'conflict'};

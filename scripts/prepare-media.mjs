@@ -5,8 +5,9 @@ import {Readable} from 'node:stream';
 import {createHash} from 'node:crypto';
 import path from 'node:path';
 import {prepareWebVideos} from './web-video.mjs';
+import {loadMediaPurge,removeContainedFile} from './load-media-purge.mjs';
 const root=process.cwd(),output=path.join(root,'_site'),cache=path.join(root,'.media-cache');
-const manifest=JSON.parse(await fs.readFile('media-sources.json','utf8')),repository=process.env.GITHUB_REPOSITORY||manifest.repository;
+const purge=await loadMediaPurge(),manifest=purge.activeManifest,repository=process.env.GITHUB_REPOSITORY||manifest.repository;
 if(repository!=='ankertam-cyber/anker-portfolio'||repository!==manifest.repository)throw Error('Unexpected publishing repository');
 const token=process.env.GH_TOKEN,tag='portfolio-media-v1';
 async function hash(file){const h=createHash('sha256');for await(const c of createReadStream(file))h.update(c);return h.digest('hex');}
@@ -18,6 +19,10 @@ let release=await api('/releases/tags/'+tag);
 if(token&&!release)release=await api('/releases',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({tag_name:tag,name:'Portfolio media',body:'',draft:false,prerelease:false})});
 const archived=new Map((release?.assets||[]).map(a=>[a.name,a]));
 await fs.mkdir(cache,{recursive:true});await fs.cp('site',output,{recursive:true});
+for(const file of purge.files){await removeContainedFile(output,file);await removeContainedFile(path.join(root,'site'),file);}
+for(const file of purge.cacheFiles)await removeContainedFile(cache,file);
+for(const file of purge.seeds)await removeContainedFile(root,file);
+const fingerprints=JSON.parse(await fs.readFile(path.join(output,'image-fingerprints.json'),'utf8'));for(const file of purge.files)delete fingerprints.records[file];await fs.writeFile(path.join(output,'image-fingerprints.json'),JSON.stringify(fingerprints));
 function decode(s){return s.replaceAll('&amp;','&').replaceAll('&#39;',"'").replaceAll('&quot;','"');}
 async function publicFilm(url){
  const source=new URL(url);if(source.protocol!=='https:'||!['drive.google.com','drive.usercontent.google.com','video.wixstatic.com','github.com'].includes(source.hostname))throw Error('Unexpected film source');
@@ -66,7 +71,7 @@ async function worker(){while(cursor<manifest.videos.length){const item=manifest
 }}
 await Promise.all([worker(),worker(),worker()]);
 const playback=await prepareWebVideos(manifest,{output,cache,repository});
-const published=JSON.parse(await fs.readFile(path.join(output,'projects.json'),'utf8')),byPath=new Map(manifest.videos.map(v=>[v.path,v]));
+const published=purge.catalogue,byPath=new Map(manifest.videos.map(v=>[v.path,v]));
 // Keep original archive filenames in the source audit, without emoji in public metadata.
 for(const project of published.entries)for(const film of project.videos||[]){
  if(film.sourceName)film.sourceName=film.sourceName.replace(/[\p{Extended_Pictographic}\uFE0F\u200D]/gu,'').trim();

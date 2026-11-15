@@ -7,6 +7,7 @@ import {rememberLibrary,removeProjectMedia,removeLibraryMedia,restoreLibraryMedi
 import {DRAFT_KEY,PROFILE_DEFAULTS,emptyContent,clone,canonical,validateContent,applyContent,editableEntries,mediaForEditor,orderedMedia,mediaRank,normalizeVimeoInput,normalizeStory,safeMediaUrl,changeSummary,libraryInventory,normalizeMedia} from './content-model.mjs?v=bulk1';
 import {projectStoryFor} from './project-stories.mjs';
 import {createGitHubPublisher} from './github-publisher.mjs';
+import {permanentlyRemoveMedia,assertNoDeletedMediaRestore} from './media-purge.mjs';
 
 const $=id=>document.getElementById(id),SITE=new URL('../',location.href),PENDING_KEY='anker-portfolio-pending-v1';
 const publisher=createGitHubPublisher();
@@ -19,6 +20,8 @@ const projectById=id=>currentEntries().find(p=>p.id===id);
 const mediaUI={selected:new Set(),layout:'grid'},libraryUI={selected:new Set(),filter:'active',query:'',page:0};
 let removalResolve=null;
 let confirmResolve=null;
+let connectResolve=null;
+function requireGitHub(){if(publisher.connected())return Promise.resolve(true);$('connect-error').hidden=true;$('connect-dialog').showModal();return new Promise(resolve=>connectResolve=resolve);}
 function ask(copy){$('confirm-copy').textContent=copy;$('confirm-dialog').showModal();return new Promise(resolve=>confirmResolve=resolve);}
 function answer(value){$('confirm-dialog').close();const resolve=confirmResolve;confirmResolve=null;resolve?.(value);}
 $('confirm-cancel').addEventListener('click',()=>answer(false));$('confirm-accept').addEventListener('click',()=>answer(true));$('confirm-dialog').addEventListener('cancel',event=>{event.preventDefault();answer(false);});
@@ -47,7 +50,7 @@ function mutate(action,{render=true,list=true}={}){
  undo.push(before);if(undo.length>40)undo.shift();redo=[];notice('');save();if(render)renderEditor();if(list)renderList();
 }
 function patchProject(id,key,value){draft.overrides[id]??={};draft.overrides[id][key]=value;}
-function assertDraft(){if(stale)throw Error('草稿版本已過期，請先下載備份並重新載入正式內容');validateContent(draft,entries);applyContent(entries,draft);if(!storageOK)throw Error('請先解決草稿儲存問題或下載備份');}
+function assertDraft(){if(stale)throw Error('草稿版本已過期，請先下載備份並重新載入正式內容');validateContent(draft,entries);assertNoDeletedMediaRestore(published,draft);applyContent(entries,draft);if(!storageOK)throw Error('請先解決草稿儲存問題或下載備份');}
 function renderList(){
  const all=currentEntries(),query=$('project-search').value.trim().toLocaleLowerCase(),filter=$('project-filter').value;
  $('project-count').textContent=all.filter(p=>!p.hidden).length+' 顯示中 / '+all.length+' 個作品';
@@ -95,28 +98,42 @@ function renderEditor(){
  }
  const mediaHead=node('div','section-title');mediaHead.append(node('h3','','影片、相片與設計圖'),button('新增素材',()=>openMedia()),button('找重複相片',event=>photoDuplicates.open({projectId:p.id,trigger:event.currentTarget})));editor.append(mediaHead,node('p','small','長按縮圖或勾選多個素材，再一批移動或移除。影片、相片、設計圖會保持分組。'));
  const mediaList=node('div','media-list');editor.append(mediaList);renderMedia(mediaList,p);
- const restore=node('div','section-title');restore.append(node('p','small','原有作品同素材檔案會保留。'),button('還原呢個作品',async()=>{if(await ask('還原呢個作品嘅所有草稿修改？其他作品唔受影響。'))mutate(()=>delete draft.overrides[p.id]);}));editor.append(restore);
+ const restore=node('div','section-title');restore.append(node('p','small','只移出作品可保留原檔；永久刪除會清理網站儲存檔。'),button('還原呢個作品',async()=>{if(await ask('還原呢個作品嘅所有草稿修改？其他作品唔受影響。'))mutate(()=>delete draft.overrides[p.id]);}));editor.append(restore);
  if(draft.additions.some(x=>x.id===p.id))editor.append(button('移除呢個新增作品',async()=>{if(await ask('從草稿移除呢個新增作品？可以用「復原」還原。'))mutate(()=>{draft.additions=draft.additions.filter(x=>x.id!==p.id);delete draft.overrides[p.id];draft.order=draft.order.filter(id=>id!==p.id);selected=currentEntries()[0]?.id||'';});},'text-action'));
 }
 function renderMedia(list,p){mountMediaManager(list,p,{state:mediaUI,site:SITE,getProject:()=>projectById(p.id),onChange:(items,options={})=>{if(options.uiOnly){renderEditor();return;}mutate(()=>patchProject(p.id,'media',items),{list:false,...options});},onRemove:items=>removeMedia(items,p.id),onNotice:notice,onPreview:(item,trigger)=>videoPreview.open(mediaForEditor(projectById(p.id)),{src:item.src,context:projectById(p.id).title,trigger})});}
 function askMediaRemoval(items,projectId,libraryOnly=false){
  const inventory=libraryInventory(entries,draft),sources=new Set(items.map(item=>item.src)),affected=new Set(inventory.filter(item=>sources.has(item.src)).flatMap(item=>item.projectIds));
- $('remove-media-summary').textContent='已選 '+selectionDescription(items)+'。請先選擇素材庫及原檔嘅處理方式，再確認。';
+ $('remove-media-summary').textContent='已選 '+selectionDescription(items)+'。永久刪除會直接提交並更新網站；其他未發佈草稿修改保留。';
  const thumbs=$('remove-media-thumbnails');thumbs.replaceChildren();for(const item of items.slice(0,8)){const src=item.type==='image'?item.src:item.poster;if(src&&safeMediaUrl(src)){const image=node('img');image.src=new URL(src,SITE).href;image.alt=item.label||'選取素材';thumbs.append(image);}}
+ $('remove-media-file-details').open=items.length<=3;$('remove-media-files').replaceChildren(...items.map(item=>node('li','',(item.label?item.label+' — ':'')+item.src.split('/').at(-1))));
  $('remove-project-option').hidden=libraryOnly;
- const projectOption=document.querySelector('input[name="removal-policy"][value="project"]'),libraryOption=document.querySelector('input[name="removal-policy"][value="library"]');projectOption.checked=!libraryOnly;libraryOption.checked=libraryOnly;
- const describe=()=>{const global=libraryOption.checked,names=currentEntries().filter(p=>affected.has(p.id)).map(p=>p.title);$('remove-media-impact').textContent=global?'會影響 '+affected.size+' 個作品'+(names.length?'：'+names.slice(0,8).join('、')+(names.length>8?'，以及其他 '+(names.length-8)+' 個作品':''):'。'):'只從「'+(projectById(projectId)?.title||'目前作品')+'」移除，其他作品同素材庫保留。';};
+ const projectOption=document.querySelector('input[name="removal-policy"][value="project"]'),libraryOption=document.querySelector('input[name="removal-policy"][value="purge"]');projectOption.checked=false;libraryOption.checked=true;
+ const describe=()=>{const global=libraryOption.checked,names=currentEntries().filter(p=>affected.has(p.id)).map(p=>p.title);$('remove-media-confirm').textContent=global?'確認永久刪除並更新網站':'確認從作品移除';$('remove-media-impact').textContent=global?'會從所有作品同素材庫刪除，唔會移到回收區。影響 '+affected.size+' 個作品'+(names.length?'：'+names.slice(0,8).join('、')+(names.length>8?'，以及其他 '+(names.length-8)+' 個作品':''):'。'):'只從「'+(projectById(projectId)?.title||'目前作品')+'」移除，其他作品同素材庫保留；呢個選項只改草稿。';};
  projectOption.onchange=libraryOption.onchange=describe;describe();$('remove-media-dialog').showModal();return new Promise(resolve=>removalResolve=resolve);
 }
 $('remove-media-confirm').addEventListener('click',()=>{const resolve=removalResolve;removalResolve=null;const scope=document.querySelector('input[name="removal-policy"]:checked').value;$('remove-media-dialog').close();resolve?.(scope);});
 $('remove-media-dialog').addEventListener('close',()=>{if(removalResolve){const resolve=removalResolve;removalResolve=null;resolve(null);}});
 async function removeMedia(items,projectId,libraryOnly=false){
  if(!items.length||busy||stale||removalResolve)return false;const snapshot=items.map(normalizeMedia),scope=await askMediaRemoval(snapshot,projectId,libraryOnly);if(!scope||busy||stale)return false;
- mutate(()=>{if(scope==='library')removeLibraryMedia(draft,snapshot);else removeProjectMedia(draft,projectById(projectId),snapshot.map(item=>item.src));mediaUI.selected.clear();libraryUI.selected.clear();});
+ if(scope==='purge')return permanentlyDelete(snapshot);
+ mutate(()=>{removeProjectMedia(draft,projectById(projectId),snapshot.map(item=>item.src));mediaUI.selected.clear();libraryUI.selected.clear();});
  notice('已將 '+selectionDescription(snapshot)+(scope==='library'?'移到素材庫回收區，原檔保留。':'從目前作品移除，素材庫及原檔保留。')+' 改動尚未發佈，可撳「復原」。');return true;
 }
+async function permanentlyDelete(items){
+ if(busy||stale)return false;busy=true;updateToolbar();
+ try{
+  if(!await requireGitHub())return false;if(stale)return false;
+  const sources=items.map(item=>item.src),known=new Set(libraryInventory(entries,draft).map(item=>item.src));if(sources.some(src=>!known.has(src)))throw Error('素材清單已改變，請重新選取要刪除嘅檔案');
+  const next=permanentlyRemoveMedia(published,sources);next.revision=crypto.randomUUID();next.updatedAt=new Date().toISOString();validateContent(next,entries);
+  const pending={...await publisher.publish(next,published),kind:'purge',sources};
+  draft=permanentlyRemoveMedia(draft,sources);draft.revision=next.revision;draft.updatedAt=next.updatedAt;published=clone(next);undo=undo.map(doc=>permanentlyRemoveMedia(doc,sources));redo=redo.map(doc=>permanentlyRemoveMedia(doc,sources));mediaUI.selected.clear();libraryUI.selected.clear();save();renderView();
+  try{localStorage.setItem(PENDING_KEY,JSON.stringify(pending));}catch{}
+  notice('已提交永久刪除，正在清理網站及影片儲存檔。完成後會顯示「永久刪除完成」。其他未發佈草稿已保留。');void monitorDeployment(pending);return true;
+ }catch(error){notice(error.message,true);return false;}finally{busy=false;updateToolbar();}
+}
 function renderLibrary(){
- const heading=titleBlock('素材庫','作品移除嘅素材可重新加入；回收區素材唔會喺任何作品顯示。原檔保留。');heading.append(button('找重複相片',event=>photoDuplicates.open({projectId:selected,scope:'library',trigger:event.currentTarget})));
+ const heading=titleBlock('素材庫','選取唔再需要嘅素材，確認後永久刪除網站儲存檔。舊回收區素材亦可一併清走。');heading.append(button('找重複相片',event=>photoDuplicates.open({projectId:selected,scope:'library',trigger:event.currentTarget})));
  const editor=$('editor'),inventory=libraryInventory(entries,draft),known=new Set(inventory.map(item=>item.src));libraryUI.selected=new Set([...libraryUI.selected].filter(src=>known.has(src)));
  const filters=node('div','library-filters'),search=node('input'),filter=node('select');search.type='search';search.placeholder='搜尋素材名稱、網址或作品…';search.value=libraryUI.query;search.setAttribute('aria-label','搜尋素材庫');
  for(const [value,label]of [['active','素材庫'],['unused','暫時冇作品使用'],['removed','回收區']]){const option=node('option','',label);option.value=value;filter.append(option);}filter.value=libraryUI.filter;filter.setAttribute('aria-label','素材庫範圍');filters.append(search,filter);editor.append(filters);
@@ -128,9 +145,9 @@ function renderLibrary(){
  const clear=button('取消選取',()=>{libraryUI.selected.clear();refresh();});
  const add=button('加入目標作品',()=>{const target=projectById(projectSelect.value),items=choose().filter(item=>!item.removed);if(!target||!items.length)return;mutate(()=>{const merged=new Map(mediaForEditor(target).map(item=>[item.src,item]));for(const item of items)merged.set(item.src,normalizeMedia(item));patchProject(target.id,'media',orderedMedia([...merged.values()]));rememberLibrary(draft,items);libraryUI.selected.clear();});notice('已加入「'+target.title+'」嘅草稿，尚未發佈。');});
  const restore=button('還原已選素材',async()=>{const items=choose().filter(item=>item.removed);if(!items.length||!await ask('將 '+selectionDescription(items)+' 從回收區還原？原有作品引用亦會恢復。'))return;mutate(()=>{restoreLibraryMedia(draft,items.map(item=>item.src));libraryUI.selected.clear();});});
- const remove=button('移到回收區',()=>removeMedia(choose().filter(item=>!item.removed),selected,true),'danger-action');bar.append(selectAll,clear,projectSelect,add,restore,remove);editor.append(bar);
+ const remove=button('永久刪除已選素材',()=>removeMedia(choose(),selected,true),'danger-action');bar.append(selectAll,clear,projectSelect,add,restore,remove);editor.append(bar);
  const results=node('p','small'),grid=node('div','library-grid'),pages=node('div','library-pages');editor.append(results,grid,pages);
- function refresh(){const items=choose();count.textContent=items.length?'已選 '+selectionDescription(items):'未選取素材';clear.disabled=!items.length;add.disabled=!items.some(item=>!item.removed);remove.disabled=!items.some(item=>!item.removed);restore.disabled=!items.some(item=>item.removed);for(const card of grid.children){const check=card.querySelector('input');if(!check)continue;check.checked=libraryUI.selected.has(card.dataset.src);card.classList.toggle('is-selected',check.checked);}}
+ function refresh(){const items=choose();count.textContent=items.length?'已選 '+selectionDescription(items):'未選取素材';clear.disabled=!items.length;add.disabled=!items.some(item=>!item.removed);remove.disabled=!items.length;restore.disabled=!items.some(item=>item.removed);for(const card of grid.children){const check=card.querySelector('input');if(!check)continue;check.checked=libraryUI.selected.has(card.dataset.src);card.classList.toggle('is-selected',check.checked);}}
  function renderCards(){
   const query=libraryUI.query.trim().toLocaleLowerCase();filtered=inventory.filter(item=>(libraryUI.filter==='removed'?item.removed:!item.removed&&(libraryUI.filter!=='unused'||!item.projectIds.length))&&(!query||[item.label,item.src,...item.projectIds.map(id=>names.get(id)||'')].join(' ').toLocaleLowerCase().includes(query)));
   const pageCount=Math.max(1,Math.ceil(filtered.length/60));libraryUI.page=Math.max(0,Math.min(pageCount-1,libraryUI.page));results.textContent=filtered.length+' 個素材 · 第 '+(libraryUI.page+1)+' / '+pageCount+' 頁';grid.replaceChildren();
@@ -160,7 +177,7 @@ function download(){const payload={format:'anker-portfolio-draft-v1',baseline:ca
 async function readPublished(){return readPublishedContent(SITE,{onStatus:copy=>{if(!ready)$('draft-status').textContent=copy;}});}
 async function initialize(){
  try{const data=await readPublished();entries=data.entries;published=data.content;draft=clone(published);let saved=null;try{saved=JSON.parse(localStorage.getItem(DRAFT_KEY)||'null');}catch{notice('未能讀取舊草稿。舊資料未被覆寫；你可以先下載現有內容備份。',true);stale=true;}
-  if(saved?.draft){const restored=restoreOwnerDraft(saved,published,entries);draft=restored.draft;if(restored.state==='merged'){save();notice('已合併正式網站確認嘅重複相片清理；你未發佈嘅文字、排序同其他草稿修改保留。');}else if(restored.state==='refreshed'){save();notice('已讀取最新正式內容；原有草稿冇未發佈改動。');}else if(restored.state==='conflict'){stale=true;notice('內容已讀取，但呢份本機草稿係按較舊版本編輯。請先下載草稿備份，再撳「重新載入正式內容」，避免覆蓋較新更新。',true);}else if(restored.state==='restored')notice('已還原你上次喺呢個瀏覽器未發佈嘅草稿。');}
+  if(saved?.draft){const restored=restoreOwnerDraft(saved,published,entries);draft=restored.draft;if(restored.state==='purged'){save();notice('已同步確認嘅永久刪除；其他未發佈草稿修改保留。');}else if(restored.state==='merged'){save();notice('已合併正式網站確認嘅重複相片清理；你未發佈嘅文字、排序同其他草稿修改保留。');}else if(restored.state==='refreshed'){save();notice('已讀取最新正式內容；原有草稿冇未發佈改動。');}else if(restored.state==='conflict'){stale=true;notice('內容已讀取，但呢份本機草稿係按較舊版本編輯。請先下載草稿備份，再撳「重新載入正式內容」，避免覆蓋較新更新。',true);}else if(restored.state==='restored')notice('已還原你上次喺呢個瀏覽器未發佈嘅草稿。');}
   ready=true;selected=currentEntries()[0]?.id||'';renderView();$('office').dataset.loadState='ready';dispatchEvent(new Event('anker-admin-ready'));let pending=null;try{pending=JSON.parse(localStorage.getItem(PENDING_KEY)||'null');}catch{}if(pending?.sha)void monitorDeployment(pending);
  }catch(error){loadError=true;updateToolbar();notice(error.message,true);$('draft-status').textContent='網站內容未能載入';$('office').dataset.loadState='error';$('office').setAttribute('aria-busy','false');dispatchEvent(new CustomEvent('anker-admin-error',{detail:error.message+'。原有草稿仍保留。'}));}
 }
@@ -176,18 +193,18 @@ async function monitorDeployment(pending){
  while(run===monitorId&&Date.now()-start<15*60*1000){
   try{const state=await publisher.deployment(pending.sha);if(run!==monitorId)return;if(state?.url)lastUrl=state.url;
    if(state?.status==='completed'&&state.conclusion!=='success'){show('部署未完成（'+state.conclusion+'）。GitHub 已保留提交，請查看記錄。',lastUrl);return;}
-   if(state?.conclusion==='success'){const live=await readSiteJson(new URL('content.json?revision='+encodeURIComponent(pending.revision),SITE),{attempts:1});if(run!==monitorId)return;if(live.revision===pending.revision){show('正式網站已更新。',lastUrl);const link=node('a','','開啟正式網站');link.href=new URL('?v='+encodeURIComponent(pending.revision),SITE).href;link.target='_blank';link.rel='noopener';status.append(document.createTextNode(' · '),link);try{localStorage.removeItem(PENDING_KEY);}catch{}if(!stale)notice('發佈完成，正式網站已更新。'+(canonical(draft)!==canonical(published)?' 你之後新增嘅草稿修改尚未發佈。':''));return;}}
-   show(state?.conclusion==='success'?'部署完成，正在等候網站快取更新…':state?'GitHub 正在建置及部署網站…':'已提交 GitHub，正在等候部署開始…',lastUrl);
+   if(state?.conclusion==='success'){const live=await readSiteJson(new URL('content.json?revision='+encodeURIComponent(pending.revision),SITE),{attempts:1});if(run!==monitorId)return;if(live.revision===pending.revision){if(pending.kind==='purge'){const receipt=await readSiteJson(new URL('storage-cleanup.json?revision='+encodeURIComponent(pending.revision),SITE),{attempts:1});if(run!==monitorId)return;if(!receipt.completed||receipt.revision!==pending.revision||pending.sources.some(src=>!receipt.purged?.includes(src)))throw Error('網站已提交，但尚未核實儲存檔清理完成');}show(pending.kind==='purge'?'永久刪除完成；網站及素材庫已更新。':'正式網站已更新。',lastUrl);const link=node('a','','開啟正式網站');link.href=new URL('?v='+encodeURIComponent(pending.revision),SITE).href;link.target='_blank';link.rel='noopener';status.append(document.createTextNode(' · '),link);try{localStorage.removeItem(PENDING_KEY);}catch{}if(!stale)notice((pending.kind==='purge'?'永久刪除完成，網站託管檔及對應影片儲存檔已清理。':'發佈完成，正式網站已更新。')+(canonical(draft)!==canonical(published)?' 你其他草稿修改尚未發佈。':''));return;}}
+   show(state?.conclusion==='success'?'部署完成，正在等候網站快取更新…':state?(pending.kind==='purge'?'正在永久刪除儲存檔並更新網站…':'GitHub 正在建置及部署網站…'):'已提交 GitHub，正在等候部署開始…',lastUrl);
   }catch(error){show(error.message+' 可直接查看發佈記錄；唔需要重複提交。',lastUrl);return;}
   await new Promise(resolve=>setTimeout(resolve,12000));
  }
  if(run===monitorId)show('GitHub 已收到提交，部署仍處理中。稍後可重新開啟後台追蹤。',lastUrl);
 }
 $('connect-open').addEventListener('click',()=>{$('connect-error').hidden=true;$('connect-dialog').showModal();});
-$('connect-submit').addEventListener('click',async()=>{$('connect-submit').disabled=true;$('connect-error').hidden=true;try{await publisher.connect($('github-token').value,published);$('connect-dialog').close();notice('GitHub 已連接。完成預覽後，撳「檢查並發佈」。');updateToolbar();}catch(error){$('connect-error').textContent=error.message;$('connect-error').hidden=false;}finally{$('github-token').value='';$('connect-submit').disabled=false;updateToolbar();}});
+$('connect-submit').addEventListener('click',async()=>{$('connect-submit').disabled=true;$('connect-error').hidden=true;try{await publisher.connect($('github-token').value,published);const resume=connectResolve;connectResolve=null;$('connect-dialog').close();if(resume)resume(true);else notice('GitHub 已連接。完成預覽後，撳「檢查並發佈」。');updateToolbar();}catch(error){$('connect-error').textContent=error.message;$('connect-error').hidden=false;}finally{$('github-token').value='';$('connect-submit').disabled=false;updateToolbar();}});
 $('disconnect').addEventListener('click',()=>{publisher.disconnect();$('github-token').value='';$('connect-dialog').close();updateToolbar();notice('已斷開 GitHub；草稿仍保留。');});
 for(const close of document.querySelectorAll('[data-close]'))close.addEventListener('click',()=>$(close.dataset.close).close());
-$('connect-dialog').addEventListener('close',()=>{$('github-token').value='';});
+$('connect-dialog').addEventListener('close',()=>{$('github-token').value='';if(connectResolve){const resolve=connectResolve;connectResolve=null;resolve(false);}});
 $('library-tab').addEventListener('click',()=>{view='library';renderView();});
 $('projects-tab').addEventListener('click',()=>{view='projects';renderView();});$('profile-tab').addEventListener('click',()=>{view='profile';renderView();});
 $('project-search').addEventListener('input',renderList);$('project-filter').addEventListener('change',renderList);$('add-project').addEventListener('click',addProject);

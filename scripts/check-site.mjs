@@ -6,11 +6,13 @@ import {applyContent} from '../site/content-model.mjs';
 import {inspectWebVideo} from './web-video.mjs';
 import {NATIVE_VIDEO_FILES} from '../site/native-video-files.mjs';
 import {checkImageFingerprints} from './check-image-fingerprints.mjs';
+import {loadMediaPurge} from './load-media-purge.mjs';
 const root=path.resolve('_site'),data=JSON.parse(await fs.readFile(path.join(root,'projects.v28.json'),'utf8'));
 const rules=JSON.parse(await fs.readFile(path.join(root,'portfolio-curation.json'),'utf8'));
 const manifest=JSON.parse(await fs.readFile('media-sources.json','utf8'));
 if(JSON.stringify(NATIVE_VIDEO_FILES)!==JSON.stringify(manifest.videos.map(v=>[v.path,v.archiveName])))throw Error('Playback source index differs from original archive');
-for(const film of manifest.videos)inspectWebVideo(await fs.readFile(path.join(root,'assets/web-video-v1',film.archiveName)));
+const purge=await loadMediaPurge();for(const film of purge.activeManifest.videos)inspectWebVideo(await fs.readFile(path.join(root,'assets/web-video-v1',film.archiveName)));
+for(const file of purge.files){try{await fs.access(path.join(root,file));}catch(error){if(error.code==='ENOENT')continue;throw error;}throw Error('Permanently deleted media was republished: '+file);}
 const ownerContent=JSON.parse(await fs.readFile(path.join(root,'content.json'),'utf8'));
 await checkImageFingerprints(root,data);
 applyContent(data.entries,ownerContent);
@@ -28,7 +30,7 @@ for(const project of data.entries){
  for(const movie of project.videos){const url=new URL(movie.src);if(movie.type==='vimeo'){vimeo++;if(url.origin!=='https://player.vimeo.com'||!/^\/video\/\d+$/.test(url.pathname))throw Error('Invalid remote Vimeo player');}else{movies++;if(url.origin!=='https://github.com'||!url.pathname.startsWith('/ankertam-cyber/anker-portfolio/releases/download/portfolio-media-v1/')||!names.has(url.pathname.split('/').at(-1)))throw Error('Unexpected public film destination');}if(movie.poster)files.add(movie.poster);}
 }
 for(const file of files){if(!file.startsWith('assets/')||file.includes('..'))throw Error('Non-local project image');assertPortfolioImage(await fs.readFile(path.join(root,file)),file);}
-if(movies!==manifest.videos.length)throw Error('Film manifest count differs from the published programme');
+if(movies!==purge.activeManifest.videos.length)throw Error('Film manifest count differs from the published programme');
 const archive=JSON.parse(await fs.readFile('media-archive-checks.json','utf8'));if(archive.verified!==movies)throw Error('Film archive has not been verified');
 if(archive.playback?.films!==movies)throw Error('Browser playback files are missing');
 let bytes=0;async function count(folder){for(const entry of await fs.readdir(folder,{withFileTypes:true})){const file=path.join(folder,entry.name);if(entry.isDirectory())await count(file);else bytes+=(await fs.stat(file)).size;}}await count(root);

@@ -31,7 +31,7 @@ export function mountMediaManager(container,project,{state,site,getProject,onCha
  const position=make('input','media-position');position.type='number';position.min='1';position.max=String(Math.max(1,items.length));position.value='1';position.setAttribute('aria-label','同類素材目標位置');
  const positionLabel=make('label','media-position-label','同類第 ');positionLabel.append(position,document.createTextNode(' 位'));
  const at=action('移到指定位置',()=>{if(!position.checkValidity()){position.reportValidity();return;}onChange(moveMediaSelection(mediaForEditor(getProject()),state.selected,'position',position.value));});
- const remove=action('移除已選素材',()=>onRemove(chosen()),'danger-action');moveActions.append(positionLabel,at,remove);
+ const remove=action('刪除已選素材',()=>onRemove(chosen()),'danger-action');moveActions.append(positionLabel,at,remove);
  toolbar.append(make('p','small','長按縮圖進入多選，亦可勾選、Shift 連選。批量移動會保留相片先後次序；影片、相片、設計圖分組排序。'));
  container.append(toolbar);
  if(!items.length){container.append(make('p','help-box','呢個作品暫時未有素材。你可以新增公開圖片或影片連結。'));refresh();return;}
@@ -50,7 +50,7 @@ export function mountMediaManager(container,project,{state,site,getProject,onCha
    if(item.type!=='image'){const cover=make('input');cover.value=item.poster||'';cover.placeholder='封面圖片網址（選填）';cover.setAttribute('aria-label','素材 '+(index+1)+' 封面');cover.addEventListener('change',()=>{if(cover.value&&!safeMediaUrl(cover.value.trim())){onNotice('封面需要有效 HTTPS 網址',true);return;}const all=mediaForEditor(getProject()),live=all.find(value=>value.src===item.src);if(live){live.poster=cover.value.trim();onChange(all);}});info.append(cover);}row.append(info);
    const controls=make('div','media-controls');
    for(const [label,direction,delta]of [['上移','up',-1],['下移','down',1]]){const move=action(label,()=>onChange(moveMediaSelection(mediaForEditor(getProject()),[item.src],direction)));move.setAttribute('aria-label',label+'素材 '+(index+1));move.disabled=!items[index+delta]||mediaRank(items[index+delta])!==rank;controls.append(move);}
-   controls.append(action('移除',()=>onRemove([item]),'remove-media'));row.append(controls);
+   controls.append(action('刪除',()=>onRemove([item]),'remove-media'));row.append(controls);
    const gesture=createLongPress({onSelect:()=>toggle(item.src,{},true)});
    row.addEventListener('pointerdown',event=>{row.draggable=event.pointerType!=='touch'&&event.pointerType!=='pen';if(!event.target.closest('input,button,label'))gesture.start(event);});row.addEventListener('pointermove',gesture.move);row.addEventListener('pointerup',gesture.cancel);row.addEventListener('pointercancel',gesture.cancel);
    row.addEventListener('click',event=>{if(event.target.closest('input,button,label')||gesture.suppressClick()||Date.now()<(state.dragUntil||0))return;if(state.mode||event.ctrlKey||event.metaKey||event.shiftKey)toggle(item.src,event);else toggle(item.src,{},true);});

@@ -70,23 +70,23 @@ export function validateContent(doc,entries=[]){
  for(const p of doc.additions){record(p,'新增作品');if(typeof p.id!=='string'||!/^owner-[a-zA-Z0-9-]{5,80}$/.test(p.id)||ids.has(p.id))throw Error('新增作品編號重複或不正確');ids.add(p.id);const {id,...patch}=p;validatePatch(patch);if(!p.title?.trim())throw Error('新增作品需要名稱');}
  const orderIds=new Set();for(const id of doc.order){if(!ids.has(id)||orderIds.has(id))throw Error('作品排序包含重複或未知作品');orderIds.add(id);}
  for(const [id,patch]of Object.entries(doc.overrides)){if(!ids.has(id))throw Error('草稿包含已不存在嘅作品，請重新載入正式內容');validatePatch(patch);}
- if(doc.library!==undefined){record(doc.library,'素材庫');if(Object.keys(doc.library).some(k=>!['items','removed'].includes(k)))throw Error('不支援嘅素材庫欄位');validateMedia(doc.library.items);if(!Array.isArray(doc.library.removed)||doc.library.removed.length>6000||new Set(doc.library.removed).size!==doc.library.removed.length||doc.library.removed.some(src=>!safeMediaUrl(src)))throw Error('素材庫移除清單不正確');}
+ if(doc.library!==undefined){record(doc.library,'素材庫');if(Object.keys(doc.library).some(k=>!['items','removed','purged'].includes(k)))throw Error('不支援嘅素材庫欄位');validateMedia(doc.library.items);for(const key of ['removed','purged']){const values=doc.library[key]??(key==='purged'?[]:null);if(!Array.isArray(values)||values.length>6000||new Set(values).size!==values.length||values.some(src=>!safeMediaUrl(src)))throw Error('素材庫移除清單不正確');}}
  if(new TextEncoder().encode(JSON.stringify(doc)).length>900000)throw Error('草稿超過 900 KB，請減少重複素材資料');
  return true;
 }
 export function editableEntries(entries,doc){
  const all=[...entries,...doc.additions.map(p=>({images:[],videos:[],graphics:[],imageInfo:{},publicationStatus:'published',...p}))];
  const positions=new Map(doc.order.map((id,i)=>[id,i]));
- const removed=new Set(doc.library?.removed||[]);
+ const removed=new Set([...(doc.library?.removed||[]),...(doc.library?.purged||[])]);
  return all.map(p=>{const result={...p,...doc.overrides[p.id]};if(result.media||removed.size){const media=orderedMedia(result.media||projectMedia(result)).filter(m=>!removed.has(m.src)).map(m=>{for(const key of ['poster','thumbnail'])if(removed.has(m[key]))delete m[key];return m;});result.videos=media.filter(m=>m.type!=='image');result.images=media.filter(m=>m.type==='image'&&m.mediaKind!=='graphic').map(m=>m.src);result.graphics=media.filter(m=>m.type==='image'&&m.mediaKind==='graphic');result.imageInfo=Object.fromEntries(media.filter(m=>m.type==='image').map(m=>[m.src,m]));}return result;}).sort((a,b)=>(positions.get(a.id)??1e6)-(positions.get(b.id)??1e6));
 }
 export function libraryInventory(entries,doc){
- const records=new Map(),remember=item=>{if(item?.src&&!records.has(item.src))records.set(item.src,{...normalizeMedia(item),projectIds:[],removed:false});};
+ const purged=new Set(doc.library?.purged||[]),records=new Map(),remember=item=>{if(item?.src&&!purged.has(item.src)&&!records.has(item.src))records.set(item.src,{...normalizeMedia(item),projectIds:[],removed:false});};
  for(const p of entries)projectMedia(p).forEach(remember);
  for(const p of doc.additions)if(p.media)p.media.forEach(remember);
  for(const patch of Object.values(doc.overrides))if(patch.media)patch.media.forEach(remember);
  for(const item of doc.library?.items||[])remember(item);
- const unfiltered={...doc,library:{items:doc.library?.items||[],removed:[]}};
+ const unfiltered={...doc,library:{items:doc.library?.items||[],removed:[],purged:[...purged]}};
  for(const p of editableEntries(entries,unfiltered))for(const item of projectMedia(p))for(const src of [item.src,item.poster,item.thumbnail]){const record=records.get(src);if(record&&!record.projectIds.includes(p.id))record.projectIds.push(p.id);}
  const removed=new Set(doc.library?.removed||[]);return [...records.values()].map(item=>({...item,removed:removed.has(item.src)}));
 }

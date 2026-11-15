@@ -22,6 +22,8 @@ const bundle='// Generated owner editor; no external runtime dependencies.\n(()=
 const name='browser-admin.'+createHash('sha256').update(bundle).digest('hex').slice(0,12)+'.js';
 await fs.writeFile(path.join(root,name),bundle);
 const file=path.join(root,'admin/index.html');let html=await fs.readFile(file,'utf8');
+const ids=new Set([...html.matchAll(/\bid=["']([^"']+)["']/g)].map(match=>match[1]));
+const source=await fs.readFile(path.join(root,'admin.mjs'),'utf8');for(const match of source.matchAll(/\$\(['"]([^'"]+)['"]\)/g))if(!ids.has(match[1]))throw Error('Owner editor markup is missing #'+match[1]);
 const marker=/<script\b[^>]*id="admin-entry"[^>]*>[\s\S]*?<\/script>/;
 if(!marker.test(html))throw Error('Missing admin entry marker');
 html=html.replace(marker,'<script id="admin-entry" defer src="../'+name+'"></script>');await fs.writeFile(file,html);

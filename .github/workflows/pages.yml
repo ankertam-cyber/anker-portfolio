@@ -11,12 +11,18 @@ jobs:
     runs-on: ubuntu-24.04
     permissions:
       contents: write
+      actions: write
     steps:
       - uses: actions/checkout@v7.0.1
-      - uses: actions/cache@v6
+      - name: Choose the active media cache
+        id: media-cache
+        run: node scripts/media-cache-key.mjs
+      - uses: actions/cache/restore@v6
+        id: restore-media
         with:
           path: .media-cache/web-v1
-          key: ${{ runner.os }}-portfolio-web-v1-${{ hashFiles('media-sources.json', 'scripts/web-video.mjs') }}
+          key: ${{ runner.os }}-portfolio-web-v1-${{ hashFiles('media-sources.json', 'scripts/web-video.mjs') }}${{ steps.media-cache.outputs.suffix }}
+          restore-keys: ${{ runner.os }}-portfolio-web-v1-${{ hashFiles('media-sources.json', 'scripts/web-video.mjs') }}
       - name: Ensure the video encoder is available
         run: |
           if ! command -v ffmpeg >/dev/null; then
@@ -27,6 +33,16 @@ jobs:
         run: node scripts/build-public.mjs
         env:
           GH_TOKEN: ${{ github.token }}
+      - uses: actions/cache/save@v6
+        if: steps.restore-media.outputs.cache-hit != 'true'
+        with:
+          path: .media-cache/web-v1
+          key: ${{ steps.restore-media.outputs.cache-primary-key }}
+      - name: Permanently remove confirmed media storage
+        run: node scripts/complete-media-purge.mjs
+        env:
+          GH_TOKEN: ${{ github.token }}
+          MEDIA_CACHE_KEY: ${{ steps.restore-media.outputs.cache-primary-key }}
       - uses: actions/upload-pages-artifact@v5.0.0
         with:
           path: _site
