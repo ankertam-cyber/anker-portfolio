@@ -157,7 +157,7 @@ export function mountSeatJourney(dialog,getMotion,{onGallery,onProject,onSelect,
     imageInfo=project.imageInfo||{};images=projectMedia(project);openProject=project.id;title.textContent=project.title;seatLabel.textContent=seat;status.textContent='Take your seat';if(films){films.hidden=!project.videos?.length;films.textContent=project.videos?.length>1?`WATCH ${project.videos.length} FILMS`:'WATCH FILM';}
     dialog.dataset.phase='entering';
     if(!dialog.open){returnFocus=trigger||document.activeElement;lockPage();dialog.showModal();}
-    dialog.focus({preventScroll:true});showImage(0);resume();
+    closeButton.focus({preventScroll:true});showImage(0);resume();
     // Browsers can throttle animation frames while decoding the first film.
     // Navigation must become available after the entrance even if no frame arrives.
     if(dialog.dataset.phase==='entering')entranceTimer=setTimeout(()=>{if(dialog.open&&dialog.dataset.phase==='entering'){elapsed=SEAT_JOURNEY_MS;paint();}},SEAT_JOURNEY_MS+100);

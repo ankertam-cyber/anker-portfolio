@@ -654,16 +654,6 @@
       "path": "media-seeds/owner-v29-repairs-006.zip",
       "size": 5901559,
       "sha256": "8792884b7f5d86c1d75ed236b7518d704e9257807721548d7d97d777c763a76e"
-    },
-    {
-      "path": "media-seeds/owner-v30-bell.zip",
-      "size": 142481,
-      "sha256": "ce804da89e598fb33689490ec1bc7d754fc39541243a2806f062c5741d92b568"
-    },
-    {
-      "path": "media-seeds/owner-v30-website.zip",
-      "size": 1114949,
-      "sha256": "1f39a89813e9e5c1eadbcd5e98ca04000438bb8d9845b9685f5c3b8eafac2c14"
     }
   ]
 }

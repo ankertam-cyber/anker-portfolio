@@ -1,5 +1,3 @@
-import {DEFAULT_CINEMA,mountCinemaDoors} from './cinema-doors.mjs';
-import {createDeskBell} from './bell-audio.mjs';
 import {ROW_SIZES,CAPACITY,pageCount,pageEntries,seatCoordinates,filterEntries,CINEMAS,cinemaEntries,cinemaPageCount,cinemaPageEntries,projectLocation} from './catalogue.mjs';
 import {projectStoryFor} from './project-stories.mjs';
 import {mountScene} from './scene.mjs?v=stage-12';
@@ -13,20 +11,20 @@ import {loadPortfolioImage} from './image-loader.mjs';
 const $=id=>document.getElementById(id);
 const viewer=mountMediaViewer($('lightbox'));
 const taglineArtwork=$('tagline-artwork');
-const state={entries:[],redirects:{},cinema:DEFAULT_CINEMA,page:0,selected:null,dialogId:null,manual:false,screenVersion:0,ticketNumber:0};
+const state={entries:[],redirects:{},cinema:'c1',page:0,selected:null,dialogId:null,manual:false,screenVersion:0,ticketNumber:0};
 const reduced=matchMedia('(prefers-reduced-motion: reduce)');
-let savedMotion;try{savedMotion=sessionStorage.getItem('anker-motion-v30');}catch{}
+let savedMotion;try{savedMotion=localStorage.getItem('anker-motion');}catch{}
 let motion=savedMotion? savedMotion==='on':!reduced.matches;
 let openingTransition=null;
 let seatJourney=null;
 let seatPrompt=null;
 const getMotion=()=>motion;
 const scene=mountScene($('scene-canvas'),'assets/media/character-master.png',getMotion,{still:true});
-// The accepted sparkle treatment is always present, independently of camera motion.
-const headline=mountTagline($('tagline-lights'),taglineArtwork,()=>true);
-function setMotion(value){motion=value;document.documentElement.dataset.motion=motion?'on':'off';$('motion-toggle').setAttribute('aria-pressed',String(!motion));$('motion-toggle').textContent=motion?'Reduce movement':'Restore movement';scene.setMotion();headline.setMotion();openingTransition?.refresh();seatJourney?.setMotion();document.querySelectorAll('img[data-animation-source]').forEach(img=>{img.src=motion?img.dataset.animationSource:img.dataset.animationPoster;});}
+// The tagline starts by itself, independently of saved camera-motion preferences.
+mountTagline($('tagline-lights'),taglineArtwork);
+function setMotion(value){motion=value;document.documentElement.dataset.motion=motion?'on':'off';$('motion-toggle').setAttribute('aria-pressed',String(!motion));$('motion-toggle').textContent=motion?'Reduce movement':'Restore movement';scene.setMotion();openingTransition?.refresh();seatJourney?.setMotion();document.querySelectorAll('img[data-animation-source]').forEach(img=>{img.src=motion?img.dataset.animationSource:img.dataset.animationPoster;});}
 setMotion(motion);
-function rememberMotion(){savedMotion=motion?'on':'off';try{sessionStorage.setItem('anker-motion-v30',savedMotion);}catch{}}
+function rememberMotion(){savedMotion=motion?'on':'off';try{localStorage.setItem('anker-motion',savedMotion);}catch{}}
 $('motion-toggle').addEventListener('click',()=>{setMotion(!motion);rememberMotion();});
 reduced.addEventListener('change',()=>{if(!savedMotion)setMotion(!reduced.matches);});
 
@@ -63,7 +61,7 @@ function buildSeats(){
     }frag.append(rowEl);
   });
   $('cinema-map').replaceChildren(frag);const cinema=CINEMAS.find(c=>c.id===state.cinema);$('cinema-map').setAttribute('aria-label',`Cinema ${cinema.number}, page ${state.page+1} project seats`);
-  document.querySelectorAll('[data-cinema-count]').forEach(label=>{label.textContent=cinemaEntries(state.entries,label.dataset.cinemaCount).length+' PROJECTS';});$('cinema-number').textContent='CINEMA '+cinema.number;$('cinema-heading').textContent=cinema.title;document.querySelectorAll('[data-cinema-category]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.cinemaCategory===state.cinema)));
+  $('cinema-number').textContent='CINEMA '+cinema.number;$('cinema-heading').textContent=cinema.title;document.querySelectorAll('[data-cinema-category]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.cinemaCategory===state.cinema)));
   $('cinema-page').textContent=String(state.page+1).padStart(2,'0')+' / '+String(cinemaPageCount(state.entries,state.cinema)).padStart(2,'0');
   $('cinema-prev').disabled=state.page===0;$('cinema-next').disabled=state.page>=cinemaPageCount(state.entries,state.cinema)-1;
   openingTransition.refresh();
@@ -103,10 +101,7 @@ async function changeCinema(delta){
   await later(180);state.page=target;const entry=cinemaPageEntries(state.entries,state.cinema,state.page)[0];state.selected=entry?.id||null;buildSeats();if(entry)selectProject(entry.id);map.classList.remove('changing');
 }
 $('cinema-prev').addEventListener('click',()=>changeCinema(-1));$('cinema-next').addEventListener('click',()=>changeCinema(1));
-mountCinemaDoors([...document.querySelectorAll('[data-cinema-category]')],{getMotion,onEnter:cinema=>{
-  seatPrompt?.hide();state.cinema=cinema;state.page=0;state.manual=true;
-  const project=cinemaEntries(state.entries,cinema)[0];state.selected=project?.id||null;buildSeats();if(project)selectProject(project.id);
-},afterEnter:()=>document.querySelector('.screen-shell').scrollIntoView({behavior:motion?'smooth':'instant',block:'start'})});
+document.querySelectorAll('[data-cinema-category]').forEach(button=>button.addEventListener('click',()=>{const cinema=button.dataset.cinemaCategory;if(cinema===state.cinema)return;seatPrompt?.hide();state.cinema=cinema;state.page=0;state.manual=true;const project=cinemaEntries(state.entries,cinema)[0];state.selected=project?.id||null;buildSeats();if(project)selectProject(project.id);}));
 seatJourney=mountSeatJourney($('seat-journey'),getMotion,{
   onGallery:({media,index,title,id})=>viewer.open({media,index,title,onProject:()=>{seatJourney.close();openProject(id);}},{fullscreen:true}),
   onProject:id=>openProject(id),
@@ -227,9 +222,36 @@ $('project-previous').addEventListener('click',()=>adjacentProject(-1));$('proje
 function syncRoute(){const match=location.hash.match(/^#project=(.+)$/);if(match){const requested=decodeURIComponent(match[1]),id=state.redirects[requested]||requested;if(state.entries.some(p=>p.id===id)){if(id!==requested)history.replaceState({project:id},'',`#project=${encodeURIComponent(id)}`);openProject(id,{push:false});}else history.replaceState(null,'','#work');}else if(dialog.open)closeProject({route:false});}
 addEventListener('popstate',syncRoute);
 
-// A real bell clip starts only after a direct tap. Web Audio is a recovery path.
-const bellSound=createDeskBell({audio:$('desk-bell-audio'),contextFactory:()=>{const Type=window.AudioContext||window.webkitAudioContext;return Type?new Type():null;},onState:value=>{$('desk-bell').dataset.sound=value;}});
-$('desk-bell').addEventListener('click',()=>{playMicroAnimation($('desk-bell'),'ringing');void bellSound.ring().then(playing=>{$('bell-message').textContent=playing?'Hello! Drop me a line — let’s talk ideas.':'Tap again to enable sound. Check your device volume.';});});
+// Sound is generated only after a direct user tap/click, for mobile autoplay compatibility.
+// No downloaded audio file or extra network request is necessary.
+let bellAudioContext=null;
+function playDeskBellSound(){
+  const AudioContextClass=window.AudioContext||window.webkitAudioContext;
+  if(!AudioContextClass)return;
+  try{
+    const audio=bellAudioContext||(bellAudioContext=new AudioContextClass());
+    if(audio.state==='suspended')void audio.resume();
+    const start=audio.currentTime+0.025;
+    const partials=[[1046.5,0.64,1.5],[1318.5,0.25,1.25],[1864.7,0.16,1.02],[2637,0.09,0.8]];
+    const master=audio.createGain();
+    master.gain.setValueAtTime(0.0001,start);
+    master.gain.exponentialRampToValueAtTime(0.16,start+0.015);
+    master.gain.exponentialRampToValueAtTime(0.0001,start+1.6);
+    master.connect(audio.destination);
+    partials.forEach(([pitch,volume,seconds])=>{
+      const osc=audio.createOscillator(),gain=audio.createGain();
+      osc.type='sine';
+      osc.frequency.setValueAtTime(pitch,start);
+      osc.frequency.exponentialRampToValueAtTime(pitch*0.998,start+seconds);
+      gain.gain.setValueAtTime(Math.max(volume,0.0001),start);
+      gain.gain.exponentialRampToValueAtTime(0.0001,start+seconds);
+      osc.connect(gain);gain.connect(master);
+      osc.start(start);osc.stop(start+seconds+0.02);
+    });
+    window.setTimeout(()=>master.disconnect(),1900);
+  }catch(error){console.warn('Desk bell audio unavailable',error);}
+}
+$('desk-bell').addEventListener('click',()=>{playDeskBellSound();playMicroAnimation($('desk-bell'),'ringing');$('bell-message').textContent='Hello! Drop me a line — let’s talk ideas.';});
 $('copyright-year').textContent=String(new Date().getFullYear());
 document.addEventListener('play',event=>{if(event.target.tagName==='VIDEO')document.querySelectorAll('video').forEach(video=>{if(video!==event.target)video.pause();});},true);
 document.addEventListener('visibilitychange',()=>{if(document.hidden)document.querySelectorAll('video').forEach(video=>video.pause());});

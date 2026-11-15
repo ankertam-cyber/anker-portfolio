@@ -1,10 +1,8 @@
 {
-  "entry": "browser-app.bc52382c2414.js",
-  "sha256": "bc52382c2414a2b22d03c5eae006a3b91fb45d911e9b7d3ed70b9d9d46aae279",
+  "entry": "browser-app.99b79667c772.js",
+  "sha256": "99b79667c77232bd06fcf27c789baa1278b30b179581bf2667ba343b85e8a98b",
   "modules": [
     "app.mjs",
-    "cinema-doors.mjs",
-    "bell-audio.mjs",
     "catalogue.mjs",
     "project-stories.mjs",
     "scene.mjs",

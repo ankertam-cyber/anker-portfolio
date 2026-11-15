@@ -65,6 +65,10 @@ async function worker(){while(cursor<manifest.videos.length){const item=manifest
 }}
 await Promise.all([worker(),worker(),worker()]);
 const published=JSON.parse(await fs.readFile(path.join(output,'projects.json'),'utf8')),byPath=new Map(manifest.videos.map(v=>[v.path,v]));
+// Keep original archive filenames in the source audit, without emoji in public metadata.
+for(const project of published.entries)for(const film of project.videos||[]){
+ if(film.sourceName)film.sourceName=film.sourceName.replace(/[\p{Extended_Pictographic}\uFE0F\u200D]/gu,'').trim();
+}
 for(const p of published.entries)for(const film of p.videos){if(film.type==='vimeo')continue;const source=byPath.get(film.src);if(!source)throw Error('Film is missing from the archive manifest');film.src='https://github.com/'+repository+'/releases/download/'+tag+'/'+source.archiveName;}
 for(const name of ['projects.v27.json','projects.v28.json'])await fs.writeFile(path.join(output,name),JSON.stringify(published,null,2));
 // Old cached browser entries understand native MP4 only; keep their catalogue
