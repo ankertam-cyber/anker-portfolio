@@ -201,7 +201,36 @@ $('project-previous').addEventListener('click',()=>adjacentProject(-1));$('proje
 function syncRoute(){const match=location.hash.match(/^#project=(.+)$/);if(match){const requested=decodeURIComponent(match[1]),id=state.redirects[requested]||requested;if(state.entries.some(p=>p.id===id)){if(id!==requested)history.replaceState({project:id},'',`#project=${encodeURIComponent(id)}`);openProject(id,{push:false});}else history.replaceState(null,'','#work');}else if(dialog.open)closeProject({route:false});}
 addEventListener('popstate',syncRoute);
 
-$('desk-bell').addEventListener('click',()=>{playMicroAnimation($('desk-bell'),'ringing');$('bell-message').textContent='Hello! Drop me a line — let’s talk ideas.';});
+// Sound is generated only after a direct user tap/click, for mobile autoplay compatibility.
+// No downloaded audio file or extra network request is necessary.
+let bellAudioContext=null;
+function playDeskBellSound(){
+  const AudioContextClass=window.AudioContext||window.webkitAudioContext;
+  if(!AudioContextClass)return;
+  try{
+    const audio=bellAudioContext||(bellAudioContext=new AudioContextClass());
+    if(audio.state==='suspended')void audio.resume();
+    const start=audio.currentTime+0.025;
+    const partials=[[1046.5,0.64,1.5],[1318.5,0.25,1.25],[1864.7,0.16,1.02],[2637,0.09,0.8]];
+    const master=audio.createGain();
+    master.gain.setValueAtTime(0.0001,start);
+    master.gain.exponentialRampToValueAtTime(0.16,start+0.015);
+    master.gain.exponentialRampToValueAtTime(0.0001,start+1.6);
+    master.connect(audio.destination);
+    partials.forEach(([pitch,volume,seconds])=>{
+      const osc=audio.createOscillator(),gain=audio.createGain();
+      osc.type='sine';
+      osc.frequency.setValueAtTime(pitch,start);
+      osc.frequency.exponentialRampToValueAtTime(pitch*0.998,start+seconds);
+      gain.gain.setValueAtTime(Math.max(volume,0.0001),start);
+      gain.gain.exponentialRampToValueAtTime(0.0001,start+seconds);
+      osc.connect(gain);gain.connect(master);
+      osc.start(start);osc.stop(start+seconds+0.02);
+    });
+    window.setTimeout(()=>master.disconnect(),1900);
+  }catch(error){console.warn('Desk bell audio unavailable',error);}
+}
+$('desk-bell').addEventListener('click',()=>{playDeskBellSound();playMicroAnimation($('desk-bell'),'ringing');$('bell-message').textContent='Hello! Drop me a line — let’s talk ideas.';});
 $('copyright-year').textContent=String(new Date().getFullYear());
 document.addEventListener('play',event=>{if(event.target.tagName==='VIDEO')document.querySelectorAll('video').forEach(video=>{if(video!==event.target)video.pause();});},true);
 document.addEventListener('visibilitychange',()=>{if(document.hidden)document.querySelectorAll('video').forEach(video=>video.pause());});
