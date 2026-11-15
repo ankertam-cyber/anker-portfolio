@@ -24,6 +24,8 @@ The editor is a static client; viewing its public URL grants no publication righ
 
 ### Batch media and library
 
+Each native or Vimeo film has **預覽播放** in the project editor and shared library. The modal shows the clip label and filename, native timeline/fullscreen controls, and previous/next film buttons. Opening a preview attempts playback from that user action; browser restrictions retain a manual play control. Switching clips, closing the modal, or leaving the page stops playback; a hidden tab pauses it. Previewing does not edit the draft or select media.
+
 Long-press a thumbnail or use its checkbox to select media. Shift-click selects a range. The media toolbar supports selecting all photos, selecting an entire project, moving a selection up/down, moving to the start/end of its category, or inserting the group at a numbered position. Selection order and the video/photo/design categories are preserved. Thumbnail and detail views share the same edits; each batch edit is one undo step.
 
 Every removal asks for confirmation, shows the selected count and thumbnails, and offers project-only removal or removal to the shared library recycle area. Project-only removal retains reusable library records and affects only that project's references. Library removal hides every project use and poster/thumbnail reference, reports affected projects and can be restored from the library tab. It does not delete GitHub media packs, release videos or Drive originals; Git history and source archives remain intact. Publication review explicitly identifies library changes as retaining originals.

@@ -3,7 +3,7 @@ import {moveMediaSelection,selectionDescription,createLongPress} from './media-a
 
 const make=(tag,cls='',text)=>{const el=document.createElement(tag);el.className=cls;if(text!==undefined)el.textContent=text;return el;};
 const action=(text,handler,cls='')=>{const button=make('button',cls,text);button.type='button';button.addEventListener('click',handler);return button;};
-export function mountMediaManager(container,project,{state,site,getProject,onChange,onRemove,onNotice}={}){
+export function mountMediaManager(container,project,{state,site,getProject,onChange,onRemove,onNotice,onPreview}={}){
  const items=mediaForEditor(project),available=new Set(items.map(item=>item.src));
  if(state.projectId!==project.id){state.projectId=project.id;state.selected=new Set();state.anchor=null;state.mode=false;}
  state.selected=new Set([...state.selected].filter(src=>available.has(src)));state.layout??='grid';
@@ -43,6 +43,7 @@ export function mountMediaManager(container,project,{state,site,getProject,onCha
    const preview=make('div','media-preview'),check=make('input','media-select');check.type='checkbox';check.setAttribute('aria-label','選取素材 '+(index+1));check.addEventListener('click',event=>{event.stopPropagation();toggle(item.src,event,check.checked);});preview.append(check);
    const source=item.type==='image'?item.src:item.poster;
    if(source&&safeMediaUrl(source)){const image=make('img','media-thumb');image.src=new URL(source,site).href;image.alt=item.label||`素材 ${index+1}`;image.loading='lazy';image.draggable=false;image.addEventListener('contextmenu',event=>event.preventDefault());preview.append(image);}else preview.append(make('div','media-thumb media-placeholder',item.type==='image'?'IMAGE':'FILM'));
+   if(item.type!=='image'&&onPreview){const play=action('預覽播放',event=>{event.stopPropagation();onPreview(item,event.currentTarget);},'media-preview-play');play.setAttribute('aria-label','預覽影片 '+(index+1)+(item.label?' · '+item.label:''));preview.append(play);}
    row.append(preview);const info=make('div','media-fields');info.append(make('p','small',`${String(index+1).padStart(2,'0')} / ${item.type==='vimeo'?'VIMEO':['FILM','PHOTO','DESIGN'][rank]}`));
    const label=make('input','media-name');label.value=item.label||item.alt||'';label.placeholder='素材名稱／說明';label.setAttribute('aria-label','素材 '+(index+1)+' 名稱');label.addEventListener('input',()=>{const all=mediaForEditor(getProject());const live=all.find(value=>value.src===item.src);if(!live)return;live.label=label.value;if(item.type==='image')live.alt=label.value;onChange(all,{render:false,list:false});});info.append(label);
    const url=make('input');url.value=item.src;url.setAttribute('aria-label','素材 '+(index+1)+' 網址');url.addEventListener('change',()=>{try{const value=item.type==='vimeo'?normalizeVimeoInput(url.value):url.value.trim();if(!safeMediaUrl(value))throw Error('請用有效 HTTPS 網址或現有 assets 路徑');const all=mediaForEditor(getProject()),live=all.find(value=>value.src===item.src);if(!live)return;live.src=value;if(state.selected.delete(item.src))state.selected.add(live.src);onChange(all);}catch(error){url.value=item.src;onNotice(error.message,true);}});info.append(url);

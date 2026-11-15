@@ -1,4 +1,5 @@
-import {mountMediaManager} from './media-manager.mjs';
+import {mountAdminVideoPreview} from './admin-video-preview.mjs';
+import {mountMediaManager} from './media-manager.mjs?v=video1';
 import {rememberLibrary,removeProjectMedia,removeLibraryMedia,restoreLibraryMedia,selectionDescription,createLongPress} from './media-actions.mjs';
 import {DRAFT_KEY,PROFILE_DEFAULTS,emptyContent,clone,canonical,validateContent,applyContent,editableEntries,mediaForEditor,orderedMedia,mediaRank,normalizeVimeoInput,normalizeStory,safeMediaUrl,changeSummary,libraryInventory,normalizeMedia} from './content-model.mjs?v=bulk1';
 import {projectStoryFor} from './project-stories.mjs';
@@ -6,6 +7,7 @@ import {createGitHubPublisher} from './github-publisher.mjs';
 
 const $=id=>document.getElementById(id),SITE=new URL('../',location.href),PENDING_KEY='anker-portfolio-pending-v1';
 const publisher=createGitHubPublisher();
+const videoPreview=mountAdminVideoPreview($('video-preview-dialog'),{site:SITE});
 let entries=[],published=emptyContent(),draft=emptyContent(),selected='',view='projects',ready=false,busy=false,storageOK=true,stale=false,undo=[],redo=[],dragProject='',dragMedia=-1,fieldId=0,monitorId=0;
 const node=(tag,cls='',copy)=>{const el=document.createElement(tag);if(cls)el.className=cls;if(copy!==undefined)el.textContent=copy;return el;};
 const currentEntries=()=>editableEntries(entries,draft);
@@ -92,7 +94,7 @@ function renderEditor(){
  const restore=node('div','section-title');restore.append(node('p','small','原有作品同素材檔案會保留。'),button('還原呢個作品',async()=>{if(await ask('還原呢個作品嘅所有草稿修改？其他作品唔受影響。'))mutate(()=>delete draft.overrides[p.id]);}));editor.append(restore);
  if(draft.additions.some(x=>x.id===p.id))editor.append(button('移除呢個新增作品',async()=>{if(await ask('從草稿移除呢個新增作品？可以用「復原」還原。'))mutate(()=>{draft.additions=draft.additions.filter(x=>x.id!==p.id);delete draft.overrides[p.id];draft.order=draft.order.filter(id=>id!==p.id);selected=currentEntries()[0]?.id||'';});},'text-action'));
 }
-function renderMedia(list,p){mountMediaManager(list,p,{state:mediaUI,site:SITE,getProject:()=>projectById(p.id),onChange:(items,options={})=>{if(options.uiOnly){renderEditor();return;}mutate(()=>patchProject(p.id,'media',items),{list:false,...options});},onRemove:items=>removeMedia(items,p.id),onNotice:notice});}
+function renderMedia(list,p){mountMediaManager(list,p,{state:mediaUI,site:SITE,getProject:()=>projectById(p.id),onChange:(items,options={})=>{if(options.uiOnly){renderEditor();return;}mutate(()=>patchProject(p.id,'media',items),{list:false,...options});},onRemove:items=>removeMedia(items,p.id),onNotice:notice,onPreview:(item,trigger)=>videoPreview.open(mediaForEditor(projectById(p.id)),{src:item.src,context:projectById(p.id).title,trigger})});}
 function askMediaRemoval(items,projectId,libraryOnly=false){
  const inventory=libraryInventory(entries,draft),sources=new Set(items.map(item=>item.src)),affected=new Set(inventory.filter(item=>sources.has(item.src)).flatMap(item=>item.projectIds));
  $('remove-media-summary').textContent='已選 '+selectionDescription(items)+'。請先選擇素材庫及原檔嘅處理方式，再確認。';
@@ -132,8 +134,9 @@ function renderLibrary(){
    const card=node('article','library-card');card.tabIndex=0;card.dataset.src=item.src;const check=node('input','media-select');check.type='checkbox';check.setAttribute('aria-label','選取素材庫 '+(item.label||item.src));
    const toggle=()=>{if(libraryUI.selected.has(item.src))libraryUI.selected.delete(item.src);else libraryUI.selected.add(item.src);refresh();};check.addEventListener('click',event=>{event.stopPropagation();toggle();});card.append(check);
    const src=item.type==='image'?item.src:item.poster;if(src&&safeMediaUrl(src)){const image=node('img','library-thumb');image.src=new URL(src,SITE).href;image.alt=item.label||'素材';image.loading='lazy';image.draggable=false;image.addEventListener('contextmenu',event=>event.preventDefault());card.append(image);}else card.append(node('div','library-thumb media-placeholder','FILM'));
+   if(item.type!=='image'){const play=button('預覽播放',event=>{event.stopPropagation();videoPreview.open(filtered,{src:item.src,context:'素材庫',trigger:event.currentTarget});},'library-preview-play');play.setAttribute('aria-label','預覽素材庫影片 '+(item.label||item.src));card.append(play);}
    card.append(node('p','library-label',item.label||item.src.split('/').at(-1)),node('p','small',item.removed?'回收區 · 原檔保留':item.projectIds.length?'由 '+item.projectIds.length+' 個作品使用':'暫時冇作品使用'));
-   const gesture=createLongPress({onSelect:()=>{libraryUI.selected.add(item.src);refresh();}});card.addEventListener('pointerdown',event=>{if(event.target!==check)gesture.start(event);});card.addEventListener('pointermove',gesture.move);card.addEventListener('pointerup',gesture.cancel);card.addEventListener('pointercancel',gesture.cancel);card.addEventListener('click',event=>{if(event.target!==check&&!gesture.suppressClick())toggle();});card.addEventListener('keydown',event=>{if(event.target===card&&(event.key===' '||event.key==='Enter')){event.preventDefault();toggle();}});grid.append(card);
+   const gesture=createLongPress({onSelect:()=>{libraryUI.selected.add(item.src);refresh();}});card.addEventListener('pointerdown',event=>{if(!event.target.closest('input,button,label'))gesture.start(event);});card.addEventListener('pointermove',gesture.move);card.addEventListener('pointerup',gesture.cancel);card.addEventListener('pointercancel',gesture.cancel);card.addEventListener('click',event=>{if(!event.target.closest('input,button,label')&&!gesture.suppressClick())toggle();});card.addEventListener('keydown',event=>{if(event.target===card&&(event.key===' '||event.key==='Enter')){event.preventDefault();toggle();}});grid.append(card);
   }
   if(!filtered.length)grid.append(node('p','help-box','呢個範圍暫時未有素材。'));
   pages.replaceChildren();const previous=button('上一頁',()=>{libraryUI.page--;renderCards();}),next=button('下一頁',()=>{libraryUI.page++;renderCards();});previous.disabled=libraryUI.page===0;next.disabled=libraryUI.page>=pageCount-1;pages.append(previous,node('span','small',(libraryUI.page+1)+' / '+pageCount),next);refresh();
