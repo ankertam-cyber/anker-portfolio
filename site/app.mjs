@@ -1,4 +1,5 @@
 import {ROW_SIZES,CAPACITY,pageCount,pageEntries,seatCoordinates,filterEntries} from './catalogue.mjs';
+import {projectStoryFor} from './project-stories.mjs';
 import {mountScene} from './scene.mjs?v=stage-12';
 import {mountTagline} from './tagline-motion.mjs?v=live-16';
 import {mountOpeningTransition} from './opening-motion.mjs?v=stage-12';
