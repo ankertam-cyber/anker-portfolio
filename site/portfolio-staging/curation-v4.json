@@ -728,65 +728,24 @@
       "cinemaOrder": 64
     },
     {
-      "editorId": "o20",
-      "title": "Mercedes-Benz - CLA Car City Promotion",
-      "decision": "review",
-      "cinema": "c2",
-      "source": "github-current",
-      "githubProjectId": "1VvuqxdUW2jjzA5e_ndIebagvWs795-I2",
-      "githubCurrentTitle": "MBHK - CLA Car City Promotion",
-      "group": "existing-list",
-      "cinemaOrder": 1
-    },
-    {
-      "editorId": "p3",
-      "title": "HOFEX - Le Cordon Bleu",
-      "decision": "keep",
-      "cinema": "c2",
-      "source": "google-drive-2021-previous",
-      "sourceFileCount": 3,
-      "group": "older-candidates",
-      "cinemaOrder": 2
-    },
-    {
-      "editorId": "p14",
-      "title": "Eco Expo Asia – HK Pavilion",
-      "decision": "keep",
-      "cinema": "c2",
-      "source": "google-drive-2021-previous",
-      "sourceFileCount": 4,
-      "group": "older-candidates",
-      "cinemaOrder": 3
-    },
-    {
-      "editorId": "p23",
-      "title": "Mercedes-Benz – GLB Launch",
-      "decision": "keep",
-      "cinema": "c2",
-      "source": "google-drive-2021-previous",
-      "sourceFileCount": 5,
-      "group": "older-candidates",
-      "cinemaOrder": 4
-    },
-    {
-      "editorId": "o22",
-      "title": "Merry Pearl Dreamland (Oyster BB) Pitching",
-      "decision": "review",
-      "cinema": "c2",
-      "source": "github-current",
-      "githubProjectId": "wix-35f86cde-dd04-4071-9dea-a3d755da871e",
-      "githubCurrentTitle": "Merry Pearl Dreamland (Oyster BB) Pitching",
-      "group": "existing-list",
-      "cinemaOrder": 5
-    },
-    {
       "editorId": "graphics",
       "title": "Graphics – Independent Work",
       "decision": "keep",
       "cinema": "c2",
       "source": "google-drive-graphics",
       "group": "collection",
-      "cinemaOrder": 6
+      "cinemaOrder": 1
+    },
+    {
+      "editorId": "o22",
+      "title": "mostown - Merry Pearl Dreamland",
+      "decision": "review",
+      "cinema": "c2",
+      "source": "github-current",
+      "githubProjectId": "wix-35f86cde-dd04-4071-9dea-a3d755da871e",
+      "githubCurrentTitle": "Merry Pearl Dreamland (Oyster BB) Pitching",
+      "group": "existing-list",
+      "cinemaOrder": 2
     },
     {
       "editorId": "website",
@@ -796,6 +755,47 @@
       "source": "google-drive-website",
       "sourceFileCount": 6,
       "group": "collection",
+      "cinemaOrder": 3
+    },
+    {
+      "editorId": "o20",
+      "title": "Mercedes-Benz - CLA Car City Promotion",
+      "decision": "review",
+      "cinema": "c2",
+      "source": "github-current",
+      "githubProjectId": "1VvuqxdUW2jjzA5e_ndIebagvWs795-I2",
+      "githubCurrentTitle": "MBHK - CLA Car City Promotion",
+      "group": "existing-list",
+      "cinemaOrder": 4
+    },
+    {
+      "editorId": "p3",
+      "title": "HOFEX - Le Cordon Bleu",
+      "decision": "keep",
+      "cinema": "c2",
+      "source": "google-drive-2021-previous",
+      "sourceFileCount": 3,
+      "group": "older-candidates",
+      "cinemaOrder": 5
+    },
+    {
+      "editorId": "p14",
+      "title": "Eco Expo Asia – HK Pavilion",
+      "decision": "keep",
+      "cinema": "c2",
+      "source": "google-drive-2021-previous",
+      "sourceFileCount": 4,
+      "group": "older-candidates",
+      "cinemaOrder": 6
+    },
+    {
+      "editorId": "p23",
+      "title": "Mercedes-Benz – GLB Launch",
+      "decision": "keep",
+      "cinema": "c2",
+      "source": "google-drive-2021-previous",
+      "sourceFileCount": 5,
+      "group": "older-candidates",
       "cinemaOrder": 7
     },
     {
@@ -982,6 +982,7 @@
   "notes": [
     "Reconfirmed by owner: Cinema 02 order CLA, HOFEX, Eco Expo, GLB, Merry Pearl, Graphics, Website.",
     "Christmas Kids Festival and The Land of Luck changed to Review. Beauty Peony and HOFEX titles updated.",
-    "Cinema 02 may be rearranged again; never deploy or delete source files without explicit approval."
+    "Cinema 02 may be rearranged again; never deploy or delete source files without explicit approval.",
+    "Latest Cinema 02 owner-confirmed order: 1 Graphics; 2 mostown - Merry Pearl Dreamland (Review); 3 agnès b. Website; 4 Mercedes-Benz CLA Car City Promotion (Review); 5 HOFEX Le Cordon Bleu; 6 Eco Expo HK Pavilion; 7 Mercedes-Benz GLB Launch. This supersedes earlier Cinema 02 ordering notes; no live deployment."
   ]
 }
