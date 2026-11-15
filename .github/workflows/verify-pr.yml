@@ -1,0 +1,19 @@
+name: Verify portfolio changes
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Generate browser bundle
+        run: node scripts/build-browser.mjs
+      - name: Run portfolio tests
+        run: node --test tests/*.test.mjs
