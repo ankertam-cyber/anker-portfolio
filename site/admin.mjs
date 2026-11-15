@@ -12,7 +12,7 @@ const $=id=>document.getElementById(id),SITE=new URL('../',location.href),PENDIN
 const publisher=createGitHubPublisher();
 const videoPreview=mountAdminVideoPreview($('video-preview-dialog'),{site:SITE});
 const photoDuplicates=mountPhotoDuplicateManager($('duplicate-dialog'),{site:SITE,getProject:id=>projectById(id),getItems:(scope,id)=>{const names=new Map(currentEntries().map(p=>[p.id,p.title])),inventory=libraryInventory(entries,draft),bySource=new Map(inventory.map(item=>[item.src,item]));const items=scope==='project'?mediaForEditor(projectById(id)||{}):inventory.filter(item=>!item.removed);return items.map(item=>({...item,projectNames:(bySource.get(item.src)?.projectIds||[]).map(id=>names.get(id)).filter(Boolean)}));},onRemove:removeMedia});
-let entries=[],published=emptyContent(),draft=emptyContent(),selected='',view='projects',ready=false,busy=false,storageOK=true,stale=false,undo=[],redo=[],dragProject='',dragMedia=-1,fieldId=0,monitorId=0;
+let entries=[],published=emptyContent(),draft=emptyContent(),selected='',view='projects',ready=false,loadError=false,busy=false,storageOK=true,stale=false,undo=[],redo=[],dragProject='',dragMedia=-1,fieldId=0,monitorId=0;
 const node=(tag,cls='',copy)=>{const el=document.createElement(tag);if(cls)el.className=cls;if(copy!==undefined)el.textContent=copy;return el;};
 const currentEntries=()=>editableEntries(entries,draft);
 const projectById=id=>currentEntries().find(p=>p.id===id);
@@ -35,12 +35,12 @@ function updateToolbar(){
  $('undo').disabled=!undo.length||busy||stale;$('redo').disabled=!redo.length||busy||stale;
  $('publish-open').disabled=!ready||busy||!changed||stale;
  $('project-search').disabled=$('project-filter').disabled=!ready||busy;
- $('connect-open').disabled=busy;
- $('editor').inert=busy||stale;$('project-list').inert=busy;$('projects-tab').disabled=$('profile-tab').disabled=$('library-tab').disabled=busy;
+ $('connect-open').disabled=!ready||busy;
+ $('editor').inert=busy||stale;$('project-list').inert=busy;$('projects-tab').disabled=$('profile-tab').disabled=$('library-tab').disabled=!ready||busy;
  if(stale)for(const id of ['preview','add-project','import-draft'])$(id).disabled=true;
  $('office').setAttribute('aria-busy',String(!ready||busy));
  $('connection-status').textContent=publisher.connected()?'GitHub 已連接':'GitHub 未連接';$('connection-status').classList.toggle('connected',publisher.connected());
- $('draft-status').textContent=ownerDraftStatus({ready,busy,stale,changed,storageOK});
+ $('draft-status').textContent=ownerDraftStatus({ready,busy,stale,changed,storageOK,loadError});
 }
 function mutate(action,{render=true,list=true}={}){
  if(busy||stale)return;const before=clone(draft);action();if(canonical(before)===canonical(draft))return;
@@ -162,7 +162,7 @@ async function initialize(){
  try{const data=await readPublished();entries=data.entries;published=data.content;draft=clone(published);let saved=null;try{saved=JSON.parse(localStorage.getItem(DRAFT_KEY)||'null');}catch{notice('未能讀取舊草稿。舊資料未被覆寫；你可以先下載現有內容備份。',true);stale=true;}
   if(saved?.draft){const restored=restoreOwnerDraft(saved,published,entries);draft=restored.draft;if(restored.state==='merged'){save();notice('已合併正式網站確認嘅重複相片清理；你未發佈嘅文字、排序同其他草稿修改保留。');}else if(restored.state==='refreshed'){save();notice('已讀取最新正式內容；原有草稿冇未發佈改動。');}else if(restored.state==='conflict'){stale=true;notice('內容已讀取，但呢份本機草稿係按較舊版本編輯。請先下載草稿備份，再撳「重新載入正式內容」，避免覆蓋較新更新。',true);}else if(restored.state==='restored')notice('已還原你上次喺呢個瀏覽器未發佈嘅草稿。');}
   ready=true;selected=currentEntries()[0]?.id||'';renderView();$('office').dataset.loadState='ready';dispatchEvent(new Event('anker-admin-ready'));let pending=null;try{pending=JSON.parse(localStorage.getItem(PENDING_KEY)||'null');}catch{}if(pending?.sha)void monitorDeployment(pending);
- }catch(error){notice(error.message,true);$('draft-status').textContent='網站內容未能載入';$('office').dataset.loadState='error';$('office').setAttribute('aria-busy','false');dispatchEvent(new CustomEvent('anker-admin-error',{detail:error.message+'。原有草稿仍保留。'}));}
+ }catch(error){loadError=true;updateToolbar();notice(error.message,true);$('draft-status').textContent='網站內容未能載入';$('office').dataset.loadState='error';$('office').setAttribute('aria-busy','false');dispatchEvent(new CustomEvent('anker-admin-error',{detail:error.message+'。原有草稿仍保留。'}));}
 }
 function review(){try{assertDraft();if(!publisher.connected()){notice('首次發佈需要先連接 GitHub。你嘅草稿已保留。');$('connect-dialog').showModal();return;}const changes=changeSummary(published,draft,entries);if(!changes.length)throw Error('未有需要發佈嘅內容改動');$('review-list').replaceChildren(...changes.map(copy=>node('li','',copy)));$('publish-error').hidden=true;$('review-dialog').showModal();}catch(error){notice(error.message,true);}}
 async function publish(){
@@ -198,4 +198,4 @@ $('reload-published').addEventListener('click',async()=>{if(!await ask('重新�
 $('preview').addEventListener('click',preview);$('review-preview').addEventListener('click',preview);$('publish-open').addEventListener('click',review);$('publish-confirm').addEventListener('click',()=>void publish());
 addEventListener('storage',event=>{if(event.key!==DRAFT_KEY||!ready||busy)return;try{const incoming=JSON.parse(event.newValue||'null');if(incoming?.baseline===canonical(published)&&canonical(incoming.draft)===canonical(draft))return;}catch{}stale=true;notice('另一個後台分頁更新咗草稿。為免互相覆蓋，呢個分頁已停止儲存；請先下載需要保留嘅備份，再重新整理。',true);updateToolbar();$('editor').inert=true;});
 addEventListener('pagehide',()=>publisher.disconnect());
-void initialize();
+updateToolbar();void initialize();

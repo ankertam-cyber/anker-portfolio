@@ -4,6 +4,7 @@
  const failed=message=>{
   if(office.dataset.loadState==='ready')return;
   office.dataset.loadState='error';office.setAttribute('aria-busy','false');status.textContent='網站內容未能載入';
+  for(const control of document.querySelectorAll('#office button,#office input,#office select,#connect-open'))control.disabled=true;
   const box=document.createElement('div');box.className='empty-state';
   const copy=document.createElement('p');copy.className='error';copy.textContent=message;
   const retry=document.createElement('button');retry.textContent='重新載入後台';retry.addEventListener('click',()=>location.reload());box.append(copy,retry);

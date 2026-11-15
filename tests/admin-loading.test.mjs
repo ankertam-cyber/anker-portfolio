@@ -32,6 +32,11 @@ test('an untouched old draft safely refreshes to the latest published version',(
  const result=restoreOwnerDraft({baseline:canonical(old),draft:old},latest,entries);assert.equal(result.state,'refreshed');assert.deepEqual(result.draft,latest);assert.notEqual(result.draft,latest);
  const submitted=restoreOwnerDraft({baseline:canonical(old),draft:latest},latest,entries);assert.equal(submitted.state,'refreshed');
 });
+test('late responses cannot overwrite the final loading error with partial progress',async()=>{
+ const status=[];let finishCatalogue;
+ const loaded=readPublishedContent('https://example.test/site/',{onStatus:s=>status.push(s),request:async url=>String(url).includes('projects')?{ok:true,json:()=>new Promise(resolve=>finishCatalogue=resolve)}:{ok:false,status:404}});
+ await assert.rejects(()=>loaded,/404/);const final=status.at(-1);finishCatalogue({entries});await new Promise(resolve=>setTimeout(resolve,0));assert.equal(status.at(-1),final);
+});
 test('unsaved work survives reload and a genuine version conflict remains protected',()=>{
  const old=emptyContent(),local=clone(old);local.profile.aboutIntro='Unsaved text';const saved={baseline:canonical(old),draft:local};
  assert.equal(restoreOwnerDraft(saved,old,entries).state,'restored');
@@ -53,8 +58,10 @@ test('a failed editor script exposes recovery without writing or clearing the dr
  const elements=new Map();const make=()=>({dataset:{},children:[],setAttribute(){},append(...items){this.children.push(...items);},replaceChildren(...items){this.children=items;},addEventListener(){}});
  for(const id of ['office','draft-status','editor'])elements.set(id,make());
  const listeners={},timers=[];let writes=0;
- const context={document:{getElementById:id=>elements.get(id),createElement:make},addEventListener:(name,fn)=>listeners[name]=fn,setTimeout:fn=>(timers.push(fn),timers.length),clearTimeout(){},localStorage:{setItem(){writes++;},removeItem(){writes++;}},location:{reload(){}}};
+ const controls=[make(),make()];
+ const context={document:{getElementById:id=>elements.get(id),createElement:make,querySelectorAll:()=>controls},addEventListener:(name,fn)=>listeners[name]=fn,setTimeout:fn=>(timers.push(fn),timers.length),clearTimeout(){},localStorage:{setItem(){writes++;},removeItem(){writes++;}},location:{reload(){}}};
  vm.runInNewContext(await fs.readFile(new URL('../site/admin-startup.js',import.meta.url),'utf8'),context);
  listeners.error({target:{id:'admin-entry'}});assert.equal(elements.get('office').dataset.loadState,'error');assert.equal(elements.get('draft-status').textContent,'網站內容未能載入');assert.deepEqual(elements.get('editor').children[0].children.slice(1).map(n=>n.textContent),['重新載入後台','下載原有草稿備份']);assert.equal(writes,0);
+ assert.ok(controls.every(control=>control.disabled));
  elements.get('office').dataset.loadState='ready';timers[0]();assert.equal(elements.get('office').dataset.loadState,'ready');
 });
