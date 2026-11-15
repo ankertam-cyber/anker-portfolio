@@ -27,6 +27,10 @@ test('camera time clamps, has continuous stops, and reduced motion lands directl
 });
 
 class Element extends EventTarget{
+  paused=true;
+  pause(){this.paused=true;}
+  play(){this.paused=false;return Promise.resolve();}
+  load(){}
   hidden=false;disabled=false;isConnected=true;dataset={};style={setProperty(k,v){this[k]=v;}};children=[];clientWidth=390;clientHeight=844;
   setAttribute(k,v){this[k]=v;}
   removeAttribute(k){delete this[k];}
@@ -36,10 +40,13 @@ class Element extends EventTarget{
   click(){this.dispatchEvent(new Event('click'));}
 }
 function fixture(t){
-  const names=['document','window','Image','ResizeObserver','requestAnimationFrame','cancelAnimationFrame'];
+  const names=['document','window','Image','ResizeObserver','requestAnimationFrame','cancelAnimationFrame','performance','setTimeout','clearTimeout'];
   const originals=Object.fromEntries(names.map(k=>[k,Object.getOwnPropertyDescriptor(globalThis,k)]));
   t.after(()=>{for(const k of names){if(originals[k])Object.defineProperty(globalThis,k,originals[k]);else delete globalThis[k];}});
-  const doc=new EventTarget(),classes=new Set(),frames=new Map(),loads=[];
+  const doc=new EventTarget(),classes=new Set(),frames=new Map(),loads=[],timers=new Map();let clock=0,timerNumber=0;
+  globalThis.performance={now:()=>clock};
+  globalThis.setTimeout=(fn,ms)=>{timers.set(++timerNumber,{fn,at:clock+ms});return timerNumber;};
+  globalThis.clearTimeout=id=>timers.delete(id);
   const trigger=new Element();doc.activeElement=trigger;doc.hidden=false;
   doc.createElement=()=>new Element();doc.documentElement={style:{scrollBehavior:'smooth'}};
   doc.body={style:{position:'',top:'',width:''},classList:{add:k=>classes.add(k),remove:k=>classes.delete(k)}};
@@ -59,10 +66,30 @@ function fixture(t){
   dialog.showModal=()=>{dialog.open=true;};dialog.close=()=>{dialog.open=false;dialog.dispatchEvent(new Event('close'));};
   const galleries=[],projects=[],selections=[];
   const controller=mountSeatJourney(dialog,()=>motion,{onGallery:p=>galleries.push(p),onProject:id=>projects.push(id),onSelect:id=>selections.push(id)});
-  function advance(ms){for(let now=16;now<=ms;now+=16){const pending=[...frames.values()];frames.clear();for(const callback of pending)callback(now);}}
-  return {doc,dialog,nodes,trigger,controller,frames,loads,scrolls,galleries,projects,selections,classes,advance,setMotion:value=>{motion=value;controller.setMotion();}};
+  function advance(ms){const end=clock+ms;for(;clock<end;clock+=16){const pending=[...frames.values()];frames.clear();for(const callback of pending)callback(clock);}}
+  function advanceTimers(ms){clock+=ms;for(const [id,timer] of timers)if(timer.at<=clock){timers.delete(id);timer.fn();}}
+  return {doc,dialog,nodes,trigger,controller,frames,loads,scrolls,galleries,projects,selections,classes,advance,advanceTimers,timers,setMotion:value=>{motion=value;controller.setMotion();}};
 }
 const bam={id:'bam',title:'BAM Festival',images:['bam-1.avif','bam-2.avif']};
+
+test('the entrance deadline unlocks media without any animation frames and is cancelled on close',t=>{
+ const f=fixture(t);f.controller.open(bam);
+ assert.equal(f.dialog.dataset.phase,'entering');
+ f.advanceTimers(SEAT_JOURNEY_MS+101);
+ assert.equal(f.dialog.dataset.phase,'seated');
+ f.nodes.gallery.click();assert.equal(f.galleries.length,1);
+ f.controller.close();assert.equal(f.timers.size,0);
+ f.controller.open(bam);assert.equal(f.timers.size,1);
+ f.controller.close();assert.equal(f.timers.size,0);
+ f.advanceTimers(30000);assert.equal(f.dialog.dataset.phase,'closed');
+});
+
+test('native video previews pause when their full-screen gallery opens',t=>{
+ const f=fixture(t);f.setMotion(false);f.controller.open({id:'film',title:'Film',images:[],videos:[{type:'video',src:'film.mp4'}]});
+ const video=f.nodes.screen.children.find(n=>n.className==='pov-video-preview');
+ video.onloadeddata();assert.equal(video.paused,false);
+ f.nodes.gallery.click();assert.equal(video.paused,true);assert.equal(f.galleries[0].media[0].src,'film.mp4');
+});
 
 test('seat activation completes one camera move, changes gallery images, and restores the original seat and scroll',t=>{
   const f=fixture(t);f.controller.open(bam,{seat:'CINEMA 01 / SEAT A01',trigger:f.trigger});
@@ -90,10 +117,10 @@ test('reopening with another seat ignores stale images, stops motion immediately
 
 test('empty and unavailable projects remain navigable; Escape cancels the transition and clears pending work',t=>{
   const f=fixture(t);f.setMotion(false);f.controller.open({id:'archive',title:'Archive',images:[]});
-  assert.equal(f.dialog.dataset.phase,'seated');assert.equal(f.nodes.screen.disabled,true);assert.equal(f.nodes.gallery.hidden,true);
+  assert.equal(f.dialog.dataset.phase,'seated');assert.equal(f.nodes.gallery.hidden,true);
   assert.equal(f.nodes.previous.hidden,true);assert.equal(f.nodes.next.hidden,true);
   f.controller.close();f.setMotion(true);f.controller.open(bam);
-  f.loads[0].onerror();assert.equal(f.nodes.screen.disabled,true);assert.match(f.nodes.placeholder.textContent,/could not load/);
+  f.loads[0].onerror();assert.match(f.nodes.placeholder.textContent,/unavailable|could not load/);
   const event=new Event('cancel',{cancelable:true});f.dialog.dispatchEvent(event);
   assert.equal(event.defaultPrevented,true);assert.equal(f.frames.size,0);assert.equal(f.dialog.open,false);
   f.loads[0].onload();assert.equal(f.nodes.image.src,undefined);

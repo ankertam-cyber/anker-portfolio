@@ -3,21 +3,29 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import {projectMedia} from '../site/project-media.mjs';
 const data=JSON.parse(await fs.readFile(new URL('../site/projects.v28.json',import.meta.url),'utf8'));
-const rules=JSON.parse(await fs.readFile(new URL('../site/portfolio-curation.json',import.meta.url),'utf8'));
-const entries=data.entries.filter(p=>p.images.length||p.videos.length);
-
-test('the owner-selected programme contains fifty posts and cannot revive an excluded project',()=>{
- assert.equal(entries.length,rules.expectedPublishedProjects);
- assert.deepEqual(entries.slice(0,3).map(p=>p.id),rules.pinnedProjectIds);
- for(const id of rules.excludedProjectIds){assert.equal(data.entries.some(p=>p.id===id),false,id);assert.equal(Boolean(data.projectRedirects[id]),false);}
- for(const [id,year] of Object.entries(rules.confirmedYears)){const p=entries.find(p=>p.id===id);assert.equal(p.projectDate.year,year);assert.equal(p.projectDate.requiresReview,false);}
+const owner=JSON.parse(await fs.readFile(new URL('../owner-curation.json',import.meta.url),'utf8'));
+const kept=owner.projects.filter(p=>p.decision==='keep'&&['c1','c2'].includes(p.cinema)).sort((a,b)=>a.cinema.localeCompare(b.cinema)||a.cinemaOrder-b.cinemaOrder);
+test('all 84 owner decisions produce exactly the approved 67-project programme',()=>{
+ assert.equal(owner.projects.length,84);assert.equal(data.entries.length,67);
+ assert.deepEqual(data.entries.map(p=>p.editorId),kept.map(p=>p.editorId));
+ assert.deepEqual(data.entries.map(p=>p.title),kept.map(p=>p.title));
+ for(const item of owner.projects.filter(p=>p.decision!=='keep'))assert.equal(data.entries.some(p=>p.editorId===item.editorId),false,item.editorId);
+ assert.equal(data.entries.filter(p=>p.cinema==='c1').length,60);
+ assert.equal(data.entries.filter(p=>p.cinema==='c2').length,7);
+ for(const id of ['o20','o22'])assert.equal(data.entries.find(p=>p.editorId===id).executionStatus,'concept-design');
 });
-test('merged posts retain every component, resolve old links, and put the requested pictures first',()=>{
- for(const group of rules.groups){const p=entries.find(p=>p.id===group.id);assert.ok(p);assert.deepEqual(p.mergedProjects.map(p=>p.id),group.members);assert.equal(p.mediaOrder,'images-first');assert.equal(projectMedia(p)[0].src,p.images[0]);for(const id of group.members)if(id!==group.id){assert.equal(entries.some(p=>p.id===id),false);assert.equal(data.projectRedirects[id],group.id);}}
- for(const [id,lead] of Object.entries(rules.leadImages))assert.deepEqual(entries.find(p=>p.id===id).images.slice(0,lead.length),lead);
- const charging=entries.find(p=>p.title==='Mercedes-Benz — Charging Stations');let renderSeen=false;for(const src of charging.images){if(charging.imageInfo[src].mediaKind==='render')renderSeen=true;else assert.equal(renderSeen,false,'A physical photo must precede the renders');}
+test('every available film precedes photography and every rendering or graphic follows photographs',()=>{
+ for(const p of data.entries){
+  const media=projectMedia(p);let rank=-1;
+  for(const item of media){
+   const current=item.type!=='image'?0:['graphic','graphics','rendering','render','design'].includes(item.mediaKind)?2:1;
+   assert.ok(current>=rank,`${p.editorId}: media order regressed`);rank=current;
+   assert.ok(!/\.psd(?:$|[?#])/i.test(item.src),`${p.editorId}: PSD cannot be website media`);
+  }
+  const availableVideos=new Set((p.videos||[]).map(v=>v.src));
+  assert.equal(media.filter(m=>m.type!=='image').length,availableVideos.size,p.editorId);
+ }
 });
-test('Experience Days stay adjacent in descending years, and the three new films lead their cases',()=>{
- const positions=rules.experienceDayProjectIds.map(id=>entries.findIndex(p=>p.id===id));assert.ok(positions[0]>=0);assert.deepEqual(positions,[positions[0],positions[0]+1,positions[0]+2]);assert.deepEqual(positions.map(i=>entries[i].projectDate.year),[2023,2022,2021]);
- for(const code of rules.newFilmFirstIds){const p=entries.find(p=>p.videos.some(v=>v.sourcePage?.includes(code)));assert.ok(p,code);assert.ok(p.videos[0].sourcePage.includes(code));assert.equal(projectMedia(p)[0].src,p.videos[0].src);assert.ok(p.videos[0].bytes>0);assert.equal(p.videos[0].type,'video');}
+test('missing source media never requires fabricated imagery',()=>{
+ for(const p of data.entries){assert.ok(Array.isArray(p.images));assert.ok(Array.isArray(p.videos));assert.equal(p.curationStatus,'keep');}
 });

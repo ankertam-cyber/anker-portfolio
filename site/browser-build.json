@@ -1,23 +1,22 @@
 {
-  "entry": "browser-app.interview-a125fe5d.js",
-  "sha256": null,
+  "entry": "browser-app.5d5c0b468219.js",
+  "sha256": "5d5c0b468219b264ab4506fce733d794ceb2362923074c01ee98ad9141ee7a8d",
   "modules": [
+    "app.mjs",
     "catalogue.mjs",
     "project-stories.mjs",
-    "motion-values.mjs",
-    "scene-motion.mjs",
-    "scene-canvas.mjs",
     "scene.mjs",
-    "fairy-points.mjs",
+    "scene-motion.mjs",
+    "motion-values.mjs",
+    "scene-canvas.mjs",
     "tagline-motion.mjs",
+    "fairy-points.mjs",
     "opening-motion.mjs",
+    "media-viewer.mjs",
     "image-loader.mjs",
     "vimeo-player.mjs",
-    "media-viewer.mjs",
     "seat-journey.mjs",
-    "seat-prompt.mjs",
     "project-media.mjs",
-    "app.mjs"
-  ],
-  "buildNote": "Draft-only connector-generated bundle, JS parser verified. Run npm run build on a checkout to generate canonical SHA-256 build and run all tests before deployment."
+    "seat-prompt.mjs"
+  ]
 }

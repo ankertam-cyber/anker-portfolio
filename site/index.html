@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, viewport-fit=cover">
-  <script src="entry-scroll.js?v=v28"></script>
+  <script src="entry-scroll.js?v=v29"></script>
   <meta name="robots" content="index,follow">
-  <meta name="portfolio-build" content="curated-portfolio-28">
+  <meta name="portfolio-build" content="curated-portfolio-29">
   <meta name="theme-color" content="#090e15">
   <title>Anker Tam — Ideas take the stage.</title>
   <meta name="description" content="Anker Tam, a Hong Kong-based Creative Director. A portfolio of brand experiences, events and spatial design.">
@@ -14,12 +14,12 @@
   <link rel="preload" href="assets/fonts/manrope.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="preload" href="assets/media/curtain-photographic-v2.jpg" as="image" fetchpriority="high">
   <link rel="preload" href="assets/media/tagline-blue-glitter-v5.png" as="image" fetchpriority="high">
-  <link rel="stylesheet" href="styles.css?v=v28">
-  <link rel="stylesheet" href="materials.css?v=v28">
-  <link rel="stylesheet" href="type-candidates.css?v=v28">
-  <link rel="stylesheet" href="seat-journey.css?v=v28">
+  <link rel="stylesheet" href="styles.css?v=v29">
+  <link rel="stylesheet" href="materials.css?v=v29">
+  <link rel="stylesheet" href="type-candidates.css?v=v29">
+  <link rel="stylesheet" href="seat-journey.css?v=v29">
   <script defer src="assets/vendor/vimeo-player-v27.js"></script>
-  <script id="portfolio-entry" defer src="browser-app.interview-a125fe5d.js"></script>
+  <script id="portfolio-entry" defer src="browser-app.5d5c0b468219.js"></script>
   <link rel="canonical" href="https://ankertam-cyber.github.io/anker-portfolio/">
 </head>
 <body>
@@ -79,13 +79,14 @@
         <div class="screen-floor" aria-hidden="true"></div>
       </div>
       <div class="cinema-label"><span></span><p id="cinema-heading">SELECTED EXPERIENCES</p><span></span></div>
+      <div class="cinema-category-switch" role="group" aria-label="Portfolio cinema"><button type="button" data-cinema-category="c1" aria-pressed="true">CINEMA 01 <span>Executed projects</span></button><button type="button" data-cinema-category="c2" aria-pressed="false">CINEMA 02 <span>Concepts, graphics &amp; website design</span></button></div>
       <div class="cinema-controls">
-        <button class="icon-button" id="cinema-prev" aria-label="Previous cinema"><svg class="arrow-left"><use href="#arrow-art"/></svg></button>
+        <button class="icon-button" id="cinema-prev" aria-label="Previous page in this cinema"><svg class="arrow-left"><use href="#arrow-art"/></svg></button>
         <div><span class="cinema-number" id="cinema-number">CINEMA 01</span><span id="cinema-page" class="cinema-page" aria-live="polite">01 / 02</span></div>
-        <button class="icon-button" id="cinema-next" aria-label="Next cinema"><svg><use href="#arrow-art"/></svg></button>
+        <button class="icon-button" id="cinema-next" aria-label="Next page in this cinema"><svg><use href="#arrow-art"/></svg></button>
       </div>
       <div id="cinema-map" class="cinema-map" role="group" aria-label="Cinema 01 project seats"></div>
-      <p class="cinema-help">Swipe to change cinema <span aria-hidden="true"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 12h16M8 8l-4 4 4 4m8-8 4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></p>
+      <p class="cinema-help">Swipe for more seats in this cinema <span aria-hidden="true"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 12h16M8 8l-4 4 4 4m8-8 4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></p>
       <div class="selection-bar" aria-live="polite"><span class="eyebrow" id="selected-seat">SEAT A01</span><span id="selected-title">BAM Festival</span></div>
       <button id="issue-ticket" class="outline-button">AN INVITATION TO WHAT’S NEXT <span aria-hidden="true"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 19 19 5M5 5h14v14" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
       <button id="archive-toggle" class="text-button" aria-expanded="false" aria-controls="archive-panel">Browse the project index <span aria-hidden="true">+</span></button>
@@ -134,8 +135,8 @@
     <span class="pov-sitting-label" aria-hidden="true">Take your seat.</span>
     <div class="pov-info" data-journey-info>
       <div><p class="eyebrow" data-journey-status>Your screening</p><h2 class="pov-title" id="journey-title" data-journey-title></h2><p class="pov-synopsis" data-journey-synopsis hidden></p></div>
-      <div class="pov-image-nav"><span class="pov-image-label">IMAGES</span><button data-journey-previous aria-label="Previous project image"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m15 5-7 7 7 7" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button><span data-journey-counter aria-live="polite"></span><button data-journey-next aria-label="Next project image"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m9 5 7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
-      <p class="pov-gesture-hint">Swipe the screen for more images. Turn to another show.</p>
+      <div class="pov-image-nav"><span class="pov-image-label" data-journey-media-kind>MEDIA</span><button data-journey-previous aria-label="Previous project media"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m15 5-7 7 7 7" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button><span data-journey-counter aria-live="polite"></span><button data-journey-next aria-label="Next project media"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m9 5 7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
+      <p class="pov-gesture-hint">Swipe the screen for more media. Films, photos, then design.</p>
       <div class="pov-actions"><button data-journey-films hidden>WATCH FILM</button><button data-journey-gallery>FULL SCREEN <svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 4H4v5m11-5h5v5M4 15v5h5m11-5v5h-5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button data-journey-project>VIEW PROJECT <svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 19 19 5M5 5h14v14" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
     </div>
   </dialog>

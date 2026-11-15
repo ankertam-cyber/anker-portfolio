@@ -17,3 +17,9 @@ export function filterEntries(entries, query) {
   const q = query.trim().toLocaleLowerCase();
   return q ? entries.filter(p => [p.title, p.sourceTitle, p.year, p.sourceYear, p.category, p.location].filter(Boolean).join(' ').toLocaleLowerCase().includes(q)) : entries;
 }
+
+export const CINEMAS=Object.freeze([{id:'c1',number:'01',title:'EXECUTED PROJECTS'},{id:'c2',number:'02',title:'CONCEPTS, GRAPHICS & WEBSITE DESIGN'}]);
+export function cinemaEntries(entries,cinema='c1'){return entries.filter(p=>(p.cinema||'c1')===cinema);}
+export function cinemaPageCount(entries,cinema='c1'){return pageCount(cinemaEntries(entries,cinema));}
+export function cinemaPageEntries(entries,cinema='c1',page=0){return pageEntries(cinemaEntries(entries,cinema),page);}
+export function projectLocation(entries,id){const p=entries.find(p=>p.id===id);if(!p)return null;const cinema=p.cinema||'c1';const index=cinemaEntries(entries,cinema).findIndex(p=>p.id===id);return{cinema,index,page:Math.floor(index/CAPACITY),seat:seatCoordinates(index%CAPACITY).label};}

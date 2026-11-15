@@ -1,0 +1,1043 @@
+{
+  "schemaVersion": 2,
+  "purpose": "owner-updated-review-draft-only",
+  "deployed": false,
+  "originalMediaDeletionAllowed": false,
+  "branchSourceCommit": "306831e66f39d9592185661dc145ac4dafe469e4",
+  "summary": {
+    "total": 84,
+    "decisions": {
+      "keep": 67,
+      "review": 4,
+      "remove": 13
+    },
+    "categories": {
+      "c1": 64,
+      "c2": 7,
+      "tbd": 13
+    },
+    "displayKeep": {
+      "c1": 60,
+      "c2": 7,
+      "tbd": 0
+    },
+    "review": {
+      "c1": 2,
+      "c2": 0,
+      "tbd": 2
+    },
+    "remove": {
+      "c1": 2,
+      "c2": 0,
+      "tbd": 11
+    }
+  },
+  "projects": [
+    {
+      "editorId": "o0",
+      "title": "Mercedes-Benz - BAM Festival",
+      "decision": "keep",
+      "cinema": "c1",
+      "source": "github-current",
+      "githubProjectId": "1izI9spxl5fjwdvyw8g6iowBpPPAE5p0j",
+      "githubCurrentTitle": "BAM Festival",
+      "group": "existing-list",
+      "cinemaOrder": 1
+    },
+    {
+      "editorId": "o1",
+      "title": "Mercedes-Benz - Maybach — EQS SUV",
+      "decision": "keep",
+      "cinema": "c1",
+      "source": "github-current",
+      "githubProjectId": "1XVL41h99QcZDcYzZfl28SbsFy4QJNh4_",
+      "githubCurrentTitle": "Maybach — EQS SUV",
+      "group": "existing-list",
+      "cinemaOrder": 2
+    },
+    {
+      "editorId": "o2",
+      "title": "Mercedes-Benz — C-Class Launch",
+      "decision": "keep",
+      "cinema": "c1",
+      "source": "github-current",
+      "githubProjectId": "19XhwSYzZ8gheZZVxhBB17S0_IruFdHeW",
+      "githubCurrentTitle": "Mercedes-Benz — C-Class Launch",
+      "group": "existing-list",
+      "cinemaOrder": 3
+    },
+    {
+      "editorId": "o3",
+      "title": "Estée Lauder - Double Wear Playground",
+      "decision": "keep",
+      "cinema": "c1",
+      "source": "github-current",
+      "githubProjectId": "1suawVT8NiDvCSslbqgJEKl84YRrUIBXc",
+      "githubCurrentTitle": "Estee Lauder APAC 2026 07 Skin-fit Cushion Outpost",
+      "group": "existing-list",
+      "cinemaOrder": 4
+    },
+    {
+      "editorId": "o4",
+      "title": "Shangri La Group 2026 Christmas",
+      "decision": "keep",
+      "cinema": "c1",
+      "source": "google-drive-new",
+      "githubProjectId": null,
+      "githubCurrentTitle": null,
+      "group": "existing-list",
+      "cinemaOrder": 5
+    },
+    {
+      "editorId": "o5",
+      "title": "UNIQLO Cashmere Pop Up",
+      "decision": "keep",
+      "cinema": "c1",
+      "source": "google-drive-new",
+      "githubProjectId": null,
+      "githubCurrentTitle": null,
+      "group": "existing-list",
+      "cinemaOrder": 6
+    },
+    {
+      "editorId": "o6",
+      "title": "L’oréal HK 2026 Annual Party",
+      "decision": "keep",
+      "cinema": "c1",
+      "source": "google-drive-new",
+      "githubProjectId": null,
+      "githubCurrentTitle": null,
+      "group": "existing-list",
+      "cinemaOrder": 7
+    },
+    {
+      "editorId": "o7",
+      "title": "Estée Lauder Breast Cancer Campaign",
+      "decision": "keep",
+      "cinema": "c1",
+      "source": "google-drive-new",
+      "githubProjectId": null,
+      "githubCurrentTitle": null,
+      "group": "existing-list",
+      "cinemaOrder": 8
+    },
+    {
+      "editorId": "o8",
+      "title": "HSBC - 40th Anniversary of the fourth-generation HSBC Main Building",
+      "decision": "keep",
+      "cinema": "c1",
+      "source": "github-current",
+      "githubProjectId": "1HzrCC4WXfdJPcGMIH98CTaufv4oauGLG",
+      "githubCurrentTitle": "HSBC - 40th Anniversary of the fourth-generation HSBC Main Building",
+      "group": "existing-list",
+      "cinemaOrder": 9
+    },
+    {
+      "editorId": "o9",
+      "title": "Cartier HJ Event 2026",
+      "decision": "keep",
+      "cinema": "c1",
+      "source": "google-drive-new",
+      "githubProjectId": null,
+      "githubCurrentTitle": null,
+      "group": "existing-list",
+      "cinemaOrder": 10
+    },
+    {
+      "editorId": "o10",
+      "title": "PURE ReSet FWE Booth",
+      "decision": "keep",
+      "cinema": "c1",
+      "source": "google-drive-new",
+      "githubProjectId": null,
+      "githubCurrentTitle": null,
+      "group": "existing-list",
+      "cinemaOrder": 11
+    },
+    {
+      "editorId": "o11",
+      "title": "DG 2026 VIP Dinner",
+      "decision": "keep",
+      "cinema": "c1",
+      "source": "github-current",
+      "githubProjectId": "1G95A_GW19nnaetyvU3rOlU8DJwTtr58D",
+      "githubCurrentTitle": "DG 2026 03 20 VIP Dinner",
+      "group": "existing-list",
+      "cinemaOrder": 12
+    },
+    {
+      "editorId": "o12",
+      "title": "AIA Relocation of Alta Wealth Management Centre",
+      "decision": "keep",
+      "cinema": "c1",
+      "source": "github-current",
+      "githubProjectId": "1vGo1eGUlxBPt8KllZRVXb7iOA1sL7HsW",
+      "githubCurrentTitle": "AIA Relocation of Alta Wealth Management Centre",
+      "group": "existing-list",
+      "cinemaOrder": 13
+    },
+    {
+      "editorId": "o13",
+      "title": "Lane Crawford 2025 11 13 Xmas Dinner@St Regis",
+      "decision": "keep",
+      "cinema": "c1",
+      "source": "github-current",
+      "githubProjectId": "1itLYRKm8UqlmboE7fSKzy1EnTCwlu4-U",
+      "githubCurrentTitle": "Lane Crawford 2025 11 13 Xmas Dinner@St Regis",
+      "group": "existing-list",
+      "cinemaOrder": 14
+    },
+    {
+      "editorId": "o14",
+      "title": "CitiGold - 15th Anniversary Gala Dinner",
+      "decision": "keep",
+      "cinema": "c1",
+      "source": "github-current",
+      "githubProjectId": "1z-_GTfPZIsJ__c6S0pa45FJ-DuvvXU5E",
+      "githubCurrentTitle": "CitiGold - 15th Anniversary Gala Dinner",
+      "group": "existing-list",
+      "cinemaOrder": 15
+    },
+    {
+      "editorId": "o15",
+      "title": "Grand Hyatt 2025 12 Festive",
+      "decision": "keep",
+      "cinema": "c1",
+      "source": "github-current",
+      "githubProjectId": "1n04gvbm6RQ8Jskp3ixGfLvlIgFslv8td",
+      "githubCurrentTitle": "Grand Hyatt 2025 12 Festive",
+      "group": "existing-list",
+      "cinemaOrder": 16
+    },
+    {
+      "editorId": "o16",
+      "title": "Porsche — Grand Opening",
+      "decision": "keep",
+      "cinema": "c1",
+      "source": "github-current",
+      "githubProjectId": "1GfyV3sNkUN5jf38IkIePWYTmgj-64lX0",
+      "githubCurrentTitle": "Porsche — Grand Opening",
+      "group": "existing-list",
+      "cinemaOrder": 17
+    },
+    {
+      "editorId": "o17",
+      "title": "Zeekr - Allan Zeman Car Handover",
+      "decision": "keep",
+      "cinema": "c1",
+      "source": "github-current",
+      "githubProjectId": "1oukMYbyoBZf8fLnITN0qcWfUn10KhPGQ",
+      "githubCurrentTitle": "Zeekr - Allan Zeman Car Handover",
+      "group": "existing-list",
+      "cinemaOrder": 18
+    },
+    {
+      "editorId": "o18",
+      "title": "Mercedes-Benz The new G-Class Range Launch",
+      "decision": "keep",
+      "cinema": "c1",
+      "source": "github-current",
+      "githubProjectId": "1TbCipQqe25zIREgvrAMoD9TyQuNkDiUp",
+      "githubCurrentTitle": "Mercedes-Benz The new G-Class Range Launch",
+      "group": "existing-list",
+      "cinemaOrder": 19
+    },
+    {
+      "editorId": "o19",
+      "title": "Citic Group - Jardini",
+      "decision": "keep",
+      "cinema": "c1",
+      "source": "github-current",
+      "githubProjectId": "1AFiS56tpQYV45aNLxA2MNqM7ojQqaROV",
+      "githubCurrentTitle": "Citic Group - Jardini",
+      "group": "existing-list",
+      "cinemaOrder": 20
+    },
+    {
+      "editorId": "o21",
+      "title": "L’école - Shakudō",
+      "decision": "keep",
+      "cinema": "c1",
+      "source": "github-current",
+      "githubProjectId": "1q-nQt189zNzrOogdo3fbYMZU4LwHZ97P",
+      "githubCurrentTitle": "L’école - Shakudō",
+      "group": "existing-list",
+      "cinemaOrder": 21
+    },
+    {
+      "editorId": "o23",
+      "title": "Mercedes-Benz - Hypebeast Festival",
+      "decision": "remove",
+      "cinema": "c1",
+      "source": "github-current",
+      "githubProjectId": "1T4RH5NKJQZvMlijuo7m2z1S9Xb39HIop",
+      "githubCurrentTitle": "MBHK - Hypebeast Festival",
+      "group": "existing-list",
+      "cinemaOrder": 22
+    },
+    {
+      "editorId": "o28",
+      "title": "Mercedes Benz - G-Class @ AIA Carnival",
+      "decision": "keep",
+      "cinema": "c1",
+      "source": "github-current",
+      "githubProjectId": "1wko49Yx2Tdk96dN_Tfj0HwOk9g5tKikO",
+      "githubCurrentTitle": "MBHK - G-Class @ AIA Carnival",
+      "group": "existing-list",
+      "cinemaOrder": 23
+    },
+    {
+      "editorId": "o24",
+      "title": "Mercedes-Benz — Charging Stations",
+      "decision": "keep",
+      "cinema": "c1",
+      "source": "github-current",
+      "githubProjectId": "1UZuJY4WeCJAFJBMasuGlvDFKDh_s5v-C",
+      "githubCurrentTitle": "Mercedes-Benz — Charging Stations",
+      "group": "existing-list",
+      "cinemaOrder": 24
+    },
+    {
+      "editorId": "o25",
+      "title": "IWC Festive Event",
+      "decision": "keep",
+      "cinema": "c1",
+      "source": "github-current",
+      "githubProjectId": "1lTs0s9NQbTXlvhZY0nT5P0lwZ6wSRKg7",
+      "githubCurrentTitle": "IWC",
+      "group": "existing-list",
+      "cinemaOrder": 25
+    },
+    {
+      "editorId": "o26",
+      "title": "DENZA D9 ELEMENTS Pop-Up Store",
+      "decision": "keep",
+      "cinema": "c1",
+      "source": "github-current",
+      "githubProjectId": "1DTwhsWbQKJ8Sgfqw-eLNSx2Fd0R9Xdr9",
+      "githubCurrentTitle": "DENZA D9 ELEMENTS Pop-Up Store",
+      "group": "existing-list",
+      "cinemaOrder": 26
+    },
+    {
+      "editorId": "o27",
+      "title": "L’ÉCOLE School of Jewelry Arts | An Eye For Beauty Exhibition",
+      "decision": "keep",
+      "cinema": "c1",
+      "source": "github-current",
+      "githubProjectId": "1QdTb7ehS2_qHHy2mV5aVoLTsHdG9zE1I",
+      "githubCurrentTitle": "L’ÉCOLE School of Jewelry Arts | An Eye For Beauty Exhibition",
+      "group": "existing-list",
+      "cinemaOrder": 27
+    },
+    {
+      "editorId": "o29",
+      "title": "L’ÉCOLE School of Jewelry Arts | Journey with Minerals Exhibition",
+      "decision": "keep",
+      "cinema": "c1",
+      "source": "github-current",
+      "githubProjectId": "1-Vx_mcZ1c_Y30Z28EWpi7lRqFVIEEwCx",
+      "githubCurrentTitle": "L’ÉCOLE School of Jewelry Arts | Journey with Minerals Exhibition",
+      "group": "existing-list",
+      "cinemaOrder": 28
+    },
+    {
+      "editorId": "o30",
+      "title": "Standard Chartered Travel Campaign 2024",
+      "decision": "keep",
+      "cinema": "c1",
+      "source": "github-current",
+      "githubProjectId": "1RexdBTu4eLVKiIHKj7tmfaBlXeYmSlog",
+      "githubCurrentTitle": "Standard Chartered Travel Campaign 2024",
+      "group": "existing-list",
+      "cinemaOrder": 29
+    },
+    {
+      "editorId": "o31",
+      "title": "DENZA Kowloon Bay Showroom Grand Opening",
+      "decision": "keep",
+      "cinema": "c1",
+      "source": "github-current",
+      "githubProjectId": "at-yutnw",
+      "githubCurrentTitle": "DENZA Kowloon Bay Showroom Grand Opening",
+      "group": "existing-list",
+      "cinemaOrder": 30
+    },
+    {
+      "editorId": "o32",
+      "title": "Mercedes-Benz EQS SUV Launch",
+      "decision": "keep",
+      "cinema": "c1",
+      "source": "github-current",
+      "githubProjectId": "15PAo02r-yt3T4yBWmMfjtvOQAB4Xi-hq",
+      "githubCurrentTitle": "Mercedes-Benz EQS SUV Launch",
+      "group": "existing-list",
+      "cinemaOrder": 31
+    },
+    {
+      "editorId": "o33",
+      "title": "Mercedes-Benz Experience Day 2023",
+      "decision": "keep",
+      "cinema": "c1",
+      "source": "github-current",
+      "githubProjectId": "13U1vCVeJMizkXMamFXhcSUfER4dMg8RI",
+      "githubCurrentTitle": "Mercedes-Benz Experience Day 2023",
+      "group": "existing-list",
+      "cinemaOrder": 32
+    },
+    {
+      "editorId": "o34",
+      "title": "Mercedes-Benz Experience Day 2022",
+      "decision": "keep",
+      "cinema": "c1",
+      "source": "github-current",
+      "githubProjectId": "1_Kw87ovGpiZaIlxf7IErssUdoZ3X14oE",
+      "githubCurrentTitle": "Mercedes-Benz Experience Day 2022",
+      "group": "existing-list",
+      "cinemaOrder": 33
+    },
+    {
+      "editorId": "o35",
+      "title": "Mercedes-Benz Experience Day 2021",
+      "decision": "keep",
+      "cinema": "c1",
+      "source": "github-current",
+      "githubProjectId": "1Y5JQ1Kzp1r2kRrw62sgNI6l7o8Hj0HKD",
+      "githubCurrentTitle": "Mercedes-Benz Experience Day 2021",
+      "group": "existing-list",
+      "cinemaOrder": 34
+    },
+    {
+      "editorId": "o36",
+      "title": "Mercedes-Benz EQXX Launch Exhibition",
+      "decision": "keep",
+      "cinema": "c1",
+      "source": "github-current",
+      "githubProjectId": "1mXDiXFnazJ836O_QmpJhfo-YOEgkj5Bq",
+      "githubCurrentTitle": "Mercedes-Benz EQXX Launch Exhibition",
+      "group": "existing-list",
+      "cinemaOrder": 35
+    },
+    {
+      "editorId": "o37",
+      "title": "IPSA Aqua Play Art Exhibition",
+      "decision": "keep",
+      "cinema": "c1",
+      "source": "github-current",
+      "githubProjectId": "1z8XMURUgG1cxku1PTLGmKlnaxkWjYvAr",
+      "githubCurrentTitle": "IPSA Aqua Play Art Exhibition",
+      "group": "existing-list",
+      "cinemaOrder": 36
+    },
+    {
+      "editorId": "o38",
+      "title": "Peppa pig Happy Day Interactive Play",
+      "decision": "keep",
+      "cinema": "c1",
+      "source": "github-current",
+      "githubProjectId": "1twYj8qbxEw8pnH9nKyMvF_ZSvKuHapSQ",
+      "githubCurrentTitle": "Peppa pig Happy Day Interactive Play",
+      "group": "existing-list",
+      "cinemaOrder": 37
+    },
+    {
+      "editorId": "o39",
+      "title": "Jurassic The Dinosaur Park",
+      "decision": "keep",
+      "cinema": "c1",
+      "source": "github-current",
+      "githubProjectId": "1MKyea3H-xjJghrxSm9HO-Zz9n3l4heaH",
+      "githubCurrentTitle": "Jurassic The Dinosaur Park",
+      "group": "existing-list",
+      "cinemaOrder": 38
+    },
+    {
+      "editorId": "o40",
+      "title": "CITIC Tower Christmas Decoration",
+      "decision": "keep",
+      "cinema": "c1",
+      "source": "github-current",
+      "githubProjectId": "1HYtIWPJzSWzKYAqkbN4HqS8OB8Khqxht",
+      "githubCurrentTitle": "CITIC Tower Christmas Decoration",
+      "group": "existing-list",
+      "cinemaOrder": 39
+    },
+    {
+      "editorId": "o41",
+      "title": "ZUNG FU CVGD Grand Opening",
+      "decision": "keep",
+      "cinema": "c1",
+      "source": "github-current",
+      "githubProjectId": "1zgvgf7nFR3YSS9hyUBtbHW1ov6sM6w0k",
+      "githubCurrentTitle": "ZUNG FU CVGD Grand Opening",
+      "group": "existing-list",
+      "cinemaOrder": 40
+    },
+    {
+      "editorId": "o42",
+      "title": "Hoya Annual Dinner",
+      "decision": "keep",
+      "cinema": "c1",
+      "source": "github-current",
+      "githubProjectId": "1eC77cnlNyg5ACdPeYUhkH_Izse8RjACW",
+      "githubCurrentTitle": "Hoya Annual Dinner",
+      "group": "existing-list",
+      "cinemaOrder": 41
+    },
+    {
+      "editorId": "o43",
+      "title": "Hyundai World Cup Event",
+      "decision": "keep",
+      "cinema": "c1",
+      "source": "github-current",
+      "githubProjectId": "at-jlza5",
+      "githubCurrentTitle": "Hyundai World Cup Event",
+      "group": "existing-list",
+      "cinemaOrder": 42
+    },
+    {
+      "editorId": "o48",
+      "title": "Mercedes-Maybach S-class Launch",
+      "decision": "keep",
+      "cinema": "c1",
+      "source": "github-current",
+      "githubProjectId": "at-xrj9r",
+      "githubCurrentTitle": "Mercedes-Maybach S-class Launch",
+      "group": "existing-list",
+      "cinemaOrder": 43
+    },
+    {
+      "editorId": "o44",
+      "title": "IMXHK - WIL Booth",
+      "decision": "keep",
+      "cinema": "c1",
+      "source": "github-current",
+      "githubProjectId": "1R3_LaXZYXtwEW6W7xxrHkB7byCUN6Tjl",
+      "githubCurrentTitle": "IMXHK - WIL Booth",
+      "group": "existing-list",
+      "cinemaOrder": 44
+    },
+    {
+      "editorId": "o45",
+      "title": "D-Park - Donut's Sports Ground",
+      "decision": "keep",
+      "cinema": "c1",
+      "source": "github-current",
+      "githubProjectId": "wix-51138747-0485-4d84-ab49-ef4f9c13a30c",
+      "githubCurrentTitle": "Donut's Sports Ground",
+      "group": "existing-list",
+      "cinemaOrder": 45
+    },
+    {
+      "editorId": "o46",
+      "title": "Atelier Cologne - Lemon Island Escape",
+      "decision": "keep",
+      "cinema": "c1",
+      "source": "github-current",
+      "githubProjectId": "wix-1b930bc0-19cc-4354-85a6-df55e1708616",
+      "githubCurrentTitle": "Lemon Island Escape",
+      "group": "existing-list",
+      "cinemaOrder": 46
+    },
+    {
+      "editorId": "o47",
+      "title": "K11 Musea - Santa Meow From The Universe",
+      "decision": "keep",
+      "cinema": "c1",
+      "source": "github-current",
+      "githubProjectId": "wix-04a665f3-4c33-4f05-8bd6-1bc7b98a71ff",
+      "githubCurrentTitle": "Santa Meow From The Universe",
+      "group": "existing-list",
+      "cinemaOrder": 47
+    },
+    {
+      "editorId": "o49",
+      "title": "Gorgeous Animation",
+      "decision": "keep",
+      "cinema": "c1",
+      "source": "github-current",
+      "githubProjectId": "wix-ee924c40-3ead-4582-91e0-9ea045d221c8",
+      "githubCurrentTitle": "Gorgeous Animation",
+      "group": "existing-list",
+      "cinemaOrder": 48
+    },
+    {
+      "editorId": "o50",
+      "title": "Kiehl's - Healing Note 治癒花語",
+      "decision": "keep",
+      "cinema": "c1",
+      "source": "github-current",
+      "githubProjectId": "wix-ec26fb5d-bc72-4a18-bd1d-9cbdc4b9333c",
+      "githubCurrentTitle": "Healing Note 治癒花語",
+      "group": "existing-list",
+      "cinemaOrder": 49
+    },
+    {
+      "editorId": "o51",
+      "title": "Aesop - Othertopias Fragrance Launch",
+      "decision": "keep",
+      "cinema": "c1",
+      "source": "github-current",
+      "githubProjectId": "wix-c16b7628-2eaa-4916-a369-2b8216aa61a8",
+      "githubCurrentTitle": "Othertopias Fragrance Launch",
+      "group": "existing-list",
+      "cinemaOrder": 50
+    },
+    {
+      "editorId": "o52",
+      "title": "Christmas Kids Festival",
+      "decision": "review",
+      "cinema": "c1",
+      "source": "github-current",
+      "githubProjectId": "wix-bca8e648-9e5d-41b9-98a0-568109c9ea2a",
+      "githubCurrentTitle": "Christmas Kids Festival",
+      "group": "existing-list",
+      "cinemaOrder": 51
+    },
+    {
+      "editorId": "o53",
+      "title": "The Land of Luck",
+      "decision": "review",
+      "cinema": "c1",
+      "source": "github-current",
+      "githubProjectId": "wix-848b5abc-9883-4ffb-b49e-5c848caa11a3",
+      "githubCurrentTitle": "The Land of Luck",
+      "group": "existing-list",
+      "cinemaOrder": 52
+    },
+    {
+      "editorId": "o54",
+      "title": "D&G - Beauty Peony popup",
+      "decision": "keep",
+      "cinema": "c1",
+      "source": "github-current",
+      "githubProjectId": "wix-9c8e6498-7846-4f2a-88f6-e827919d3a85",
+      "githubCurrentTitle": "Beauty Peony",
+      "group": "existing-list",
+      "cinemaOrder": 53
+    },
+    {
+      "editorId": "o55",
+      "title": "Downtown Rave FW19 Collection Launch Party",
+      "decision": "remove",
+      "cinema": "c1",
+      "source": "github-current",
+      "githubProjectId": "wix-7b4bc066-2652-4404-8967-4764fd23a9e3",
+      "githubCurrentTitle": "Downtown Rave FW19 Collection Launch Party",
+      "group": "existing-list",
+      "cinemaOrder": 54
+    },
+    {
+      "editorId": "p0",
+      "title": "R&B - SAKA Pavilion",
+      "decision": "keep",
+      "cinema": "c1",
+      "source": "google-drive-2021-previous",
+      "sourceFileCount": 1,
+      "group": "older-candidates",
+      "cinemaOrder": 55
+    },
+    {
+      "editorId": "p8",
+      "title": "Hong Kong Fur Federation",
+      "decision": "keep",
+      "cinema": "c1",
+      "source": "google-drive-2021-previous",
+      "sourceFileCount": 2,
+      "group": "older-candidates",
+      "cinemaOrder": 56
+    },
+    {
+      "editorId": "p9",
+      "title": "Wine & Dine – Bakery and Merchandise",
+      "decision": "keep",
+      "cinema": "c1",
+      "source": "google-drive-2021-previous",
+      "sourceFileCount": 4,
+      "group": "older-candidates",
+      "cinemaOrder": 57
+    },
+    {
+      "editorId": "p12",
+      "title": "Cosmoprof Asia – On Stage",
+      "decision": "keep",
+      "cinema": "c1",
+      "source": "google-drive-2021-previous",
+      "sourceFileCount": 3,
+      "group": "older-candidates",
+      "cinemaOrder": 58
+    },
+    {
+      "editorId": "p11",
+      "title": "Asian Attractions Expo Singapore – ZIERER",
+      "decision": "keep",
+      "cinema": "c1",
+      "source": "google-drive-2021-previous",
+      "sourceFileCount": 2,
+      "group": "older-candidates",
+      "cinemaOrder": 59
+    },
+    {
+      "editorId": "p17",
+      "title": "Vinexpo HK – Wine Booth",
+      "decision": "keep",
+      "cinema": "c1",
+      "source": "google-drive-2021-previous",
+      "sourceFileCount": 3,
+      "group": "older-candidates",
+      "cinemaOrder": 60
+    },
+    {
+      "editorId": "p15",
+      "title": "Sergio Rossi Popup",
+      "decision": "keep",
+      "cinema": "c1",
+      "source": "google-drive-2021-previous",
+      "sourceFileCount": 3,
+      "group": "older-candidates",
+      "cinemaOrder": 61
+    },
+    {
+      "editorId": "p22",
+      "title": "CDF – Duty Zero",
+      "decision": "keep",
+      "cinema": "c1",
+      "source": "google-drive-2021-previous",
+      "sourceFileCount": 3,
+      "group": "older-candidates",
+      "cinemaOrder": 62
+    },
+    {
+      "editorId": "p24",
+      "title": "Lane Crawford – Press Day",
+      "decision": "keep",
+      "cinema": "c1",
+      "source": "google-drive-2021-previous",
+      "sourceFileCount": 2,
+      "group": "older-candidates",
+      "cinemaOrder": 63
+    },
+    {
+      "editorId": "p25",
+      "title": "FWD Race Day",
+      "decision": "keep",
+      "cinema": "c1",
+      "source": "google-drive-2021-previous",
+      "sourceFileCount": 3,
+      "group": "older-candidates",
+      "cinemaOrder": 64
+    },
+    {
+      "editorId": "graphics",
+      "title": "Graphics – Independent Work",
+      "decision": "keep",
+      "cinema": "c2",
+      "source": "google-drive-graphics",
+      "group": "collection",
+      "cinemaOrder": 1
+    },
+    {
+      "editorId": "o22",
+      "title": "Mostown - Merry Pearl Dreamland",
+      "decision": "keep",
+      "cinema": "c2",
+      "source": "github-current",
+      "githubProjectId": "wix-35f86cde-dd04-4071-9dea-a3d755da871e",
+      "githubCurrentTitle": "Merry Pearl Dreamland (Oyster BB) Pitching",
+      "group": "existing-list",
+      "cinemaOrder": 2
+    },
+    {
+      "editorId": "website",
+      "title": "agnès b. – In-house Website Design",
+      "decision": "keep",
+      "cinema": "c2",
+      "source": "google-drive-website",
+      "sourceFileCount": 6,
+      "group": "collection",
+      "cinemaOrder": 3
+    },
+    {
+      "editorId": "o20",
+      "title": "Mercedes-Benz - CLA Car City Promotion",
+      "decision": "keep",
+      "cinema": "c2",
+      "source": "github-current",
+      "githubProjectId": "1VvuqxdUW2jjzA5e_ndIebagvWs795-I2",
+      "githubCurrentTitle": "MBHK - CLA Car City Promotion",
+      "group": "existing-list",
+      "cinemaOrder": 4
+    },
+    {
+      "editorId": "p3",
+      "title": "HOFEX - Le Cordon Bleu",
+      "decision": "keep",
+      "cinema": "c2",
+      "source": "google-drive-2021-previous",
+      "sourceFileCount": 3,
+      "group": "older-candidates",
+      "cinemaOrder": 5
+    },
+    {
+      "editorId": "p14",
+      "title": "Eco Expo Asia – HK Pavilion",
+      "decision": "keep",
+      "cinema": "c2",
+      "source": "google-drive-2021-previous",
+      "sourceFileCount": 4,
+      "group": "older-candidates",
+      "cinemaOrder": 6
+    },
+    {
+      "editorId": "p23",
+      "title": "Mercedes-Benz – GLB Launch",
+      "decision": "keep",
+      "cinema": "c2",
+      "source": "google-drive-2021-previous",
+      "sourceFileCount": 5,
+      "group": "older-candidates",
+      "cinemaOrder": 7
+    },
+    {
+      "editorId": "p1",
+      "title": "CUHK Pavilion at ICT",
+      "decision": "remove",
+      "cinema": "tbd",
+      "source": "google-drive-2021-previous",
+      "sourceFileCount": 1,
+      "group": "older-candidates",
+      "cinemaOrder": 1
+    },
+    {
+      "editorId": "p2",
+      "title": "International Motor Show H.K. – Stage",
+      "decision": "review",
+      "cinema": "tbd",
+      "source": "google-drive-2021-previous",
+      "sourceFileCount": 1,
+      "group": "older-candidates",
+      "cinemaOrder": 2
+    },
+    {
+      "editorId": "p4",
+      "title": "Country Pavilion",
+      "decision": "review",
+      "cinema": "tbd",
+      "source": "google-drive-2021-previous",
+      "sourceFileCount": 4,
+      "group": "older-candidates",
+      "cinemaOrder": 3
+    },
+    {
+      "editorId": "p5",
+      "title": "HKTO Merchandise Booth",
+      "decision": "remove",
+      "cinema": "tbd",
+      "source": "google-drive-2021-previous",
+      "sourceFileCount": 2,
+      "group": "older-candidates",
+      "cinemaOrder": 4
+    },
+    {
+      "editorId": "p6",
+      "title": "HKCEC Feature Wall",
+      "decision": "remove",
+      "cinema": "tbd",
+      "source": "google-drive-2021-previous",
+      "sourceFileCount": 1,
+      "group": "older-candidates",
+      "cinemaOrder": 5
+    },
+    {
+      "editorId": "p7",
+      "title": "Peko CNY Mall Decoration",
+      "decision": "remove",
+      "cinema": "tbd",
+      "source": "google-drive-2021-previous",
+      "sourceFileCount": 2,
+      "group": "older-candidates",
+      "cinemaOrder": 6
+    },
+    {
+      "editorId": "p10",
+      "title": "Asian Attractions Expo Singapore – Kidzmondo",
+      "decision": "remove",
+      "cinema": "tbd",
+      "source": "google-drive-2021-previous",
+      "sourceFileCount": 3,
+      "group": "older-candidates",
+      "cinemaOrder": 7
+    },
+    {
+      "editorId": "p13",
+      "title": "OGAWA Roadshow",
+      "decision": "remove",
+      "cinema": "tbd",
+      "source": "google-drive-2021-previous",
+      "sourceFileCount": 4,
+      "group": "older-candidates",
+      "cinemaOrder": 8
+    },
+    {
+      "editorId": "p16",
+      "title": "AMC Office",
+      "decision": "remove",
+      "cinema": "tbd",
+      "source": "google-drive-2021-previous",
+      "sourceFileCount": 5,
+      "group": "older-candidates",
+      "cinemaOrder": 9
+    },
+    {
+      "editorId": "p18",
+      "title": "Vinexpo HK – The BLEND",
+      "decision": "remove",
+      "cinema": "tbd",
+      "source": "google-drive-2021-previous",
+      "sourceFileCount": 5,
+      "group": "older-candidates",
+      "cinemaOrder": 10
+    },
+    {
+      "editorId": "p19",
+      "title": "PMQ – Spot On Event",
+      "decision": "remove",
+      "cinema": "tbd",
+      "source": "google-drive-2021-previous",
+      "sourceFileCount": 2,
+      "group": "older-candidates",
+      "cinemaOrder": 11
+    },
+    {
+      "editorId": "p20",
+      "title": "CDF – Beauty",
+      "decision": "remove",
+      "cinema": "tbd",
+      "source": "google-drive-2021-previous",
+      "sourceFileCount": 3,
+      "group": "older-candidates",
+      "cinemaOrder": 12
+    },
+    {
+      "editorId": "p21",
+      "title": "Blancpain Event",
+      "decision": "remove",
+      "cinema": "tbd",
+      "source": "google-drive-2021-previous",
+      "sourceFileCount": 4,
+      "group": "older-candidates",
+      "cinemaOrder": 13
+    }
+  ],
+  "vimeoRequests": [
+    {
+      "projectEditorId": "o6",
+      "title": "L’oréal HK 2026 Annual Party",
+      "links": [
+        "https://vimeo.com/1246944281"
+      ],
+      "position": "start-of-video-section",
+      "status": "embed-and-content-verification-pending"
+    },
+    {
+      "projectEditorId": "o22",
+      "title": "Mostown - Merry Pearl Dreamland",
+      "links": [
+        "https://vimeo.com/1092679092"
+      ],
+      "position": "first-media-of-project-and-first-position-in-cinema-02",
+      "status": "embed-and-content-verification-pending"
+    },
+    {
+      "projectEditorId": "o0",
+      "title": "Mercedes-Benz - BAM Festival",
+      "links": [
+        "https://vimeo.com/1089511226",
+        "https://vimeo.com/1089511251"
+      ],
+      "position": "preferred-remote-video",
+      "status": "embed-and-duplicate-verification-pending"
+    }
+  ],
+  "mediaRules": {
+    "cinema": "Cinema 01 executed case studies; Cinema 02 pitching/concepts, standalone unmatched graphics, and one agnès b. website design project",
+    "existingMedia": "retain photos and videos; append matched graphics after existing videos and photos",
+    "originalFiles": "do not delete Google Drive files or GitHub media; do not publish until tested and approved",
+    "vimeoCleanup": "audit duplication, duration, rights, embed permissions, and shared references first; no binary deletion in this stage",
+    "removedItems": "hide from the future catalogue, not delete underlying assets",
+    "reviewItems": "retain for approval, do not auto-publish"
+  },
+  "pending": [
+    "Verify 6 NEW project image selections and video embeds",
+    "Verify whether Vimeo URLs allow embed",
+    "Map 76 older PNG images to 26 legacy candidates (one Charging station image merges into existing project)",
+    "Audit 103 graphic assets and separate matched vs standalone",
+    "Integrate website 6 images as a single case study",
+    "Implement separate cinema navigation with internal pagination for over-48 executed projects",
+    "Check source rights, assets, full tests before any main merge"
+  ],
+  "stage": "draft-only",
+  "revision": "owner-review-1",
+  "supersedes": "curation-v4.json",
+  "notes": [
+    "Reconfirmed by owner: Cinema 02 order CLA, HOFEX, Eco Expo, GLB, Merry Pearl, Graphics, Website.",
+    "Christmas Kids Festival and The Land of Luck changed to Review. Beauty Peony and HOFEX titles updated.",
+    "Cinema 02 may be rearranged again; never deploy or delete source files without explicit approval.",
+    "Latest Cinema 02 owner-confirmed order: 1 Graphics; 2 mostown - Merry Pearl Dreamland (Review); 3 agnès b. Website; 4 Mercedes-Benz CLA Car City Promotion (Review); 5 HOFEX Le Cordon Bleu; 6 Eco Expo HK Pavilion; 7 Mercedes-Benz GLB Launch. This supersedes earlier Cinema 02 ordering notes; no live deployment.",
+    "Latest direct owner selection supersedes earlier names/statuses: 4 titles changed; Merry Pearl and CLA retained in Cinema 02 as Keep. Keep does not change their concept/pitching execution status. Full submitted ID ordering applied; no new media download, original deletion, main change, merge or deployment authorized."
+  ],
+  "ownerReview": {
+    "base": "curation-v4@6bb2f73",
+    "authorization": "Update review draft only. Do not download media, delete originals, change main, merge or deploy.",
+    "changes": [
+      {
+        "id": "o3",
+        "originalTitle": "Estee Lauder - APAC Skin-fit Cushion Outpost",
+        "title": "Estée Lauder - Double Wear Playground",
+        "decision": "keep",
+        "cinema": "c1",
+        "position": 4,
+        "note": ""
+      },
+      {
+        "id": "o6",
+        "originalTitle": "Loreal HK 2026 Annual Party",
+        "title": "L’oréal HK 2026 Annual Party",
+        "decision": "keep",
+        "cinema": "c1",
+        "position": 7,
+        "note": ""
+      },
+      {
+        "id": "o7",
+        "originalTitle": "Estee Lauder Breast Cancer Campaign",
+        "title": "Estée Lauder Breast Cancer Campaign",
+        "decision": "keep",
+        "cinema": "c1",
+        "position": 8,
+        "note": ""
+      },
+      {
+        "id": "o22",
+        "originalTitle": "mostown - Merry Pearl Dreamland",
+        "title": "Mostown - Merry Pearl Dreamland",
+        "decision": "keep",
+        "cinema": "c2",
+        "position": 2,
+        "note": ""
+      },
+      {
+        "id": "o20",
+        "originalTitle": "Mercedes-Benz - CLA Car City Promotion",
+        "title": "Mercedes-Benz - CLA Car City Promotion",
+        "decision": "keep",
+        "cinema": "c2",
+        "position": 4,
+        "note": ""
+      }
+    ],
+    "orderMatchesSubmittedIds": true,
+    "conceptClassificationPreserved": true,
+    "mediaChangeApproval": false
+  }
+}

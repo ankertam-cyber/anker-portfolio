@@ -37,7 +37,7 @@ async function publicFilm(url){
 }
 let cursor=0,completed=0;
 async function worker(){while(cursor<manifest.videos.length){const item=manifest.videos[cursor++];
- if(!/^assets\/portfolio\/[\w-]+\/[\w-]+\.mp4$/.test(item.path)||!/^[\w-]+\.mp4$/.test(item.archiveName))throw Error('Unsafe film destination');
+ if(!/^assets\/(?:portfolio|imported)\/[\w/-]+\.mp4$/.test(item.path)||!/^[\w-]+\.mp4$/.test(item.archiveName))throw Error('Unsafe film destination');
  const existing=archived.get(item.archiveName);
  if(existing&&(existing.size!==item.bytes||existing.digest&&existing.digest!=='sha256:'+item.sha256))throw Error('Existing film archive does not match the catalogue');
  if(!existing){

@@ -1,9 +1,11 @@
 import {ROW_SIZES} from './catalogue.mjs';
+import {projectMedia} from './project-media.mjs';
 import {loadPortfolioImage} from './image-loader.mjs';
 import {projectStoryFor} from './project-stories.mjs';
 
 export const SEAT_JOURNEY_MS=2100;
 export const SEAT_TURN_MS=980;
+export function seatEntranceElapsed(start,now){return Math.min(SEAT_JOURNEY_MS,Math.max(0,now-start));}
 const clamp=n=>Math.max(0,Math.min(1,Number.isFinite(n)?n:0));
 const blend=(a,b,t)=>a+(b-a)*t;
 const ease=t=>{const x=clamp(t);return x*x*(3-2*x);};
@@ -40,6 +42,7 @@ export function projectCinemaPoint(point,frame,width,height){
 export function mountSeatJourney(dialog,getMotion,{onGallery,onProject,onSelect,getReturnSeat,onFilm}={}){
   const $=name=>dialog.querySelector('[data-journey-'+name+']');
   const viewport=$('viewport'),world=$('world'),screen=$('screen'),image=$('image'),placeholder=$('placeholder');
+  const mediaKind=$('media-kind'),previewVideo=document.createElement('video');previewVideo.className='pov-video-preview';previewVideo.playsInline=true;previewVideo.muted=true;previewVideo.preload='metadata';previewVideo.hidden=true;screen.append(previewVideo);
   const title=$('title'),seatLabel=$('seat'),status=$('status'),counter=$('counter');
   const closeButton=$('close'),previous=$('previous'),next=$('next'),gallery=$('gallery'),projectButton=$('project');
   const previousShow=$('previous-show'),nextShow=$('next-show'),programmeCounter=$('programme'),turnControls=$('turn-controls');
@@ -47,7 +50,7 @@ export function mountSeatJourney(dialog,getMotion,{onGallery,onProject,onSelect,
   const synopsis=$('synopsis');
   const films=$('films');
   const seats=[];
-  let frameId=0,elapsed=0,lastTime=0,returnFocus=null,scrollY=0,openProject=null,images=[],imageIndex=0,loadToken=0;
+  let frameId=0,elapsed=0,lastTime=0,entranceStart=0,entranceTimer=0,returnFocus=null,scrollY=0,openProject=null,images=[],imageIndex=0,loadToken=0;
   let savedBody=null;
   let imageInfo={},cancelImage=null;
   let programme=[],programmeIndex=0,seatLabelFor=null,turn=null,swipe=null,suppressClickUntil=0;
@@ -82,11 +85,12 @@ export function mountSeatJourney(dialog,getMotion,{onGallery,onProject,onSelect,
     if(frame.settled&&!turn)settle();
   }
   function settle(){
+    clearTimeout(entranceTimer);entranceTimer=0;
     dialog.dataset.phase='seated';viewport.style.opacity='1';status.textContent='Your screening';
   }
   function tick(now){
     frameId=0;if(!dialog.open)return;
-    if(!document.hidden){if(lastTime){const delta=Math.min(80,Math.max(0,now-lastTime));if(turn)turn.elapsed+=delta;else elapsed+=delta;}lastTime=now;paint();}
+    if(!document.hidden){if(dialog.dataset.phase==='entering')elapsed=seatEntranceElapsed(entranceStart,now);else if(lastTime&&turn)turn.elapsed+=Math.min(80,Math.max(0,now-lastTime));lastTime=now;paint();}
     else lastTime=0;
     if((turn||dialog.dataset.phase!=='seated')&&!document.hidden)frameId=requestAnimationFrame(tick);
   }
@@ -102,28 +106,34 @@ export function mountSeatJourney(dialog,getMotion,{onGallery,onProject,onSelect,
   }
   function changeScreening(index){
     const project=programme[index];if(!project)return;
-    programmeIndex=index;imageInfo=project.imageInfo||{};images=project.images?.length?project.images:project.videos?.[0]?.poster?[project.videos[0].poster]:[];openProject=project.id;title.textContent=project.title;const story=projectStoryFor(project.id);if(synopsis){synopsis.hidden=!story;synopsis.textContent=story?`FEATURED STORY — ${story.intro}`:'';}if(films){films.hidden=!project.videos?.length;films.textContent=project.videos?.length>1?`WATCH ${project.videos.length} FILMS`:'WATCH FILM';}
+    programmeIndex=index;imageInfo=project.imageInfo||{};images=projectMedia(project);openProject=project.id;title.textContent=project.title;const story=projectStoryFor(project.id);if(synopsis){synopsis.hidden=!story;synopsis.textContent=story?`FEATURED STORY — ${story.intro}`:'';}if(films){films.hidden=!project.videos?.length;films.textContent=project.videos?.length>1?`WATCH ${project.videos.length} FILMS`:'WATCH FILM';}
     if(seatLabelFor)seatLabel.textContent=seatLabelFor(project);
     describeProgramme();showImage(0);onSelect?.(project.id);
   }
   function turnTo(direction){
     if(!dialog.open||turn||dialog.dataset.phase!=='seated'||programme.length<2)return false;
-    const index=adjacentScreening(programmeIndex,direction,programme.length),src=programme[index].images?.[0];
+    const index=adjacentScreening(programmeIndex,direction,programme.length),first=projectMedia(programme[index])[0],src=first?.type==='image'?first.src:first?.poster;
     if(src){const preload=new Image();preload.src=src;}
     turn={direction,index,elapsed:0,swapped:false};dialog.dataset.phase='turning';status.textContent=direction<0?'Previous screening':'Next screening';
     previousShow.disabled=nextShow.disabled=previous.disabled=next.disabled=gallery.disabled=projectButton.disabled=true;resume();return true;
   }
   function showImage(index){
     imageIndex=(index+images.length)%images.length||0;
-    const token=++loadToken;cancelImage?.();placeholder.hidden=false;
-    const src=images[imageIndex];screen.disabled=!src;gallery.hidden=!src;
+    const token=++loadToken;cancelImage?.();previewVideo.pause();previewVideo.removeAttribute('src');previewVideo.hidden=true;image.hidden=true;placeholder.hidden=false;
+    const item=images[imageIndex],isFilm=item&&item.type!=='image';screen.disabled=!item;gallery.hidden=!item;
     previous.hidden=next.hidden=images.length<2;counter.textContent=images.length?`${String(imageIndex+1).padStart(2,'0')} / ${String(images.length).padStart(2,'0')}`:'From the archive';
-    if(!src){placeholder.textContent='Project material is being curated.';return;}
-    placeholder.textContent='Loading screening…';
-    cancelImage=loadPortfolioImage(image,{src,fallback:imageInfo[src]?.thumbnail,alt:title.textContent},state=>{
+    if(mediaKind)mediaKind.textContent=isFilm?'FILM':['graphic','graphics','rendering','render','design'].includes(item?.mediaKind)?'DESIGN':'PHOTO';
+    if(!item){placeholder.textContent='Project material is being prepared.';return;}
+    if(item.type==='video'){
+      previewVideo.hidden=false;previewVideo.src=item.src;previewVideo.poster=item.poster||'';previewVideo.onloadeddata=()=>{if(token!==loadToken||!dialog.open)return;placeholder.hidden=true;previewVideo.play().catch(()=>{});};previewVideo.onerror=()=>{if(token===loadToken){placeholder.textContent='Open film in full screen';placeholder.hidden=false;}};placeholder.textContent='Loading film…';return;
+    }
+    const src=isFilm?item.poster:item.src;
+    if(!src){placeholder.textContent=isFilm?'WATCH FILM':'Image unavailable';return;}
+    placeholder.textContent=isFilm?'Loading film preview…':'Loading image…';
+    cancelImage=loadPortfolioImage(image,{src,fallback:item.thumbnail||imageInfo[src]?.thumbnail,alt:isFilm?`${title.textContent} — film preview`:title.textContent},state=>{
       if(token!==loadToken||!dialog.open)return;
       placeholder.hidden=state==='ready';
-      if(state==='error'){placeholder.textContent='This image could not load. Choose another image or open the project.';screen.disabled=true;}
+      if(state==='error'){placeholder.textContent=isFilm?'WATCH FILM':'Image unavailable. Open full screen to retry.';}
     });
   }
   function lockPage(){
@@ -141,22 +151,26 @@ export function mountSeatJourney(dialog,getMotion,{onGallery,onProject,onSelect,
   function close(){if(dialog.open)dialog.close();}
   function open(project,{seat='',trigger=null,programme:entries=[],seatLabelFor:labelFor=null}={}){
     if(!project)return false;
-    cancelAnimationFrame(frameId);loadToken++;elapsed=getMotion()?0:SEAT_JOURNEY_MS;lastTime=0;
+    cancelAnimationFrame(frameId);clearTimeout(entranceTimer);loadToken++;elapsed=getMotion()?0:SEAT_JOURNEY_MS;lastTime=0;entranceStart=performance.now();
     turn=null;swipe=null;programme=entries.length?entries:[project];programmeIndex=Math.max(0,programme.findIndex(p=>p.id===project.id));seatLabelFor=labelFor;
     previousShow.disabled=nextShow.disabled=previous.disabled=next.disabled=gallery.disabled=projectButton.disabled=false;describeProgramme();
-    imageInfo=project.imageInfo||{};images=project.images?.length?project.images:project.videos?.[0]?.poster?[project.videos[0].poster]:[];openProject=project.id;title.textContent=project.title;seatLabel.textContent=seat;status.textContent='Take your seat';if(films){films.hidden=!project.videos?.length;films.textContent=project.videos?.length>1?`WATCH ${project.videos.length} FILMS`:'WATCH FILM';}
+    imageInfo=project.imageInfo||{};images=projectMedia(project);openProject=project.id;title.textContent=project.title;seatLabel.textContent=seat;status.textContent='Take your seat';if(films){films.hidden=!project.videos?.length;films.textContent=project.videos?.length>1?`WATCH ${project.videos.length} FILMS`:'WATCH FILM';}
     dialog.dataset.phase='entering';
     if(!dialog.open){returnFocus=trigger||document.activeElement;lockPage();dialog.showModal();}
-    closeButton.focus({preventScroll:true});showImage(0);resume();return true;
+    closeButton.focus({preventScroll:true});showImage(0);resume();
+    // Browsers can throttle animation frames while decoding the first film.
+    // Navigation must become available after the entrance even if no frame arrives.
+    if(dialog.dataset.phase==='entering')entranceTimer=setTimeout(()=>{if(dialog.open&&dialog.dataset.phase==='entering'){elapsed=SEAT_JOURNEY_MS;paint();}},SEAT_JOURNEY_MS+100);
+    return true;
   }
   closeButton.addEventListener('click',close);
   dialog.addEventListener('cancel',event=>{event.preventDefault();close();});
   dialog.addEventListener('close',()=>{
-    cancelAnimationFrame(frameId);frameId=0;loadToken++;cancelImage?.();cancelImage=null;releasePage();
+    cancelAnimationFrame(frameId);clearTimeout(entranceTimer);entranceTimer=0;frameId=0;loadToken++;cancelImage?.();cancelImage=null;releasePage();
     const focus=getReturnSeat?.(openProject)||returnFocus;if(focus?.isConnected)focus.focus({preventScroll:true});returnFocus=null;
-    image.removeAttribute('src');images=[];openProject=null;turn=null;swipe=null;dialog.dataset.phase='closed';
+    previewVideo.pause();previewVideo.removeAttribute('src');previewVideo.hidden=true;image.removeAttribute('src');images=[];openProject=null;turn=null;swipe=null;dialog.dataset.phase='closed';
   });
-  function showGallery(){if(performance.now()<suppressClickUntil||turn)return;if(images.length)onGallery?.({images,imageInfo,index:imageIndex,title:title.textContent,id:openProject});}
+  function showGallery(){if(performance.now()<suppressClickUntil||turn)return;if(images.length){previewVideo.pause();onGallery?.({media:images,index:imageIndex,title:title.textContent,id:openProject});}}
   screen.addEventListener('click',showGallery);gallery.addEventListener('click',showGallery);
   films?.addEventListener('click',()=>{if(!turn)onFilm?.(openProject);});
   previous.addEventListener('click',()=>showImage(imageIndex-1));next.addEventListener('click',()=>showImage(imageIndex+1));
