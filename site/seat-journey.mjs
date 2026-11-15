@@ -1,5 +1,6 @@
 import {ROW_SIZES} from './catalogue.mjs';
 import {loadPortfolioImage} from './image-loader.mjs';
+import {projectStoryFor} from './project-stories.mjs';
 
 export const SEAT_JOURNEY_MS=2100;
 export const SEAT_TURN_MS=980;
@@ -43,6 +44,7 @@ export function mountSeatJourney(dialog,getMotion,{onGallery,onProject,onSelect,
   const closeButton=$('close'),previous=$('previous'),next=$('next'),gallery=$('gallery'),projectButton=$('project');
   const previousShow=$('previous-show'),nextShow=$('next-show'),programmeCounter=$('programme'),turnControls=$('turn-controls');
   const info=$('info');
+  const synopsis=$('synopsis');
   const films=$('films');
   const seats=[];
   let frameId=0,elapsed=0,lastTime=0,returnFocus=null,scrollY=0,openProject=null,images=[],imageIndex=0,loadToken=0;
@@ -100,7 +102,7 @@ export function mountSeatJourney(dialog,getMotion,{onGallery,onProject,onSelect,
   }
   function changeScreening(index){
     const project=programme[index];if(!project)return;
-    programmeIndex=index;imageInfo=project.imageInfo||{};images=project.images?.length?project.images:project.videos?.[0]?.poster?[project.videos[0].poster]:[];openProject=project.id;title.textContent=project.title;if(films){films.hidden=!project.videos?.length;films.textContent=project.videos?.length>1?`WATCH ${project.videos.length} FILMS`:'WATCH FILM';}
+    programmeIndex=index;imageInfo=project.imageInfo||{};images=project.images?.length?project.images:project.videos?.[0]?.poster?[project.videos[0].poster]:[];openProject=project.id;title.textContent=project.title;const story=projectStoryFor(project.id);if(synopsis){synopsis.hidden=!story;synopsis.textContent=story?`FEATURED STORY — ${story.intro}`:'';}if(films){films.hidden=!project.videos?.length;films.textContent=project.videos?.length>1?`WATCH ${project.videos.length} FILMS`:'WATCH FILM';}
     if(seatLabelFor)seatLabel.textContent=seatLabelFor(project);
     describeProgramme();showImage(0);onSelect?.(project.id);
   }
