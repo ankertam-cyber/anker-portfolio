@@ -1,0 +1,202 @@
+{
+  "schemaVersion": 1,
+  "stage": "draft-only",
+  "appliesToBranch": "portfolio-graphics-website-draft-20261115",
+  "readOnlyAudit": true,
+  "sourceLibraries": {
+    "newDrive": {
+      "folder": "NEW",
+      "projectFolders": [
+        {
+          "editorId": "o4",
+          "name": "Shangri La Group 2026 Christmas",
+          "images": 19,
+          "videos": 0,
+          "other": 0
+        },
+        {
+          "editorId": "o5",
+          "name": "UNIQLO Cashmere Pop Up",
+          "images": 21,
+          "videos": 0,
+          "other": 0
+        },
+        {
+          "editorId": "o6",
+          "name": "Loreal HK 2026 Annual Party",
+          "images": 13,
+          "videos": 0,
+          "other": 0
+        },
+        {
+          "editorId": "o7",
+          "name": "Estee Lauder Breast Cancer Campaign",
+          "images": 17,
+          "videos": 1,
+          "other": 0
+        },
+        {
+          "editorId": "o9",
+          "name": "Cartier HJ Event 2026",
+          "images": 9,
+          "videos": 1,
+          "other": 0
+        },
+        {
+          "editorId": "o10",
+          "name": "PURE ReSet FWE Booth",
+          "images": 0,
+          "videos": 0,
+          "other": 1,
+          "otherNote": "1 markdown containing an Instagram Reel URL"
+        }
+      ],
+      "totalFiles": 82
+    },
+    "olderDrive": {
+      "folder": "2021 Previous",
+      "png": 76,
+      "oneEmptyChildFolder": "Photos",
+      "sourceNameGroups": 27,
+      "newCandidates": 26,
+      "existingProjectExtraImage": {
+        "editorId": "o24",
+        "filename": "Charging station_01",
+        "target": "Mercedes-Benz — Charging Stations"
+      },
+      "knownNamingIssue": "country pavilion_03 appears twice as separate Drive files; preserve both IDs during asset ingestion"
+    },
+    "graphicsDrive": {
+      "folder": "Graphics",
+      "total": 103,
+      "imagesIncludingGif": 90,
+      "photoshop": 6,
+      "pdf": 7,
+      "highConfidenceMatches": [
+        {
+          "project": "Mercedes-Benz - BAM Festival",
+          "count": 10
+        },
+        {
+          "project": "Porsche — Grand Opening",
+          "count": 8
+        },
+        {
+          "project": "Mercedes-Benz The new G-Class Range Launch",
+          "count": 4
+        },
+        {
+          "project": "Mercedes Benz - G-Class @ AIA Carnival",
+          "count": 4
+        },
+        {
+          "project": "Mercedes-Benz EQS SUV Launch",
+          "count": 8
+        },
+        {
+          "project": "Mercedes-Benz Experience Day 2023",
+          "count": 3
+        },
+        {
+          "project": "Mercedes-Benz Experience Day 2022",
+          "count": 1
+        },
+        {
+          "project": "ZUNG FU CVGD Grand Opening",
+          "count": 2
+        },
+        {
+          "project": "Kiehl's - Healing Note 治癒花語",
+          "count": 1
+        }
+      ],
+      "needsManualProjectVerification": [
+        {
+          "candidate": "DENZA Kowloon Bay Showroom Grand Opening",
+          "count": 2,
+          "reason": "DENZA Grand Opening source does not uniquely identify this showroom"
+        },
+        {
+          "candidate": "CITIC Tower Christmas Decoration",
+          "count": 4,
+          "reason": "CITIC Pacific Property graphics may be separate location"
+        },
+        {
+          "candidate": "Hoya Annual Dinner",
+          "count": 3,
+          "reason": "Source naming references 2021 rather than the catalogued project year"
+        },
+        {
+          "candidate": "Mercedes-Benz - CLA Car City Promotion",
+          "count": 12,
+          "reason": "CLA BEV Launch may be a distinct project; original case is marked Review"
+        },
+        {
+          "candidate": "L'ÉCOLE Exhibition",
+          "count": 1,
+          "reason": "Branding leaflet cannot be matched to a single exhibition"
+        }
+      ],
+      "unmatchedSeparateCollection": 40,
+      "manualVerificationCount": 22,
+      "highConfidenceCount": 41,
+      "rule": "Photos and videos already inside a project always precede matched Graphics; never mix graphics and photos or infer a match from brand only."
+    },
+    "websiteDrive": {
+      "folder": "Website",
+      "imagePng": 6,
+      "editorId": "website",
+      "singleCaseTitle": "agnès b. – In-house Website Design",
+      "internalSections": [
+        {
+          "name": "Sport B. Website",
+          "count": 3
+        },
+        {
+          "name": "agnès b. Fleuriste Website",
+          "count": 2
+        },
+        {
+          "name": "Sport B. EDM",
+          "count": 1
+        }
+      ]
+    }
+  },
+  "vimeoRequests": [
+    {
+      "editorId": "o6",
+      "vimeoId": "1246944281",
+      "status": "not independently verified for embed"
+    },
+    {
+      "editorId": "o22",
+      "vimeoId": "1092679092",
+      "status": "not independently verified for embed"
+    },
+    {
+      "editorId": "o0",
+      "vimeoId": "1089511226",
+      "status": "not independently verified for embed"
+    },
+    {
+      "editorId": "o0",
+      "vimeoId": "1089511251",
+      "status": "not independently verified for embed"
+    }
+  ],
+  "existingBAMlocalFiles": {
+    "count": 7,
+    "metadataReportedBytes": 348338905,
+    "note": "Seven current BAM local MP4 references. Existing videos must not be deleted until Vimeo duplicates are positively identified and usages checked."
+  },
+  "websiteEngineeringGates": [
+    "The current site loads projects.v28.json and is not connected to this draft manifest.",
+    "Current cinema paging is 48 seats per page, not two editorial categories; implement separate cinema category selector and internal page navigation.",
+    "Current media renderer offers images-first or films-first only; add explicit matched-graphics-after-all-existing-media support.",
+    "Convert source media into deployable optimized web assets; Google Drive listing is not a live media CDN.",
+    "Video embeds require Vimeo permissions and privacy validation; keep local videos until equivalent coverage and successful playback are proven.",
+    "Review two Cinema 01/02 items and two unassigned before final publication.",
+    "Check original user titles, accessibility, mobile experience, site size budget, and automated tests; do not deploy from this stage."
+  ]
+}
