@@ -1,3 +1,4 @@
+import {DEFAULT_CINEMA,mountCinemaDoors} from './cinema-doors.mjs';
 import {createDeskBell} from './bell-audio.mjs';
 import {ROW_SIZES,CAPACITY,pageCount,pageEntries,seatCoordinates,filterEntries,CINEMAS,cinemaEntries,cinemaPageCount,cinemaPageEntries,projectLocation} from './catalogue.mjs';
 import {projectStoryFor} from './project-stories.mjs';
@@ -12,7 +13,7 @@ import {loadPortfolioImage} from './image-loader.mjs';
 const $=id=>document.getElementById(id);
 const viewer=mountMediaViewer($('lightbox'));
 const taglineArtwork=$('tagline-artwork');
-const state={entries:[],redirects:{},cinema:'c1',page:0,selected:null,dialogId:null,manual:false,screenVersion:0,ticketNumber:0};
+const state={entries:[],redirects:{},cinema:DEFAULT_CINEMA,page:0,selected:null,dialogId:null,manual:false,screenVersion:0,ticketNumber:0};
 const reduced=matchMedia('(prefers-reduced-motion: reduce)');
 let savedMotion;try{savedMotion=sessionStorage.getItem('anker-motion-v30');}catch{}
 let motion=savedMotion? savedMotion==='on':!reduced.matches;
@@ -21,13 +22,12 @@ let seatJourney=null;
 let seatPrompt=null;
 const getMotion=()=>motion;
 const scene=mountScene($('scene-canvas'),'assets/media/character-master.png',getMotion,{still:true});
-function renderOpeningPlayback(state){const button=$('opening-motion-enable'),status=$('opening-playback-state');button.textContent=motion?'PAUSE OPENING':'PLAY OPENING';button.setAttribute('aria-pressed',String(motion));status.dataset.state=state;status.textContent=state==='playing'?'PLAYING':state==='loading'?'LOADING':state==='starting'?'STARTING':'PAUSED';}
-const headline=mountTagline($('tagline-lights'),taglineArtwork,getMotion,renderOpeningPlayback);
-function setMotion(value){motion=value;document.documentElement.dataset.motion=motion?'on':'off';$('motion-toggle').setAttribute('aria-pressed',String(!motion));$('motion-toggle').textContent=motion?'Pause motion':'Enable motion';renderOpeningPlayback(motion?'starting':'off');scene.setMotion();headline.setMotion();openingTransition?.refresh();seatJourney?.setMotion();document.querySelectorAll('img[data-animation-source]').forEach(img=>{img.src=motion?img.dataset.animationSource:img.dataset.animationPoster;});}
+// The accepted sparkle treatment is always present, independently of camera motion.
+const headline=mountTagline($('tagline-lights'),taglineArtwork,()=>true);
+function setMotion(value){motion=value;document.documentElement.dataset.motion=motion?'on':'off';$('motion-toggle').setAttribute('aria-pressed',String(!motion));$('motion-toggle').textContent=motion?'Reduce movement':'Restore movement';scene.setMotion();headline.setMotion();openingTransition?.refresh();seatJourney?.setMotion();document.querySelectorAll('img[data-animation-source]').forEach(img=>{img.src=motion?img.dataset.animationSource:img.dataset.animationPoster;});}
 setMotion(motion);
 function rememberMotion(){savedMotion=motion?'on':'off';try{sessionStorage.setItem('anker-motion-v30',savedMotion);}catch{}}
 $('motion-toggle').addEventListener('click',()=>{setMotion(!motion);rememberMotion();});
-$('opening-motion-enable').addEventListener('click',()=>{setMotion(!motion);rememberMotion();});
 reduced.addEventListener('change',()=>{if(!savedMotion)setMotion(!reduced.matches);});
 
 const menu=$('site-menu');
@@ -103,7 +103,10 @@ async function changeCinema(delta){
   await later(180);state.page=target;const entry=cinemaPageEntries(state.entries,state.cinema,state.page)[0];state.selected=entry?.id||null;buildSeats();if(entry)selectProject(entry.id);map.classList.remove('changing');
 }
 $('cinema-prev').addEventListener('click',()=>changeCinema(-1));$('cinema-next').addEventListener('click',()=>changeCinema(1));
-document.querySelectorAll('[data-cinema-category]').forEach(button=>button.addEventListener('click',()=>{const cinema=button.dataset.cinemaCategory;if(cinema===state.cinema)return;seatPrompt?.hide();state.cinema=cinema;state.page=0;state.manual=true;const project=cinemaEntries(state.entries,cinema)[0];state.selected=project?.id||null;buildSeats();if(project)selectProject(project.id);}));
+mountCinemaDoors([...document.querySelectorAll('[data-cinema-category]')],{getMotion,onEnter:cinema=>{
+  seatPrompt?.hide();state.cinema=cinema;state.page=0;state.manual=true;
+  const project=cinemaEntries(state.entries,cinema)[0];state.selected=project?.id||null;buildSeats();if(project)selectProject(project.id);
+},afterEnter:()=>document.querySelector('.screen-shell').scrollIntoView({behavior:motion?'smooth':'instant',block:'start'})});
 seatJourney=mountSeatJourney($('seat-journey'),getMotion,{
   onGallery:({media,index,title,id})=>viewer.open({media,index,title,onProject:()=>{seatJourney.close();openProject(id);}},{fullscreen:true}),
   onProject:id=>openProject(id),
