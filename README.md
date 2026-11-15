@@ -26,6 +26,10 @@ The editor is a static client; viewing its public URL grants no publication righ
 
 ### Batch media and library
 
+**找重複相片** compares image contents in the current project or active library, regardless of filename. File/pixel-identical copies and visually similar candidates have separate results. The editor recommends retaining the largest-resolution copy; only identical-copy suggestions can be selected in bulk. Similar candidates always require individual selection and visual review. Each group retains at least one photo. The existing removal confirmation then controls project-only removal or the shared recycle area; nothing is published automatically and originals remain intact.
+
+The local photo fingerprint index covers existing catalogue photos, so a phone does not need to download every original image to scan. New image links are compared in the browser when their source permits canvas access; unavailable images are counted explicitly. Scanning sends no photos to AI services. The conservative visual comparison can miss large crops, flips, and substantially changed viewpoints. Rebuild the index after replacing catalogue image files with `python scripts/build-image-fingerprints.py` (Pillow and NumPy); CI rejects stale fingerprints by source checksum.
+
 Each native or Vimeo film has **預覽播放** in the project editor and shared library. The modal shows the clip label and filename, native timeline/fullscreen controls, and previous/next film buttons. Opening a preview attempts playback from that user action; browser restrictions retain a manual play control. Switching clips, closing the modal, or leaving the page stops playback; a hidden tab pauses it. Previewing does not edit the draft or select media.
 
 Long-press a thumbnail or use its checkbox to select media. Shift-click selects a range. The media toolbar supports selecting all photos, selecting an entire project, moving a selection up/down, moving to the start/end of its category, or inserting the group at a numbered position. Selection order and the video/photo/design categories are preserved. Thumbnail and detail views share the same edits; each batch edit is one undo step.

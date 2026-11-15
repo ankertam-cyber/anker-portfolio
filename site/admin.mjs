@@ -1,3 +1,4 @@
+import {mountPhotoDuplicateManager} from './photo-duplicate-manager.mjs';
 import {mountAdminVideoPreview} from './admin-video-preview.mjs?v=video2';
 import {mountMediaManager} from './media-manager.mjs?v=video1';
 import {rememberLibrary,removeProjectMedia,removeLibraryMedia,restoreLibraryMedia,selectionDescription,createLongPress} from './media-actions.mjs';
@@ -8,6 +9,7 @@ import {createGitHubPublisher} from './github-publisher.mjs';
 const $=id=>document.getElementById(id),SITE=new URL('../',location.href),PENDING_KEY='anker-portfolio-pending-v1';
 const publisher=createGitHubPublisher();
 const videoPreview=mountAdminVideoPreview($('video-preview-dialog'),{site:SITE});
+const photoDuplicates=mountPhotoDuplicateManager($('duplicate-dialog'),{site:SITE,getProject:id=>projectById(id),getItems:(scope,id)=>{const names=new Map(currentEntries().map(p=>[p.id,p.title])),inventory=libraryInventory(entries,draft),bySource=new Map(inventory.map(item=>[item.src,item]));const items=scope==='project'?mediaForEditor(projectById(id)||{}):inventory.filter(item=>!item.removed);return items.map(item=>({...item,projectNames:(bySource.get(item.src)?.projectIds||[]).map(id=>names.get(id)).filter(Boolean)}));},onRemove:removeMedia});
 let entries=[],published=emptyContent(),draft=emptyContent(),selected='',view='projects',ready=false,busy=false,storageOK=true,stale=false,undo=[],redo=[],dragProject='',dragMedia=-1,fieldId=0,monitorId=0;
 const node=(tag,cls='',copy)=>{const el=document.createElement(tag);if(cls)el.className=cls;if(copy!==undefined)el.textContent=copy;return el;};
 const currentEntries=()=>editableEntries(entries,draft);
@@ -89,7 +91,7 @@ function renderEditor(){
   for(const [key,label]of [['eyebrow','小標題'],['intro','故事簡介'],['challenge','The challenge'],['approach','The idea'],['role','My role'],['outcome','The result']])field(storySection,label,story[key]||'',value=>mutate(()=>{const live=normalizeStory(projectStoryFor(p.id,projectById(p.id)));live[key]=value;patchProject(p.id,'story',live);},{render:false,list:false}),{area:key!=='eyebrow'});
   field(storySection,'故事重點（每行一項）',(story.highlights||[]).join('\n'),value=>mutate(()=>{const live=normalizeStory(projectStoryFor(p.id,projectById(p.id)));live.highlights=value.split('\n').map(s=>s.trim()).filter(Boolean);patchProject(p.id,'story',live);},{render:false,list:false}),{area:true});
  }
- const mediaHead=node('div','section-title');mediaHead.append(node('h3','','影片、相片與設計圖'),button('新增素材',()=>openMedia()));editor.append(mediaHead,node('p','small','長按縮圖或勾選多個素材，再一批移動或移除。影片、相片、設計圖會保持分組。'));
+ const mediaHead=node('div','section-title');mediaHead.append(node('h3','','影片、相片與設計圖'),button('新增素材',()=>openMedia()),button('找重複相片',event=>photoDuplicates.open({projectId:p.id,trigger:event.currentTarget})));editor.append(mediaHead,node('p','small','長按縮圖或勾選多個素材，再一批移動或移除。影片、相片、設計圖會保持分組。'));
  const mediaList=node('div','media-list');editor.append(mediaList);renderMedia(mediaList,p);
  const restore=node('div','section-title');restore.append(node('p','small','原有作品同素材檔案會保留。'),button('還原呢個作品',async()=>{if(await ask('還原呢個作品嘅所有草稿修改？其他作品唔受影響。'))mutate(()=>delete draft.overrides[p.id]);}));editor.append(restore);
  if(draft.additions.some(x=>x.id===p.id))editor.append(button('移除呢個新增作品',async()=>{if(await ask('從草稿移除呢個新增作品？可以用「復原」還原。'))mutate(()=>{draft.additions=draft.additions.filter(x=>x.id!==p.id);delete draft.overrides[p.id];draft.order=draft.order.filter(id=>id!==p.id);selected=currentEntries()[0]?.id||'';});},'text-action'));
@@ -107,12 +109,12 @@ function askMediaRemoval(items,projectId,libraryOnly=false){
 $('remove-media-confirm').addEventListener('click',()=>{const resolve=removalResolve;removalResolve=null;const scope=document.querySelector('input[name="removal-policy"]:checked').value;$('remove-media-dialog').close();resolve?.(scope);});
 $('remove-media-dialog').addEventListener('close',()=>{if(removalResolve){const resolve=removalResolve;removalResolve=null;resolve(null);}});
 async function removeMedia(items,projectId,libraryOnly=false){
- if(!items.length||busy||stale||removalResolve)return;const snapshot=items.map(normalizeMedia),scope=await askMediaRemoval(snapshot,projectId,libraryOnly);if(!scope||busy||stale)return;
+ if(!items.length||busy||stale||removalResolve)return false;const snapshot=items.map(normalizeMedia),scope=await askMediaRemoval(snapshot,projectId,libraryOnly);if(!scope||busy||stale)return false;
  mutate(()=>{if(scope==='library')removeLibraryMedia(draft,snapshot);else removeProjectMedia(draft,projectById(projectId),snapshot.map(item=>item.src));mediaUI.selected.clear();libraryUI.selected.clear();});
- notice('已將 '+selectionDescription(snapshot)+(scope==='library'?'移到素材庫回收區，原檔保留。':'從目前作品移除，素材庫及原檔保留。')+' 改動尚未發佈，可撳「復原」。');
+ notice('已將 '+selectionDescription(snapshot)+(scope==='library'?'移到素材庫回收區，原檔保留。':'從目前作品移除，素材庫及原檔保留。')+' 改動尚未發佈，可撳「復原」。');return true;
 }
 function renderLibrary(){
- titleBlock('素材庫','作品移除嘅素材可重新加入；回收區素材唔會喺任何作品顯示。原檔保留。');
+ const heading=titleBlock('素材庫','作品移除嘅素材可重新加入；回收區素材唔會喺任何作品顯示。原檔保留。');heading.append(button('找重複相片',event=>photoDuplicates.open({projectId:selected,scope:'library',trigger:event.currentTarget})));
  const editor=$('editor'),inventory=libraryInventory(entries,draft),known=new Set(inventory.map(item=>item.src));libraryUI.selected=new Set([...libraryUI.selected].filter(src=>known.has(src)));
  const filters=node('div','library-filters'),search=node('input'),filter=node('select');search.type='search';search.placeholder='搜尋素材名稱、網址或作品…';search.value=libraryUI.query;search.setAttribute('aria-label','搜尋素材庫');
  for(const [value,label]of [['active','素材庫'],['unused','暫時冇作品使用'],['removed','回收區']]){const option=node('option','',label);option.value=value;filter.append(option);}filter.value=libraryUI.filter;filter.setAttribute('aria-label','素材庫範圍');filters.append(search,filter);editor.append(filters);
