@@ -1,19 +1,22 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import {assertPortfolioImage} from './image-dimensions.mjs';
+import {assertPortfolioImage,imageDimensions} from './image-dimensions.mjs';
 import {projectMedia} from '../site/project-media.mjs';
 import {applyContent} from '../site/content-model.mjs';
 import {inspectWebVideo} from './web-video.mjs';
 import {NATIVE_VIDEO_FILES} from '../site/native-video-files.mjs';
 import {checkImageFingerprints} from './check-image-fingerprints.mjs';
 import {loadMediaPurge} from './load-media-purge.mjs';
+import {uploadedRepoPath} from '../site/upload-paths.mjs';
 const root=path.resolve('_site'),data=JSON.parse(await fs.readFile(path.join(root,'projects.v28.json'),'utf8'));
+const imageFile=src=>{const upload=uploadedRepoPath(src);if(upload)return path.resolve(upload);if(!src.startsWith('assets/')||src.includes('..'))throw Error('Unexpected project image source');return path.join(root,src);};
 const rules=JSON.parse(await fs.readFile(path.join(root,'portfolio-curation.json'),'utf8'));
 const manifest=JSON.parse(await fs.readFile('media-sources.json','utf8'));
 if(JSON.stringify(NATIVE_VIDEO_FILES)!==JSON.stringify(manifest.videos.map(v=>[v.path,v.archiveName])))throw Error('Playback source index differs from original archive');
 const purge=await loadMediaPurge();for(const film of purge.activeManifest.videos)inspectWebVideo(await fs.readFile(path.join(root,'assets/web-video-v1',film.archiveName)));
 for(const file of purge.files){try{await fs.access(path.join(root,file));}catch(error){if(error.code==='ENOENT')continue;throw error;}throw Error('Permanently deleted media was republished: '+file);}
 const ownerContent=JSON.parse(await fs.readFile(path.join(root,'content.json'),'utf8'));
+for(const src of ownerContent.library?.purged||[]){const file=uploadedRepoPath(src);if(!file)continue;try{await fs.access(path.resolve(file));}catch(error){if(error.code==='ENOENT')continue;throw error;}throw Error('Permanently deleted uploaded photo still exists: '+file);}
 await checkImageFingerprints(root,data);
 applyContent(data.entries,ownerContent);
 if(data.previewOnly||!data.entries.length||data.entries.some(p=>p.publicationStatus!=='published'))throw Error('Invalid public catalogue');
@@ -24,12 +27,12 @@ const names=new Set(manifest.videos.map(v=>v.archiveName)),files=new Set();let m
 for(const project of data.entries){
  const programme=projectMedia(project);let rank=-1;
  for(const item of programme){const next=item.type==='video'||item.type==='vimeo'?0:['graphic','graphics','rendering','render','design'].includes(item.mediaKind)?2:1;if(next<rank)throw Error('Media sequence changed: '+project.title);rank=next;if(/\.psd(?:$|\?)/i.test(item.src))throw Error('PSD cannot be published');}
- for(const graphic of project.graphics||[]){const file=typeof graphic==='string'?graphic:graphic.src;files.add(file);assertPortfolioImage(await fs.readFile(path.join(root,file)),file,typeof graphic==='object'?graphic:project.imageInfo[file]);}
- for(const file of project.images){files.add(file);assertPortfolioImage(await fs.readFile(path.join(root,file)),file,project.imageInfo[file]);}
+ for(const graphic of project.graphics||[]){const file=typeof graphic==='string'?graphic:graphic.src;files.add(file);assertPortfolioImage(await fs.readFile(imageFile(file)),file,typeof graphic==='object'?graphic:project.imageInfo[file]);}
+ for(const file of project.images){files.add(file);assertPortfolioImage(await fs.readFile(imageFile(file)),file,project.imageInfo[file]);}
  for(const info of Object.values(project.imageInfo||{}))if(info.thumbnail)files.add(info.thumbnail);
  for(const movie of project.videos){const url=new URL(movie.src);if(movie.type==='vimeo'){vimeo++;if(url.origin!=='https://player.vimeo.com'||!/^\/video\/\d+$/.test(url.pathname))throw Error('Invalid remote Vimeo player');}else{movies++;if(url.origin!=='https://github.com'||!url.pathname.startsWith('/ankertam-cyber/anker-portfolio/releases/download/portfolio-media-v1/')||!names.has(url.pathname.split('/').at(-1)))throw Error('Unexpected public film destination');}if(movie.poster)files.add(movie.poster);}
 }
-for(const file of files){if(!file.startsWith('assets/')||file.includes('..'))throw Error('Non-local project image');assertPortfolioImage(await fs.readFile(path.join(root,file)),file);}
+for(const file of files){const bytes=await fs.readFile(imageFile(file));if(uploadedRepoPath(file)&&/-preview\.jpg$/.test(file)){const size=imageDimensions(bytes);if(size.width<2||size.height<2)throw Error('Invalid uploaded thumbnail');}else assertPortfolioImage(bytes,file);}
 if(movies!==purge.activeManifest.videos.length)throw Error('Film manifest count differs from the published programme');
 const archive=JSON.parse(await fs.readFile('media-archive-checks.json','utf8'));if(archive.verified!==movies)throw Error('Film archive has not been verified');
 if(archive.playback?.films!==movies)throw Error('Browser playback files are missing');

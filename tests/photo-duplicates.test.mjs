@@ -1,6 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import {createHash} from 'node:crypto';
+import {uploadedRepoPath} from '../site/upload-paths.mjs';
 import {findPhotoDuplicates,similarPhotos,hashDistance,duplicateRemovalItems,recommendedDuplicateSources} from '../site/photo-duplicates.mjs';
 import {createPhotoFingerprintReader,fingerprintPixels} from '../site/photo-fingerprints.mjs';
 import {emptyContent,editableEntries,mediaForEditor} from '../site/content-model.mjs';
@@ -44,7 +46,7 @@ test('confirmed deduplication keeps project order, other projects and originals;
 });
 test('the fingerprint index covers catalogue images and matches the source package checksums',()=>{
  const index=JSON.parse(fs.readFileSync(new URL('../site/image-fingerprints.json',import.meta.url))),manifest=JSON.parse(fs.readFileSync(new URL('../asset-checksums.json',import.meta.url))),files=new Map(manifest.files.map(f=>[f.path,f]));
- for(const [src,record]of Object.entries(index.records)){assert.equal(record.sha256,files.get('site/'+src)?.sha256,src);assert.equal(record.bytes,files.get('site/'+src)?.size,src);}
+ for(const [src,record]of Object.entries(index.records)){const upload=uploadedRepoPath(src);if(upload){const bytes=fs.readFileSync(upload);assert.equal(record.sha256,createHash('sha256').update(bytes).digest('hex'),src);assert.equal(record.bytes,bytes.length,src);}else{assert.equal(record.sha256,files.get('site/'+src)?.sha256,src);assert.equal(record.bytes,files.get('site/'+src)?.size,src);}}
 });
 test('known photos share one index request and do not download original files',async()=>{
  let requests=0;const expected=fingerprint({sha256:'a'.repeat(64)}),read=createPhotoFingerprintReader({site:new URL('https://example.test/portfolio/'),document:{createElement(){throw Error('Original should not load');}},request:async()=>{requests++;return{ok:true,json:async()=>({version:1,algorithm:'photo-content-v1',records:{'assets/a.jpg':expected}})};}});

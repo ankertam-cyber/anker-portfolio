@@ -11,10 +11,13 @@ import numpy as np
 from PIL import Image, ImageOps
 
 root = Path(__file__).resolve().parent.parent
+upload_prefix = 'https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/'
 catalogue = json.loads((root / "site/projects.json").read_text(encoding="utf-8"))
+content = json.loads((root / "site/content.json").read_text(encoding="utf-8"))
+purged = set(content.get('library', {}).get('purged', []))
 sources = sorted({item if isinstance(item, str) else item["src"]
                   for project in catalogue["entries"]
-                  for item in project.get("images", [])})
+                  for item in project.get("images", [])} - purged)
 cosine = np.cos(np.pi * (np.arange(32)[:, None] + .5) * np.arange(8)[None, :] / 32).T
 
 
@@ -25,12 +28,23 @@ def bits(values):
     return f"{number:016x}"
 
 
+destination = root / "site/image-fingerprints.json"
+previous = json.loads(destination.read_text(encoding="utf-8"))["records"] if destination.exists() else {}
 records = {}
 for index, source in enumerate(sources):
-    if not source.startswith("assets/") or ".." in Path(source).parts:
+    if source.startswith(upload_prefix + 'media-uploads/'):
+        relative = source[len(upload_prefix):]
+        if '..' in Path(relative).parts:
+            raise ValueError('Unexpected managed image source')
+        file = root / relative
+    elif source.startswith("assets/") and ".." not in Path(source).parts:
+        file = root / "site" / source
+    else:
         raise ValueError("Unexpected image source")
-    file = root / "site" / source
     raw = file.read_bytes()
+    if previous.get(source, {}).get('sha256') == hashlib.sha256(raw).hexdigest():
+        records[source] = previous[source]
+        continue
     with Image.open(file) as opened:
         if getattr(opened, "is_animated", False):
             continue
@@ -55,6 +69,5 @@ for index, source in enumerate(sources):
     if (index + 1) % 100 == 0:
         print(f"Indexed {index + 1}/{len(sources)} photographs", flush=True)
 
-destination = root / "site/image-fingerprints.json"
 destination.write_text(json.dumps({"version": 1, "algorithm": "photo-content-v1", "records": records}, separators=(",", ":")), encoding="utf-8")
 print(json.dumps({"indexed": len(records), "bytes": destination.stat().st_size}))

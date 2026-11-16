@@ -1,5 +1,6 @@
 import {mediaForEditor,mediaRank,safeMediaUrl,normalizeVimeoInput} from './content-model.mjs?v=bulk1';
 import {moveMediaSelection,selectionDescription,createLongPress} from './media-actions.mjs';
+import {uploadedImageSource} from './upload-store.mjs';
 
 const make=(tag,cls='',text)=>{const el=document.createElement(tag);el.className=cls;if(text!==undefined)el.textContent=text;return el;};
 const action=(text,handler,cls='')=>{const button=make('button',cls,text);button.type='button';button.addEventListener('click',handler);return button;};
@@ -34,15 +35,15 @@ export function mountMediaManager(container,project,{state,site,getProject,onCha
  const remove=action('刪除已選素材',()=>onRemove(chosen()),'danger-action');moveActions.append(positionLabel,at,remove);
  toolbar.append(make('p','small','長按縮圖進入多選，亦可勾選、Shift 連選。批量移動會保留相片先後次序；影片、相片、設計圖分組排序。'));
  container.append(toolbar);
- if(!items.length){container.append(make('p','help-box','呢個作品暫時未有素材。你可以新增公開圖片或影片連結。'));refresh();return;}
+ if(!items.length){container.append(make('p','help-box','呢個 Project 暫時未有相片。撳「上載相片」直接揀相，亦可以加入影片網址。'));refresh();return;}
  for(const rank of [0,1,2]){
   const members=items.filter(item=>mediaRank(item)===rank);if(!members.length)continue;
   const section=make('section','media-group'),heading=make('h4','media-group-title',`${['影片','相片','設計圖'][rank]} · ${members.length}`),grid=make('div','media-items '+(state.layout==='grid'?'media-grid':'media-detail'));section.append(heading,grid);container.append(section);
   for(const item of members){
    const index=items.findIndex(value=>value.src===item.src),row=make('article','media-row');row.draggable=true;row.tabIndex=0;row.dataset.mediaSrc=item.src;
    const preview=make('div','media-preview'),check=make('input','media-select');check.type='checkbox';check.setAttribute('aria-label','選取素材 '+(index+1));check.addEventListener('click',event=>{event.stopPropagation();toggle(item.src,event,check.checked);});preview.append(check);
-   const source=item.type==='image'?item.src:item.poster;
-   if(source&&safeMediaUrl(source)){const image=make('img','media-thumb');image.src=new URL(source,site).href;image.alt=item.label||`素材 ${index+1}`;image.loading='lazy';image.draggable=false;image.addEventListener('contextmenu',event=>event.preventDefault());preview.append(image);}else preview.append(make('div','media-thumb media-placeholder',item.type==='image'?'IMAGE':'FILM'));
+   const source=item.type==='image'?(item.thumbnail||item.src):item.poster;
+   if(source&&safeMediaUrl(source)){const image=make('img','media-thumb');image.src=uploadedImageSource(new URL(source,site).href);image.alt=item.label||`素材 ${index+1}`;image.loading='lazy';image.draggable=false;image.addEventListener('contextmenu',event=>event.preventDefault());preview.append(image);}else preview.append(make('div','media-thumb media-placeholder',item.type==='image'?'IMAGE':'FILM'));
    if(item.type!=='image'&&onPreview){const play=action('預覽播放',event=>{event.stopPropagation();onPreview(item,event.currentTarget);},'media-preview-play');play.setAttribute('aria-label','預覽影片 '+(index+1)+(item.label?' · '+item.label:''));preview.append(play);}
    row.append(preview);const info=make('div','media-fields');info.append(make('p','small',`${String(index+1).padStart(2,'0')} / ${item.type==='vimeo'?'VIMEO':['FILM','PHOTO','DESIGN'][rank]}`));
    const label=make('input','media-name');label.value=item.label||item.alt||'';label.placeholder='素材名稱／說明';label.setAttribute('aria-label','素材 '+(index+1)+' 名稱');label.addEventListener('input',()=>{const all=mediaForEditor(getProject());const live=all.find(value=>value.src===item.src);if(!live)return;live.label=label.value;if(item.type==='image')live.alt=label.value;onChange(all,{render:false,list:false});});info.append(label);

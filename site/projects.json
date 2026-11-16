@@ -2492,8 +2492,409 @@
       "id": "o4",
       "images": [],
       "videos": [],
-      "graphics": [],
-      "imageInfo": {},
+      "graphics": [
+        {
+          "src": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1eBWbNjt83S-t2L1s51aojiZLTlajOlS3.png",
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 4406,
+          "height": 3484,
+          "label": "Shangri La Group 2026 Christmas - Airship Giftbox.png",
+          "alt": "Shangri La Group 2026 Christmas - Airship Giftbox.png",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1eBWbNjt83S-t2L1s51aojiZLTlajOlS3-preview.jpg",
+          "originalSha256": "6910ce40cf49348b860f3afac1eeb8dfe84fe3e0ea4f8ae2b7354ab1fcdec62e"
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1IZ_ypM9bzigkqeEIZH6zAZLb1Zo-Wr3s.jpg",
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 2752,
+          "height": 1536,
+          "label": "Shangri La Group 2026 Christmas - Claw Machine Skin_V2.jpg",
+          "alt": "Shangri La Group 2026 Christmas - Claw Machine Skin_V2.jpg",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1IZ_ypM9bzigkqeEIZH6zAZLb1Zo-Wr3s-preview.jpg",
+          "originalSha256": "05cd844d60bce3dc8677b40eb527a552125c3ffa6312b66d5d409125d634bfd4"
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1iwh5vGzNA-eypB3E9lZInk7v_rVeWhdL.jpg",
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 6496,
+          "height": 3654,
+          "label": "Shangri La Group 2026 Christmas - Dim & Material_1.jpg",
+          "alt": "Shangri La Group 2026 Christmas - Dim & Material_1.jpg",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1iwh5vGzNA-eypB3E9lZInk7v_rVeWhdL-preview.jpg",
+          "originalSha256": "878a2ff796a0c78b7b17aebd002887c6bacce536832b9c5fae3217dd83a84bda"
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/15KRcgj6_t0zlKFl3mFTUepBpL1qbLJwu.jpg",
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 7677,
+          "height": 4318,
+          "label": "Shangri La Group 2026 Christmas - Dim & Material_2.jpg",
+          "alt": "Shangri La Group 2026 Christmas - Dim & Material_2.jpg",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/15KRcgj6_t0zlKFl3mFTUepBpL1qbLJwu-preview.jpg",
+          "originalSha256": "7bcc32666755d7c200f05f38e04f6aa8f08f78e310aa5f6322b00e54c349e77d"
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1duWXTrVLPB1eJNr4bdMds2lz5JrnqpFf.jpg",
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 3200,
+          "height": 1800,
+          "label": "Shangri La Group 2026 Christmas - Dim & Material_3.jpg",
+          "alt": "Shangri La Group 2026 Christmas - Dim & Material_3.jpg",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1duWXTrVLPB1eJNr4bdMds2lz5JrnqpFf-preview.jpg",
+          "originalSha256": "2cc8f2b8dcca7d38e2bbe70fd6846b2f283061c89f02aa5c8b2cd74bb50ed56f"
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1oATFSiXfAUkaqCFzgSYQsIpalkuNVSKJ.png",
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 2752,
+          "height": 1536,
+          "label": "Shangri La Group 2026 Christmas - F&B_2.png",
+          "alt": "Shangri La Group 2026 Christmas - F&B_2.png",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1oATFSiXfAUkaqCFzgSYQsIpalkuNVSKJ-preview.jpg",
+          "originalSha256": "f4a6cf1ef2ae06b7c6e6059b7bd11230f5de6a1a5c7c0bee35cf50a3f804552f"
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1RkF1H6ZZa-KfIi7XcG2FB-JS-seEMiog.png",
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 2304,
+          "height": 1296,
+          "label": "Shangri La Group 2026 Christmas - Lighting Projection - Merry Go Round (Paris).png",
+          "alt": "Shangri La Group 2026 Christmas - Lighting Projection - Merry Go Round (Paris).png",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1RkF1H6ZZa-KfIi7XcG2FB-JS-seEMiog-preview.jpg",
+          "originalSha256": "e9a161412a9322de974748740d49b4039a6fd008b6e7562ea9e9dcd16ec90862"
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1YOQ2Dyh2ewM2z3rix_DLeAmYw-6PV5Yd.png",
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 2816,
+          "height": 1842,
+          "label": "Shangri La Group 2026 Christmas - Main Set_Non_HK_V2.png",
+          "alt": "Shangri La Group 2026 Christmas - Main Set_Non_HK_V2.png",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1YOQ2Dyh2ewM2z3rix_DLeAmYw-6PV5Yd-preview.jpg",
+          "originalSha256": "3d8a803cc1baa7dabdff999bba874841b3d9ea8d2ffdbcc1055fa3e2f31e0ea4"
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/105vJKrjMXn5pE9NB7RH1UGO3DR1btlXT.png",
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 2752,
+          "height": 1536,
+          "label": "Shangri La Group 2026 Christmas - Merry Go Around Xmas Tree_1.png",
+          "alt": "Shangri La Group 2026 Christmas - Merry Go Around Xmas Tree_1.png",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/105vJKrjMXn5pE9NB7RH1UGO3DR1btlXT-preview.jpg",
+          "originalSha256": "684de1eb02ad8d4490b3638a9688d9889c7a90c6555ba5bdf962aa55e8c153ab"
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1-zMKuqyhXUWIw6iXXw9otHrYwdT5GLDW.jpg",
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 2752,
+          "height": 1536,
+          "label": "Shangri La Group 2026 Christmas - Merry Go Round_V3.jpg",
+          "alt": "Shangri La Group 2026 Christmas - Merry Go Round_V3.jpg",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1-zMKuqyhXUWIw6iXXw9otHrYwdT5GLDW-preview.jpg",
+          "originalSha256": "8b06870d4e1f9927e556c11067c22570e1560e1f8cdf37ec56a568eac9cfd063"
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1D3YIPyuNemHg9ct63WslyJ9tNxxwvOKX.png",
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 3499,
+          "height": 2981,
+          "label": "Shangri La Group 2026 Christmas - Photo Booth_2.png",
+          "alt": "Shangri La Group 2026 Christmas - Photo Booth_2.png",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1D3YIPyuNemHg9ct63WslyJ9tNxxwvOKX-preview.jpg",
+          "originalSha256": "c133c9debec319376580493439bdbd147eef43bfb2dd373f8806b3a78668aff4"
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1UzHMgLpsz5qgJ84FMBKENyeUJDhZSosQ.jpg",
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 2816,
+          "height": 1584,
+          "label": "Shangri La Group 2026 Christmas - Retail & Workshop_V2.jpg",
+          "alt": "Shangri La Group 2026 Christmas - Retail & Workshop_V2.jpg",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1UzHMgLpsz5qgJ84FMBKENyeUJDhZSosQ-preview.jpg",
+          "originalSha256": "4cdda0432a825bf9d37a79fbc77b8e5913ffe030e2eec774dcd7c93a7835b3fa"
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1l4YSfO8DOEAcnLEbpyOaQW5PAJ_Xb0OM.png",
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 2304,
+          "height": 1296,
+          "label": "Shangri La Group 2026 Christmas - Roller Coaster_2.png",
+          "alt": "Shangri La Group 2026 Christmas - Roller Coaster_2.png",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1l4YSfO8DOEAcnLEbpyOaQW5PAJ_Xb0OM-preview.jpg",
+          "originalSha256": "c75a73264084ff958a13512cacebf95eb14428184bb6593ef4f865153be467cc"
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1sp772ro5JuSb3KUnhBxCZNP__CBOgu2Y.png",
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 2631,
+          "height": 1859,
+          "label": "Shangri La Group 2026 Christmas - Roller Coaster.png",
+          "alt": "Shangri La Group 2026 Christmas - Roller Coaster.png",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1sp772ro5JuSb3KUnhBxCZNP__CBOgu2Y-preview.jpg",
+          "originalSha256": "af59ae9f30c7bafe850fa8eba471007182a44c4b5403ebdf27f8f3cf1cb52f4d"
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1dNsb-VOfi-rV7V6V_e2eH1IUV0CkOHkU.png",
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 2752,
+          "height": 1536,
+          "label": "Shangri La Group 2026 Christmas - Unboxing Gimmick UHN PR KOL_02_2.png",
+          "alt": "Shangri La Group 2026 Christmas - Unboxing Gimmick UHN PR KOL_02_2.png",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1dNsb-VOfi-rV7V6V_e2eH1IUV0CkOHkU-preview.jpg",
+          "originalSha256": "063eff2d17b68daefa4593c874bb0a2e5734fa8d12cc632346e397ccbb362a69"
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1eJ7_hDE9EGvSyJ1WRle8AYJS0Aq5MJs_.png",
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1408,
+          "height": 792,
+          "label": "Shangri La Group 2026 Christmas - Unboxing Gimmick UHN PR KOL_02.png",
+          "alt": "Shangri La Group 2026 Christmas - Unboxing Gimmick UHN PR KOL_02.png",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1eJ7_hDE9EGvSyJ1WRle8AYJS0Aq5MJs_-preview.jpg",
+          "originalSha256": "86211f326377fc2547188735b979ea4ceba472da056482b3ae94e2674a099d60"
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1UPUx3pb0ce2yDyITaP-_d65ny0fzAR26.png",
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 2400,
+          "height": 1792,
+          "label": "Shangri La Group 2026 Christmas - Unboxing Gimmick UHN PR KOL_Airship_02.png",
+          "alt": "Shangri La Group 2026 Christmas - Unboxing Gimmick UHN PR KOL_Airship_02.png",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1UPUx3pb0ce2yDyITaP-_d65ny0fzAR26-preview.jpg",
+          "originalSha256": "14f140063ecccbb8418b4ec84c449605da6f37cc55dde9fa2c51f066045f793c"
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1swRnymn6CzKa7k6nU5auBtGcrFpqLo-n.png",
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 2400,
+          "height": 1792,
+          "label": "Shangri La Group 2026 Christmas - Unboxing Gimmick UHN PR KOL_Story Board.png",
+          "alt": "Shangri La Group 2026 Christmas - Unboxing Gimmick UHN PR KOL_Story Board.png",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1swRnymn6CzKa7k6nU5auBtGcrFpqLo-n-preview.jpg",
+          "originalSha256": "b66a957824cd22aa44631a182e6114db95d1b3c625a3b6f34f783f37447eacfa"
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1hBAyaBV-uO9E0ERFQQRvsRRFM5DOetoJ.jpg",
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 2736,
+          "height": 1536,
+          "label": "Shangri La Group 2026 Christmas -StoryBook_V2.jpg",
+          "alt": "Shangri La Group 2026 Christmas -StoryBook_V2.jpg",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1hBAyaBV-uO9E0ERFQQRvsRRFM5DOetoJ-preview.jpg",
+          "originalSha256": "ca651537005bb4509491764712943ada87de675caf4f230853808565c27589a6"
+        }
+      ],
+      "imageInfo": {
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1eBWbNjt83S-t2L1s51aojiZLTlajOlS3.png": {
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 4406,
+          "height": 3484,
+          "label": "Shangri La Group 2026 Christmas - Airship Giftbox.png",
+          "alt": "Shangri La Group 2026 Christmas - Airship Giftbox.png",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1eBWbNjt83S-t2L1s51aojiZLTlajOlS3-preview.jpg",
+          "originalSha256": "6910ce40cf49348b860f3afac1eeb8dfe84fe3e0ea4f8ae2b7354ab1fcdec62e"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1IZ_ypM9bzigkqeEIZH6zAZLb1Zo-Wr3s.jpg": {
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 2752,
+          "height": 1536,
+          "label": "Shangri La Group 2026 Christmas - Claw Machine Skin_V2.jpg",
+          "alt": "Shangri La Group 2026 Christmas - Claw Machine Skin_V2.jpg",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1IZ_ypM9bzigkqeEIZH6zAZLb1Zo-Wr3s-preview.jpg",
+          "originalSha256": "05cd844d60bce3dc8677b40eb527a552125c3ffa6312b66d5d409125d634bfd4"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1iwh5vGzNA-eypB3E9lZInk7v_rVeWhdL.jpg": {
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 6496,
+          "height": 3654,
+          "label": "Shangri La Group 2026 Christmas - Dim & Material_1.jpg",
+          "alt": "Shangri La Group 2026 Christmas - Dim & Material_1.jpg",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1iwh5vGzNA-eypB3E9lZInk7v_rVeWhdL-preview.jpg",
+          "originalSha256": "878a2ff796a0c78b7b17aebd002887c6bacce536832b9c5fae3217dd83a84bda"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/15KRcgj6_t0zlKFl3mFTUepBpL1qbLJwu.jpg": {
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 7677,
+          "height": 4318,
+          "label": "Shangri La Group 2026 Christmas - Dim & Material_2.jpg",
+          "alt": "Shangri La Group 2026 Christmas - Dim & Material_2.jpg",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/15KRcgj6_t0zlKFl3mFTUepBpL1qbLJwu-preview.jpg",
+          "originalSha256": "7bcc32666755d7c200f05f38e04f6aa8f08f78e310aa5f6322b00e54c349e77d"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1duWXTrVLPB1eJNr4bdMds2lz5JrnqpFf.jpg": {
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 3200,
+          "height": 1800,
+          "label": "Shangri La Group 2026 Christmas - Dim & Material_3.jpg",
+          "alt": "Shangri La Group 2026 Christmas - Dim & Material_3.jpg",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1duWXTrVLPB1eJNr4bdMds2lz5JrnqpFf-preview.jpg",
+          "originalSha256": "2cc8f2b8dcca7d38e2bbe70fd6846b2f283061c89f02aa5c8b2cd74bb50ed56f"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1oATFSiXfAUkaqCFzgSYQsIpalkuNVSKJ.png": {
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 2752,
+          "height": 1536,
+          "label": "Shangri La Group 2026 Christmas - F&B_2.png",
+          "alt": "Shangri La Group 2026 Christmas - F&B_2.png",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1oATFSiXfAUkaqCFzgSYQsIpalkuNVSKJ-preview.jpg",
+          "originalSha256": "f4a6cf1ef2ae06b7c6e6059b7bd11230f5de6a1a5c7c0bee35cf50a3f804552f"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1RkF1H6ZZa-KfIi7XcG2FB-JS-seEMiog.png": {
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 2304,
+          "height": 1296,
+          "label": "Shangri La Group 2026 Christmas - Lighting Projection - Merry Go Round (Paris).png",
+          "alt": "Shangri La Group 2026 Christmas - Lighting Projection - Merry Go Round (Paris).png",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1RkF1H6ZZa-KfIi7XcG2FB-JS-seEMiog-preview.jpg",
+          "originalSha256": "e9a161412a9322de974748740d49b4039a6fd008b6e7562ea9e9dcd16ec90862"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1YOQ2Dyh2ewM2z3rix_DLeAmYw-6PV5Yd.png": {
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 2816,
+          "height": 1842,
+          "label": "Shangri La Group 2026 Christmas - Main Set_Non_HK_V2.png",
+          "alt": "Shangri La Group 2026 Christmas - Main Set_Non_HK_V2.png",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1YOQ2Dyh2ewM2z3rix_DLeAmYw-6PV5Yd-preview.jpg",
+          "originalSha256": "3d8a803cc1baa7dabdff999bba874841b3d9ea8d2ffdbcc1055fa3e2f31e0ea4"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/105vJKrjMXn5pE9NB7RH1UGO3DR1btlXT.png": {
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 2752,
+          "height": 1536,
+          "label": "Shangri La Group 2026 Christmas - Merry Go Around Xmas Tree_1.png",
+          "alt": "Shangri La Group 2026 Christmas - Merry Go Around Xmas Tree_1.png",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/105vJKrjMXn5pE9NB7RH1UGO3DR1btlXT-preview.jpg",
+          "originalSha256": "684de1eb02ad8d4490b3638a9688d9889c7a90c6555ba5bdf962aa55e8c153ab"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1-zMKuqyhXUWIw6iXXw9otHrYwdT5GLDW.jpg": {
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 2752,
+          "height": 1536,
+          "label": "Shangri La Group 2026 Christmas - Merry Go Round_V3.jpg",
+          "alt": "Shangri La Group 2026 Christmas - Merry Go Round_V3.jpg",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1-zMKuqyhXUWIw6iXXw9otHrYwdT5GLDW-preview.jpg",
+          "originalSha256": "8b06870d4e1f9927e556c11067c22570e1560e1f8cdf37ec56a568eac9cfd063"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1D3YIPyuNemHg9ct63WslyJ9tNxxwvOKX.png": {
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 3499,
+          "height": 2981,
+          "label": "Shangri La Group 2026 Christmas - Photo Booth_2.png",
+          "alt": "Shangri La Group 2026 Christmas - Photo Booth_2.png",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1D3YIPyuNemHg9ct63WslyJ9tNxxwvOKX-preview.jpg",
+          "originalSha256": "c133c9debec319376580493439bdbd147eef43bfb2dd373f8806b3a78668aff4"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1UzHMgLpsz5qgJ84FMBKENyeUJDhZSosQ.jpg": {
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 2816,
+          "height": 1584,
+          "label": "Shangri La Group 2026 Christmas - Retail & Workshop_V2.jpg",
+          "alt": "Shangri La Group 2026 Christmas - Retail & Workshop_V2.jpg",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1UzHMgLpsz5qgJ84FMBKENyeUJDhZSosQ-preview.jpg",
+          "originalSha256": "4cdda0432a825bf9d37a79fbc77b8e5913ffe030e2eec774dcd7c93a7835b3fa"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1l4YSfO8DOEAcnLEbpyOaQW5PAJ_Xb0OM.png": {
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 2304,
+          "height": 1296,
+          "label": "Shangri La Group 2026 Christmas - Roller Coaster_2.png",
+          "alt": "Shangri La Group 2026 Christmas - Roller Coaster_2.png",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1l4YSfO8DOEAcnLEbpyOaQW5PAJ_Xb0OM-preview.jpg",
+          "originalSha256": "c75a73264084ff958a13512cacebf95eb14428184bb6593ef4f865153be467cc"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1sp772ro5JuSb3KUnhBxCZNP__CBOgu2Y.png": {
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 2631,
+          "height": 1859,
+          "label": "Shangri La Group 2026 Christmas - Roller Coaster.png",
+          "alt": "Shangri La Group 2026 Christmas - Roller Coaster.png",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1sp772ro5JuSb3KUnhBxCZNP__CBOgu2Y-preview.jpg",
+          "originalSha256": "af59ae9f30c7bafe850fa8eba471007182a44c4b5403ebdf27f8f3cf1cb52f4d"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1dNsb-VOfi-rV7V6V_e2eH1IUV0CkOHkU.png": {
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 2752,
+          "height": 1536,
+          "label": "Shangri La Group 2026 Christmas - Unboxing Gimmick UHN PR KOL_02_2.png",
+          "alt": "Shangri La Group 2026 Christmas - Unboxing Gimmick UHN PR KOL_02_2.png",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1dNsb-VOfi-rV7V6V_e2eH1IUV0CkOHkU-preview.jpg",
+          "originalSha256": "063eff2d17b68daefa4593c874bb0a2e5734fa8d12cc632346e397ccbb362a69"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1eJ7_hDE9EGvSyJ1WRle8AYJS0Aq5MJs_.png": {
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1408,
+          "height": 792,
+          "label": "Shangri La Group 2026 Christmas - Unboxing Gimmick UHN PR KOL_02.png",
+          "alt": "Shangri La Group 2026 Christmas - Unboxing Gimmick UHN PR KOL_02.png",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1eJ7_hDE9EGvSyJ1WRle8AYJS0Aq5MJs_-preview.jpg",
+          "originalSha256": "86211f326377fc2547188735b979ea4ceba472da056482b3ae94e2674a099d60"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1UPUx3pb0ce2yDyITaP-_d65ny0fzAR26.png": {
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 2400,
+          "height": 1792,
+          "label": "Shangri La Group 2026 Christmas - Unboxing Gimmick UHN PR KOL_Airship_02.png",
+          "alt": "Shangri La Group 2026 Christmas - Unboxing Gimmick UHN PR KOL_Airship_02.png",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1UPUx3pb0ce2yDyITaP-_d65ny0fzAR26-preview.jpg",
+          "originalSha256": "14f140063ecccbb8418b4ec84c449605da6f37cc55dde9fa2c51f066045f793c"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1swRnymn6CzKa7k6nU5auBtGcrFpqLo-n.png": {
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 2400,
+          "height": 1792,
+          "label": "Shangri La Group 2026 Christmas - Unboxing Gimmick UHN PR KOL_Story Board.png",
+          "alt": "Shangri La Group 2026 Christmas - Unboxing Gimmick UHN PR KOL_Story Board.png",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1swRnymn6CzKa7k6nU5auBtGcrFpqLo-n-preview.jpg",
+          "originalSha256": "b66a957824cd22aa44631a182e6114db95d1b3c625a3b6f34f783f37447eacfa"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1hBAyaBV-uO9E0ERFQQRvsRRFM5DOetoJ.jpg": {
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 2736,
+          "height": 1536,
+          "label": "Shangri La Group 2026 Christmas -StoryBook_V2.jpg",
+          "alt": "Shangri La Group 2026 Christmas -StoryBook_V2.jpg",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o4/1hBAyaBV-uO9E0ERFQQRvsRRFM5DOetoJ-preview.jpg",
+          "originalSha256": "ca651537005bb4509491764712943ada87de675caf4f230853808565c27589a6"
+        }
+      },
       "year": "",
       "category": "Event",
       "description": "",
@@ -2509,10 +2910,243 @@
     },
     {
       "id": "o5",
-      "images": [],
+      "images": [
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o5/1Ha08sD7gWJ-_AJJEbByViu8BuxZ7bmad.jpg",
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o5/1303JkJoI55uERlm6b2XvwvFnE_BgnHsz.jpg",
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o5/1xR5EfW3PMy48kMVfmU4kecew_hE1PYBk.jpg",
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o5/1gyYc5cAhAeZfB6ABxhP_dEgkBtOM0KPV.jpg",
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o5/1U9skcENm-6y8-Vr1HrrJRvKitImdDeal.jpg",
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o5/1TMq1Ao-aChhW6eYlXcixcFQfBOr4swzn.jpg",
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o5/1lIlE09QG1cDJ-2zXeymlvO7x0SwyubLK.jpg",
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o5/1vxeJf-LyvnUlFgjj-7njRcYcTpwiNphW.jpg",
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o5/1dRLuK1gyjluW1Fcx7c9ymakkvOMgurf7.jpg",
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o5/11hPFMe8ksaCCHfFqiY7OMxu8eIRBPJgu.jpg",
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o5/16UVuVpr6PYXkzeSArknQP4QOs4xFFmof.jpg",
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o5/1dMF00NIvJod_kwhy2kXgzP-vrkHKCq1j.jpg",
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o5/12kNYht4lcuYcAdyYrZAGcFa7tjGrlxe6.jpg",
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o5/1TW46koqguJIXd3hwToG_c8zmPQvXaNmO.jpg",
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o5/1ppvv--bIZrJETcQ_8zGRJ06DH7GBwmgh.jpg",
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o5/1Gq-JU8NjIpCy_0ctjnwgYQhUxyssck1E.jpg",
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o5/1zOUEAEGFFjqD-ra6JM7i_wSbhwthL6_3.jpg",
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o5/1hdu-mO3KDtdWqWu7YiQ6Vl5BMx-_cilg.jpg",
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o5/1p2SQFtnx5CflgtCIZePDkk-yBm-R1WuG.jpg",
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o5/1WzNWfgf28C1WNwiG16Y55-Wh1xRvKuBd.jpg",
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o5/1aYdoRkmN1Uzao59ak_djyMMJSn5HxZ6Z.jpg"
+      ],
       "videos": [],
       "graphics": [],
-      "imageInfo": {},
+      "imageInfo": {
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o5/1Ha08sD7gWJ-_AJJEbByViu8BuxZ7bmad.jpg": {
+          "type": "image",
+          "mediaKind": "photo",
+          "width": 2048,
+          "height": 3072,
+          "label": "MIC_4403.JPG",
+          "alt": "MIC_4403.JPG",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o5/1Ha08sD7gWJ-_AJJEbByViu8BuxZ7bmad-preview.jpg",
+          "originalSha256": "a54e73d2d06b1624a01554a2e1f630431c42af65e2ee37e01bdf9b7c5abe4b15"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o5/1303JkJoI55uERlm6b2XvwvFnE_BgnHsz.jpg": {
+          "type": "image",
+          "mediaKind": "photo",
+          "width": 2048,
+          "height": 1365,
+          "label": "MIC_4444.JPG",
+          "alt": "MIC_4444.JPG",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o5/1303JkJoI55uERlm6b2XvwvFnE_BgnHsz-preview.jpg",
+          "originalSha256": "31337cf5202b2c4a552eca29248fe187a98331dd36e3bca0d458315686adaa58"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o5/1xR5EfW3PMy48kMVfmU4kecew_hE1PYBk.jpg": {
+          "type": "image",
+          "mediaKind": "photo",
+          "width": 2048,
+          "height": 1365,
+          "label": "MIC_4453.JPG",
+          "alt": "MIC_4453.JPG",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o5/1xR5EfW3PMy48kMVfmU4kecew_hE1PYBk-preview.jpg",
+          "originalSha256": "3da7d000e78d997464ab81744b84f1a1f5a75fd59a5f4c275fc08840b558fb3e"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o5/1gyYc5cAhAeZfB6ABxhP_dEgkBtOM0KPV.jpg": {
+          "type": "image",
+          "mediaKind": "photo",
+          "width": 2048,
+          "height": 1146,
+          "label": "MIC_4460.JPG",
+          "alt": "MIC_4460.JPG",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o5/1gyYc5cAhAeZfB6ABxhP_dEgkBtOM0KPV-preview.jpg",
+          "originalSha256": "223f5ac34bf1c9d5868a511d1c8c768a17bb1eaa93a98fd5ccbfac1881f27bac"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o5/1U9skcENm-6y8-Vr1HrrJRvKitImdDeal.jpg": {
+          "type": "image",
+          "mediaKind": "photo",
+          "width": 2048,
+          "height": 1121,
+          "label": "MIC_4464.JPG",
+          "alt": "MIC_4464.JPG",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o5/1U9skcENm-6y8-Vr1HrrJRvKitImdDeal-preview.jpg",
+          "originalSha256": "936ea57f5dd85877ea8a1ef144dc875447e73e451b91854917b651f325e10f4e"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o5/1TMq1Ao-aChhW6eYlXcixcFQfBOr4swzn.jpg": {
+          "type": "image",
+          "mediaKind": "photo",
+          "width": 2048,
+          "height": 3072,
+          "label": "MIC_4504.JPG",
+          "alt": "MIC_4504.JPG",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o5/1TMq1Ao-aChhW6eYlXcixcFQfBOr4swzn-preview.jpg",
+          "originalSha256": "d11650cfa956de2d8aee831fcac1327fd542d3af63c2576ff232732df8973453"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o5/1lIlE09QG1cDJ-2zXeymlvO7x0SwyubLK.jpg": {
+          "type": "image",
+          "mediaKind": "photo",
+          "width": 2048,
+          "height": 1365,
+          "label": "MIC_4529.JPG",
+          "alt": "MIC_4529.JPG",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o5/1lIlE09QG1cDJ-2zXeymlvO7x0SwyubLK-preview.jpg",
+          "originalSha256": "42baf3e3e7714f0f952c3494832f19836d0a957defc3e0dc1c56d0da829c9cbe"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o5/1vxeJf-LyvnUlFgjj-7njRcYcTpwiNphW.jpg": {
+          "type": "image",
+          "mediaKind": "photo",
+          "width": 2048,
+          "height": 1365,
+          "label": "MIC_4813.JPG",
+          "alt": "MIC_4813.JPG",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o5/1vxeJf-LyvnUlFgjj-7njRcYcTpwiNphW-preview.jpg",
+          "originalSha256": "5dbcc9418b716e91dac53e0cd734e9f097f387bc99464452f781bb0db6c1a8eb"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o5/1dRLuK1gyjluW1Fcx7c9ymakkvOMgurf7.jpg": {
+          "type": "image",
+          "mediaKind": "photo",
+          "width": 2048,
+          "height": 1365,
+          "label": "MIC_4821.JPG",
+          "alt": "MIC_4821.JPG",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o5/1dRLuK1gyjluW1Fcx7c9ymakkvOMgurf7-preview.jpg",
+          "originalSha256": "569e35b7b46f7f789ee7d302f46f06990526bb34f758e6c3d6aa6da8579beeba"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o5/11hPFMe8ksaCCHfFqiY7OMxu8eIRBPJgu.jpg": {
+          "type": "image",
+          "mediaKind": "photo",
+          "width": 2048,
+          "height": 1365,
+          "label": "MIC_4824.JPG",
+          "alt": "MIC_4824.JPG",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o5/11hPFMe8ksaCCHfFqiY7OMxu8eIRBPJgu-preview.jpg",
+          "originalSha256": "9e63a7e883d07381bc5644827ed7c56cf1ec66c5d5f7af0be02980c98b547fd6"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o5/16UVuVpr6PYXkzeSArknQP4QOs4xFFmof.jpg": {
+          "type": "image",
+          "mediaKind": "photo",
+          "width": 2048,
+          "height": 3072,
+          "label": "MIC_4857.JPG",
+          "alt": "MIC_4857.JPG",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o5/16UVuVpr6PYXkzeSArknQP4QOs4xFFmof-preview.jpg",
+          "originalSha256": "ee2b46d81f538a009b001c76869c9a0e5a86b220021a2c06b73ea259edb121d2"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o5/1dMF00NIvJod_kwhy2kXgzP-vrkHKCq1j.jpg": {
+          "type": "image",
+          "mediaKind": "photo",
+          "width": 2048,
+          "height": 3072,
+          "label": "MIC_5318.JPG",
+          "alt": "MIC_5318.JPG",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o5/1dMF00NIvJod_kwhy2kXgzP-vrkHKCq1j-preview.jpg",
+          "originalSha256": "551629cf638d667b832962601a534b36062ebe99dde6e5656ac341b0e75a0298"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o5/12kNYht4lcuYcAdyYrZAGcFa7tjGrlxe6.jpg": {
+          "type": "image",
+          "mediaKind": "photo",
+          "width": 2048,
+          "height": 3072,
+          "label": "MIC_5357.JPG",
+          "alt": "MIC_5357.JPG",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o5/12kNYht4lcuYcAdyYrZAGcFa7tjGrlxe6-preview.jpg",
+          "originalSha256": "dccd0bb56c0d7d2478efd4b6a8bb9aa7e5eb720801149c9b02b8ed6c8d74f9fd"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o5/1TW46koqguJIXd3hwToG_c8zmPQvXaNmO.jpg": {
+          "type": "image",
+          "mediaKind": "photo",
+          "width": 2048,
+          "height": 3072,
+          "label": "MIC_5399.JPG",
+          "alt": "MIC_5399.JPG",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o5/1TW46koqguJIXd3hwToG_c8zmPQvXaNmO-preview.jpg",
+          "originalSha256": "74e3f82945d7270194f77ee5dfbfc2202816134d410d30c59cfa5ebb9896c13d"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o5/1ppvv--bIZrJETcQ_8zGRJ06DH7GBwmgh.jpg": {
+          "type": "image",
+          "mediaKind": "photo",
+          "width": 2048,
+          "height": 3072,
+          "label": "MIC_5428.JPG",
+          "alt": "MIC_5428.JPG",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o5/1ppvv--bIZrJETcQ_8zGRJ06DH7GBwmgh-preview.jpg",
+          "originalSha256": "f4fa02f904da7d47a4e0925dbfb2f9061bd4a7f2011fa27f8f9b089bf850300c"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o5/1Gq-JU8NjIpCy_0ctjnwgYQhUxyssck1E.jpg": {
+          "type": "image",
+          "mediaKind": "photo",
+          "width": 2048,
+          "height": 3072,
+          "label": "MIC_5484.JPG",
+          "alt": "MIC_5484.JPG",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o5/1Gq-JU8NjIpCy_0ctjnwgYQhUxyssck1E-preview.jpg",
+          "originalSha256": "b602718b3202fc857e174ec2b6684d9c5ab9976905510248b5b8b158e41f5879"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o5/1zOUEAEGFFjqD-ra6JM7i_wSbhwthL6_3.jpg": {
+          "type": "image",
+          "mediaKind": "photo",
+          "width": 2048,
+          "height": 3072,
+          "label": "MIC_5558.JPG",
+          "alt": "MIC_5558.JPG",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o5/1zOUEAEGFFjqD-ra6JM7i_wSbhwthL6_3-preview.jpg",
+          "originalSha256": "362c379f5d1349bf0c56f1c7c91a9df8b19ee1847d63eb1632fd3cbf7475995e"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o5/1hdu-mO3KDtdWqWu7YiQ6Vl5BMx-_cilg.jpg": {
+          "type": "image",
+          "mediaKind": "photo",
+          "width": 2048,
+          "height": 3072,
+          "label": "MIC_6069.JPG",
+          "alt": "MIC_6069.JPG",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o5/1hdu-mO3KDtdWqWu7YiQ6Vl5BMx-_cilg-preview.jpg",
+          "originalSha256": "be185b29b513902095b63816303c0c1b6806fc18c70fc50ff6922cdecf68f63d"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o5/1p2SQFtnx5CflgtCIZePDkk-yBm-R1WuG.jpg": {
+          "type": "image",
+          "mediaKind": "photo",
+          "width": 2048,
+          "height": 3072,
+          "label": "MIC_6941.JPG",
+          "alt": "MIC_6941.JPG",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o5/1p2SQFtnx5CflgtCIZePDkk-yBm-R1WuG-preview.jpg",
+          "originalSha256": "327ddf27caf2131fd3bcea005a1f68b68aab492edee2fa1148d986510dc766b5"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o5/1WzNWfgf28C1WNwiG16Y55-Wh1xRvKuBd.jpg": {
+          "type": "image",
+          "mediaKind": "photo",
+          "width": 2048,
+          "height": 3072,
+          "label": "MIC_7269.JPG",
+          "alt": "MIC_7269.JPG",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o5/1WzNWfgf28C1WNwiG16Y55-Wh1xRvKuBd-preview.jpg",
+          "originalSha256": "03eb7186d75e5d4456ed55fa9e50c3b63a15bcb2e158960a617111f1d82309b2"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o5/1aYdoRkmN1Uzao59ak_djyMMJSn5HxZ6Z.jpg": {
+          "type": "image",
+          "mediaKind": "photo",
+          "width": 2048,
+          "height": 3072,
+          "label": "MIC_7460.JPG",
+          "alt": "MIC_7460.JPG",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o5/1aYdoRkmN1Uzao59ak_djyMMJSn5HxZ6Z-preview.jpg",
+          "originalSha256": "8dc4664c679af5245960d7b48c45a193dc49c814bf701f481bb6ae5c6018e2db"
+        }
+      },
       "year": "",
       "category": "Event",
       "description": "",
@@ -2528,10 +3162,155 @@
     },
     {
       "id": "o6",
-      "images": [],
+      "images": [
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o6/1JZhbmFbW3K6xARzhuRFfC8_L9A0lXehP.jpg",
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o6/1TvK-ggJYTUzOMh1Oxy6waS4lz1Is8Fhl.jpg",
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o6/1Goz-VV5BxA1U24JqdZHl3dCzBSfoI2AW.jpg",
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o6/1fVvqCgILD00h-2Y96TdhxoEikRBTMFU2.jpg",
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o6/1tTRS65T9kW9Loz24D8rvfKEuID7PD_FY.jpg",
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o6/11V0wFTh_M_Fup9Hej5Rz7j0o5v5FYu_Q.jpg",
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o6/1PwDwJ6DdQgyXXT6xGMeKsHZ2dNvYtp51.jpg",
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o6/1R6gHWJPq82WGr0u4OXod0owXAT7pKr9y.jpg",
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o6/193PGZNWr6TJtd39wWNlcPDtRFKoeL0A9.jpg",
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o6/1BdruBXarpWwsKxrM8Jq7BxAOsgJHRJHX.jpg",
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o6/1kRl2zMsXEI66BncHZOhWp2AC5q6Mmz6V.jpg",
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o6/19fwxZWrnXjNFqHK8rdnKt7wyNWCuRFyH.jpg",
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o6/1pUuLbtwQQSjYnQUFIzhR7ZAiUOjolKmm.jpg"
+      ],
       "videos": [],
       "graphics": [],
-      "imageInfo": {},
+      "imageInfo": {
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o6/1JZhbmFbW3K6xARzhuRFfC8_L9A0lXehP.jpg": {
+          "type": "image",
+          "mediaKind": "photo",
+          "width": 4065,
+          "height": 6098,
+          "label": "KE_02521.jpg",
+          "alt": "KE_02521.jpg",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o6/1JZhbmFbW3K6xARzhuRFfC8_L9A0lXehP-preview.jpg",
+          "originalSha256": "f136c725ce8525e4eeafcd65480e3bc3d26cd33152d52a483cb036253fd7386a"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o6/1TvK-ggJYTUzOMh1Oxy6waS4lz1Is8Fhl.jpg": {
+          "type": "image",
+          "mediaKind": "photo",
+          "width": 6184,
+          "height": 4123,
+          "label": "KE_02538.jpg",
+          "alt": "KE_02538.jpg",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o6/1TvK-ggJYTUzOMh1Oxy6waS4lz1Is8Fhl-preview.jpg",
+          "originalSha256": "a822c852eee093f527fd071ad022da678851c5abcc7550e67e36580b50e81ba0"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o6/1Goz-VV5BxA1U24JqdZHl3dCzBSfoI2AW.jpg": {
+          "type": "image",
+          "mediaKind": "photo",
+          "width": 6001,
+          "height": 4001,
+          "label": "KE_02559.jpg",
+          "alt": "KE_02559.jpg",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o6/1Goz-VV5BxA1U24JqdZHl3dCzBSfoI2AW-preview.jpg",
+          "originalSha256": "cccf6fd369dcc8d9a3c1b1714aeebab7225a78a59765bf8019300190231be185"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o6/1fVvqCgILD00h-2Y96TdhxoEikRBTMFU2.jpg": {
+          "type": "image",
+          "mediaKind": "photo",
+          "width": 6240,
+          "height": 4160,
+          "label": "KE_02590.jpg",
+          "alt": "KE_02590.jpg",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o6/1fVvqCgILD00h-2Y96TdhxoEikRBTMFU2-preview.jpg",
+          "originalSha256": "1dd19b50befdc0c85471b615743386876b32132e087db9c64f8647e23b1e1467"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o6/1tTRS65T9kW9Loz24D8rvfKEuID7PD_FY.jpg": {
+          "type": "image",
+          "mediaKind": "photo",
+          "width": 6240,
+          "height": 4160,
+          "label": "KE_02640.jpg",
+          "alt": "KE_02640.jpg",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o6/1tTRS65T9kW9Loz24D8rvfKEuID7PD_FY-preview.jpg",
+          "originalSha256": "4970bc281d4c677c3aa6e90ce36ba948397570bb57bd620e010d5beae6899422"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o6/11V0wFTh_M_Fup9Hej5Rz7j0o5v5FYu_Q.jpg": {
+          "type": "image",
+          "mediaKind": "photo",
+          "width": 6123,
+          "height": 4082,
+          "label": "KE_02671.jpg",
+          "alt": "KE_02671.jpg",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o6/11V0wFTh_M_Fup9Hej5Rz7j0o5v5FYu_Q-preview.jpg",
+          "originalSha256": "cd87a9fd4217c4579569377a3c062fa07aa95b009ebc2a908b404ab68dc425d3"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o6/1PwDwJ6DdQgyXXT6xGMeKsHZ2dNvYtp51.jpg": {
+          "type": "image",
+          "mediaKind": "photo",
+          "width": 6240,
+          "height": 4160,
+          "label": "KE_02752.jpg",
+          "alt": "KE_02752.jpg",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o6/1PwDwJ6DdQgyXXT6xGMeKsHZ2dNvYtp51-preview.jpg",
+          "originalSha256": "4393fbe88756a413054f1e24244a258cf300c022d43656693bfea5201d4f8480"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o6/1R6gHWJPq82WGr0u4OXod0owXAT7pKr9y.jpg": {
+          "type": "image",
+          "mediaKind": "photo",
+          "width": 5888,
+          "height": 3925,
+          "label": "KE_02858.jpg",
+          "alt": "KE_02858.jpg",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o6/1R6gHWJPq82WGr0u4OXod0owXAT7pKr9y-preview.jpg",
+          "originalSha256": "3ef24e67ffecd8269089eaf8713132e8216a13f4a7768498f232ccef6767e5ec"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o6/193PGZNWr6TJtd39wWNlcPDtRFKoeL0A9.jpg": {
+          "type": "image",
+          "mediaKind": "photo",
+          "width": 6194,
+          "height": 4129,
+          "label": "KE_03236.jpg",
+          "alt": "KE_03236.jpg",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o6/193PGZNWr6TJtd39wWNlcPDtRFKoeL0A9-preview.jpg",
+          "originalSha256": "e8689efe1b21a124ec183010b9530b9318aef0f95e29a38cc83791abb49a7aad"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o6/1BdruBXarpWwsKxrM8Jq7BxAOsgJHRJHX.jpg": {
+          "type": "image",
+          "mediaKind": "photo",
+          "width": 7722,
+          "height": 5151,
+          "label": "SO5_6617.jpg",
+          "alt": "SO5_6617.jpg",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o6/1BdruBXarpWwsKxrM8Jq7BxAOsgJHRJHX-preview.jpg",
+          "originalSha256": "6e0bc8196aaebac72791bf51915e67a5cce15d8744a3c17a2b4b33e12f505489"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o6/1kRl2zMsXEI66BncHZOhWp2AC5q6Mmz6V.jpg": {
+          "type": "image",
+          "mediaKind": "photo",
+          "width": 7722,
+          "height": 5151,
+          "label": "SO5_6620.jpg",
+          "alt": "SO5_6620.jpg",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o6/1kRl2zMsXEI66BncHZOhWp2AC5q6Mmz6V-preview.jpg",
+          "originalSha256": "88eb2aa251864ad6d85e9f7ed806d5a4e6d4172a89a49c2d11561d9114e18ae9"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o6/19fwxZWrnXjNFqHK8rdnKt7wyNWCuRFyH.jpg": {
+          "type": "image",
+          "mediaKind": "photo",
+          "width": 7437,
+          "height": 4960,
+          "label": "SO5_6623.jpg",
+          "alt": "SO5_6623.jpg",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o6/19fwxZWrnXjNFqHK8rdnKt7wyNWCuRFyH-preview.jpg",
+          "originalSha256": "1a627ba6ae682b7fe1ff8bf566dae5fd14f6d4641a0f6b5740a7645141b598fc"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o6/1pUuLbtwQQSjYnQUFIzhR7ZAiUOjolKmm.jpg": {
+          "type": "image",
+          "mediaKind": "photo",
+          "width": 7958,
+          "height": 5308,
+          "label": "SO5_6680.jpg",
+          "alt": "SO5_6680.jpg",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o6/1pUuLbtwQQSjYnQUFIzhR7ZAiUOjolKmm-preview.jpg",
+          "originalSha256": "26396648f2ea48df07bd8deec498a3fc73e38aa7e6f6b98b947e5f8325ed8297"
+        }
+      },
       "year": "",
       "category": "Event",
       "description": "",
@@ -2547,10 +3326,199 @@
     },
     {
       "id": "o7",
-      "images": [],
+      "images": [
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o7/1hdgIv91YVM4HbmiR1wOycB4la89VktSH.jpg",
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o7/1mK-83I3j-TN-INirws7808XOHohAHwEJ.jpg",
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o7/12Zbszcw5FYIc7H622TnIswSNI4DZvdHP.jpg",
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o7/1y8pZ2JzJ82NqNqQ-B31yn3zGE5IoMR4F.jpg",
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o7/1URWRFt8e0FYj1W4QVse1E1kyOF0RzOFJ.jpg",
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o7/1cFBWqkRx1Xt6jJaG4oJCmcrXPP7eLVs4.jpg",
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o7/1agAYL1VP32dg7Q0IjgyLtNpVX0O54UEj.jpg",
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o7/1xLbLHaU04ayjpLj0QbYCtqp_WSg9Tw3A.jpg",
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o7/1cFtk7AVvq7fIklM0rf11RHLnlpCx65IE.jpg",
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o7/1Ik8A9St-0r7mtobPZjean768TbwUc_rc.jpg",
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o7/1VDXn5XH4ynj3tJkFxVeV08yPorKKv2zx.jpg",
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o7/1LU45etsTVTmITR6NAkJ9IGTvwK_22xVo.jpg",
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o7/17bbrFZ9AkqXrFRV9NDoWht48F-H74OCm.jpg",
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o7/1JCzkNRlj51bDiB1ciu_3V8Zm7gI1MqOI.jpg",
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o7/15rHwmwOZHm4ehSYdeI9JHSJOkKJ1koY2.jpg",
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o7/1B0bldfOyAlyk_W1c-Dlj5YRGdu8u6XIr.jpg",
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o7/1Ft22oLZdiaS0x6YB7nXbQa3LNnDaCEub.jpg"
+      ],
       "videos": [],
       "graphics": [],
-      "imageInfo": {},
+      "imageInfo": {
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o7/1hdgIv91YVM4HbmiR1wOycB4la89VktSH.jpg": {
+          "type": "image",
+          "mediaKind": "photo",
+          "width": 6000,
+          "height": 4000,
+          "label": "20261021_Setup_004.jpg",
+          "alt": "20261021_Setup_004.jpg",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o7/1hdgIv91YVM4HbmiR1wOycB4la89VktSH-preview.jpg",
+          "originalSha256": "9cc5fef8a2d729fe6a045824888be40fdeabacab33e783e969aae50a9a5a38b2"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o7/1mK-83I3j-TN-INirws7808XOHohAHwEJ.jpg": {
+          "type": "image",
+          "mediaKind": "photo",
+          "width": 4000,
+          "height": 6000,
+          "label": "20261021_Setup_008.jpg",
+          "alt": "20261021_Setup_008.jpg",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o7/1mK-83I3j-TN-INirws7808XOHohAHwEJ-preview.jpg",
+          "originalSha256": "dbc1c38891fe781108f4b433e9d0ff510cbfc786b8bbfc4d6d7581ef128374c7"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o7/12Zbszcw5FYIc7H622TnIswSNI4DZvdHP.jpg": {
+          "type": "image",
+          "mediaKind": "photo",
+          "width": 4000,
+          "height": 6000,
+          "label": "20261021_Setup_020.jpg",
+          "alt": "20261021_Setup_020.jpg",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o7/12Zbszcw5FYIc7H622TnIswSNI4DZvdHP-preview.jpg",
+          "originalSha256": "4c8c02eacea28fb00ed262dbd51f1cd8f4c193137486ee4fa89f0d9db1710339"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o7/1y8pZ2JzJ82NqNqQ-B31yn3zGE5IoMR4F.jpg": {
+          "type": "image",
+          "mediaKind": "photo",
+          "width": 4000,
+          "height": 6000,
+          "label": "20261021_Setup_043.jpg",
+          "alt": "20261021_Setup_043.jpg",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o7/1y8pZ2JzJ82NqNqQ-B31yn3zGE5IoMR4F-preview.jpg",
+          "originalSha256": "16217824d20325cfb68577cf98c385dc247096984d749a8b2a07638e7613f651"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o7/1URWRFt8e0FYj1W4QVse1E1kyOF0RzOFJ.jpg": {
+          "type": "image",
+          "mediaKind": "photo",
+          "width": 6000,
+          "height": 4000,
+          "label": "20261021_Setup_050.jpg",
+          "alt": "20261021_Setup_050.jpg",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o7/1URWRFt8e0FYj1W4QVse1E1kyOF0RzOFJ-preview.jpg",
+          "originalSha256": "71941d1a1f2e6b5dd043d09674c0e71a9b4518b061c73a2082dd44289c5f65fd"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o7/1cFBWqkRx1Xt6jJaG4oJCmcrXPP7eLVs4.jpg": {
+          "type": "image",
+          "mediaKind": "photo",
+          "width": 6000,
+          "height": 4000,
+          "label": "20261021_Setup_056.jpg",
+          "alt": "20261021_Setup_056.jpg",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o7/1cFBWqkRx1Xt6jJaG4oJCmcrXPP7eLVs4-preview.jpg",
+          "originalSha256": "442000a264f478cae36954b1be99daf5279f260831203744f05d1f8fb3a0f328"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o7/1agAYL1VP32dg7Q0IjgyLtNpVX0O54UEj.jpg": {
+          "type": "image",
+          "mediaKind": "photo",
+          "width": 4000,
+          "height": 6000,
+          "label": "20261021_Setup_057.jpg",
+          "alt": "20261021_Setup_057.jpg",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o7/1agAYL1VP32dg7Q0IjgyLtNpVX0O54UEj-preview.jpg",
+          "originalSha256": "80d9ec63f785a741e0f0e78a6c7423ea5fa89020c06e7aecb6e2535fae4ad923"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o7/1xLbLHaU04ayjpLj0QbYCtqp_WSg9Tw3A.jpg": {
+          "type": "image",
+          "mediaKind": "photo",
+          "width": 4000,
+          "height": 6000,
+          "label": "20261021_Setup_058.jpg",
+          "alt": "20261021_Setup_058.jpg",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o7/1xLbLHaU04ayjpLj0QbYCtqp_WSg9Tw3A-preview.jpg",
+          "originalSha256": "1bd21c99e00acec4a6cc97bf33d6ef57a23dfdb908169e05a9bb1171ebf9317d"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o7/1cFtk7AVvq7fIklM0rf11RHLnlpCx65IE.jpg": {
+          "type": "image",
+          "mediaKind": "photo",
+          "width": 6000,
+          "height": 4000,
+          "label": "20261021_Setup_060.jpg",
+          "alt": "20261021_Setup_060.jpg",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o7/1cFtk7AVvq7fIklM0rf11RHLnlpCx65IE-preview.jpg",
+          "originalSha256": "82d6886722c85d128c94334da594a0b2a86454084477f34b0a6fae066b397bff"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o7/1Ik8A9St-0r7mtobPZjean768TbwUc_rc.jpg": {
+          "type": "image",
+          "mediaKind": "photo",
+          "width": 6000,
+          "height": 4000,
+          "label": "20261021_Setup_063.jpg",
+          "alt": "20261021_Setup_063.jpg",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o7/1Ik8A9St-0r7mtobPZjean768TbwUc_rc-preview.jpg",
+          "originalSha256": "686fdc99448aec8e72c6c56d1d27eeb64fcc4b39e31bf61ed17f7603059af9cf"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o7/1VDXn5XH4ynj3tJkFxVeV08yPorKKv2zx.jpg": {
+          "type": "image",
+          "mediaKind": "photo",
+          "width": 4000,
+          "height": 6000,
+          "label": "20261021_Setup_079.jpg",
+          "alt": "20261021_Setup_079.jpg",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o7/1VDXn5XH4ynj3tJkFxVeV08yPorKKv2zx-preview.jpg",
+          "originalSha256": "c6676b8220872eb90310b0cb95439b6ddd11c1ca8f94ab9c265fc694cfbc29e8"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o7/1LU45etsTVTmITR6NAkJ9IGTvwK_22xVo.jpg": {
+          "type": "image",
+          "mediaKind": "photo",
+          "width": 4000,
+          "height": 6000,
+          "label": "20261021_Setup_084.jpg",
+          "alt": "20261021_Setup_084.jpg",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o7/1LU45etsTVTmITR6NAkJ9IGTvwK_22xVo-preview.jpg",
+          "originalSha256": "1698f19426315689bbedc1f100d13a1576cf1604cac09b02034983d35bfd09ca"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o7/17bbrFZ9AkqXrFRV9NDoWht48F-H74OCm.jpg": {
+          "type": "image",
+          "mediaKind": "photo",
+          "width": 6000,
+          "height": 4000,
+          "label": "20261021_Setup_085.jpg",
+          "alt": "20261021_Setup_085.jpg",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o7/17bbrFZ9AkqXrFRV9NDoWht48F-H74OCm-preview.jpg",
+          "originalSha256": "a3f625f079715401c6ab4dfacb167a3530d84158d2da05491fcf8e93f19b258e"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o7/1JCzkNRlj51bDiB1ciu_3V8Zm7gI1MqOI.jpg": {
+          "type": "image",
+          "mediaKind": "photo",
+          "width": 6000,
+          "height": 4000,
+          "label": "20261021_Setup_087.jpg",
+          "alt": "20261021_Setup_087.jpg",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o7/1JCzkNRlj51bDiB1ciu_3V8Zm7gI1MqOI-preview.jpg",
+          "originalSha256": "97d2de70da65ba4921cd32ccea49ccfff91b125faae31cf9e732be56fad4181f"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o7/15rHwmwOZHm4ehSYdeI9JHSJOkKJ1koY2.jpg": {
+          "type": "image",
+          "mediaKind": "photo",
+          "width": 6000,
+          "height": 4000,
+          "label": "20261021_Setup_091.jpg",
+          "alt": "20261021_Setup_091.jpg",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o7/15rHwmwOZHm4ehSYdeI9JHSJOkKJ1koY2-preview.jpg",
+          "originalSha256": "12792399331de1745a5c4834699f0c6b4774673934a2eda05b637fd9a8f3e731"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o7/1B0bldfOyAlyk_W1c-Dlj5YRGdu8u6XIr.jpg": {
+          "type": "image",
+          "mediaKind": "photo",
+          "width": 4000,
+          "height": 6000,
+          "label": "20261021_Setup_093.jpg",
+          "alt": "20261021_Setup_093.jpg",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o7/1B0bldfOyAlyk_W1c-Dlj5YRGdu8u6XIr-preview.jpg",
+          "originalSha256": "c337586239c2f8fa4379b800f0ed8afab8bbf5e821af0d32f91daa46adda6887"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o7/1Ft22oLZdiaS0x6YB7nXbQa3LNnDaCEub.jpg": {
+          "type": "image",
+          "mediaKind": "photo",
+          "width": 4000,
+          "height": 6000,
+          "label": "20261021_Setup_096.jpg",
+          "alt": "20261021_Setup_096.jpg",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o7/1Ft22oLZdiaS0x6YB7nXbQa3LNnDaCEub-preview.jpg",
+          "originalSha256": "e264db53c216341e47bbee59de03fdf58c8666d5903e665ac342c29058e531ae"
+        }
+      },
       "year": "",
       "category": "Event",
       "description": "",
@@ -2787,10 +3755,111 @@
     },
     {
       "id": "o9",
-      "images": [],
+      "images": [
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o9/1dZ-oWrg6rw6z4PUNWdJP1kKAe02SlXrU.jpg",
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o9/1tFglqYhkYYcWpCSE9Er6KiDHoOW_2XHt.jpg",
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o9/1gZ3Lv1JxWOYTgVUF9AjmdNQ_HakNcUnd.jpg",
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o9/1vIrGN6zYMNnuVMcgFRXBu1_QY_43jvCJ.jpg",
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o9/1ZEr8eTXCgIoOf4SdyfcIh7sKF2MVSkE4.jpg",
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o9/1aVw45wuAhmV6rhVIueBXhO_JfxR2d36d.jpg",
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o9/15QvYlrGx3_Bk0x6UfQvhnUhMwk_4vUHA.jpg",
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o9/10-sL8OtDX6q5zYbhpvF802dkhiM1RQm_.jpg",
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o9/15HCZoGmS4nMlraM4FjhT7RVbmDBz7_K-.jpg"
+      ],
       "videos": [],
       "graphics": [],
-      "imageInfo": {},
+      "imageInfo": {
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o9/1dZ-oWrg6rw6z4PUNWdJP1kKAe02SlXrU.jpg": {
+          "type": "image",
+          "mediaKind": "photo",
+          "width": 1200,
+          "height": 1600,
+          "label": "WhatsApp Image 2026-08-26 at 17.17.42 (6).jpeg",
+          "alt": "WhatsApp Image 2026-08-26 at 17.17.42 (6).jpeg",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o9/1dZ-oWrg6rw6z4PUNWdJP1kKAe02SlXrU-preview.jpg",
+          "originalSha256": "cbedcfea92e3bfe5ef81938f554d88c015dea3ca13d0a26943050a6d9904e64f"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o9/1tFglqYhkYYcWpCSE9Er6KiDHoOW_2XHt.jpg": {
+          "type": "image",
+          "mediaKind": "photo",
+          "width": 1200,
+          "height": 1600,
+          "label": "WhatsApp Image 2026-08-26 at 17.17.42 (7).jpeg",
+          "alt": "WhatsApp Image 2026-08-26 at 17.17.42 (7).jpeg",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o9/1tFglqYhkYYcWpCSE9Er6KiDHoOW_2XHt-preview.jpg",
+          "originalSha256": "4d19c5e51ae45d0ec5581230a97d590a7dd195e2cdada7795cb4d4b7dfcaf4f6"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o9/1gZ3Lv1JxWOYTgVUF9AjmdNQ_HakNcUnd.jpg": {
+          "type": "image",
+          "mediaKind": "photo",
+          "width": 1600,
+          "height": 1200,
+          "label": "WhatsApp Image 2026-08-26 at 17.17.42 (14).jpeg",
+          "alt": "WhatsApp Image 2026-08-26 at 17.17.42 (14).jpeg",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o9/1gZ3Lv1JxWOYTgVUF9AjmdNQ_HakNcUnd-preview.jpg",
+          "originalSha256": "f52d17ac66846d01df33c588016f5de6dd3e0d95be0e90983cd6d1a0f68ff235"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o9/1vIrGN6zYMNnuVMcgFRXBu1_QY_43jvCJ.jpg": {
+          "type": "image",
+          "mediaKind": "photo",
+          "width": 1200,
+          "height": 1600,
+          "label": "WhatsApp Image 2026-08-26 at 17.17.42 (21).jpeg",
+          "alt": "WhatsApp Image 2026-08-26 at 17.17.42 (21).jpeg",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o9/1vIrGN6zYMNnuVMcgFRXBu1_QY_43jvCJ-preview.jpg",
+          "originalSha256": "d2e94b5a7dbfaef72bee67857561ae50918c6fb1a955179a6212a9992ff3d0d5"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o9/1ZEr8eTXCgIoOf4SdyfcIh7sKF2MVSkE4.jpg": {
+          "type": "image",
+          "mediaKind": "photo",
+          "width": 1200,
+          "height": 1600,
+          "label": "WhatsApp Image 2026-08-26 at 17.31.48 (1).jpeg",
+          "alt": "WhatsApp Image 2026-08-26 at 17.31.48 (1).jpeg",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o9/1ZEr8eTXCgIoOf4SdyfcIh7sKF2MVSkE4-preview.jpg",
+          "originalSha256": "f157ee72f92b0b0fb0e157ff7989e0168563b92f790db896ea3b5fd146093477"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o9/1aVw45wuAhmV6rhVIueBXhO_JfxR2d36d.jpg": {
+          "type": "image",
+          "mediaKind": "photo",
+          "width": 1200,
+          "height": 1600,
+          "label": "WhatsApp Image 2026-08-26 at 17.31.50 (9).jpeg",
+          "alt": "WhatsApp Image 2026-08-26 at 17.31.50 (9).jpeg",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o9/1aVw45wuAhmV6rhVIueBXhO_JfxR2d36d-preview.jpg",
+          "originalSha256": "5008e038d56140433ce73b6a02e6a11a9295c6aec6168bd62625eaa3b81c1f0d"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o9/15QvYlrGx3_Bk0x6UfQvhnUhMwk_4vUHA.jpg": {
+          "type": "image",
+          "mediaKind": "photo",
+          "width": 1600,
+          "height": 1200,
+          "label": "WhatsApp Image 2026-08-26 at 17.31.50 (10).jpeg",
+          "alt": "WhatsApp Image 2026-08-26 at 17.31.50 (10).jpeg",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o9/15QvYlrGx3_Bk0x6UfQvhnUhMwk_4vUHA-preview.jpg",
+          "originalSha256": "8dd0a802bd2ececdf89f24cacc06ca02129b7f7a1937aefd3af128bb554ed6fd"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o9/10-sL8OtDX6q5zYbhpvF802dkhiM1RQm_.jpg": {
+          "type": "image",
+          "mediaKind": "photo",
+          "width": 1200,
+          "height": 1600,
+          "label": "WhatsApp Image 2026-08-26 at 17.31.50 (11).jpeg",
+          "alt": "WhatsApp Image 2026-08-26 at 17.31.50 (11).jpeg",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o9/10-sL8OtDX6q5zYbhpvF802dkhiM1RQm_-preview.jpg",
+          "originalSha256": "5db6ee592029ace99c2f3ed1aa1e566d9cfb7f2a99783b59a2cbfffd6e0fac25"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o9/15HCZoGmS4nMlraM4FjhT7RVbmDBz7_K-.jpg": {
+          "type": "image",
+          "mediaKind": "photo",
+          "width": 900,
+          "height": 1600,
+          "label": "WhatsApp Image 2026-08-26 at 17.31.50.jpeg",
+          "alt": "WhatsApp Image 2026-08-26 at 17.31.50.jpeg",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/o9/15HCZoGmS4nMlraM4FjhT7RVbmDBz7_K--preview.jpg",
+          "originalSha256": "1b2592efa106e6ee08672b5a0ad0c23e7ae351856df24e3436f32287b936a010"
+        }
+      },
       "year": "",
       "category": "Event",
       "description": "",
@@ -6119,6 +7188,16 @@
           "driveFileId": "12qMtYJajlofmR5tSxJf-A6XPuDkfBJh7",
           "sourceFolder": "2024 - MBCS - Charging Station",
           "classificationBasis": "mime-and-folder-default; review ambiguous image folders"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/1UZuJY4WeCJAFJBMasuGlvDFKDh_s5v-C/1ZjDda_KOAusaGGIhHO-Whkv-rHuSrGkc.png": {
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1754,
+          "height": 881,
+          "label": "Charging station_01",
+          "alt": "Charging station_01",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/1UZuJY4WeCJAFJBMasuGlvDFKDh_s5v-C/1ZjDda_KOAusaGGIhHO-Whkv-rHuSrGkc-preview.jpg",
+          "originalSha256": "0a2b1a09932e9e7110f1f437e2599c913d1b4a1b36ff7897ef065cc65d1839de"
         }
       },
       "mediaStatus": "curated-media",
@@ -6145,7 +7224,19 @@
           "year": "2022"
         }
       ],
-      "graphics": [],
+      "graphics": [
+        {
+          "src": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/1UZuJY4WeCJAFJBMasuGlvDFKDh_s5v-C/1ZjDda_KOAusaGGIhHO-Whkv-rHuSrGkc.png",
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1754,
+          "height": 881,
+          "label": "Charging station_01",
+          "alt": "Charging station_01",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/1UZuJY4WeCJAFJBMasuGlvDFKDh_s5v-C/1ZjDda_KOAusaGGIhHO-Whkv-rHuSrGkc-preview.jpg",
+          "originalSha256": "0a2b1a09932e9e7110f1f437e2599c913d1b4a1b36ff7897ef065cc65d1839de"
+        }
+      ],
       "editorId": "o24",
       "cinema": "c1",
       "cinemaOrder": 24,
@@ -14317,8 +15408,31 @@
       "id": "p0",
       "images": [],
       "videos": [],
-      "graphics": [],
-      "imageInfo": {},
+      "graphics": [
+        {
+          "src": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p0/1BCGmYeIW_n5SigE5LtFILno5i-xll47p.png",
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1960,
+          "height": 984,
+          "label": "SAKA pavilion_01",
+          "alt": "SAKA pavilion_01",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p0/1BCGmYeIW_n5SigE5LtFILno5i-xll47p-preview.jpg",
+          "originalSha256": "6df0db87443ba82896e5f0c01bc65b783f77e7852e793e3bd7059e0f4bf51ca5"
+        }
+      ],
+      "imageInfo": {
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p0/1BCGmYeIW_n5SigE5LtFILno5i-xll47p.png": {
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1960,
+          "height": 984,
+          "label": "SAKA pavilion_01",
+          "alt": "SAKA pavilion_01",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p0/1BCGmYeIW_n5SigE5LtFILno5i-xll47p-preview.jpg",
+          "originalSha256": "6df0db87443ba82896e5f0c01bc65b783f77e7852e793e3bd7059e0f4bf51ca5"
+        }
+      },
       "year": "",
       "category": "Event",
       "description": "",
@@ -14336,8 +15450,52 @@
       "id": "p8",
       "images": [],
       "videos": [],
-      "graphics": [],
-      "imageInfo": {},
+      "graphics": [
+        {
+          "src": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p8/1FSpuJYB8Hbz3SuC3ExgnWEV607TDilhV.png",
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1754,
+          "height": 809,
+          "label": "Hong Kong Fur Federation_01",
+          "alt": "Hong Kong Fur Federation_01",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p8/1FSpuJYB8Hbz3SuC3ExgnWEV607TDilhV-preview.jpg",
+          "originalSha256": "fafaed676e1056d3ca737c046374da930d7654875e7b2c54f35e10931646903c"
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p8/1_bZQ1N8M4ILcp9uZ_A4RSEif5Qzdv6MW.png",
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1754,
+          "height": 809,
+          "label": "Hong Kong Fur Federation_02",
+          "alt": "Hong Kong Fur Federation_02",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p8/1_bZQ1N8M4ILcp9uZ_A4RSEif5Qzdv6MW-preview.jpg",
+          "originalSha256": "5afc9db897bbcc8af8e3b4ae9a6ee2e6bb76f8304a69f71993b604b7029d8cf0"
+        }
+      ],
+      "imageInfo": {
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p8/1FSpuJYB8Hbz3SuC3ExgnWEV607TDilhV.png": {
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1754,
+          "height": 809,
+          "label": "Hong Kong Fur Federation_01",
+          "alt": "Hong Kong Fur Federation_01",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p8/1FSpuJYB8Hbz3SuC3ExgnWEV607TDilhV-preview.jpg",
+          "originalSha256": "fafaed676e1056d3ca737c046374da930d7654875e7b2c54f35e10931646903c"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p8/1_bZQ1N8M4ILcp9uZ_A4RSEif5Qzdv6MW.png": {
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1754,
+          "height": 809,
+          "label": "Hong Kong Fur Federation_02",
+          "alt": "Hong Kong Fur Federation_02",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p8/1_bZQ1N8M4ILcp9uZ_A4RSEif5Qzdv6MW-preview.jpg",
+          "originalSha256": "5afc9db897bbcc8af8e3b4ae9a6ee2e6bb76f8304a69f71993b604b7029d8cf0"
+        }
+      },
       "year": "",
       "category": "Event",
       "description": "",
@@ -14355,8 +15513,94 @@
       "id": "p9",
       "images": [],
       "videos": [],
-      "graphics": [],
-      "imageInfo": {},
+      "graphics": [
+        {
+          "src": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p9/19Pp2q16mz2-E2iwaxSePTlK8NyexWbPa.png",
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1960,
+          "height": 916,
+          "label": "WINE&DINE Bakery and Merchandise_01",
+          "alt": "WINE&DINE Bakery and Merchandise_01",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p9/19Pp2q16mz2-E2iwaxSePTlK8NyexWbPa-preview.jpg",
+          "originalSha256": "022047de2f9ff3b15271a4bade305372dc59b28e7346923f3862ec72600adbac"
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p9/1PeWlls5jPkIlJnNF9uaA_bKOCcJFLGg3.png",
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1960,
+          "height": 916,
+          "label": "WINE&DINE Bakery and Merchandise_02",
+          "alt": "WINE&DINE Bakery and Merchandise_02",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p9/1PeWlls5jPkIlJnNF9uaA_bKOCcJFLGg3-preview.jpg",
+          "originalSha256": "fc42799f0fc034c204a942a2078c03651c0d4b65f90569e2d8a3cb6e90826afa"
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p9/1zPSs7TdLbFVuU9qvTfg8MWq8yh027CuL.png",
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1960,
+          "height": 916,
+          "label": "WINE&DINE Bakery and Merchandise_03",
+          "alt": "WINE&DINE Bakery and Merchandise_03",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p9/1zPSs7TdLbFVuU9qvTfg8MWq8yh027CuL-preview.jpg",
+          "originalSha256": "32d04c6e3757d2151037679e04862966e69bc2e3b2533d95f2ce535fa998a6a6"
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p9/1U2SNHSLxKiD-fx5lQbDctifp-i9eboVF.png",
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1960,
+          "height": 916,
+          "label": "WINE&DINE Bakery and Merchandise_04",
+          "alt": "WINE&DINE Bakery and Merchandise_04",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p9/1U2SNHSLxKiD-fx5lQbDctifp-i9eboVF-preview.jpg",
+          "originalSha256": "231cb5c9b571dee51d9893d66ebb1d91b4678575f84796666d363f7b17cbd20e"
+        }
+      ],
+      "imageInfo": {
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p9/19Pp2q16mz2-E2iwaxSePTlK8NyexWbPa.png": {
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1960,
+          "height": 916,
+          "label": "WINE&DINE Bakery and Merchandise_01",
+          "alt": "WINE&DINE Bakery and Merchandise_01",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p9/19Pp2q16mz2-E2iwaxSePTlK8NyexWbPa-preview.jpg",
+          "originalSha256": "022047de2f9ff3b15271a4bade305372dc59b28e7346923f3862ec72600adbac"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p9/1PeWlls5jPkIlJnNF9uaA_bKOCcJFLGg3.png": {
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1960,
+          "height": 916,
+          "label": "WINE&DINE Bakery and Merchandise_02",
+          "alt": "WINE&DINE Bakery and Merchandise_02",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p9/1PeWlls5jPkIlJnNF9uaA_bKOCcJFLGg3-preview.jpg",
+          "originalSha256": "fc42799f0fc034c204a942a2078c03651c0d4b65f90569e2d8a3cb6e90826afa"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p9/1zPSs7TdLbFVuU9qvTfg8MWq8yh027CuL.png": {
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1960,
+          "height": 916,
+          "label": "WINE&DINE Bakery and Merchandise_03",
+          "alt": "WINE&DINE Bakery and Merchandise_03",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p9/1zPSs7TdLbFVuU9qvTfg8MWq8yh027CuL-preview.jpg",
+          "originalSha256": "32d04c6e3757d2151037679e04862966e69bc2e3b2533d95f2ce535fa998a6a6"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p9/1U2SNHSLxKiD-fx5lQbDctifp-i9eboVF.png": {
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1960,
+          "height": 916,
+          "label": "WINE&DINE Bakery and Merchandise_04",
+          "alt": "WINE&DINE Bakery and Merchandise_04",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p9/1U2SNHSLxKiD-fx5lQbDctifp-i9eboVF-preview.jpg",
+          "originalSha256": "231cb5c9b571dee51d9893d66ebb1d91b4678575f84796666d363f7b17cbd20e"
+        }
+      },
       "year": "",
       "category": "Event",
       "description": "",
@@ -14374,8 +15618,73 @@
       "id": "p12",
       "images": [],
       "videos": [],
-      "graphics": [],
-      "imageInfo": {},
+      "graphics": [
+        {
+          "src": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p12/1wMlR1Bim5pgct5UvJGX-6R8HhSJHkWHB.png",
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1960,
+          "height": 984,
+          "label": "Cosmoprof Asia On stage_01",
+          "alt": "Cosmoprof Asia On stage_01",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p12/1wMlR1Bim5pgct5UvJGX-6R8HhSJHkWHB-preview.jpg",
+          "originalSha256": "7d2494c02f6130cba93f693e026e86f4dd5622fe695282f460b69d22edf8ebde"
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p12/1T6GxExZ6Vppes40ls1bqXPOJ-6n_as7r.png",
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1960,
+          "height": 984,
+          "label": "Cosmoprof Asia On stage_02",
+          "alt": "Cosmoprof Asia On stage_02",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p12/1T6GxExZ6Vppes40ls1bqXPOJ-6n_as7r-preview.jpg",
+          "originalSha256": "e6219b026d26af8a35e1b48229c25186e529b1d8a78e6117c2f055b786701d7a"
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p12/1BPkl_eI4rGXuSCCMMIGTqDeODozRMciK.png",
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1960,
+          "height": 984,
+          "label": "Cosmoprof Asia On stage_03",
+          "alt": "Cosmoprof Asia On stage_03",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p12/1BPkl_eI4rGXuSCCMMIGTqDeODozRMciK-preview.jpg",
+          "originalSha256": "9d2a0fdb11009f4e85ea95aac0fc530aa5beb03c4cf88c4bfaaa6db5799e15d7"
+        }
+      ],
+      "imageInfo": {
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p12/1wMlR1Bim5pgct5UvJGX-6R8HhSJHkWHB.png": {
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1960,
+          "height": 984,
+          "label": "Cosmoprof Asia On stage_01",
+          "alt": "Cosmoprof Asia On stage_01",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p12/1wMlR1Bim5pgct5UvJGX-6R8HhSJHkWHB-preview.jpg",
+          "originalSha256": "7d2494c02f6130cba93f693e026e86f4dd5622fe695282f460b69d22edf8ebde"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p12/1T6GxExZ6Vppes40ls1bqXPOJ-6n_as7r.png": {
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1960,
+          "height": 984,
+          "label": "Cosmoprof Asia On stage_02",
+          "alt": "Cosmoprof Asia On stage_02",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p12/1T6GxExZ6Vppes40ls1bqXPOJ-6n_as7r-preview.jpg",
+          "originalSha256": "e6219b026d26af8a35e1b48229c25186e529b1d8a78e6117c2f055b786701d7a"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p12/1BPkl_eI4rGXuSCCMMIGTqDeODozRMciK.png": {
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1960,
+          "height": 984,
+          "label": "Cosmoprof Asia On stage_03",
+          "alt": "Cosmoprof Asia On stage_03",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p12/1BPkl_eI4rGXuSCCMMIGTqDeODozRMciK-preview.jpg",
+          "originalSha256": "9d2a0fdb11009f4e85ea95aac0fc530aa5beb03c4cf88c4bfaaa6db5799e15d7"
+        }
+      },
       "year": "",
       "category": "Event",
       "description": "",
@@ -14393,8 +15702,52 @@
       "id": "p11",
       "images": [],
       "videos": [],
-      "graphics": [],
-      "imageInfo": {},
+      "graphics": [
+        {
+          "src": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p11/1yBQIulmOWPWyPpk1PkadpUt5jI7EKoxR.png",
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1960,
+          "height": 984,
+          "label": "Asian Attractions Expo(singapore) - ZIERER_01",
+          "alt": "Asian Attractions Expo(singapore) - ZIERER_01",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p11/1yBQIulmOWPWyPpk1PkadpUt5jI7EKoxR-preview.jpg",
+          "originalSha256": "0a7f0fc662730c8f0fdf6cd1ab9c0f535559283933afdbcec9b14bbe8ab84014"
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p11/1L-qc27DKPrAQyUHiCclBzXjxUpYROmEq.png",
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1960,
+          "height": 984,
+          "label": "Asian Attractions Expo(singapore) - ZIERER_02",
+          "alt": "Asian Attractions Expo(singapore) - ZIERER_02",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p11/1L-qc27DKPrAQyUHiCclBzXjxUpYROmEq-preview.jpg",
+          "originalSha256": "67a0d9f024a86d2fc813ff168987043301f4fa3d1341de105e9d77c4d5baf178"
+        }
+      ],
+      "imageInfo": {
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p11/1yBQIulmOWPWyPpk1PkadpUt5jI7EKoxR.png": {
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1960,
+          "height": 984,
+          "label": "Asian Attractions Expo(singapore) - ZIERER_01",
+          "alt": "Asian Attractions Expo(singapore) - ZIERER_01",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p11/1yBQIulmOWPWyPpk1PkadpUt5jI7EKoxR-preview.jpg",
+          "originalSha256": "0a7f0fc662730c8f0fdf6cd1ab9c0f535559283933afdbcec9b14bbe8ab84014"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p11/1L-qc27DKPrAQyUHiCclBzXjxUpYROmEq.png": {
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1960,
+          "height": 984,
+          "label": "Asian Attractions Expo(singapore) - ZIERER_02",
+          "alt": "Asian Attractions Expo(singapore) - ZIERER_02",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p11/1L-qc27DKPrAQyUHiCclBzXjxUpYROmEq-preview.jpg",
+          "originalSha256": "67a0d9f024a86d2fc813ff168987043301f4fa3d1341de105e9d77c4d5baf178"
+        }
+      },
       "year": "",
       "category": "Event",
       "description": "",
@@ -14412,8 +15765,73 @@
       "id": "p17",
       "images": [],
       "videos": [],
-      "graphics": [],
-      "imageInfo": {},
+      "graphics": [
+        {
+          "src": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p17/1hXBHiZDh7zy9ElPkSDQ79vpafyiu-ljp.png",
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1960,
+          "height": 924,
+          "label": "Vinexpo HK - Wine Booth_01",
+          "alt": "Vinexpo HK - Wine Booth_01",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p17/1hXBHiZDh7zy9ElPkSDQ79vpafyiu-ljp-preview.jpg",
+          "originalSha256": "a125fb34de53b805eca593dae5daae61a312f6208a4fcbb39d1e237a16355bcb"
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p17/1c0cObmO0bjxhhAV8BntIXaUiFq4bAZx_.png",
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1960,
+          "height": 924,
+          "label": "Vinexpo HK - Wine Booth_02",
+          "alt": "Vinexpo HK - Wine Booth_02",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p17/1c0cObmO0bjxhhAV8BntIXaUiFq4bAZx_-preview.jpg",
+          "originalSha256": "b47cfbd0c97990955da47b03fd4c3bf0c79e804cce18631950e290f86e1e79ed"
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p17/1VPvILiReFYulUZo0JLr7g9kYrbBn8sr4.png",
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1960,
+          "height": 924,
+          "label": "Vinexpo HK - Wine Booth_03",
+          "alt": "Vinexpo HK - Wine Booth_03",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p17/1VPvILiReFYulUZo0JLr7g9kYrbBn8sr4-preview.jpg",
+          "originalSha256": "235623e4005acc419078f0556ed87163313151d82c88fa7fd4a6dc602d19369a"
+        }
+      ],
+      "imageInfo": {
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p17/1hXBHiZDh7zy9ElPkSDQ79vpafyiu-ljp.png": {
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1960,
+          "height": 924,
+          "label": "Vinexpo HK - Wine Booth_01",
+          "alt": "Vinexpo HK - Wine Booth_01",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p17/1hXBHiZDh7zy9ElPkSDQ79vpafyiu-ljp-preview.jpg",
+          "originalSha256": "a125fb34de53b805eca593dae5daae61a312f6208a4fcbb39d1e237a16355bcb"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p17/1c0cObmO0bjxhhAV8BntIXaUiFq4bAZx_.png": {
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1960,
+          "height": 924,
+          "label": "Vinexpo HK - Wine Booth_02",
+          "alt": "Vinexpo HK - Wine Booth_02",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p17/1c0cObmO0bjxhhAV8BntIXaUiFq4bAZx_-preview.jpg",
+          "originalSha256": "b47cfbd0c97990955da47b03fd4c3bf0c79e804cce18631950e290f86e1e79ed"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p17/1VPvILiReFYulUZo0JLr7g9kYrbBn8sr4.png": {
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1960,
+          "height": 924,
+          "label": "Vinexpo HK - Wine Booth_03",
+          "alt": "Vinexpo HK - Wine Booth_03",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p17/1VPvILiReFYulUZo0JLr7g9kYrbBn8sr4-preview.jpg",
+          "originalSha256": "235623e4005acc419078f0556ed87163313151d82c88fa7fd4a6dc602d19369a"
+        }
+      },
       "year": "",
       "category": "Event",
       "description": "",
@@ -14431,8 +15849,73 @@
       "id": "p15",
       "images": [],
       "videos": [],
-      "graphics": [],
-      "imageInfo": {},
+      "graphics": [
+        {
+          "src": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p15/16DYiG7y4lvmKV3zOnBYFXSP_CWdyua5n.png",
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1960,
+          "height": 924,
+          "label": "Sergio Rossi_01",
+          "alt": "Sergio Rossi_01",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p15/16DYiG7y4lvmKV3zOnBYFXSP_CWdyua5n-preview.jpg",
+          "originalSha256": "661fc6c8c0e0e965b1921c1939cebf5f1599679e21dcb4e9ab31b3c398a60827"
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p15/17090yZLpwaRokAR-egqxMWdpk8-2nX0Y.png",
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1960,
+          "height": 924,
+          "label": "Sergio Rossi_02",
+          "alt": "Sergio Rossi_02",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p15/17090yZLpwaRokAR-egqxMWdpk8-2nX0Y-preview.jpg",
+          "originalSha256": "c8ec6b329a554ce836e71065afacd00e099166d237a7185b6e8f2c4708bf2c37"
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p15/1O8e2H06Tb6xfjaMNqAe_ozH4-1-gBkVb.png",
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1960,
+          "height": 924,
+          "label": "Sergio Rossi_03",
+          "alt": "Sergio Rossi_03",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p15/1O8e2H06Tb6xfjaMNqAe_ozH4-1-gBkVb-preview.jpg",
+          "originalSha256": "ab6216f2ccd8769ecd6c7f2627a24b1406142ae3b09ffca60e578bd1d24d1d13"
+        }
+      ],
+      "imageInfo": {
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p15/16DYiG7y4lvmKV3zOnBYFXSP_CWdyua5n.png": {
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1960,
+          "height": 924,
+          "label": "Sergio Rossi_01",
+          "alt": "Sergio Rossi_01",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p15/16DYiG7y4lvmKV3zOnBYFXSP_CWdyua5n-preview.jpg",
+          "originalSha256": "661fc6c8c0e0e965b1921c1939cebf5f1599679e21dcb4e9ab31b3c398a60827"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p15/17090yZLpwaRokAR-egqxMWdpk8-2nX0Y.png": {
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1960,
+          "height": 924,
+          "label": "Sergio Rossi_02",
+          "alt": "Sergio Rossi_02",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p15/17090yZLpwaRokAR-egqxMWdpk8-2nX0Y-preview.jpg",
+          "originalSha256": "c8ec6b329a554ce836e71065afacd00e099166d237a7185b6e8f2c4708bf2c37"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p15/1O8e2H06Tb6xfjaMNqAe_ozH4-1-gBkVb.png": {
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1960,
+          "height": 924,
+          "label": "Sergio Rossi_03",
+          "alt": "Sergio Rossi_03",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p15/1O8e2H06Tb6xfjaMNqAe_ozH4-1-gBkVb-preview.jpg",
+          "originalSha256": "ab6216f2ccd8769ecd6c7f2627a24b1406142ae3b09ffca60e578bd1d24d1d13"
+        }
+      },
       "year": "",
       "category": "Event",
       "description": "",
@@ -14448,10 +15931,45 @@
     },
     {
       "id": "p22",
-      "images": [],
+      "images": [
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p22/1O0ypvirFhab9v6LIElu7QrEaoKNOD6_6.png",
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p22/1IlX1y5lP9kQKck9twPYwNEGuJO2LVpjQ.png",
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p22/1IsFrSDKHKiKUhMjtQnzpwT1OnFYdci4a.png"
+      ],
       "videos": [],
       "graphics": [],
-      "imageInfo": {},
+      "imageInfo": {
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p22/1O0ypvirFhab9v6LIElu7QrEaoKNOD6_6.png": {
+          "type": "image",
+          "mediaKind": "photo",
+          "width": 1960,
+          "height": 924,
+          "label": "CDF - Duty Zero_01",
+          "alt": "CDF - Duty Zero_01",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p22/1O0ypvirFhab9v6LIElu7QrEaoKNOD6_6-preview.jpg",
+          "originalSha256": "f6e4a713a5cd747dfe9746c5c5f7b70f43b0bb5261b14f7745eea417b62ad465"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p22/1IlX1y5lP9kQKck9twPYwNEGuJO2LVpjQ.png": {
+          "type": "image",
+          "mediaKind": "photo",
+          "width": 1960,
+          "height": 924,
+          "label": "CDF - Duty Zero_02",
+          "alt": "CDF - Duty Zero_02",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p22/1IlX1y5lP9kQKck9twPYwNEGuJO2LVpjQ-preview.jpg",
+          "originalSha256": "5530d3ec265be0c81dc452037cf2f5e402438ad24cbb1ee0e2d2e54afe2fc6be"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p22/1IsFrSDKHKiKUhMjtQnzpwT1OnFYdci4a.png": {
+          "type": "image",
+          "mediaKind": "photo",
+          "width": 1960,
+          "height": 924,
+          "label": "CDF - Duty Zero_03",
+          "alt": "CDF - Duty Zero_03",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p22/1IsFrSDKHKiKUhMjtQnzpwT1OnFYdci4a-preview.jpg",
+          "originalSha256": "a738e332ca98b6f635d6123705f2ce040210a76c3e131c92ef3b981ea772f7e0"
+        }
+      },
       "year": "",
       "category": "Event",
       "description": "",
@@ -14467,10 +15985,45 @@
     },
     {
       "id": "p24",
-      "images": [],
+      "images": [
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p24/1AtuFLCLzg-SUQi2t4wn9J9G6rf5F3zWc.png"
+      ],
       "videos": [],
-      "graphics": [],
-      "imageInfo": {},
+      "graphics": [
+        {
+          "src": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p24/1PBWWmFuNF__-fDMDmq-TbrfcfeHeMPu3.png",
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1357,
+          "height": 640,
+          "label": "LC - Press Day_02",
+          "alt": "LC - Press Day_02",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p24/1PBWWmFuNF__-fDMDmq-TbrfcfeHeMPu3-preview.jpg",
+          "originalSha256": "010155e99bff244f20884f1c4613b5be49a0a748c7a1b1dca71b13c41ece68b8"
+        }
+      ],
+      "imageInfo": {
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p24/1AtuFLCLzg-SUQi2t4wn9J9G6rf5F3zWc.png": {
+          "type": "image",
+          "mediaKind": "photo",
+          "width": 1600,
+          "height": 754,
+          "label": "LC - Press Day_01",
+          "alt": "LC - Press Day_01",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p24/1AtuFLCLzg-SUQi2t4wn9J9G6rf5F3zWc-preview.jpg",
+          "originalSha256": "186f3567074a33c5277484040bdb8666046bc8575cb610eb689ad05c791fd4ca"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p24/1PBWWmFuNF__-fDMDmq-TbrfcfeHeMPu3.png": {
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1357,
+          "height": 640,
+          "label": "LC - Press Day_02",
+          "alt": "LC - Press Day_02",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p24/1PBWWmFuNF__-fDMDmq-TbrfcfeHeMPu3-preview.jpg",
+          "originalSha256": "010155e99bff244f20884f1c4613b5be49a0a748c7a1b1dca71b13c41ece68b8"
+        }
+      },
       "year": "",
       "category": "Event",
       "description": "",
@@ -14488,8 +16041,73 @@
       "id": "p25",
       "images": [],
       "videos": [],
-      "graphics": [],
-      "imageInfo": {},
+      "graphics": [
+        {
+          "src": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p25/1ppUgOAAW9ILmWZmCjPAULXgnKztiXtm3.png",
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1960,
+          "height": 924,
+          "label": "FWD Race Day_01",
+          "alt": "FWD Race Day_01",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p25/1ppUgOAAW9ILmWZmCjPAULXgnKztiXtm3-preview.jpg",
+          "originalSha256": "68036766eaea60d6220f1640fb9babac9eaa87b6d39e64e1a64865b9afd4f4a7"
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p25/1POScWCe4tx74k8KfaS6b7wvuxbRq9ZS0.png",
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1960,
+          "height": 924,
+          "label": "FWD Race Day_02",
+          "alt": "FWD Race Day_02",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p25/1POScWCe4tx74k8KfaS6b7wvuxbRq9ZS0-preview.jpg",
+          "originalSha256": "3f4943305d677d93286fb0a5476d4edbeac10fc5e27f3780add1941242fb52f1"
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p25/1c2tlI4h4bEEz7_I_1TJjn6NyS4fY5e0H.png",
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1568,
+          "height": 739,
+          "label": "FWD Race Day_03",
+          "alt": "FWD Race Day_03",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p25/1c2tlI4h4bEEz7_I_1TJjn6NyS4fY5e0H-preview.jpg",
+          "originalSha256": "7cb2f2d1bfdf6eb1faf90df0db92194671a786f8c826c852161c2e1dce9df067"
+        }
+      ],
+      "imageInfo": {
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p25/1ppUgOAAW9ILmWZmCjPAULXgnKztiXtm3.png": {
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1960,
+          "height": 924,
+          "label": "FWD Race Day_01",
+          "alt": "FWD Race Day_01",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p25/1ppUgOAAW9ILmWZmCjPAULXgnKztiXtm3-preview.jpg",
+          "originalSha256": "68036766eaea60d6220f1640fb9babac9eaa87b6d39e64e1a64865b9afd4f4a7"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p25/1POScWCe4tx74k8KfaS6b7wvuxbRq9ZS0.png": {
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1960,
+          "height": 924,
+          "label": "FWD Race Day_02",
+          "alt": "FWD Race Day_02",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p25/1POScWCe4tx74k8KfaS6b7wvuxbRq9ZS0-preview.jpg",
+          "originalSha256": "3f4943305d677d93286fb0a5476d4edbeac10fc5e27f3780add1941242fb52f1"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p25/1c2tlI4h4bEEz7_I_1TJjn6NyS4fY5e0H.png": {
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1568,
+          "height": 739,
+          "label": "FWD Race Day_03",
+          "alt": "FWD Race Day_03",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p25/1c2tlI4h4bEEz7_I_1TJjn6NyS4fY5e0H-preview.jpg",
+          "originalSha256": "7cb2f2d1bfdf6eb1faf90df0db92194671a786f8c826c852161c2e1dce9df067"
+        }
+      },
       "year": "",
       "category": "Event",
       "description": "",
@@ -15875,8 +17493,136 @@
       "id": "website",
       "images": [],
       "videos": [],
-      "graphics": [],
-      "imageInfo": {},
+      "graphics": [
+        {
+          "src": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/website/10jfm7wtL3NwDtHan-AdqNwi9rdkSHJnw.png",
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 841,
+          "height": 622,
+          "label": "agnes b. Fleuriste website_01",
+          "alt": "agnes b. Fleuriste website_01",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/website/10jfm7wtL3NwDtHan-AdqNwi9rdkSHJnw-preview.jpg",
+          "originalSha256": "7f8e3a6660c0b20fa8ea6f1faa66cd4df674ff1c52599e9d3cf4ac0e0043ff89"
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/website/1n9SzeiwLpzCr52swgMX0s51z25yIpGX9.png",
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 828,
+          "height": 627,
+          "label": "agnes b. Fleuriste website_02",
+          "alt": "agnes b. Fleuriste website_02",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/website/1n9SzeiwLpzCr52swgMX0s51z25yIpGX9-preview.jpg",
+          "originalSha256": "6033aaf1e0f49ec86b2136d27539bd26621e4246f5be6448d61235c1a98aa2d6"
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/website/1f_NAjiQH4X1m-uPGyuICZ389s_VNXLst.png",
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 662,
+          "height": 716,
+          "label": "Sport B. EDM",
+          "alt": "Sport B. EDM",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/website/1f_NAjiQH4X1m-uPGyuICZ389s_VNXLst-preview.jpg",
+          "originalSha256": "a733d4a00ddf220141c4245d5779dd3174793e96754df37bbf1875075a76c985"
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/website/1oYPrx88ym-DUDvsY3GTKvpBLJfeWKvsu.png",
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 818,
+          "height": 484,
+          "label": "Sport B. Website_01",
+          "alt": "Sport B. Website_01",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/website/1oYPrx88ym-DUDvsY3GTKvpBLJfeWKvsu-preview.jpg",
+          "originalSha256": "b55c57fa87b0335d248574d33dccec8e5689519df7518158bf0fe0f494021b4e"
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/website/1fMFVO6zWOaFa_2uHe-b7S6ovnDs6J533.png",
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 818,
+          "height": 484,
+          "label": "Sport B. Website_02",
+          "alt": "Sport B. Website_02",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/website/1fMFVO6zWOaFa_2uHe-b7S6ovnDs6J533-preview.jpg",
+          "originalSha256": "9ed004b9068f49dacce3f9a4db9cc60a72dd64072ea6e996cd0071c910069319"
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/website/1_XopIDVoq-D425iSYUSWtCHxhbq94vlw.png",
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 818,
+          "height": 484,
+          "label": "Sport B. Website_03",
+          "alt": "Sport B. Website_03",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/website/1_XopIDVoq-D425iSYUSWtCHxhbq94vlw-preview.jpg",
+          "originalSha256": "8a9c7b31fcd098c6403ed3d11c32e3de70e38b6d4c8b685f49b21fc7704088c0"
+        }
+      ],
+      "imageInfo": {
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/website/10jfm7wtL3NwDtHan-AdqNwi9rdkSHJnw.png": {
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 841,
+          "height": 622,
+          "label": "agnes b. Fleuriste website_01",
+          "alt": "agnes b. Fleuriste website_01",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/website/10jfm7wtL3NwDtHan-AdqNwi9rdkSHJnw-preview.jpg",
+          "originalSha256": "7f8e3a6660c0b20fa8ea6f1faa66cd4df674ff1c52599e9d3cf4ac0e0043ff89"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/website/1n9SzeiwLpzCr52swgMX0s51z25yIpGX9.png": {
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 828,
+          "height": 627,
+          "label": "agnes b. Fleuriste website_02",
+          "alt": "agnes b. Fleuriste website_02",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/website/1n9SzeiwLpzCr52swgMX0s51z25yIpGX9-preview.jpg",
+          "originalSha256": "6033aaf1e0f49ec86b2136d27539bd26621e4246f5be6448d61235c1a98aa2d6"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/website/1f_NAjiQH4X1m-uPGyuICZ389s_VNXLst.png": {
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 662,
+          "height": 716,
+          "label": "Sport B. EDM",
+          "alt": "Sport B. EDM",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/website/1f_NAjiQH4X1m-uPGyuICZ389s_VNXLst-preview.jpg",
+          "originalSha256": "a733d4a00ddf220141c4245d5779dd3174793e96754df37bbf1875075a76c985"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/website/1oYPrx88ym-DUDvsY3GTKvpBLJfeWKvsu.png": {
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 818,
+          "height": 484,
+          "label": "Sport B. Website_01",
+          "alt": "Sport B. Website_01",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/website/1oYPrx88ym-DUDvsY3GTKvpBLJfeWKvsu-preview.jpg",
+          "originalSha256": "b55c57fa87b0335d248574d33dccec8e5689519df7518158bf0fe0f494021b4e"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/website/1fMFVO6zWOaFa_2uHe-b7S6ovnDs6J533.png": {
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 818,
+          "height": 484,
+          "label": "Sport B. Website_02",
+          "alt": "Sport B. Website_02",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/website/1fMFVO6zWOaFa_2uHe-b7S6ovnDs6J533-preview.jpg",
+          "originalSha256": "9ed004b9068f49dacce3f9a4db9cc60a72dd64072ea6e996cd0071c910069319"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/website/1_XopIDVoq-D425iSYUSWtCHxhbq94vlw.png": {
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 818,
+          "height": 484,
+          "label": "Sport B. Website_03",
+          "alt": "Sport B. Website_03",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/website/1_XopIDVoq-D425iSYUSWtCHxhbq94vlw-preview.jpg",
+          "originalSha256": "8a9c7b31fcd098c6403ed3d11c32e3de70e38b6d4c8b685f49b21fc7704088c0"
+        }
+      },
       "year": "",
       "category": "Concept / Design",
       "description": "",
@@ -16276,8 +18022,73 @@
       "id": "p3",
       "images": [],
       "videos": [],
-      "graphics": [],
-      "imageInfo": {},
+      "graphics": [
+        {
+          "src": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p3/1ecDst0NR8qwUAC6ezXi3sChxirt1Lo3N.png",
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1231,
+          "height": 618,
+          "label": "Le Cordon Bleu at Hofex_01",
+          "alt": "Le Cordon Bleu at Hofex_01",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p3/1ecDst0NR8qwUAC6ezXi3sChxirt1Lo3N-preview.jpg",
+          "originalSha256": "a9919586c7422074d6b2b9a18b9a8cefa8fbd25b4243da9a157cd8bf46034311"
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p3/1H22rdQxbfYKG98vVMwH2ZzgnHY1STZrj.png",
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1231,
+          "height": 618,
+          "label": "Le Cordon Bleu at Hofex_02",
+          "alt": "Le Cordon Bleu at Hofex_02",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p3/1H22rdQxbfYKG98vVMwH2ZzgnHY1STZrj-preview.jpg",
+          "originalSha256": "41ad580a37e0eac2578d37d7c68548e97053b0af0d16b1051857f22be01de3d7"
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p3/1GXV_BJBRnFzO15KxLtwL-wToowa7KqJ_.png",
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1231,
+          "height": 618,
+          "label": "Le Cordon Bleu at Hofex_03",
+          "alt": "Le Cordon Bleu at Hofex_03",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p3/1GXV_BJBRnFzO15KxLtwL-wToowa7KqJ_-preview.jpg",
+          "originalSha256": "8e4c59145092d99467217f4fde76edb9577265d33d340f6212fd3d1614c231f4"
+        }
+      ],
+      "imageInfo": {
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p3/1ecDst0NR8qwUAC6ezXi3sChxirt1Lo3N.png": {
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1231,
+          "height": 618,
+          "label": "Le Cordon Bleu at Hofex_01",
+          "alt": "Le Cordon Bleu at Hofex_01",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p3/1ecDst0NR8qwUAC6ezXi3sChxirt1Lo3N-preview.jpg",
+          "originalSha256": "a9919586c7422074d6b2b9a18b9a8cefa8fbd25b4243da9a157cd8bf46034311"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p3/1H22rdQxbfYKG98vVMwH2ZzgnHY1STZrj.png": {
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1231,
+          "height": 618,
+          "label": "Le Cordon Bleu at Hofex_02",
+          "alt": "Le Cordon Bleu at Hofex_02",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p3/1H22rdQxbfYKG98vVMwH2ZzgnHY1STZrj-preview.jpg",
+          "originalSha256": "41ad580a37e0eac2578d37d7c68548e97053b0af0d16b1051857f22be01de3d7"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p3/1GXV_BJBRnFzO15KxLtwL-wToowa7KqJ_.png": {
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1231,
+          "height": 618,
+          "label": "Le Cordon Bleu at Hofex_03",
+          "alt": "Le Cordon Bleu at Hofex_03",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p3/1GXV_BJBRnFzO15KxLtwL-wToowa7KqJ_-preview.jpg",
+          "originalSha256": "8e4c59145092d99467217f4fde76edb9577265d33d340f6212fd3d1614c231f4"
+        }
+      },
       "year": "",
       "category": "Concept / Design",
       "description": "",
@@ -16295,8 +18106,94 @@
       "id": "p14",
       "images": [],
       "videos": [],
-      "graphics": [],
-      "imageInfo": {},
+      "graphics": [
+        {
+          "src": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p14/1-vpzlxkwBa8Yqe1D328mQu8icVC_il8l.png",
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1960,
+          "height": 984,
+          "label": "Eco Expo Asia HK Pavilion_01",
+          "alt": "Eco Expo Asia HK Pavilion_01",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p14/1-vpzlxkwBa8Yqe1D328mQu8icVC_il8l-preview.jpg",
+          "originalSha256": "ecb79baed4f5c94002648f277f18512137c76d84614de2672ba2895b3f46495e"
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p14/1GcYZ1Jf1-UPsFGvqO8zoqeLbfqjRlTn0.png",
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1960,
+          "height": 984,
+          "label": "Eco Expo Asia HK Pavilion_02",
+          "alt": "Eco Expo Asia HK Pavilion_02",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p14/1GcYZ1Jf1-UPsFGvqO8zoqeLbfqjRlTn0-preview.jpg",
+          "originalSha256": "43d1bd0861d8e9e3cf9d29a1744afad88584e4c1ac6064a357309b6dd2812cab"
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p14/1V9oo2qat2ae05ZilHwZvCbu77QYQMKKk.png",
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1960,
+          "height": 984,
+          "label": "Eco Expo Asia HK Pavilion_03",
+          "alt": "Eco Expo Asia HK Pavilion_03",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p14/1V9oo2qat2ae05ZilHwZvCbu77QYQMKKk-preview.jpg",
+          "originalSha256": "badbea0479bf619f2860056d77f5b1792f5eadc82d55b669efe129a5379cff31"
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p14/18glIZMMKksbsrzUO4KDS4T59JwMetoBg.png",
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1960,
+          "height": 984,
+          "label": "Eco Expo Asia HK Pavilion_04",
+          "alt": "Eco Expo Asia HK Pavilion_04",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p14/18glIZMMKksbsrzUO4KDS4T59JwMetoBg-preview.jpg",
+          "originalSha256": "bd16f8c72f684054b1896710146fbc7188ebab6345494cffb576974c99dcda9f"
+        }
+      ],
+      "imageInfo": {
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p14/1-vpzlxkwBa8Yqe1D328mQu8icVC_il8l.png": {
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1960,
+          "height": 984,
+          "label": "Eco Expo Asia HK Pavilion_01",
+          "alt": "Eco Expo Asia HK Pavilion_01",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p14/1-vpzlxkwBa8Yqe1D328mQu8icVC_il8l-preview.jpg",
+          "originalSha256": "ecb79baed4f5c94002648f277f18512137c76d84614de2672ba2895b3f46495e"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p14/1GcYZ1Jf1-UPsFGvqO8zoqeLbfqjRlTn0.png": {
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1960,
+          "height": 984,
+          "label": "Eco Expo Asia HK Pavilion_02",
+          "alt": "Eco Expo Asia HK Pavilion_02",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p14/1GcYZ1Jf1-UPsFGvqO8zoqeLbfqjRlTn0-preview.jpg",
+          "originalSha256": "43d1bd0861d8e9e3cf9d29a1744afad88584e4c1ac6064a357309b6dd2812cab"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p14/1V9oo2qat2ae05ZilHwZvCbu77QYQMKKk.png": {
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1960,
+          "height": 984,
+          "label": "Eco Expo Asia HK Pavilion_03",
+          "alt": "Eco Expo Asia HK Pavilion_03",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p14/1V9oo2qat2ae05ZilHwZvCbu77QYQMKKk-preview.jpg",
+          "originalSha256": "badbea0479bf619f2860056d77f5b1792f5eadc82d55b669efe129a5379cff31"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p14/18glIZMMKksbsrzUO4KDS4T59JwMetoBg.png": {
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1960,
+          "height": 984,
+          "label": "Eco Expo Asia HK Pavilion_04",
+          "alt": "Eco Expo Asia HK Pavilion_04",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p14/18glIZMMKksbsrzUO4KDS4T59JwMetoBg-preview.jpg",
+          "originalSha256": "bd16f8c72f684054b1896710146fbc7188ebab6345494cffb576974c99dcda9f"
+        }
+      },
       "year": "",
       "category": "Concept / Design",
       "description": "",
@@ -16325,6 +18222,61 @@
           "sourcePage": "https://drive.google.com/file/d/1PdvdaleqZ3wJMFr5rGh0rb28cWrjlFbr/view",
           "sourceDriveId": "1PdvdaleqZ3wJMFr5rGh0rb28cWrjlFbr",
           "originalSha256": "3876d18717e62e7f824949942b81dccbc47b93a7f48000b679edf21b1575eb57"
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p23/1HAXrXms46sOniJWQBZYlY8bKQsAsSPtE.png",
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1920,
+          "height": 905,
+          "label": "MBHK - GLB Launch_01",
+          "alt": "MBHK - GLB Launch_01",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p23/1HAXrXms46sOniJWQBZYlY8bKQsAsSPtE-preview.jpg",
+          "originalSha256": "d0d43be47bc9ee5442f68ba8fbfe7d04653ee468fcb1926a57962e832d4302f4"
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p23/1Vrzgp_nBLo4BV1MNSRK3WYswFi48G3Ym.png",
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1920,
+          "height": 905,
+          "label": "MBHK - GLB Launch_02",
+          "alt": "MBHK - GLB Launch_02",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p23/1Vrzgp_nBLo4BV1MNSRK3WYswFi48G3Ym-preview.jpg",
+          "originalSha256": "578b1da94afc19b11dcb71110ccab3267b5c10463ff5bb1f7e439c289ccaa569"
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p23/1v9FB2lbJWTre_2YrpMBxGhR5paAPDPey.png",
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1920,
+          "height": 905,
+          "label": "MBHK - GLB Launch_03",
+          "alt": "MBHK - GLB Launch_03",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p23/1v9FB2lbJWTre_2YrpMBxGhR5paAPDPey-preview.jpg",
+          "originalSha256": "f83fa198619792613541d95f5385a7314f4424cc14889eb85ceb012cf716f9be"
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p23/1M_-VcpY1neGUajpAwrqYRmRvkjW8Qu5d.png",
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1920,
+          "height": 905,
+          "label": "MBHK - GLB Launch_04",
+          "alt": "MBHK - GLB Launch_04",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p23/1M_-VcpY1neGUajpAwrqYRmRvkjW8Qu5d-preview.jpg",
+          "originalSha256": "9ddd314bc7d8c0e1e95de9ce3fe779005e3e303e3ad0dbc5711e39c17bfee21f"
+        },
+        {
+          "src": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p23/1uBGrRooBXwNdPfJfqrPsr1d7mS8ul9-q.png",
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1920,
+          "height": 905,
+          "label": "MBHK - GLB Launch_05",
+          "alt": "MBHK - GLB Launch_05",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p23/1uBGrRooBXwNdPfJfqrPsr1d7mS8ul9-q-preview.jpg",
+          "originalSha256": "4a52d1e7b48b923ad3d3cea79943ae63ef60150a0cfc1865c146bf0965e24b99"
         }
       ],
       "imageInfo": {
@@ -16338,6 +18290,56 @@
           "sourcePage": "https://drive.google.com/file/d/1PdvdaleqZ3wJMFr5rGh0rb28cWrjlFbr/view",
           "sourceDriveId": "1PdvdaleqZ3wJMFr5rGh0rb28cWrjlFbr",
           "originalSha256": "3876d18717e62e7f824949942b81dccbc47b93a7f48000b679edf21b1575eb57"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p23/1HAXrXms46sOniJWQBZYlY8bKQsAsSPtE.png": {
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1920,
+          "height": 905,
+          "label": "MBHK - GLB Launch_01",
+          "alt": "MBHK - GLB Launch_01",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p23/1HAXrXms46sOniJWQBZYlY8bKQsAsSPtE-preview.jpg",
+          "originalSha256": "d0d43be47bc9ee5442f68ba8fbfe7d04653ee468fcb1926a57962e832d4302f4"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p23/1Vrzgp_nBLo4BV1MNSRK3WYswFi48G3Ym.png": {
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1920,
+          "height": 905,
+          "label": "MBHK - GLB Launch_02",
+          "alt": "MBHK - GLB Launch_02",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p23/1Vrzgp_nBLo4BV1MNSRK3WYswFi48G3Ym-preview.jpg",
+          "originalSha256": "578b1da94afc19b11dcb71110ccab3267b5c10463ff5bb1f7e439c289ccaa569"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p23/1v9FB2lbJWTre_2YrpMBxGhR5paAPDPey.png": {
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1920,
+          "height": 905,
+          "label": "MBHK - GLB Launch_03",
+          "alt": "MBHK - GLB Launch_03",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p23/1v9FB2lbJWTre_2YrpMBxGhR5paAPDPey-preview.jpg",
+          "originalSha256": "f83fa198619792613541d95f5385a7314f4424cc14889eb85ceb012cf716f9be"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p23/1M_-VcpY1neGUajpAwrqYRmRvkjW8Qu5d.png": {
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1920,
+          "height": 905,
+          "label": "MBHK - GLB Launch_04",
+          "alt": "MBHK - GLB Launch_04",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p23/1M_-VcpY1neGUajpAwrqYRmRvkjW8Qu5d-preview.jpg",
+          "originalSha256": "9ddd314bc7d8c0e1e95de9ce3fe779005e3e303e3ad0dbc5711e39c17bfee21f"
+        },
+        "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p23/1uBGrRooBXwNdPfJfqrPsr1d7mS8ul9-q.png": {
+          "type": "image",
+          "mediaKind": "graphic",
+          "width": 1920,
+          "height": 905,
+          "label": "MBHK - GLB Launch_05",
+          "alt": "MBHK - GLB Launch_05",
+          "thumbnail": "https://raw.githubusercontent.com/ankertam-cyber/anker-portfolio/main/media-uploads/p23/1uBGrRooBXwNdPfJfqrPsr1d7mS8ul9-q-preview.jpg",
+          "originalSha256": "4a52d1e7b48b923ad3d3cea79943ae63ef60150a0cfc1865c146bf0965e24b99"
         }
       },
       "year": "",

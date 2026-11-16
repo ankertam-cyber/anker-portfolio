@@ -22,7 +22,7 @@ await fs.mkdir(cache,{recursive:true});await fs.cp('site',output,{recursive:true
 for(const file of purge.files){await removeContainedFile(output,file);await removeContainedFile(path.join(root,'site'),file);}
 for(const file of purge.cacheFiles)await removeContainedFile(cache,file);
 for(const file of purge.seeds)await removeContainedFile(root,file);
-const fingerprints=JSON.parse(await fs.readFile(path.join(output,'image-fingerprints.json'),'utf8'));for(const file of purge.files)delete fingerprints.records[file];await fs.writeFile(path.join(output,'image-fingerprints.json'),JSON.stringify(fingerprints));
+const fingerprints=JSON.parse(await fs.readFile(path.join(output,'image-fingerprints.json'),'utf8'));for(const file of [...purge.files,...purge.sources])delete fingerprints.records[file];await fs.writeFile(path.join(output,'image-fingerprints.json'),JSON.stringify(fingerprints));
 function decode(s){return s.replaceAll('&amp;','&').replaceAll('&#39;',"'").replaceAll('&quot;','"');}
 async function publicFilm(url){
  const source=new URL(url);if(source.protocol!=='https:'||!['drive.google.com','drive.usercontent.google.com','video.wixstatic.com','github.com'].includes(source.hostname))throw Error('Unexpected film source');

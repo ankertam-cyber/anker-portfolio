@@ -1,6 +1,6 @@
 {
-  "entry": "browser-app.d6ec1d7a4710.js",
-  "sha256": "d6ec1d7a471038a396731d029183eb77a294395ccaf9174b0da25d61b1fea44f",
+  "entry": "browser-app.6d920cf2a373.js",
+  "sha256": "6d920cf2a3736a73006337bc5177851e5037a834689b1b7712412f146d66b554",
   "modules": [
     "app.mjs",
     "video-delivery.mjs",
@@ -8,6 +8,9 @@
     "owner-content.mjs",
     "content-model.mjs",
     "project-media.mjs",
+    "upload-store.mjs",
+    "upload-paths.mjs",
+    "photo-upload.mjs",
     "catalogue.mjs",
     "project-stories.mjs",
     "scene.mjs",

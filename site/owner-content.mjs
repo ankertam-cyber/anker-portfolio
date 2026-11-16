@@ -1,4 +1,6 @@
 import {DRAFT_KEY,emptyContent,applyContent} from './content-model.mjs';
+import {ownerUploads,uploadedImageSource} from './upload-store.mjs';
+import {previewUploadedEntries} from './photo-upload.mjs';
 export async function loadOwnerContent(entries){
  let content;
  const response=await fetch('content.json',{cache:'no-store'});if(response.status===404)content=emptyContent();else{if(!response.ok)throw Error('Website content unavailable');content=await response.json();}
@@ -8,7 +10,7 @@ export async function loadOwnerContent(entries){
   const saved=JSON.parse(localStorage.getItem(DRAFT_KEY)||'null');if(!saved?.draft)throw Error('Preview draft unavailable');content=saved.draft;
   const banner=document.createElement('aside');banner.className='owner-preview-banner';banner.textContent='草稿預覽 · 未發佈';const close=document.createElement('button');close.type='button';close.textContent='關閉預覽';close.addEventListener('click',()=>window.close());banner.append(close);document.body.prepend(banner);
  }
- const result=applyContent(entries,content);applyProfile(content.profile);if(preview)document.title='草稿預覽 · '+document.title;document.documentElement.dataset.contentRevision=content.revision||'baseline';return result;
+ let result=applyContent(entries,content);if(preview){await ownerUploads.restore();result=previewUploadedEntries(result,uploadedImageSource);}applyProfile(content.profile);if(preview)document.title='草稿預覽 · '+document.title;document.documentElement.dataset.contentRevision=content.revision||'baseline';return result;
 }
 export function applyProfile(profile){
  const set=(selector,value)=>{const el=document.querySelector(selector);if(el){el.textContent=value;el.style.whiteSpace='pre-line';}};
